@@ -7,8 +7,11 @@
 //
 
 #import "MEHomeViewController.h"
+#import "METabBar.h"
 
 @interface MEHomeViewController ()
+
+@property (nonatomic, weak) UIButton *selectedBtn;//设置之前选中的按钮
 
 @end
 
@@ -16,13 +19,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 
 @end

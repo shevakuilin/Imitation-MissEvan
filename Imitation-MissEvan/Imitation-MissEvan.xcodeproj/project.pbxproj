@@ -21,6 +21,9 @@
 		77C8193C1DBDB9050004EFFC /* MEChannelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C8193B1DBDB9050004EFFC /* MEChannelViewController.m */; };
 		77C8193F1DBDB9790004EFFC /* MEFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C8193E1DBDB9790004EFFC /* MEFollowViewController.m */; };
 		77C819421DBDB98C0004EFFC /* MEMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C819411DBDB98C0004EFFC /* MEMyViewController.m */; };
+		77C8194B1DBDF53B0004EFFC /* METabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C8194A1DBDF53B0004EFFC /* METabBar.m */; };
+		77C8194E1DBDFE960004EFFC /* METabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C8194D1DBDFE960004EFFC /* METabBarButton.m */; };
+		77C819541DBE00740004EFFC /* MEDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C819531DBE00730004EFFC /* MEDataSource.m */; };
 		C9539F1C10181F2A520BDDE3 /* libPods-Imitation-MissEvan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20DBB35C9F8E09611DFD0293 /* libPods-Imitation-MissEvan.a */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +72,13 @@
 		77C8193E1DBDB9790004EFFC /* MEFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEFollowViewController.m; sourceTree = "<group>"; };
 		77C819401DBDB98C0004EFFC /* MEMyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEMyViewController.h; sourceTree = "<group>"; };
 		77C819411DBDB98C0004EFFC /* MEMyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEMyViewController.m; sourceTree = "<group>"; };
+		77C819491DBDF53B0004EFFC /* METabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METabBar.h; sourceTree = "<group>"; };
+		77C8194A1DBDF53B0004EFFC /* METabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METabBar.m; sourceTree = "<group>"; };
+		77C8194C1DBDFE960004EFFC /* METabBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METabBarButton.h; sourceTree = "<group>"; };
+		77C8194D1DBDFE960004EFFC /* METabBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METabBarButton.m; sourceTree = "<group>"; };
+		77C819521DBE00730004EFFC /* MEDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEDataSource.h; sourceTree = "<group>"; };
+		77C819531DBE00730004EFFC /* MEDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEDataSource.m; sourceTree = "<group>"; };
+		77C819551DBE064E0004EFFC /* MEPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEPrefixHeader.pch; sourceTree = "<group>"; };
 		78521F705BB0DCF560EE7105 /* Pods-Imitation-MissEvan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imitation-MissEvan.release.xcconfig"; path = "Pods/Target Support Files/Pods-Imitation-MissEvan/Pods-Imitation-MissEvan.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +133,7 @@
 		778123901DBDAD4500425E6A /* Imitation-MissEvan */ = {
 			isa = PBXGroup;
 			children = (
+				77C819451DBDF4E10004EFFC /* Structure */,
 				778123C61DBDB29D00425E6A /* Home */,
 				778123C41DBDB29D00425E6A /* Channel */,
 				778123C51DBDB29D00425E6A /* Follow */,
@@ -215,8 +226,22 @@
 		77C819441DBDBB0D0004EFFC /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				77C819521DBE00730004EFFC /* MEDataSource.h */,
+				77C819531DBE00730004EFFC /* MEDataSource.m */,
+				77C819551DBE064E0004EFFC /* MEPrefixHeader.pch */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		77C819451DBDF4E10004EFFC /* Structure */ = {
+			isa = PBXGroup;
+			children = (
+				77C819491DBDF53B0004EFFC /* METabBar.h */,
+				77C8194A1DBDF53B0004EFFC /* METabBar.m */,
+				77C8194C1DBDFE960004EFFC /* METabBarButton.h */,
+				77C8194D1DBDFE960004EFFC /* METabBarButton.m */,
+			);
+			path = Structure;
 			sourceTree = "<group>";
 		};
 		CD12B2E7146F7BB9CE190470 /* Frameworks */ = {
@@ -424,10 +449,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77C819541DBE00740004EFFC /* MEDataSource.m in Sources */,
 				77C8193F1DBDB9790004EFFC /* MEFollowViewController.m in Sources */,
+				77C8194B1DBDF53B0004EFFC /* METabBar.m in Sources */,
 				77C819391DBDB88E0004EFFC /* MEHomeViewController.m in Sources */,
 				77C819421DBDB98C0004EFFC /* MEMyViewController.m in Sources */,
 				778123961DBDAD4500425E6A /* AppDelegate.m in Sources */,
+				77C8194E1DBDFE960004EFFC /* METabBarButton.m in Sources */,
 				77C8193C1DBDB9050004EFFC /* MEChannelViewController.m in Sources */,
 				778123931DBDAD4500425E6A /* main.m in Sources */,
 			);
@@ -569,6 +597,8 @@
 			baseConfigurationReference = 0DAEBD253CF221B554034028 /* Pods-Imitation-MissEvan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "/Users/huiren/Desktop/Imitation-MissEvan/Imitation-MissEvan/Imitation-MissEvan/Util/MEPrefixHeader.pch";
 				INFOPLIST_FILE = "Imitation-MissEvan/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "sheva.Imitation-MissEvan";
@@ -581,6 +611,8 @@
 			baseConfigurationReference = 78521F705BB0DCF560EE7105 /* Pods-Imitation-MissEvan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "/Users/huiren/Desktop/Imitation-MissEvan/Imitation-MissEvan/Imitation-MissEvan/Util/MEPrefixHeader.pch";
 				INFOPLIST_FILE = "Imitation-MissEvan/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "sheva.Imitation-MissEvan";

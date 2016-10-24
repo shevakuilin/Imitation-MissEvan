@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Imitation-MissEvan.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>7781238D1DBDAD4500425E6A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>778123A61DBDAD4500425E6A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>778123B11DBDAD4500425E6A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

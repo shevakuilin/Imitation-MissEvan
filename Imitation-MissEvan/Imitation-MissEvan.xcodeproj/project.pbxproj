@@ -1,0 +1,679 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		778123931DBDAD4500425E6A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 778123921DBDAD4500425E6A /* main.m */; };
+		778123961DBDAD4500425E6A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 778123951DBDAD4500425E6A /* AppDelegate.m */; };
+		7781239E1DBDAD4500425E6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7781239D1DBDAD4500425E6A /* Assets.xcassets */; };
+		778123A11DBDAD4500425E6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7781239F1DBDAD4500425E6A /* LaunchScreen.storyboard */; };
+		778123AC1DBDAD4500425E6A /* Imitation_MissEvanTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 778123AB1DBDAD4500425E6A /* Imitation_MissEvanTests.m */; };
+		778123B71DBDAD4500425E6A /* Imitation_MissEvanUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 778123B61DBDAD4500425E6A /* Imitation_MissEvanUITests.m */; };
+		77C8192F1DBDB6B50004EFFC /* MEHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77C8192E1DBDB6B50004EFFC /* MEHome.storyboard */; };
+		77C819321DBDB6EB0004EFFC /* MEChannel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77C819311DBDB6EB0004EFFC /* MEChannel.storyboard */; };
+		77C819341DBDB7000004EFFC /* MEFollow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77C819331DBDB7000004EFFC /* MEFollow.storyboard */; };
+		77C819361DBDB76E0004EFFC /* MEMy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77C819351DBDB76E0004EFFC /* MEMy.storyboard */; };
+		77C819391DBDB88E0004EFFC /* MEHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C819381DBDB88E0004EFFC /* MEHomeViewController.m */; };
+		77C8193C1DBDB9050004EFFC /* MEChannelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C8193B1DBDB9050004EFFC /* MEChannelViewController.m */; };
+		77C8193F1DBDB9790004EFFC /* MEFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C8193E1DBDB9790004EFFC /* MEFollowViewController.m */; };
+		77C819421DBDB98C0004EFFC /* MEMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C819411DBDB98C0004EFFC /* MEMyViewController.m */; };
+		C9539F1C10181F2A520BDDE3 /* libPods-Imitation-MissEvan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20DBB35C9F8E09611DFD0293 /* libPods-Imitation-MissEvan.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		778123A81DBDAD4500425E6A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 778123861DBDAD4500425E6A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7781238D1DBDAD4500425E6A;
+			remoteInfo = "Imitation-MissEvan";
+		};
+		778123B31DBDAD4500425E6A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 778123861DBDAD4500425E6A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7781238D1DBDAD4500425E6A;
+			remoteInfo = "Imitation-MissEvan";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0DAEBD253CF221B554034028 /* Pods-Imitation-MissEvan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imitation-MissEvan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Imitation-MissEvan/Pods-Imitation-MissEvan.debug.xcconfig"; sourceTree = "<group>"; };
+		20DBB35C9F8E09611DFD0293 /* libPods-Imitation-MissEvan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Imitation-MissEvan.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7781238E1DBDAD4500425E6A /* Imitation-MissEvan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Imitation-MissEvan.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		778123921DBDAD4500425E6A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		778123941DBDAD4500425E6A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		778123951DBDAD4500425E6A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7781239D1DBDAD4500425E6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		778123A01DBDAD4500425E6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		778123A21DBDAD4500425E6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		778123A71DBDAD4500425E6A /* Imitation-MissEvanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Imitation-MissEvanTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		778123AB1DBDAD4500425E6A /* Imitation_MissEvanTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Imitation_MissEvanTests.m; sourceTree = "<group>"; };
+		778123AD1DBDAD4500425E6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		778123B21DBDAD4500425E6A /* Imitation-MissEvanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Imitation-MissEvanUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		778123B61DBDAD4500425E6A /* Imitation_MissEvanUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Imitation_MissEvanUITests.m; sourceTree = "<group>"; };
+		778123B81DBDAD4500425E6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77C8192E1DBDB6B50004EFFC /* MEHome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MEHome.storyboard; sourceTree = "<group>"; };
+		77C819311DBDB6EB0004EFFC /* MEChannel.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MEChannel.storyboard; sourceTree = "<group>"; };
+		77C819331DBDB7000004EFFC /* MEFollow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MEFollow.storyboard; sourceTree = "<group>"; };
+		77C819351DBDB76E0004EFFC /* MEMy.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MEMy.storyboard; sourceTree = "<group>"; };
+		77C819371DBDB88E0004EFFC /* MEHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEHomeViewController.h; sourceTree = "<group>"; };
+		77C819381DBDB88E0004EFFC /* MEHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEHomeViewController.m; sourceTree = "<group>"; };
+		77C8193A1DBDB9050004EFFC /* MEChannelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEChannelViewController.h; sourceTree = "<group>"; };
+		77C8193B1DBDB9050004EFFC /* MEChannelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEChannelViewController.m; sourceTree = "<group>"; };
+		77C8193D1DBDB9790004EFFC /* MEFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEFollowViewController.h; sourceTree = "<group>"; };
+		77C8193E1DBDB9790004EFFC /* MEFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEFollowViewController.m; sourceTree = "<group>"; };
+		77C819401DBDB98C0004EFFC /* MEMyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEMyViewController.h; sourceTree = "<group>"; };
+		77C819411DBDB98C0004EFFC /* MEMyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEMyViewController.m; sourceTree = "<group>"; };
+		78521F705BB0DCF560EE7105 /* Pods-Imitation-MissEvan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imitation-MissEvan.release.xcconfig"; path = "Pods/Target Support Files/Pods-Imitation-MissEvan/Pods-Imitation-MissEvan.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7781238B1DBDAD4500425E6A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9539F1C10181F2A520BDDE3 /* libPods-Imitation-MissEvan.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		778123A41DBDAD4500425E6A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		778123AF1DBDAD4500425E6A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		778123851DBDAD4500425E6A = {
+			isa = PBXGroup;
+			children = (
+				778123901DBDAD4500425E6A /* Imitation-MissEvan */,
+				778123AA1DBDAD4500425E6A /* Imitation-MissEvanTests */,
+				778123B51DBDAD4500425E6A /* Imitation-MissEvanUITests */,
+				7781238F1DBDAD4500425E6A /* Products */,
+				F798BE94405AB0129663EC25 /* Pods */,
+				CD12B2E7146F7BB9CE190470 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		7781238F1DBDAD4500425E6A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7781238E1DBDAD4500425E6A /* Imitation-MissEvan.app */,
+				778123A71DBDAD4500425E6A /* Imitation-MissEvanTests.xctest */,
+				778123B21DBDAD4500425E6A /* Imitation-MissEvanUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		778123901DBDAD4500425E6A /* Imitation-MissEvan */ = {
+			isa = PBXGroup;
+			children = (
+				778123C61DBDB29D00425E6A /* Home */,
+				778123C41DBDB29D00425E6A /* Channel */,
+				778123C51DBDB29D00425E6A /* Follow */,
+				778123C71DBDB29D00425E6A /* My */,
+				77C819431DBDBB0D0004EFFC /* Lib */,
+				77C819441DBDBB0D0004EFFC /* Util */,
+				778123941DBDAD4500425E6A /* AppDelegate.h */,
+				778123951DBDAD4500425E6A /* AppDelegate.m */,
+				7781239D1DBDAD4500425E6A /* Assets.xcassets */,
+				7781239F1DBDAD4500425E6A /* LaunchScreen.storyboard */,
+				778123A21DBDAD4500425E6A /* Info.plist */,
+				778123911DBDAD4500425E6A /* Supporting Files */,
+			);
+			path = "Imitation-MissEvan";
+			sourceTree = "<group>";
+		};
+		778123911DBDAD4500425E6A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				778123921DBDAD4500425E6A /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		778123AA1DBDAD4500425E6A /* Imitation-MissEvanTests */ = {
+			isa = PBXGroup;
+			children = (
+				778123AB1DBDAD4500425E6A /* Imitation_MissEvanTests.m */,
+				778123AD1DBDAD4500425E6A /* Info.plist */,
+			);
+			path = "Imitation-MissEvanTests";
+			sourceTree = "<group>";
+		};
+		778123B51DBDAD4500425E6A /* Imitation-MissEvanUITests */ = {
+			isa = PBXGroup;
+			children = (
+				778123B61DBDAD4500425E6A /* Imitation_MissEvanUITests.m */,
+				778123B81DBDAD4500425E6A /* Info.plist */,
+			);
+			path = "Imitation-MissEvanUITests";
+			sourceTree = "<group>";
+		};
+		778123C41DBDB29D00425E6A /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+				77C819311DBDB6EB0004EFFC /* MEChannel.storyboard */,
+				77C8193A1DBDB9050004EFFC /* MEChannelViewController.h */,
+				77C8193B1DBDB9050004EFFC /* MEChannelViewController.m */,
+			);
+			path = Channel;
+			sourceTree = "<group>";
+		};
+		778123C51DBDB29D00425E6A /* Follow */ = {
+			isa = PBXGroup;
+			children = (
+				77C819331DBDB7000004EFFC /* MEFollow.storyboard */,
+				77C8193D1DBDB9790004EFFC /* MEFollowViewController.h */,
+				77C8193E1DBDB9790004EFFC /* MEFollowViewController.m */,
+			);
+			path = Follow;
+			sourceTree = "<group>";
+		};
+		778123C61DBDB29D00425E6A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				77C8192E1DBDB6B50004EFFC /* MEHome.storyboard */,
+				77C819371DBDB88E0004EFFC /* MEHomeViewController.h */,
+				77C819381DBDB88E0004EFFC /* MEHomeViewController.m */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		778123C71DBDB29D00425E6A /* My */ = {
+			isa = PBXGroup;
+			children = (
+				77C819351DBDB76E0004EFFC /* MEMy.storyboard */,
+				77C819401DBDB98C0004EFFC /* MEMyViewController.h */,
+				77C819411DBDB98C0004EFFC /* MEMyViewController.m */,
+			);
+			path = My;
+			sourceTree = "<group>";
+		};
+		77C819431DBDBB0D0004EFFC /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		77C819441DBDBB0D0004EFFC /* Util */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		CD12B2E7146F7BB9CE190470 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				20DBB35C9F8E09611DFD0293 /* libPods-Imitation-MissEvan.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F798BE94405AB0129663EC25 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0DAEBD253CF221B554034028 /* Pods-Imitation-MissEvan.debug.xcconfig */,
+				78521F705BB0DCF560EE7105 /* Pods-Imitation-MissEvan.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7781238D1DBDAD4500425E6A /* Imitation-MissEvan */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 778123BB1DBDAD4500425E6A /* Build configuration list for PBXNativeTarget "Imitation-MissEvan" */;
+			buildPhases = (
+				37ACB0A21F315E0656C19A2D /* [CP] Check Pods Manifest.lock */,
+				7781238A1DBDAD4500425E6A /* Sources */,
+				7781238B1DBDAD4500425E6A /* Frameworks */,
+				7781238C1DBDAD4500425E6A /* Resources */,
+				DE2D4A2A54973A95B1DFA181 /* [CP] Embed Pods Frameworks */,
+				D812A56827263BE5086C4029 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Imitation-MissEvan";
+			productName = "Imitation-MissEvan";
+			productReference = 7781238E1DBDAD4500425E6A /* Imitation-MissEvan.app */;
+			productType = "com.apple.product-type.application";
+		};
+		778123A61DBDAD4500425E6A /* Imitation-MissEvanTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 778123BE1DBDAD4500425E6A /* Build configuration list for PBXNativeTarget "Imitation-MissEvanTests" */;
+			buildPhases = (
+				778123A31DBDAD4500425E6A /* Sources */,
+				778123A41DBDAD4500425E6A /* Frameworks */,
+				778123A51DBDAD4500425E6A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				778123A91DBDAD4500425E6A /* PBXTargetDependency */,
+			);
+			name = "Imitation-MissEvanTests";
+			productName = "Imitation-MissEvanTests";
+			productReference = 778123A71DBDAD4500425E6A /* Imitation-MissEvanTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		778123B11DBDAD4500425E6A /* Imitation-MissEvanUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 778123C11DBDAD4500425E6A /* Build configuration list for PBXNativeTarget "Imitation-MissEvanUITests" */;
+			buildPhases = (
+				778123AE1DBDAD4500425E6A /* Sources */,
+				778123AF1DBDAD4500425E6A /* Frameworks */,
+				778123B01DBDAD4500425E6A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				778123B41DBDAD4500425E6A /* PBXTargetDependency */,
+			);
+			name = "Imitation-MissEvanUITests";
+			productName = "Imitation-MissEvanUITests";
+			productReference = 778123B21DBDAD4500425E6A /* Imitation-MissEvanUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		778123861DBDAD4500425E6A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = ME;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = xkl;
+				TargetAttributes = {
+					7781238D1DBDAD4500425E6A = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+					778123A61DBDAD4500425E6A = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 7781238D1DBDAD4500425E6A;
+					};
+					778123B11DBDAD4500425E6A = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 7781238D1DBDAD4500425E6A;
+					};
+				};
+			};
+			buildConfigurationList = 778123891DBDAD4500425E6A /* Build configuration list for PBXProject "Imitation-MissEvan" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 778123851DBDAD4500425E6A;
+			productRefGroup = 7781238F1DBDAD4500425E6A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7781238D1DBDAD4500425E6A /* Imitation-MissEvan */,
+				778123A61DBDAD4500425E6A /* Imitation-MissEvanTests */,
+				778123B11DBDAD4500425E6A /* Imitation-MissEvanUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7781238C1DBDAD4500425E6A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				778123A11DBDAD4500425E6A /* LaunchScreen.storyboard in Resources */,
+				77C8192F1DBDB6B50004EFFC /* MEHome.storyboard in Resources */,
+				77C819321DBDB6EB0004EFFC /* MEChannel.storyboard in Resources */,
+				77C819341DBDB7000004EFFC /* MEFollow.storyboard in Resources */,
+				77C819361DBDB76E0004EFFC /* MEMy.storyboard in Resources */,
+				7781239E1DBDAD4500425E6A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		778123A51DBDAD4500425E6A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		778123B01DBDAD4500425E6A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		37ACB0A21F315E0656C19A2D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D812A56827263BE5086C4029 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Imitation-MissEvan/Pods-Imitation-MissEvan-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE2D4A2A54973A95B1DFA181 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Imitation-MissEvan/Pods-Imitation-MissEvan-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7781238A1DBDAD4500425E6A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77C8193F1DBDB9790004EFFC /* MEFollowViewController.m in Sources */,
+				77C819391DBDB88E0004EFFC /* MEHomeViewController.m in Sources */,
+				77C819421DBDB98C0004EFFC /* MEMyViewController.m in Sources */,
+				778123961DBDAD4500425E6A /* AppDelegate.m in Sources */,
+				77C8193C1DBDB9050004EFFC /* MEChannelViewController.m in Sources */,
+				778123931DBDAD4500425E6A /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		778123A31DBDAD4500425E6A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				778123AC1DBDAD4500425E6A /* Imitation_MissEvanTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		778123AE1DBDAD4500425E6A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				778123B71DBDAD4500425E6A /* Imitation_MissEvanUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		778123A91DBDAD4500425E6A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7781238D1DBDAD4500425E6A /* Imitation-MissEvan */;
+			targetProxy = 778123A81DBDAD4500425E6A /* PBXContainerItemProxy */;
+		};
+		778123B41DBDAD4500425E6A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7781238D1DBDAD4500425E6A /* Imitation-MissEvan */;
+			targetProxy = 778123B31DBDAD4500425E6A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7781239F1DBDAD4500425E6A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				778123A01DBDAD4500425E6A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		778123B91DBDAD4500425E6A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		778123BA1DBDAD4500425E6A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		778123BC1DBDAD4500425E6A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DAEBD253CF221B554034028 /* Pods-Imitation-MissEvan.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Imitation-MissEvan/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "sheva.Imitation-MissEvan";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		778123BD1DBDAD4500425E6A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78521F705BB0DCF560EE7105 /* Pods-Imitation-MissEvan.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Imitation-MissEvan/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "sheva.Imitation-MissEvan";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		778123BF1DBDAD4500425E6A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Imitation-MissEvanTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "sheva.Imitation-MissEvanTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Imitation-MissEvan.app/Imitation-MissEvan";
+			};
+			name = Debug;
+		};
+		778123C01DBDAD4500425E6A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Imitation-MissEvanTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "sheva.Imitation-MissEvanTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Imitation-MissEvan.app/Imitation-MissEvan";
+			};
+			name = Release;
+		};
+		778123C21DBDAD4500425E6A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Imitation-MissEvanUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "sheva.Imitation-MissEvanUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Imitation-MissEvan";
+			};
+			name = Debug;
+		};
+		778123C31DBDAD4500425E6A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Imitation-MissEvanUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "sheva.Imitation-MissEvanUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Imitation-MissEvan";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		778123891DBDAD4500425E6A /* Build configuration list for PBXProject "Imitation-MissEvan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				778123B91DBDAD4500425E6A /* Debug */,
+				778123BA1DBDAD4500425E6A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		778123BB1DBDAD4500425E6A /* Build configuration list for PBXNativeTarget "Imitation-MissEvan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				778123BC1DBDAD4500425E6A /* Debug */,
+				778123BD1DBDAD4500425E6A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		778123BE1DBDAD4500425E6A /* Build configuration list for PBXNativeTarget "Imitation-MissEvanTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				778123BF1DBDAD4500425E6A /* Debug */,
+				778123C01DBDAD4500425E6A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		778123C11DBDAD4500425E6A /* Build configuration list for PBXNativeTarget "Imitation-MissEvanUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				778123C21DBDAD4500425E6A /* Debug */,
+				778123C31DBDAD4500425E6A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 778123861DBDAD4500425E6A /* Project object */;
+}

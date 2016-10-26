@@ -30,17 +30,17 @@
             [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
             [button setImage:[UIImage imageNamed:imageNameSel] forState:UIControlStateSelected];
             //中间的睡觉猫需要做特殊处理
-            if (i == 2) {
-                NSMutableArray * stackImageArray = [NSMutableArray new];
-                for (NSInteger i = 1; i < 141; i ++) {
-                    NSString * stackImageName = [NSString stringWithFormat:@"DRRR猫 睡觉000%@_200x200_@1x", @(i)];
-                    UIImage * image = [UIImage imageNamed:stackImageName];
-                    [stackImageArray addObject:image];
-                }
-                
-                //设置图片的序列帧 图片数组
-//                [button setImage:[uiim] forState:<#(UIControlState)#>];
-            }
+//            if (i == 2) {
+//                NSMutableArray * stackImageArray = [NSMutableArray new];
+//                for (NSInteger i = 1; i < 141; i ++) {
+//                    NSString * stackImageName = [NSString stringWithFormat:@"DRRR猫 睡觉000%@_200x200_@1x", @(i)];
+//                    UIImage * image = [UIImage imageNamed:stackImageName];
+//                    [stackImageArray addObject:image];
+//                }
+//                
+//                //设置图片的序列帧 图片数组
+////                [button setImage:[uiim] forState:<#(UIControlState)#>];
+//            }
             
             [self addSubview:button];
             
@@ -91,6 +91,29 @@
         //中间的睡觉猫需要做特殊处理
         
         button.frame = CGRectMake(x, y, width, height);
+        
+        if (i == 2) {
+            NSMutableArray * stackImageArray = [NSMutableArray new];
+            for (NSInteger i = 1; i < 141; i ++) {
+                NSString * stackImageName = [NSString stringWithFormat:@"DRRR猫 睡觉000%@_200x200_@1x", @(i)];
+                UIImage * image = [UIImage imageNamed:stackImageName];
+                [stackImageArray addObject:image];
+            }
+            
+            //设置图片的序列帧 图片数组
+            //                [button setImage:[uiim] forState:<#(UIControlState)#>];
+            UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(2 * self.bounds.size.width / count, -10, 20, 20)];
+            // 设置图片的序列帧 图片数组
+            imageView.animationImages = stackImageArray;
+            //动画重复次数
+            imageView.animationRepeatCount = 1;
+            //动画执行时间,多长时间执行完动画
+            imageView.animationDuration = 3.0;
+            //开始动画
+            [imageView startAnimating];
+            [self addSubview:imageView];
+        }
+        
     }
 }
 

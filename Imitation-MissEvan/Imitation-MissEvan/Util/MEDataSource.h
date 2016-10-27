@@ -13,5 +13,5 @@
 + (MEDataSource *)shareDataSource;
 
 @property (copy, nonatomic) NSArray * imageNameArray;
-
+@property (copy, nonatomic) NSArray * barTitleArray;
 @end

@@ -15,5 +15,6 @@
 #import "UIImage+GIF.h"
 
 #define ME_DATASOURCE   [MEDataSource shareDataSource]
+#define ME_Color(x, y, z)   [UIColor colorWithRed:x/255.0 green:y/255.0 blue:z/255.0 alpha:1]
 
 #endif

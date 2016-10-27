@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		774482471DC1A8860044EE55 /* METabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774482461DC1A8860044EE55 /* METabBarViewController.m */; };
 		778123931DBDAD4500425E6A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 778123921DBDAD4500425E6A /* main.m */; };
 		778123961DBDAD4500425E6A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 778123951DBDAD4500425E6A /* AppDelegate.m */; };
 		7781239E1DBDAD4500425E6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7781239D1DBDAD4500425E6A /* Assets.xcassets */; };
@@ -47,6 +48,8 @@
 /* Begin PBXFileReference section */
 		0DAEBD253CF221B554034028 /* Pods-Imitation-MissEvan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imitation-MissEvan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Imitation-MissEvan/Pods-Imitation-MissEvan.debug.xcconfig"; sourceTree = "<group>"; };
 		20DBB35C9F8E09611DFD0293 /* libPods-Imitation-MissEvan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Imitation-MissEvan.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		774482451DC1A8860044EE55 /* METabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METabBarViewController.h; sourceTree = "<group>"; };
+		774482461DC1A8860044EE55 /* METabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METabBarViewController.m; sourceTree = "<group>"; };
 		7781238E1DBDAD4500425E6A /* Imitation-MissEvan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Imitation-MissEvan.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		778123921DBDAD4500425E6A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		778123941DBDAD4500425E6A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -240,6 +243,8 @@
 				77C8194A1DBDF53B0004EFFC /* METabBar.m */,
 				77C8194C1DBDFE960004EFFC /* METabBarButton.h */,
 				77C8194D1DBDFE960004EFFC /* METabBarButton.m */,
+				774482451DC1A8860044EE55 /* METabBarViewController.h */,
+				774482461DC1A8860044EE55 /* METabBarViewController.m */,
 			);
 			path = Structure;
 			sourceTree = "<group>";
@@ -453,6 +458,7 @@
 				77C8193F1DBDB9790004EFFC /* MEFollowViewController.m in Sources */,
 				77C8194B1DBDF53B0004EFFC /* METabBar.m in Sources */,
 				77C819391DBDB88E0004EFFC /* MEHomeViewController.m in Sources */,
+				774482471DC1A8860044EE55 /* METabBarViewController.m in Sources */,
 				77C819421DBDB98C0004EFFC /* MEMyViewController.m in Sources */,
 				778123961DBDAD4500425E6A /* AppDelegate.m in Sources */,
 				77C8194E1DBDFE960004EFFC /* METabBarButton.m in Sources */,
@@ -603,6 +609,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "sheva.Imitation-MissEvan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -617,6 +624,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "sheva.Imitation-MissEvan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -16,14 +16,15 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken,^(void) {
         sharedSingleton = [[self alloc] init];
-        [sharedSingleton imageNameOfTabBar];
+        [sharedSingleton dataSourceOfTabBar];
     });
     return sharedSingleton;
 }
 
-- (void)imageNameOfTabBar
+- (void)dataSourceOfTabBar
 {
     self.imageNameArray = [[NSArray alloc] initWithObjects:@"homepage", @"channel", @"", @"follow", @"mine", nil];
+    self.barTitleArray = [[NSArray alloc] initWithObjects:@"首页", @"频道", @"", @"关注", @"我的", nil];
 }
 
 @end

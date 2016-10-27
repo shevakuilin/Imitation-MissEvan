@@ -29,19 +29,20 @@
             
             [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
             [button setImage:[UIImage imageNamed:imageNameSel] forState:UIControlStateSelected];
-            //中间的睡觉猫需要做特殊处理
-//            if (i == 2) {
-//                NSMutableArray * stackImageArray = [NSMutableArray new];
-//                for (NSInteger i = 1; i < 141; i ++) {
-//                    NSString * stackImageName = [NSString stringWithFormat:@"DRRR猫 睡觉000%@_200x200_@1x", @(i)];
-//                    UIImage * image = [UIImage imageNamed:stackImageName];
-//                    [stackImageArray addObject:image];
-//                }
-//                
-//                //设置图片的序列帧 图片数组
-////                [button setImage:[uiim] forState:<#(UIControlState)#>];
-//            }
             
+            NSString * barTitie = ME_DATASOURCE.barTitleArray[i];
+            [button setTitle:barTitie forState:UIControlStateNormal];
+            [button setTitle:barTitie forState:UIControlStateSelected];
+            [button setTitleColor:ME_Color(61, 61, 61) forState:UIControlStateNormal];
+            [button setTitleColor:ME_Color(61, 61, 61) forState:UIControlStateSelected];
+            button.titleLabel.font = [UIFont systemFontOfSize:10];
+            button.titleLabel.textAlignment = NSTextAlignmentCenter;
+            
+//            NSInteger count = self.subviews.count;
+//            CGFloat width = self.bounds.size.width / count;
+            button.titleEdgeInsets = UIEdgeInsetsMake(self.bounds.size.height + 30, -22, 0, 0);
+            button.imageEdgeInsets = UIEdgeInsetsMake(-10, 20, 0, 0);
+//            button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;//设置button的内容横向居中  设置content是title和image一起变化
             [self addSubview:button];
             
             button.tag = i;//设置按钮的标记, 方便来索引当前的按钮,并跳转到相应的视图
@@ -88,6 +89,7 @@
         CGFloat y = 0;
         CGFloat width = self.bounds.size.width / count;
         CGFloat height = self.bounds.size.height;
+        
         //中间的睡觉猫需要做特殊处理
         
         button.frame = CGRectMake(x, y, width, height);
@@ -95,20 +97,27 @@
         if (i == 2) {
             NSMutableArray * stackImageArray = [NSMutableArray new];
             for (NSInteger i = 1; i < 141; i ++) {
-                NSString * stackImageName = [NSString stringWithFormat:@"DRRR猫 睡觉000%@_200x200_@1x", @(i)];
-                UIImage * image = [UIImage imageNamed:stackImageName];
-                [stackImageArray addObject:image];
+                NSString * stackImageName;
+                if (i < 10) {
+                    stackImageName = [NSString stringWithFormat:@"DRRR猫 睡觉000%@_200x200_@1x", @(i)];
+                } else if (i > 9 && i < 100){
+                    stackImageName = [NSString stringWithFormat:@"DRRR猫 睡觉00%@_200x200_@1x", @(i)];
+                } else {
+                    stackImageName = [NSString stringWithFormat:@"DRRR猫 睡觉0%@_200x200_@1x", @(i)];
+                }
+                UIImage * imageName = [UIImage imageNamed:stackImageName];
+                [stackImageArray addObject:imageName];
             }
             
             //设置图片的序列帧 图片数组
             //                [button setImage:[uiim] forState:<#(UIControlState)#>];
-            UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(2 * self.bounds.size.width / count, -10, 20, 20)];
+            UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(2 * self.bounds.size.width / count, -35, 80, 80)];
             // 设置图片的序列帧 图片数组
             imageView.animationImages = stackImageArray;
             //动画重复次数
-            imageView.animationRepeatCount = 1;
+            imageView.animationRepeatCount = 10000000;
             //动画执行时间,多长时间执行完动画
-            imageView.animationDuration = 3.0;
+            imageView.animationDuration = 8.0;
             //开始动画
             [imageView startAnimating];
             [self addSubview:imageView];

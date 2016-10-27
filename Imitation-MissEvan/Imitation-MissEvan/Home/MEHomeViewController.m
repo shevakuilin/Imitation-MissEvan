@@ -17,14 +17,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIView *sv = [UIView new];
+//    UIView *sv = [UIView new];
+//    
+//    sv.backgroundColor = [UIColor blackColor];
+//    [self.view addSubview:sv];
+//    [sv mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.center.equalTo(self.view);
+//        make.size.mas_equalTo(CGSizeMake(300, 300));
+//    }];
     
-    sv.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:sv];
-    [sv mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self.view);
-        make.size.mas_equalTo(CGSizeMake(300, 300));
-    }];
+//    UITextView * label = [UITextView new];
+//    label.text = @"@您的女友已上线\n \n \n 么么哒\n \n \n by:舍瓦说七遍";
+//    label.textAlignment = NSTextAlignmentCenter;
+//    [label setFont:[UIFont systemFontOfSize:22]];
+//    label.textColor = [UIColor whiteColor];
+//    label.backgroundColor = [UIColor clearColor];
+//    [sv addSubview:label];
+//    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.center.equalTo(sv);
+//        make.size.mas_equalTo(CGSizeMake(200, 200));
+//    }];
 }
 
 

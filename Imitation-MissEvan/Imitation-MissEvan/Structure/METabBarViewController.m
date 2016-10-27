@@ -28,7 +28,7 @@
         METabBar * tabBar = [[METabBar alloc] init];
         tabBar.delegate = self;
         tabBar.frame = rect;
-        tabBar.backgroundColor = [UIColor whiteColor];
+        tabBar.backgroundColor = ME_Color(244, 244, 244);
         [self.tabBar addSubview:tabBar];
         
         for (NSInteger i = 0; i < self.viewControllers.count; i ++) {
@@ -41,6 +41,9 @@
             [tabBar addButtonWithImage:image selectedImage:imaSel];
             
         }
+        
+        UINavigationController * home = ME_ViewController(@"home", @"MEHome");
+        self.viewControllers = @[home];
         
     }
     return self;

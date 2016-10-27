@@ -38,6 +38,7 @@
             button.titleLabel.font = [UIFont systemFontOfSize:10];
             button.titleLabel.textAlignment = NSTextAlignmentCenter;
             
+            //title和image的距离可能需要依据不同机型进行动态调整
 //            NSInteger count = self.subviews.count;
 //            CGFloat width = self.bounds.size.width / count;
             button.titleEdgeInsets = UIEdgeInsetsMake(self.bounds.size.height + 30, -22, 0, 0);
@@ -115,7 +116,7 @@
             // 设置图片的序列帧 图片数组
             imageView.animationImages = stackImageArray;
             //动画重复次数
-            imageView.animationRepeatCount = 10000000;
+            imageView.animationRepeatCount = 10000000 * 10000000;
             //动画执行时间,多长时间执行完动画
             imageView.animationDuration = 8.0;
             //开始动画

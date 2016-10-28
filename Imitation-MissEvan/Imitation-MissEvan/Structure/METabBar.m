@@ -44,6 +44,7 @@
             button.titleEdgeInsets = UIEdgeInsetsMake(self.bounds.size.height + 30, -22, 0, 0);
             button.imageEdgeInsets = UIEdgeInsetsMake(-10, 20, 0, 0);
 //            button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;//设置button的内容横向居中  设置content是title和image一起变化
+            
             [self addSubview:button];
             
             button.tag = i;//设置按钮的标记, 方便来索引当前的按钮,并跳转到相应的视图

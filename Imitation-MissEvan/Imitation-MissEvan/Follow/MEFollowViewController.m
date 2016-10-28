@@ -7,6 +7,7 @@
 //
 
 #import "MEFollowViewController.h"
+#import "MEPrefixHeader.pch"
 
 @interface MEFollowViewController ()
 
@@ -16,13 +17,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.navigationItem.title = @"关注";
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 
 @end

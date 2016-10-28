@@ -17,9 +17,11 @@
                     <view key="view" contentMode="scaleToFill" id="0xr-l0-Uzf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="7AG-H2-m03"/>
+                    <navigationItem key="navigationItem" id="7AG-H2-m03">
+                        <barButtonItem key="rightBarButtonItem" image="mn_icon_setting_25x25_" id="HSz-Jf-WbL"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7r1-KP-0nV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -44,4 +46,7 @@
             <point key="canvasLocation" x="160.80000000000001" y="49.925037481259373"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="mn_icon_setting_25x25_" width="25" height="25"/>
+    </resources>
 </document>

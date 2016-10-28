@@ -20,7 +20,7 @@
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CdC-dN-xRi"/>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="CdC-dN-xRi" secondAttribute="trailing" id="4VI-qa-RP0"/>
                             <constraint firstItem="CdC-dN-xRi" firstAttribute="leading" secondItem="H6B-yQ-53J" secondAttribute="leading" id="9sb-va-QKp"/>
@@ -29,7 +29,9 @@
                             <constraint firstItem="CdC-dN-xRi" firstAttribute="width" secondItem="H6B-yQ-53J" secondAttribute="width" id="z8Q-Kj-7pu"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="ufK-0X-MeW"/>
+                    <navigationItem key="navigationItem" id="ufK-0X-MeW">
+                        <nil key="title"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="reN-DV-b0P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

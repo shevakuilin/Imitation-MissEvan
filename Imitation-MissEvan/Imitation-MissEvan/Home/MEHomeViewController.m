@@ -37,8 +37,42 @@
 //        make.center.equalTo(sv);
 //        make.size.mas_equalTo(CGSizeMake(200, 200));
 //    }];
+//    self.navigationItem.rightBarButtonItem = [MEUtil barButtonItemWithImage:@"v3player_0001_24x24_" target:self action:@selector(goMusicView)];
+//    self.navigationItem.leftBarButtonItem = [MEUtil barButtonItemWithImage:@"hp3_icon_search_24x22_" target:self action:@selector(goSearchView)];
+    
+    UIButton * rightBarButton = [MEUtil barButtonItemWithImage:@"v3player_0001_24x24_" target:self action:@selector(goMusicView) isLeft:NO isRight:YES];
+    UIButton * leftBarButton = [MEUtil barButtonItemWithImage:@"hp3_icon_search_24x22_" target:self action:@selector(goSearchView) isLeft:YES isRight:NO];
+    
+    
+    UISegmentedControl * segment = [[UISegmentedControl alloc] initWithItems:ME_DATASOURCE.segmentTitleArray];
+    segment.frame = CGRectMake(50, 15, ME_Width - 100, 35);
+    segment.selectedSegmentIndex = 1;
+    [segment setTintColor:[UIColor blackColor]];
+    [segment setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14], NSForegroundColorAttributeName:ME_Color(180, 180, 180)} forState:UIControlStateNormal];
+    [segment setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14], NSForegroundColorAttributeName:[UIColor blackColor]} forState:UIControlStateSelected];
+    
+    
+//    UIImage * image = [UIImage imageNamed:@"while_segment"];
+//    [segment setBackgroundImage:[image resizableImageWithCapInsets:UIEdgeInsetsMake(28, 0, 0, 0) resizingMode:UIImageResizingModeStretch] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+//    
+//    UIImage * imageSel = [UIImage imageNamed:@"while_segment"];
+//    [segment setBackgroundImage:[imageSel resizableImageWithCapInsets:UIEdgeInsetsMake(28, 0, 0, 0) resizingMode:UIImageResizingModeStretch] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    
+    UIView * navigationView = [UIView new];
+    navigationView.frame = CGRectMake(0, 0, ME_Width, 64);
+    self.navigationItem.titleView = navigationView;
+    [navigationView addSubview:rightBarButton];
+    [navigationView addSubview:leftBarButton];
+    [navigationView addSubview:segment];
 }
 
+- (void)goMusicView
+{
+    //TODO:播放界面
+}
 
-
+- (void)goSearchView
+{
+    //TODO:搜索界面
+}
 @end

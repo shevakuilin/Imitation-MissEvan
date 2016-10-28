@@ -14,11 +14,16 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UIImage+GIF.h"
 #import "iCarousel.h"
+#import "MEUtil.h"
 
 #define ME_DATASOURCE   [MEDataSource shareDataSource]
 
 #define ME_Color(x, y, z)   [UIColor colorWithRed:x/255.0 green:y/255.0 blue:z/255.0 alpha:1]
 
 #define ME_ViewController(vcID, sbName) [[UIStoryboard storyboardWithName:sbName bundle:nil] instantiateViewControllerWithIdentifier:vcID]
+
+#define ME_Width    [UIScreen mainScreen].bounds.size.width
+
+#define ME_Height   [UIScreen mainScreen].bounds.size.height
 
 #endif

@@ -38,30 +38,9 @@
     METabBar * tabBar = [[METabBar alloc] init];
     tabBar.delegate = self;
     tabBar.frame = rect;
-    tabBar.backgroundColor = ME_Color(244, 244, 244);
+    tabBar.backgroundColor = [UIColor whiteColor];//ME_Color(244, 244, 244);
+    tabBar.alpha = 0.9;
     [self.tabBar addSubview:tabBar];
-    
-    
-//    for (NSInteger i = 0; i < self.viewControllers.count; i ++) {
-//        NSString * imageName = [NSString stringWithFormat:@"ntab_%@_normal", ME_DATASOURCE.imageNameArray[i]];
-//        NSString * imageNameSel = [NSString stringWithFormat:@"ntab_%@_selected", ME_DATASOURCE.imageNameArray[i]];
-//
-//        UIImage * image = [UIImage imageNamed:imageName];
-//        UIImage * imaSel = [UIImage imageNamed:imageNameSel];
-//        
-//        [tabBar addButtonWithImage:image selectedImage:imaSel];
-//        
-//    }
-//
-//    NSArray * tabBarItems = self.tabBar.items;
-//    for (NSInteger i = 0; i < tabBarItems.count; i++) {
-//        UITabBarItem * item = tabBarItems[i];
-//        item.image = [[UIImage imageNamed:[NSString stringWithFormat:@"ntab_%@_normal", ME_DATASOURCE.imageNameArray[i]]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];;
-//        
-//        item.selectedImage = [[UIImage imageNamed:[NSString stringWithFormat:@"ntab_%@_selected", ME_DATASOURCE.imageNameArray[i]]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//    }
-//    
-//    self.delegate = self;
 
 }
 

@@ -17,6 +17,7 @@
     dispatch_once(&onceToken,^(void) {
         sharedSingleton = [[self alloc] init];
         [sharedSingleton dataSourceOfTabBar];
+        [sharedSingleton dataSourceOfSegment];
     });
     return sharedSingleton;
 }
@@ -27,4 +28,8 @@
     self.barTitleArray = [[NSArray alloc] initWithObjects:@"首页", @"频道", @"", @"关注", @"我的", nil];
 }
 
+- (void)dataSourceOfSegment
+{
+    self.segmentTitleArray = [[NSArray alloc] initWithObjects:@"音单", @"推荐", @"分类", nil];
+}
 @end

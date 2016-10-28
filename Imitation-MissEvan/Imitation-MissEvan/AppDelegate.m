@@ -23,6 +23,7 @@
     self.window.rootViewController = tabBar;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    [self customAppearance];
     
     return YES;
 }
@@ -54,5 +55,28 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void)customAppearance
+{
+    [[UINavigationBar appearance] setTranslucent:NO];
+    [[UIBarButtonItem appearance] setTintColor:[UIColor blackColor]];
+    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17], NSForegroundColorAttributeName:[UIColor blackColor]}];
+
+    
+//    [[UISegmentedControl appearance] setDividerImage:[UIImage imageNamed:@"dikuang_750x50_@1x"]  forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+//    [[UISegmentedControl appearance] setDividerImage:[UIImage imageNamed:@"dikuang_750x50_@1x"]  forLeftSegmentState:UIControlStateSelected rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+//    [[UISegmentedControl appearance] setDividerImage:[UIImage imageNamed:@"dikuang_750x50_@1x"]  forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+//    
+//    [[UISegmentedControl appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14], NSForegroundColorAttributeName:ME_Color(180, 180, 180)} forState:UIControlStateNormal];
+//    [[UISegmentedControl appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14], NSForegroundColorAttributeName:[UIColor blackColor]} forState:UIControlStateSelected];
+//
+//    //    背景
+//    UIImage * image = [UIImage imageNamed:@"dikuang_750x50_@1x"];
+//    [[UISegmentedControl appearance] setBackgroundImage:[image resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+//    
+//    UIImage * image1 = [UIImage imageNamed:@"dikuang_750x50_@1x"];
+//    [[UISegmentedControl appearance] setBackgroundImage:[image1 resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+}
 
 @end

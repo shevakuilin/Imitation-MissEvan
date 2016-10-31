@@ -7,7 +7,7 @@
 //
 
 #import "MEHomeViewController.h"
-#import "MEPrefixHeader.pch"
+#import "MEHeader.h"
 
 @interface MEHomeViewController ()
 

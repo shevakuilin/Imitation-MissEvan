@@ -7,7 +7,7 @@
 //
 
 #import "MEFollowViewController.h"
-#import "MEPrefixHeader.pch"
+#import "MEHeader.h"
 
 @interface MEFollowViewController ()
 

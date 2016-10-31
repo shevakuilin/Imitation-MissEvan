@@ -7,7 +7,7 @@
 //
 
 #import "MEChannelViewController.h"
-#import "MEPrefixHeader.pch"
+#import "MEHeader.h"
 
 @interface MEChannelViewController ()
 

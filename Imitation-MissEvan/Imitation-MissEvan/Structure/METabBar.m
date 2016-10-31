@@ -8,7 +8,7 @@
 
 #import "METabBar.h"
 #import "METabBarButton.h"
-#import "MEPrefixHeader.pch"
+#import "MEHeader.h"
 
 @interface METabBar ()
 

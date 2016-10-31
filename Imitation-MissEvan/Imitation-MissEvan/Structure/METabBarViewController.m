@@ -9,7 +9,7 @@
 #import "METabBarViewController.h"
 #import "METabBar.h"
 #import "METabBarButton.h"
-#import "MEPrefixHeader.pch"
+#import "MEHeader.h"
 
 @interface METabBarViewController ()<METabBarDelegate, UITabBarControllerDelegate>
 
@@ -22,7 +22,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     
     UINavigationController * home = ME_ViewController(@"home", @"MEHome");
     UINavigationController * channel = ME_ViewController(@"channel", @"MEChannel");

@@ -7,7 +7,7 @@
 //
 
 #import "MEMyViewController.h"
-#import "MEPrefixHeader.pch"
+#import "MEHeader.h"
 
 @interface MEMyViewController ()
 

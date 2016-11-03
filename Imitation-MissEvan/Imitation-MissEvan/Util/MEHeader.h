@@ -26,4 +26,14 @@
 
 #define ME_Height   [UIScreen mainScreen].bounds.size.height
 
+/**
+ * MEHomeSegment
+ */
+#define Default_Line_Height      2
+#define Default_Color           [UIColor grayColor]
+#define Default_Highlight_Color [UIColor blackColor]
+#define Default_Title_font      [UIFont systemFontOfSize:15]
+#define Item_Padding     20
+#define DefaultSegmentHeight 40
+
 #endif /* MEHeader_h */

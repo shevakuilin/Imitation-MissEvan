@@ -8,17 +8,12 @@
 #import <UIKit/UIKit.h>
 #import "XHSegmentItem.h"
 
-#define Default_Width           80
 #define Default_Line_Height      2
 #define Default_Color           [UIColor grayColor]
 #define Default_Highlight_Color [UIColor blackColor]
 #define Default_Title_font      [UIFont systemFontOfSize:15]
 
-#define Key_Title           @"title"
-#define Key_Title_Detail    @"titleDetail"
-#define Key_Image           @"image"
 
-#define Item_Spacing     10
 
 typedef NS_ENUM(NSInteger, XHSegmentType)
 {

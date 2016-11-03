@@ -1,28 +1,28 @@
 //
-//  XHSegmentControl.m
+//  MEHomeSegmentControl.m
+//  Imitation-MissEvan
 //
-//  Created by xihe on 15-9-17.
-//  Copyright (c) 2015年 xihe. All rights reserved.
+//  Created by huiren on 16/11/3.
+//  Copyright © 2016年 xkl. All rights reserved.
 //
 
-#import "XHSegmentControl.h"
+#import "MEHomeSegmentControl.h"
+#import "MEHeader.h"
+#import "MEHomeSegmentItem.h"
 
-@interface XHSegmentControl()
-<
-    UIScrollViewDelegate
->
+@interface MEHomeSegmentControl()
 
-@property(nonatomic)            CGRect              lastSelectRect;
-@property(nonatomic, strong)    NSArray             *items;
+@property(nonatomic) CGRect              lastSelectRect;
+@property(nonatomic, strong) NSArray * items;
 @property(nonatomic, strong)    UIScrollView        *scrollView;
-@property(nonatomic, strong)    CALayer             *lineLayer;
-@property(nonatomic)            CGFloat             beginOffsetX;
+@property(nonatomic, strong) CALayer * lineLayer;
+@property(nonatomic) CGFloat beginOffsetX;
 
-- (void)segmentItemClicked:(XHSegmentItem *)item;
+- (void)segmentItemClicked:(MEHomeSegmentItem *)item;
 
 @end
 
-@implementation XHSegmentControl
+@implementation MEHomeSegmentControl
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -35,6 +35,7 @@
 
 -(void)awakeFromNib
 {
+    [super awakeFromNib];
     [self initialize];
 }
 
@@ -51,11 +52,11 @@
 - (void)layoutSubviews//scrollView的宽高
 {
     CGSize size = self.frame.size;
-    self.scrollView.frame = CGRectMake(0, 0, size.width, size.height);
-    self.scrollView.backgroundColor = [UIColor whiteColor];
+    self.segmentView.frame = CGRectMake(0, 0, size.width, size.height);
+    self.segmentView.backgroundColor = [UIColor whiteColor];
     //  contentSize
-    XHSegmentItem *item = [self.items lastObject];
-//    self.scrollView.contentMode = CGSizeMake(CGRectGetMaxX(item.frame), CGRectGetHeight(self.scrollView.frame));
+    MEHomeSegmentItem *item = [self.items lastObject];
+    //    self.scrollView.contentMode = CGSizeMake(CGRectGetMaxX(item.frame), CGRectGetHeight(self.scrollView.frame));
     
 }
 
@@ -73,17 +74,17 @@
     self.items = [[NSMutableArray alloc] init];
     
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
-    self.scrollView.autoresizesSubviews = NO;
-//    self.scrollView.alwaysBounceHorizontal = YES;
-//    self.scrollView.showsHorizontalScrollIndicator = NO;
-//    self.scrollView.showsVerticalScrollIndicator = NO;
-//    self.scrollView.scrollsToTop = NO;
-    [self addSubview:self.scrollView];
+    self.segmentView.autoresizesSubviews = NO;
+//        self.scrollView.alwaysBounceHorizontal = YES;
+//        self.scrollView.showsHorizontalScrollIndicator = NO;
+//        self.scrollView.showsVerticalScrollIndicator = NO;
+//        self.scrollView.scrollsToTop = NO;
+    [self addSubview:self.segmentView];
     
     //  初始化高亮线
     self.lineLayer = [[CALayer alloc] init];
     self.lineLayer.backgroundColor = self.highlightColor.CGColor;
-    [self.scrollView.layer addSublayer:self.lineLayer];
+    [self.segmentView.layer addSublayer:self.lineLayer];
 }
 
 - (void)createItems
@@ -100,39 +101,39 @@
     CGRect  itemRect = CGRectZero;
     for (int i = 0; i < self.titles.count; i++) {
         
-        NSString *title = self.titles[i];
+        NSString * title = self.titles[i];
         
-        if (self.segmentType == XHSegmentTypeFilled) {
+        if (self.segmentType == MESegmentTypeFilled) {
             
             itemWidth = self.frame.size.width / 3;//screenWidth/self.titles.count;
             itemRect = CGRectMake(i * itemWidth, 0, self.frame.size.width / 3 , itemHeight);//segmentTitle的宽高
         }
-        else if (self.segmentType == XHSegmentTypeFit) {
+        else if (self.segmentType == MESegmentTypeFit) {
             
-            itemWidth = [XHSegmentItem caculateWidthWithtitle:title titleFont:self.titleFont];
-            XHSegmentItem *lastItem = [arrayItem lastObject];
+            itemWidth = [MEHomeSegmentItem caculateWidthWithtitle:title titleFont:self.titleFont];
+            MEHomeSegmentItem *lastItem = [arrayItem lastObject];
             itemRect = CGRectMake(CGRectGetMaxX(lastItem.frame), 0, itemWidth, itemHeight);
         }
         else {
             
         }
         
-        XHSegmentItem *item = [self createItem:itemRect title:title];
+        MEHomeSegmentItem *item = [self createItem:itemRect title:title];
         [arrayItem addObject:item];
     }
     
     self.items = [arrayItem mutableCopy];
 }
 
-- (XHSegmentItem *)createItem:(CGRect)rect title:title
+- (MEHomeSegmentItem *)createItem:(CGRect)rect title:title
 {
-    XHSegmentItem *item = [[XHSegmentItem alloc] initWithFrame:rect];
+    MEHomeSegmentItem *item = [[MEHomeSegmentItem alloc] initWithFrame:rect];
     item.title = title;
     item.titleColor = self.titleColor;
     item.titleFont = self.titleFont;
     item.highlightColor = self.highlightColor;
     [item addTarget:self action:@selector(segmentItemClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollView addSubview:item];
+    [self.segmentView addSubview:item];
     return item;
 }
 
@@ -148,14 +149,14 @@
     
     //  load 高亮线
     self.lineLayer.backgroundColor = self.highlightColor.CGColor;
-     self.lineLayer.frame = CGRectMake(CGRectGetMinX(self.lineLayer.frame), CGRectGetHeight(self.frame) - self.lineHeight, 60, self.lineHeight);
+    self.lineLayer.frame = CGRectMake(CGRectGetMinX(self.lineLayer.frame), CGRectGetHeight(self.frame) - self.lineHeight, 60, self.lineHeight);
     
     // 初始化scrollview
     if (self.backgroundImage) {
         self.backgroundColor = [UIColor colorWithPatternImage:self.backgroundImage];
     }
     
-    for (UIView *view in self.scrollView.subviews) {
+    for (UIView *view in self.segmentView.subviews) {
         [view removeFromSuperview];
     }
     [self createItems];
@@ -170,9 +171,9 @@
     if (!self.items || self.items.count == 0) {
         return;
     }
-    XHSegmentItem *currentItem = self.items[self.selectIndex];
-    XHSegmentItem *previousItem = self.selectIndex > 0 ? self.items[self.selectIndex - 1]: nil;
-    XHSegmentItem *nextItem = (self.selectIndex < self.items.count - 1)? self.items[self.selectIndex + 1]: nil;
+    MEHomeSegmentItem * currentItem = self.items[self.selectIndex];
+    MEHomeSegmentItem * previousItem = self.selectIndex > 0 ? self.items[self.selectIndex - 1]: nil;
+    MEHomeSegmentItem * nextItem = (self.selectIndex < self.items.count - 1)? self.items[self.selectIndex + 1]: nil;
     if (fabs(rate) > 0.5) {
         
         if (rate > 0) {
@@ -230,14 +231,14 @@
 
 #pragma mark - Private Method
 
-- (void)segmentItemClicked:(XHSegmentItem *)item
+- (void)segmentItemClicked:(MEHomeSegmentItem *)item
 {
     [self setSelectIndex:[self.items indexOfObject:item] animation:NO];
 }
 
-- (void)segmentItemSelected:(XHSegmentItem *)item
+- (void)segmentItemSelected:(MEHomeSegmentItem *)item
 {
-    for (XHSegmentItem *i in self.items) {
+    for (MEHomeSegmentItem *i in self.items) {
         
         i.selected = NO;
         [item refresh];
@@ -252,14 +253,14 @@
     _selectIndex = selectIndex;
     if (selectIndex < self.items.count) {
         
-        XHSegmentItem *item = self.items[selectIndex];
+        MEHomeSegmentItem *item = self.items[selectIndex];
         [self segmentItemSelected:item];
         //线的长度，可能会动态改变
         self.lineLayer.frame = CGRectMake(CGRectGetMinX(item.frame) + 24, CGRectGetHeight(item.frame) - self.lineHeight, 35, self.lineHeight);//CGRectMake(25, CGRectGetHeight(item.frame) - self.lineHeight, 35, 10);
         self.lastSelectRect = self.lineLayer.frame;
         
-//        [self.scrollView scrollRectToVisible:item.frame animated:YES];
-        [self.delegate xhSegmentSelectAtIndex:selectIndex animation:animation];
+        //        [self.scrollView scrollRectToVisible:item.frame animated:YES];
+        [self.delegate MESegmentSelectAtIndex:selectIndex animation:animation];
     }
 }
 

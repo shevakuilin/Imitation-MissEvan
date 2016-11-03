@@ -27,6 +27,10 @@
 		77C8194B1DBDF53B0004EFFC /* METabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C8194A1DBDF53B0004EFFC /* METabBar.m */; };
 		77C8194E1DBDFE960004EFFC /* METabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C8194D1DBDFE960004EFFC /* METabBarButton.m */; };
 		77C819541DBE00740004EFFC /* MEDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C819531DBE00730004EFFC /* MEDataSource.m */; };
+		77D5BDD31DCB297800EA1DCB /* MEHomeSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5BDD21DCB297800EA1DCB /* MEHomeSegmentControl.m */; };
+		77D5BDD61DCB2EBD00EA1DCB /* MEHomeSegmentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5BDD51DCB2EBD00EA1DCB /* MEHomeSegmentItem.m */; };
+		77D5BDD91DCB30B700EA1DCB /* MEHomeSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5BDD81DCB30B700EA1DCB /* MEHomeSegmentViewController.m */; };
+		77D5BDDC1DCB34E200EA1DCB /* MEHomeSegmentSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5BDDB1DCB34E200EA1DCB /* MEHomeSegmentSampleViewController.m */; };
 		C9539F1C10181F2A520BDDE3 /* libPods-Imitation-MissEvan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20DBB35C9F8E09611DFD0293 /* libPods-Imitation-MissEvan.a */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +92,14 @@
 		77C8194D1DBDFE960004EFFC /* METabBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METabBarButton.m; sourceTree = "<group>"; };
 		77C819521DBE00730004EFFC /* MEDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEDataSource.h; sourceTree = "<group>"; };
 		77C819531DBE00730004EFFC /* MEDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEDataSource.m; sourceTree = "<group>"; };
+		77D5BDD11DCB297800EA1DCB /* MEHomeSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEHomeSegmentControl.h; sourceTree = "<group>"; };
+		77D5BDD21DCB297800EA1DCB /* MEHomeSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEHomeSegmentControl.m; sourceTree = "<group>"; };
+		77D5BDD41DCB2EBD00EA1DCB /* MEHomeSegmentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEHomeSegmentItem.h; sourceTree = "<group>"; };
+		77D5BDD51DCB2EBD00EA1DCB /* MEHomeSegmentItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEHomeSegmentItem.m; sourceTree = "<group>"; };
+		77D5BDD71DCB30B700EA1DCB /* MEHomeSegmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEHomeSegmentViewController.h; sourceTree = "<group>"; };
+		77D5BDD81DCB30B700EA1DCB /* MEHomeSegmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEHomeSegmentViewController.m; sourceTree = "<group>"; };
+		77D5BDDA1DCB34E200EA1DCB /* MEHomeSegmentSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEHomeSegmentSampleViewController.h; sourceTree = "<group>"; };
+		77D5BDDB1DCB34E200EA1DCB /* MEHomeSegmentSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEHomeSegmentSampleViewController.m; sourceTree = "<group>"; };
 		78521F705BB0DCF560EE7105 /* Pods-Imitation-MissEvan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imitation-MissEvan.release.xcconfig"; path = "Pods/Target Support Files/Pods-Imitation-MissEvan/Pods-Imitation-MissEvan.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -245,6 +257,7 @@
 		77C819441DBDBB0D0004EFFC /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				77D5BDD01DCB22C800EA1DCB /* MEHomeSegment */,
 				77C819521DBE00730004EFFC /* MEDataSource.h */,
 				77C819531DBE00730004EFFC /* MEDataSource.m */,
 				7711C3A91DC6D522005AAA2E /* MEHeader.h */,
@@ -265,6 +278,21 @@
 				774482461DC1A8860044EE55 /* METabBarViewController.m */,
 			);
 			path = Structure;
+			sourceTree = "<group>";
+		};
+		77D5BDD01DCB22C800EA1DCB /* MEHomeSegment */ = {
+			isa = PBXGroup;
+			children = (
+				77D5BDD11DCB297800EA1DCB /* MEHomeSegmentControl.h */,
+				77D5BDD21DCB297800EA1DCB /* MEHomeSegmentControl.m */,
+				77D5BDD41DCB2EBD00EA1DCB /* MEHomeSegmentItem.h */,
+				77D5BDD51DCB2EBD00EA1DCB /* MEHomeSegmentItem.m */,
+				77D5BDD71DCB30B700EA1DCB /* MEHomeSegmentViewController.h */,
+				77D5BDD81DCB30B700EA1DCB /* MEHomeSegmentViewController.m */,
+				77D5BDDA1DCB34E200EA1DCB /* MEHomeSegmentSampleViewController.h */,
+				77D5BDDB1DCB34E200EA1DCB /* MEHomeSegmentSampleViewController.m */,
+			);
+			path = MEHomeSegment;
 			sourceTree = "<group>";
 		};
 		CD12B2E7146F7BB9CE190470 /* Frameworks */ = {
@@ -472,11 +500,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77D5BDD91DCB30B700EA1DCB /* MEHomeSegmentViewController.m in Sources */,
 				77C819541DBE00740004EFFC /* MEDataSource.m in Sources */,
 				77C8193F1DBDB9790004EFFC /* MEFollowViewController.m in Sources */,
 				77C8194B1DBDF53B0004EFFC /* METabBar.m in Sources */,
 				77C819391DBDB88E0004EFFC /* MEHomeViewController.m in Sources */,
+				77D5BDDC1DCB34E200EA1DCB /* MEHomeSegmentSampleViewController.m in Sources */,
 				7744824B1DC1ED600044EE55 /* iCarousel.m in Sources */,
+				77D5BDD61DCB2EBD00EA1DCB /* MEHomeSegmentItem.m in Sources */,
+				77D5BDD31DCB297800EA1DCB /* MEHomeSegmentControl.m in Sources */,
 				774482471DC1A8860044EE55 /* METabBarViewController.m in Sources */,
 				77C819421DBDB98C0004EFFC /* MEMyViewController.m in Sources */,
 				778123961DBDAD4500425E6A /* AppDelegate.m in Sources */,

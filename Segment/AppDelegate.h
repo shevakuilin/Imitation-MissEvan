@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  AppDelegate.h
 //  XHSegmentControllerSample
 //
 //  Created by xihe on 16/4/19.
@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "XHSegmentViewController.h"
-@interface ViewController : XHSegmentViewController
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) UIWindow *window;
 
 
 @end

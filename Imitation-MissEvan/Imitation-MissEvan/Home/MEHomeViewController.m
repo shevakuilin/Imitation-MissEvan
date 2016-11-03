@@ -8,6 +8,7 @@
 
 #import "MEHomeViewController.h"
 #import "MEHeader.h"
+#import "MEHomeSegmentControl.h"
 
 @interface MEHomeViewController ()
 
@@ -17,53 +18,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    UIView *sv = [UIView new];
-//    
-//    sv.backgroundColor = [UIColor blackColor];
-//    [self.view addSubview:sv];
-//    [sv mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.center.equalTo(self.view);
-//        make.size.mas_equalTo(CGSizeMake(300, 300));
-//    }];
-    
-//    UITextView * label = [UITextView new];
-//    label.text = @"@您的女友已上线\n \n \n 么么哒\n \n \n by:舍瓦说七遍";
-//    label.textAlignment = NSTextAlignmentCenter;
-//    [label setFont:[UIFont systemFontOfSize:22]];
-//    label.textColor = [UIColor whiteColor];
-//    label.backgroundColor = [UIColor clearColor];
-//    [sv addSubview:label];
-//    [label mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.center.equalTo(sv);
-//        make.size.mas_equalTo(CGSizeMake(200, 200));
-//    }];
-//    self.navigationItem.rightBarButtonItem = [MEUtil barButtonItemWithImage:@"v3player_0001_24x24_" target:self action:@selector(goMusicView)];
-//    self.navigationItem.leftBarButtonItem = [MEUtil barButtonItemWithImage:@"hp3_icon_search_24x22_" target:self action:@selector(goSearchView)];
-    
     UIButton * rightBarButton = [MEUtil barButtonItemWithImage:@"v3player_0001_24x24_" target:self action:@selector(goMusicView) isLeft:NO isRight:YES];
     UIButton * leftBarButton = [MEUtil barButtonItemWithImage:@"hp3_icon_search_24x22_" target:self action:@selector(goSearchView) isLeft:YES isRight:NO];
     
-    
-    UISegmentedControl * segment = [[UISegmentedControl alloc] initWithItems:ME_DATASOURCE.segmentTitleArray];
-    segment.frame = CGRectMake(50, 15, ME_Width - 100, 35);
-    segment.selectedSegmentIndex = 1;
-    [segment setTintColor:[UIColor blackColor]];
-    [segment setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14], NSForegroundColorAttributeName:ME_Color(180, 180, 180)} forState:UIControlStateNormal];
-    [segment setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14], NSForegroundColorAttributeName:[UIColor blackColor]} forState:UIControlStateSelected];
-    
-    
-//    UIImage * image = [UIImage imageNamed:@"while_segment"];
-//    [segment setBackgroundImage:[image resizableImageWithCapInsets:UIEdgeInsetsMake(28, 0, 0, 0) resizingMode:UIImageResizingModeStretch] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+//    UISegmentedControl * segment = [[UISegmentedControl alloc] initWithItems:ME_DATASOURCE.segmentTitleArray];
+//    segment.frame = CGRectMake(50, 15, ME_Width - 100, 35);
+//    segment.selectedSegmentIndex = 1;
+//    [segment setTintColor:[UIColor blackColor]];
+//    [segment setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14], NSForegroundColorAttributeName:ME_Color(180, 180, 180)} forState:UIControlStateNormal];
+//    [segment setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14], NSForegroundColorAttributeName:[UIColor blackColor]} forState:UIControlStateSelected];
+   
+//    MEHomeSegmentControl * segment = [[MEHomeSegmentControl alloc] initWithFrame:CGRectMake(40, 12, [UIScreen mainScreen].bounds.size.width - 100, DefaultSegmentHeight)];
+//    segment.titles = @[@"音单", @"推荐", @"分类"];
+//    UIViewController *vc1 = [[UIViewController alloc] init];
+//    vc1.title = @"音单";
 //    
-//    UIImage * imageSel = [UIImage imageNamed:@"while_segment"];
-//    [segment setBackgroundImage:[imageSel resizableImageWithCapInsets:UIEdgeInsetsMake(28, 0, 0, 0) resizingMode:UIImageResizingModeStretch] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+//    UIViewController *vc2 = [[UIViewController alloc] init];
+//    vc2.title = @"推荐";
+//    
+//    UIViewController *vc3 = [[UIViewController alloc] init];
+//    vc3.title = @"分类";
+//    self.viewControllers = @[vc1, vc2, vc3];
     
     UIView * navigationView = [UIView new];
     navigationView.frame = CGRectMake(0, 0, ME_Width, 64);
     self.navigationItem.titleView = navigationView;
     [navigationView addSubview:rightBarButton];
     [navigationView addSubview:leftBarButton];
-    [navigationView addSubview:segment];
+//    [navigationView addSubview:segment];
 }
 
 - (void)goMusicView

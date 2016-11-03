@@ -16,7 +16,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.view setBackgroundColor:[UIColor redColor]];
+    
+    UIViewController *vc1 = [[UIViewController alloc] init];
+    vc1.title = @"音单";
+    
+    UIViewController *vc2 = [[UIViewController alloc] init];
+    vc2.title = @"推荐";
+    
+    UIViewController *vc3 = [[UIViewController alloc] init];
+    vc3.title = @"分类";
+    
+    self.viewControllers = @[vc1, vc2, vc3];
 }
 
 - (void)didReceiveMemoryWarning {

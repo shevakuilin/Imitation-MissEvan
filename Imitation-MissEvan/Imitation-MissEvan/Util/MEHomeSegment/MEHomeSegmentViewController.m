@@ -72,7 +72,7 @@
     if (!_segmentControl)
     {
         CGFloat y = !self.navigationController?20:64;
-        _segmentControl = [[MEHomeSegmentControl alloc] initWithFrame:CGRectMake(60, y, [UIScreen mainScreen].bounds.size.width - 120, DefaultSegmentHeight)];//segmentController宽高
+        _segmentControl = [[MEHomeSegmentControl alloc] initWithFrame:CGRectMake(0, y - 40, [UIScreen mainScreen].bounds.size.width, DefaultSegmentHeight)];//segmentController宽高
         _segmentControl.delegate = self;
     }
     return _segmentControl;
@@ -90,7 +90,7 @@
         _scrollView.delegate = self;
         _scrollView.alwaysBounceVertical = NO;
         _scrollView.scrollsToTop = NO;
-        _scrollView.backgroundColor = [UIColor whiteColor];
+        _scrollView.backgroundColor = ME_Color(250, 250, 250);
     }
     return _scrollView;
 }
@@ -168,8 +168,8 @@
     [self.segmentControl load];
 }
 
-#pragma mark - XHSegmentControlDelegate
-- (void)xhSegmentSelectAtIndex:(NSInteger)index animation:(BOOL)animation
+#pragma mark - MESegmentControlDelegate
+- (void)MESegmentSelectAtIndex:(NSInteger)index animation:(BOOL)animation
 {
     [self.viewControllers enumerateObjectsUsingBlock:^(UIViewController *  _Nonnull controller, NSUInteger idx, BOOL * _Nonnull stop)
      {

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MEHomeSegmentViewController.h"
 
-@interface MEHomeViewController : UIViewController
+@interface MEHomeViewController : MEHomeSegmentViewController
 
 @end

@@ -38,7 +38,7 @@ typedef NS_ENUM(NSInteger, MESegmentType)
 @property (nonatomic, strong) UIColor * titleColor;
 @property (nonatomic, strong) UIFont * titleFont;
 
-@property(nonatomic, strong, readonly) UIView * segmentView;
+//@property(nonatomic, strong, readonly) UIView * segmentView;
 
 - (void)load;
 - (void)scrollToRate:(CGFloat)rate;

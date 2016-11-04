@@ -8,7 +8,6 @@
 
 #import "MEHomeViewController.h"
 #import "MEHeader.h"
-#import "MEHomeSegmentControl.h"
 
 @interface MEHomeViewController ()
 
@@ -18,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.navigationController.navigationBarHidden = YES;
     
     UIButton * rightBarButton = [MEUtil barButtonItemWithImage:@"v3player_0001_24x24_" target:self action:@selector(goMusicView) isLeft:NO isRight:YES];
@@ -33,9 +33,6 @@
     vc3.title = @"分类";
     self.viewControllers = @[vc1, vc2, vc3];
     
-//    UIView * navigationView = [UIView new];
-//    navigationView.frame = CGRectMake(0, 0, ME_Width, 64);
-//    self.navigationItem.titleView = navigationView;
     [self.segmentControl addSubview:rightBarButton];
     [self.segmentControl addSubview:leftBarButton];
 }

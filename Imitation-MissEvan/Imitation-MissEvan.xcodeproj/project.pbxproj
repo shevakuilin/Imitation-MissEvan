@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		771AB1EC1DD015CA00DDBA44 /* JScrollView+PageControl+AutoScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 771AB1EB1DD015CA00DDBA44 /* JScrollView+PageControl+AutoScroll.m */; };
+		771AB1F01DD0560000DDBA44 /* MEPageControl+AutoScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 771AB1EF1DD0560000DDBA44 /* MEPageControl+AutoScroll.m */; };
 		774482471DC1A8860044EE55 /* METabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774482461DC1A8860044EE55 /* METabBarViewController.m */; };
 		7744824B1DC1ED600044EE55 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744824A1DC1ED600044EE55 /* iCarousel.m */; };
 		778123931DBDAD4500425E6A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 778123921DBDAD4500425E6A /* main.m */; };
@@ -55,8 +55,8 @@
 		0DAEBD253CF221B554034028 /* Pods-Imitation-MissEvan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imitation-MissEvan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Imitation-MissEvan/Pods-Imitation-MissEvan.debug.xcconfig"; sourceTree = "<group>"; };
 		20DBB35C9F8E09611DFD0293 /* libPods-Imitation-MissEvan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Imitation-MissEvan.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7711C3A91DC6D522005AAA2E /* MEHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEHeader.h; sourceTree = "<group>"; };
-		771AB1EA1DD015CA00DDBA44 /* JScrollView+PageControl+AutoScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JScrollView+PageControl+AutoScroll.h"; sourceTree = "<group>"; };
-		771AB1EB1DD015CA00DDBA44 /* JScrollView+PageControl+AutoScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JScrollView+PageControl+AutoScroll.m"; sourceTree = "<group>"; };
+		771AB1EE1DD0560000DDBA44 /* MEPageControl+AutoScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MEPageControl+AutoScroll.h"; sourceTree = "<group>"; };
+		771AB1EF1DD0560000DDBA44 /* MEPageControl+AutoScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MEPageControl+AutoScroll.m"; sourceTree = "<group>"; };
 		774482451DC1A8860044EE55 /* METabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METabBarViewController.h; sourceTree = "<group>"; };
 		774482461DC1A8860044EE55 /* METabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METabBarViewController.m; sourceTree = "<group>"; };
 		774482491DC1ED600044EE55 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
@@ -129,13 +129,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		771AB1E91DD015CA00DDBA44 /* JScrollView */ = {
+		771AB1ED1DD055EC00DDBA44 /* MEPageControl+AutoScroll */ = {
 			isa = PBXGroup;
 			children = (
-				771AB1EA1DD015CA00DDBA44 /* JScrollView+PageControl+AutoScroll.h */,
-				771AB1EB1DD015CA00DDBA44 /* JScrollView+PageControl+AutoScroll.m */,
+				771AB1EE1DD0560000DDBA44 /* MEPageControl+AutoScroll.h */,
+				771AB1EF1DD0560000DDBA44 /* MEPageControl+AutoScroll.m */,
 			);
-			path = JScrollView;
+			path = "MEPageControl+AutoScroll";
 			sourceTree = "<group>";
 		};
 		774482481DC1ED600044EE55 /* iCarousel */ = {
@@ -258,7 +258,6 @@
 		77C819431DBDBB0D0004EFFC /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				771AB1E91DD015CA00DDBA44 /* JScrollView */,
 				774482481DC1ED600044EE55 /* iCarousel */,
 			);
 			path = Lib;
@@ -267,6 +266,7 @@
 		77C819441DBDBB0D0004EFFC /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				771AB1ED1DD055EC00DDBA44 /* MEPageControl+AutoScroll */,
 				77D5BDD01DCB22C800EA1DCB /* MEHomeSegment */,
 				77C819521DBE00730004EFFC /* MEDataSource.h */,
 				77C819531DBE00730004EFFC /* MEDataSource.m */,
@@ -510,6 +510,7 @@
 			files = (
 				77D5BDD91DCB30B700EA1DCB /* MEHomeSegmentViewController.m in Sources */,
 				77C819541DBE00740004EFFC /* MEDataSource.m in Sources */,
+				771AB1F01DD0560000DDBA44 /* MEPageControl+AutoScroll.m in Sources */,
 				77C8193F1DBDB9790004EFFC /* MEFollowViewController.m in Sources */,
 				77C8194B1DBDF53B0004EFFC /* METabBar.m in Sources */,
 				77C819391DBDB88E0004EFFC /* MEHomeViewController.m in Sources */,
@@ -523,7 +524,6 @@
 				77C8193C1DBDB9050004EFFC /* MEChannelViewController.m in Sources */,
 				778123931DBDAD4500425E6A /* main.m in Sources */,
 				77C2E7101DC2FE6A00EC6B4A /* MEUtil.m in Sources */,
-				771AB1EC1DD015CA00DDBA44 /* JScrollView+PageControl+AutoScroll.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

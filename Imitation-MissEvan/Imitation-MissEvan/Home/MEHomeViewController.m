@@ -9,7 +9,7 @@
 #import "MEHomeViewController.h"
 #import "MEHeader.h"
 
-@interface MEHomeViewController ()<JScrollViewViewDelegate>
+@interface MEHomeViewController ()<MEPageControl_AutoScrollDelegate>
 
 @end
 
@@ -40,7 +40,7 @@
     [self.segmentControl addSubview:rightBarButton];
     [self.segmentControl addSubview:leftBarButton];
     
-    JScrollView_PageControl_AutoScroll * view = [[JScrollView_PageControl_AutoScroll alloc]initWithFrame:CGRectMake(0, 0, ME_Width, 150)];
+    MEPageControl_AutoScroll * view = [[MEPageControl_AutoScroll alloc]initWithFrame:CGRectMake(0, 0, ME_Width, 150)];
     NSMutableArray * pageImageArray = [[NSMutableArray alloc] init];
     for (NSInteger i = 1; i < 5; i ++) {
         UIImageView * imageView = [UIImageView new];

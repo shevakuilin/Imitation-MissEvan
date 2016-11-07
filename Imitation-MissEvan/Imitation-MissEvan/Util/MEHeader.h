@@ -15,7 +15,7 @@
 #import "UIImage+GIF.h"
 #import "iCarousel.h"
 #import "MEUtil.h"
-#import "JScrollView+PageControl+AutoScroll.h"
+#import "MEPageControl+AutoScroll.h"
 
 #define ME_DATASOURCE   [MEDataSource shareDataSource]
 
@@ -26,6 +26,12 @@
 #define ME_Width    [UIScreen mainScreen].bounds.size.width
 
 #define ME_Height   [UIScreen mainScreen].bounds.size.height
+
+#ifdef DEBUG
+#   define MELog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#   define MELog(...)
+#endif
 
 /**
  * MEHomeSegment

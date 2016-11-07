@@ -33,8 +33,8 @@
 #   define MELog(...)
 #endif
 
-/**
- * MEHomeSegment
+/*
+ ** MEHomeSegment
  */
 #define Default_Line_Height      2
 #define Default_Color           [UIColor grayColor]

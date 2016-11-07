@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		771AB1F01DD0560000DDBA44 /* MEPageControl+AutoScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 771AB1EF1DD0560000DDBA44 /* MEPageControl+AutoScroll.m */; };
+		771AB1F61DD06E4B00DDBA44 /* MEHomeRecommendTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 771AB1F51DD06E4B00DDBA44 /* MEHomeRecommendTopTableViewCell.m */; };
 		774482471DC1A8860044EE55 /* METabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774482461DC1A8860044EE55 /* METabBarViewController.m */; };
 		7744824B1DC1ED600044EE55 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744824A1DC1ED600044EE55 /* iCarousel.m */; };
 		778123931DBDAD4500425E6A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 778123921DBDAD4500425E6A /* main.m */; };
@@ -57,6 +58,8 @@
 		7711C3A91DC6D522005AAA2E /* MEHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEHeader.h; sourceTree = "<group>"; };
 		771AB1EE1DD0560000DDBA44 /* MEPageControl+AutoScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MEPageControl+AutoScroll.h"; sourceTree = "<group>"; };
 		771AB1EF1DD0560000DDBA44 /* MEPageControl+AutoScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MEPageControl+AutoScroll.m"; sourceTree = "<group>"; };
+		771AB1F41DD06E4B00DDBA44 /* MEHomeRecommendTopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEHomeRecommendTopTableViewCell.h; sourceTree = "<group>"; };
+		771AB1F51DD06E4B00DDBA44 /* MEHomeRecommendTopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEHomeRecommendTopTableViewCell.m; sourceTree = "<group>"; };
 		774482451DC1A8860044EE55 /* METabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METabBarViewController.h; sourceTree = "<group>"; };
 		774482461DC1A8860044EE55 /* METabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METabBarViewController.m; sourceTree = "<group>"; };
 		774482491DC1ED600044EE55 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
@@ -241,6 +244,8 @@
 				77C8192E1DBDB6B50004EFFC /* MEHome.storyboard */,
 				77C819371DBDB88E0004EFFC /* MEHomeViewController.h */,
 				77C819381DBDB88E0004EFFC /* MEHomeViewController.m */,
+				771AB1F41DD06E4B00DDBA44 /* MEHomeRecommendTopTableViewCell.h */,
+				771AB1F51DD06E4B00DDBA44 /* MEHomeRecommendTopTableViewCell.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -521,6 +526,7 @@
 				77C819421DBDB98C0004EFFC /* MEMyViewController.m in Sources */,
 				778123961DBDAD4500425E6A /* AppDelegate.m in Sources */,
 				77C8194E1DBDFE960004EFFC /* METabBarButton.m in Sources */,
+				771AB1F61DD06E4B00DDBA44 /* MEHomeRecommendTopTableViewCell.m in Sources */,
 				77C8193C1DBDB9050004EFFC /* MEChannelViewController.m in Sources */,
 				778123931DBDAD4500425E6A /* main.m in Sources */,
 				77C2E7101DC2FE6A00EC6B4A /* MEUtil.m in Sources */,

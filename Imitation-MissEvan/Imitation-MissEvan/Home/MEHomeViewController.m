@@ -8,6 +8,7 @@
 
 #import "MEHomeViewController.h"
 #import "MEHeader.h"
+#import "MEHomeRecommendTopTableViewCell.h"
 
 @interface MEHomeViewController ()<MEPageControl_AutoScrollDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UIViewController * soundListView;
@@ -75,7 +76,7 @@
         make.left.equalTo(backgroundScroll).with.offset(0);
         make.right.equalTo(backgroundScroll).with.offset(0);
         
-//        make.size.mas_equalTo(CGSizeMake(ME_Width, 150));
+        make.size.mas_equalTo(CGSizeMake(ME_Width, 150));
     }];
     
     
@@ -90,6 +91,12 @@
         
         make.size.mas_equalTo(CGSizeMake(ME_Width, 800));
     }];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.tableFooterView = [[UIView alloc] init];
+    self.tableView.separatorStyle = NO;
+    
+    [self.tableView registerClass:[MEHomeRecommendTopTableViewCell class] forCellReuseIdentifier:@"HomeRecommendTop"];
 }
 
 - (void)goMusicView
@@ -101,4 +108,44 @@
 {
     //TODO:搜索界面
 }
+
+#pragma mark -
+#pragma mark - tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 8;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MEHomeRecommendTopTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendTop"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section > 0) {
+        return 10;
+    } else {
+        return 0;
+    }
+}
+
 @end

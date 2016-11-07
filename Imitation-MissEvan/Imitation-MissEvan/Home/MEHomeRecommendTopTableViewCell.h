@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface MEHomeRecommendTopTableViewCell : UITableViewCell
+@property (nonatomic, strong) UIView * view1;
+@property (nonatomic, strong) UIView * view2;
+@property (nonatomic, strong) UIView * view3;
+@property (nonatomic, strong) UIView * view4;
+
 @property (nonatomic, strong) UIImageView * imageView1;
 @property (nonatomic, strong) UIImageView * imageView2;
 @property (nonatomic, strong) UIImageView * imageView3;

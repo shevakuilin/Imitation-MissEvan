@@ -37,10 +37,10 @@
     METabBar * tabBar = [[METabBar alloc] init];
     tabBar.delegate = self;
     tabBar.frame = rect;
-    tabBar.backgroundColor = [UIColor whiteColor];//ME_Color(244, 244, 244);
+    tabBar.backgroundColor = [UIColor clearColor];//ME_Color(244, 244, 244);
     tabBar.alpha = 0.9;
     [self.tabBar addSubview:tabBar];
-
+    self.tabBar.backgroundColor = [UIColor clearColor];
 }
 
 - (void)tabBar:(METabBar *)tabBar selectedFrom:(NSInteger)from whereTo:(NSInteger)to

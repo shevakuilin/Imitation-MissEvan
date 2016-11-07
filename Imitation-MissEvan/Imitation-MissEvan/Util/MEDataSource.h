@@ -15,4 +15,5 @@
 @property (copy, nonatomic) NSArray * imageNameArray;
 @property (copy, nonatomic) NSArray * barTitleArray;
 @property (copy, nonatomic) NSArray * segmentTitleArray;
+@property (copy, nonatomic) NSDictionary * homeTopImageDic;
 @end

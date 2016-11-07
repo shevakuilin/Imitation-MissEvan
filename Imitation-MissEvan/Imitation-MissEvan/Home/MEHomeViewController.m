@@ -59,7 +59,7 @@
     /*
      ** PageControl & AutoScroll
      */
-    MEPageControl_AutoScroll * view = [[MEPageControl_AutoScroll alloc]initWithFrame:CGRectMake(0, 0, ME_Width, 150)];
+    MEPageControl_AutoScroll * view = [[MEPageControl_AutoScroll alloc]initWithFrame:CGRectMake(0, 0, ME_Width, 135)];
     NSMutableArray * pageImageArray = [[NSMutableArray alloc] init];
     for (NSInteger i = 1; i < 5; i ++) {
         UIImageView * imageView = [UIImageView new];
@@ -76,7 +76,7 @@
         make.left.equalTo(backgroundScroll).with.offset(0);
         make.right.equalTo(backgroundScroll).with.offset(0);
         
-        make.size.mas_equalTo(CGSizeMake(ME_Width, 150));
+        make.size.mas_equalTo(CGSizeMake(ME_Width, 135));
     }];
     
     
@@ -84,7 +84,7 @@
     self.tableView.backgroundColor = ME_Color(244, 244, 244);
     [backgroundScroll addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(backgroundScroll).with.offset(150);
+        make.top.equalTo(backgroundScroll).with.offset(135);
         make.left.equalTo(backgroundScroll).with.offset(0);
         make.right.equalTo(backgroundScroll).with.offset(0);
         make.bottom.equalTo(backgroundScroll).with.offset(0);
@@ -125,6 +125,9 @@
 {
     MEHomeRecommendTopTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendTop"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (indexPath.section == 0) {
+        cell.dic = ME_DATASOURCE.homeTopImageDic;
+    }
     
     return cell;
 }
@@ -136,7 +139,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 65;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

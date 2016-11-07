@@ -15,6 +15,7 @@
 #import "UIImage+GIF.h"
 #import "iCarousel.h"
 #import "MEUtil.h"
+#import "JScrollView+PageControl+AutoScroll.h"
 
 #define ME_DATASOURCE   [MEDataSource shareDataSource]
 

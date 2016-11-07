@@ -9,7 +9,7 @@
 #import "MEHomeViewController.h"
 #import "MEHeader.h"
 
-@interface MEHomeViewController ()
+@interface MEHomeViewController ()<JScrollViewViewDelegate>
 
 @end
 
@@ -17,24 +17,41 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self customNavigationAndView];
+}
+
+- (void)customNavigationAndView
+{
     self.navigationController.navigationBarHidden = YES;
     
     UIButton * rightBarButton = [MEUtil barButtonItemWithImage:@"v3player_0001_24x24_" target:self action:@selector(goMusicView) isLeft:NO isRight:YES];
     UIButton * leftBarButton = [MEUtil barButtonItemWithImage:@"hp3_icon_search_24x22_" target:self action:@selector(goSearchView) isLeft:YES isRight:NO];
     
-    UIViewController *vc1 = [[UIViewController alloc] init];
-    vc1.title = @"音单";
+    UIViewController * soundListView = [[UIViewController alloc] init];
+    soundListView.title = @"音单";
     
-    UIViewController *vc2 = [[UIViewController alloc] init];
-    vc2.title = @"推荐";
+    UIViewController * recommendView = [[UIViewController alloc] init];
+    recommendView.title = @"推荐";
     
-    UIViewController *vc3 = [[UIViewController alloc] init];
-    vc3.title = @"分类";
-    self.viewControllers = @[vc1, vc2, vc3];
+    UIViewController * classifyView = [[UIViewController alloc] init];
+    classifyView.title = @"分类";
+    self.viewControllers = @[soundListView, recommendView, classifyView];
     
     [self.segmentControl addSubview:rightBarButton];
     [self.segmentControl addSubview:leftBarButton];
+    
+    JScrollView_PageControl_AutoScroll * view = [[JScrollView_PageControl_AutoScroll alloc]initWithFrame:CGRectMake(0, 0, ME_Width, 150)];
+    NSMutableArray * pageImageArray = [[NSMutableArray alloc] init];
+    for (NSInteger i = 1; i < 5; i ++) {
+        UIImageView * imageView = [UIImageView new];
+        imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"page%@", @(i)]];
+        [pageImageArray addObject:imageView];
+    }
+    view.autoScrollDelayTime = 5.0;
+    view.delegate = self;
+    [view setViewsArray:pageImageArray];
+    [recommendView.view addSubview:view];
+    [view shouldAutoShow:YES];
 }
 
 - (void)goMusicView

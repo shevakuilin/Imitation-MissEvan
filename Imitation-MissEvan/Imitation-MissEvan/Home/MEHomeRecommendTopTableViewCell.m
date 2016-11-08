@@ -72,7 +72,7 @@
         self.leftImageView = [UIImageView new];
         [self.leftView addSubview:self.leftImageView];
         [self.leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.leftView).with.offset(0);
+            make.top.equalTo(self.leftView).with.offset(1);
             make.centerX.equalTo(self.leftView).with.offset(0);
             make.size.mas_equalTo(CGSizeMake(40, 40));
             
@@ -81,7 +81,7 @@
         self.centLeftImageView = [UIImageView new];
         [self.centLeftView addSubview:self.centLeftImageView];
         [self.centLeftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.centLeftView).with.offset(0);
+            make.top.equalTo(self.centLeftView).with.offset(1);
             make.centerX.equalTo(self.centLeftView).with.offset(0);
             make.size.mas_equalTo(CGSizeMake(40, 40));
         }];
@@ -89,7 +89,7 @@
         self.centRightImageView = [UIImageView new];
         [self.centRightView addSubview:self.centRightImageView];
         [self.centRightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.centRightView).with.offset(0);
+            make.top.equalTo(self.centRightView).with.offset(1);
             make.centerX.equalTo(self.centRightView).with.offset(0);
             make.size.mas_equalTo(CGSizeMake(40, 40));
         }];
@@ -97,7 +97,7 @@
         self.rightImageView = [UIImageView new];
         [self.rightView addSubview:self.rightImageView];
         [self.rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.rightView).with.offset(0);
+            make.top.equalTo(self.rightView).with.offset(1);
             make.centerX.equalTo(self.rightView).with.offset(0);
             make.size.mas_equalTo(CGSizeMake(40, 40));
         }];
@@ -149,6 +149,24 @@
             make.right.equalTo(self.rightView).with.offset(0);
             
             make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 15));
+        }];
+        
+        self.topShadow = [UIImageView new];
+        [self addSubview:self.topShadow];
+        self.topShadow.backgroundColor = ME_Color(229, 230, 230);
+        [self.topShadow mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self).with.offset(0);
+            
+            make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
+        }];
+        
+        self.downShadow = [UIImageView new];
+        [self addSubview:self.downShadow];
+        self.downShadow.backgroundColor = ME_Color(229, 230, 230);
+        [self.downShadow mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self).with.offset(0);
+            
+            make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
         }];
 
     }

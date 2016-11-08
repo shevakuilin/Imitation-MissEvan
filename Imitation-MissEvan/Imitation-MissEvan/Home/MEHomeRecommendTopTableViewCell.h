@@ -24,6 +24,9 @@
 @property (nonatomic, strong) UILabel * centRightLabel;
 @property (nonatomic, strong) UILabel * rightLabel;
 
+@property (nonatomic, strong) UIImageView * topShadow;
+@property (nonatomic, strong) UIImageView * downShadow;
+
 @property (nonatomic, strong) NSDictionary * dic;
 
 @end

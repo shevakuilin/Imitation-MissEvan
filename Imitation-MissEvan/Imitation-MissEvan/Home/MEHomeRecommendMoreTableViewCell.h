@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MEHomeRecommendMoreTableViewCell : UITableViewCell
-
 @property (nonatomic, strong) UIImageView * classifyImageView;
 @property (nonatomic, strong) UILabel * classifyLabel;
 @property (nonatomic, strong) UIButton * moreButton;

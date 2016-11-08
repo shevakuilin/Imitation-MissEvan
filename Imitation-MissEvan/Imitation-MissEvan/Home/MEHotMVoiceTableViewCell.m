@@ -9,6 +9,24 @@
 #import "MEHotMVoiceTableViewCell.h"
 #import "MEHeader.h"
 
+@interface MEHotMVoiceTableViewCell ()
+//播放图片
+@property (nonatomic, strong) UIImageView * leftPlayImageView;
+@property (nonatomic, strong) UIImageView * centerPlayImageView;
+@property (nonatomic, strong) UIImageView * rightPlayImageView;
+
+//播放小图标
+@property (nonatomic, strong) UIImageView * leftPlayedIcon;
+@property (nonatomic, strong) UIImageView * centerPlayedIcon;
+@property (nonatomic, strong) UIImageView * rightPlayedIcon;
+
+//留言小图标
+@property (nonatomic, strong) UIImageView * leftWordsIcon;
+@property (nonatomic, strong) UIImageView * centerWordsIcon;
+@property (nonatomic, strong) UIImageView * rightWordsIcon;
+
+@end
+
 @implementation MEHotMVoiceTableViewCell
 
 - (void)awakeFromNib {
@@ -27,67 +45,73 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
-        
-        self.topLeftView = [UIView new];
-        [self addSubview:self.topLeftView];
-        self.topLeftView.backgroundColor = [UIColor orangeColor];
-        [self.topLeftView mas_makeConstraints:^(MASConstraintMaker *make) {
+        //views
+        self.leftView = [UIView new];
+        [self addSubview:self.leftView];
+        [self.leftView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).with.offset(0);
             make.left.equalTo(self).with.offset(0);
             
-            make.size.mas_equalTo(CGSizeMake(ME_Width / 3, 174));//这里以后可能需要动态处理高度
+            make.size.mas_equalTo(CGSizeMake((ME_Width - 12) / 3, 174));//这里以后可能需要动态处理高度
         }];
         
-        self.topCenterView = [UIView new];
-        [self addSubview:self.topCenterView];
-        self.topCenterView.backgroundColor = [UIColor yellowColor];
-        [self.topCenterView mas_makeConstraints:^(MASConstraintMaker *make) {
+        self.centerView = [UIView new];
+        [self addSubview:self.centerView];
+        self.centerView.backgroundColor = [UIColor yellowColor];
+        [self.centerView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).with.offset(0);
             make.centerX.equalTo(self).with.offset(0);
             
-            make.size.mas_equalTo(CGSizeMake(ME_Width / 3, 174));//这里以后可能需要动态处理高度
+            make.size.mas_equalTo(CGSizeMake((ME_Width - 12) / 3, 174));//这里以后可能需要动态处理高度
         }];
         
-        self.topRightView = [UIView new];
-        [self addSubview:self.topRightView];
-        self.topRightView.backgroundColor = [UIColor grayColor];
-        [self.topRightView mas_makeConstraints:^(MASConstraintMaker *make) {
+        self.rightView = [UIView new];
+        [self addSubview:self.rightView];
+        self.rightView.backgroundColor = [UIColor grayColor];
+        [self.rightView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).with.offset(0);
             make.right.equalTo(self).with.offset(0);
             
-            make.size.mas_equalTo(CGSizeMake(ME_Width / 3, 174));//这里以后可能需要动态处理高度
+            make.size.mas_equalTo(CGSizeMake((ME_Width - 12) / 3, 174));//这里以后可能需要动态处理高度
         }];
+
         
-        self.downLeftView = [UIView new];
-        [self addSubview:self.downLeftView];
-        self.downLeftView.backgroundColor = [UIColor greenColor];
-        [self.downLeftView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.topLeftView.mas_bottom).with.offset(0);
-            make.left.equalTo(self).with.offset(0);
+        //主题图片
+        self.leftThemesImageView = [UIImageView new];
+        [self.leftView addSubview:self.leftThemesImageView];
+        self.leftThemesImageView.image = [UIImage imageNamed:@"hotMVoice_topLeft"];
+        [self imageViewBounds:self.leftThemesImageView];
+        [self.leftThemesImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.leftView).with.offset(0);
+            make.centerX.equalTo(self.leftView).with.offset(0);
             
-            make.size.mas_equalTo(CGSizeMake(ME_Width / 3, 174));//这里以后可能需要动态处理高度
+            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, 100));
         }];
         
-        self.downCenterView = [UIView new];
-        [self addSubview:self.downCenterView];
-        self.downCenterView.backgroundColor = [UIColor purpleColor];
-        [self.downCenterView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.topCenterView.mas_bottom).with.offset(0);
-            make.centerX.equalTo(self).with.offset(0);
+        
+        //播放图片
+        self.leftPlayImageView = [UIImageView new];
+        [self.leftThemesImageView addSubview:self.leftPlayImageView];
+        self.leftPlayImageView.image = [UIImage imageNamed:@"fs_button_play_new_41x41_"];;
+        [self.leftPlayImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.leftThemesImageView).with.offset(-4);
+            make.right.equalTo(self.leftThemesImageView).with.offset(-4);
             
-            make.size.mas_equalTo(CGSizeMake(ME_Width / 3, 174));//这里以后可能需要动态处理高度
+            make.size.mas_equalTo(CGSizeMake(25, 25));
         }];
         
-        self.downRightView = [UIView new];
-        [self addSubview:self.downRightView];
-        self.downRightView.backgroundColor = [UIColor blueColor];
-        [self.downRightView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.topRightView.mas_bottom).with.offset(0);
-            make.right.equalTo(self).with.offset(0);
+        //标题
+        self.leftTitleLabel = [UILabel new];
+        [self.leftView addSubview:self.leftTitleLabel];
+        self.leftTitleLabel.font = [UIFont systemFontOfSize:12];
+        self.leftTitleLabel.text = @"ACG周刊-25期-你的名字终于要播...";
+        self.leftTitleLabel.numberOfLines = 0;
+        [self.leftTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.leftThemesImageView.mas_bottom).with.offset(0);
+            make.centerX.equalTo(self.leftView).with.offset(0);
             
-            make.size.mas_equalTo(CGSizeMake(ME_Width / 3, 174));//这里以后可能需要动态处理高度
+            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, 30));
         }];
-        
         
         self.downShadow = [UIImageView new];
         [self addSubview:self.downShadow];
@@ -101,4 +125,9 @@
     return self;
 }
 
+- (void)imageViewBounds:(UIImageView *)imageView
+{
+    imageView.layer.masksToBounds = YES;
+    imageView.layer.cornerRadius = 5;
+}
 @end

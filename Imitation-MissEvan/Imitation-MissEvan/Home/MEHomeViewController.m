@@ -155,6 +155,7 @@
             MEHotMVoiceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HotMVoice"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.array = ME_DATASOURCE.recommendCellArray[indexPath.row - 1];
+            cell.downShadow.hidden = YES;
             
             return cell;
             

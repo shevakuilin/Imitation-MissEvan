@@ -13,7 +13,6 @@
 @property (nonatomic, strong) UIView * topLeftView;
 @property (nonatomic, strong) UIView * topCenterView;
 @property (nonatomic, strong) UIView * topRightView;
-
 @property (nonatomic, strong) UIView * downLeftView;
 @property (nonatomic, strong) UIView * downCenterView;
 @property (nonatomic, strong) UIView * downRightView;

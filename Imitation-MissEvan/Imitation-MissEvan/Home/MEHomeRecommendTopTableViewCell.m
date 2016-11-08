@@ -72,34 +72,34 @@
         self.leftImageView = [UIImageView new];
         [self.leftView addSubview:self.leftImageView];
         [self.leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.leftView).with.offset(1);
+            make.top.equalTo(self.leftView).with.offset(3);
             make.centerX.equalTo(self.leftView).with.offset(0);
-            make.size.mas_equalTo(CGSizeMake(40, 40));
+            make.size.mas_equalTo(CGSizeMake(38, 38));
             
         }];
         
         self.centLeftImageView = [UIImageView new];
         [self.centLeftView addSubview:self.centLeftImageView];
         [self.centLeftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.centLeftView).with.offset(1);
+            make.top.equalTo(self.centLeftView).with.offset(3);
             make.centerX.equalTo(self.centLeftView).with.offset(0);
-            make.size.mas_equalTo(CGSizeMake(40, 40));
+            make.size.mas_equalTo(CGSizeMake(38, 38));
         }];
         
         self.centRightImageView = [UIImageView new];
         [self.centRightView addSubview:self.centRightImageView];
         [self.centRightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.centRightView).with.offset(1);
+            make.top.equalTo(self.centRightView).with.offset(3);
             make.centerX.equalTo(self.centRightView).with.offset(0);
-            make.size.mas_equalTo(CGSizeMake(40, 40));
+            make.size.mas_equalTo(CGSizeMake(38, 38));
         }];
         
         self.rightImageView = [UIImageView new];
         [self.rightView addSubview:self.rightImageView];
         [self.rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.rightView).with.offset(1);
+            make.top.equalTo(self.rightView).with.offset(3);
             make.centerX.equalTo(self.rightView).with.offset(0);
-            make.size.mas_equalTo(CGSizeMake(40, 40));
+            make.size.mas_equalTo(CGSizeMake(38, 38));
         }];
         
         

@@ -9,15 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface MEHomeRecommendMoreTableViewCell : UITableViewCell
-@property (nonatomic, strong) UIView * topMoreView;
 
-@property (nonatomic, strong) UIView * topLeftView;
-@property (nonatomic, strong) UIView * topCenterView;
-@property (nonatomic, strong) UIView * topRightView;
-
-@property (nonatomic, strong) UIView * downLeftView;
-@property (nonatomic, strong) UIView * downCenterView;
-@property (nonatomic, strong) UIView * downRightView;
+@property (nonatomic, strong) UIImageView * classifyImageView;
+@property (nonatomic, strong) UILabel * classifyLabel;
+@property (nonatomic, strong) UIButton * moreButton;
 
 @property (nonatomic, strong) UIImageView * topShadow;
 @property (nonatomic, strong) UIImageView * downShadow;

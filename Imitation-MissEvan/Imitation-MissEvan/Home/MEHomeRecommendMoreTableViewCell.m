@@ -26,13 +26,42 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.topMoreView = [UIView new];
-        [self addSubview:self.topMoreView];
-        self.topMoreView.backgroundColor = [UIColor orangeColor];
-        [self.topMoreView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).with.offset(1);
+        
+        self.classifyImageView = [UIImageView new];
+        [self addSubview:self.classifyImageView];
+        self.classifyImageView.image = [UIImage imageNamed:@"hp3_icon_msound_small_26x26_"];
+        [self.classifyImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self).with.offset(0);
+            make.left.equalTo(self).with.offset(6);
             
-            make.size.mas_equalTo(CGSizeMake(ME_Width, 30));
+            make.size.mas_equalTo(CGSizeMake(22, 22));
+        }];
+        
+        self.classifyLabel = [UILabel new];
+        [self addSubview:self.classifyLabel];
+        self.classifyLabel.text = @"人气M音";
+        self.classifyLabel.font = [UIFont systemFontOfSize:13];
+        [self.classifyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self).with.offset(0);
+            make.left.equalTo(self.classifyImageView.mas_right).with.offset(3);
+            
+            make.size.mas_equalTo(CGSizeMake(15 * self.classifyLabel.text.length, 22));
+        }];
+        
+        self.moreButton = [UIButton new];
+        [self addSubview:self.moreButton];
+        [self.moreButton setTitle:@"更多" forState:UIControlStateNormal];
+        [self.moreButton setTitleColor:ME_Color(167, 167, 167) forState:UIControlStateNormal];
+        self.moreButton.titleLabel.font = [UIFont systemFontOfSize:12];
+        [self.moreButton setImage:[UIImage imageNamed:@"goto_ac_16x15_"] forState:UIControlStateNormal];
+        [self.moreButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -6, 0, 10)];
+        [self.moreButton setImageEdgeInsets:UIEdgeInsetsMake(0, 48, 0, 0)];
+        
+        [self.moreButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self).with.offset(0);
+            make.right.equalTo(self).with.offset(-6);
+            
+            make.size.mas_equalTo(CGSizeMake(65, 22));
         }];
         
         

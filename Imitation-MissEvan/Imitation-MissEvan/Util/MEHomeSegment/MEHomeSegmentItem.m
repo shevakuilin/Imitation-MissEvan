@@ -33,8 +33,8 @@
         return;
     }
     UIColor * titleColor = self.selected? self.highlightColor: self.titleColor;
-    CGFloat x = (CGRectGetWidth(rect) - [MEHomeSegmentItem caculateTextWidth:self.title withFont:self.titleFont])/2;
-    CGFloat y = (CGRectGetHeight(self.frame) - self.titleFont.pointSize)/2;
+    CGFloat x = (CGRectGetWidth(rect) - [MEHomeSegmentItem caculateTextWidth:self.title withFont:self.titleFont]) / 2;
+    CGFloat y = (CGRectGetHeight(self.frame) - self.titleFont.pointSize) /2 ;
     [self.title drawAtPoint:CGPointMake(x, y) withAttributes:@{NSFontAttributeName: self.titleFont, NSForegroundColorAttributeName: titleColor}];
 }
 

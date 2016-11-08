@@ -65,7 +65,7 @@
     else
         self.currentPage ++;
     
-    [UIView animateWithDuration:1 animations:^{
+    [UIView animateWithDuration:0.9 animations:^{
         [self.scrollView setContentOffset:CGPointMake(self.bounds.size.width * 2, 0) animated:NO];
         
     } completion:^(BOOL finished) {

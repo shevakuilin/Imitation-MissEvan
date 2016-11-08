@@ -121,7 +121,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    if (section == 0) {
+        return 1;
+    } else {
+        return 2;
+    }
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -136,6 +141,7 @@
     } else {
         MEHomeRecommendMoreTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendMore"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.downShadow.hidden = YES;
         
         return cell;
     }
@@ -152,7 +158,7 @@
     if (indexPath.section == 0) {
         return 65;
     } else {
-        return 380;
+        return 35;//380;
     }
 }
 

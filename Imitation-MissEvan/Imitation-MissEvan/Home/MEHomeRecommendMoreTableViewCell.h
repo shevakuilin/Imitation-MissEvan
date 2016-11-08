@@ -17,4 +17,6 @@
 @property (nonatomic, strong) UIImageView * topShadow;
 @property (nonatomic, strong) UIImageView * downShadow;
 
+@property (nonatomic, strong) NSDictionary * dic;
+
 @end

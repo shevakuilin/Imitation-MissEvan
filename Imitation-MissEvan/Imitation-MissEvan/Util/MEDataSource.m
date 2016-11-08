@@ -18,7 +18,7 @@
         sharedSingleton = [[self alloc] init];
         [sharedSingleton dataSourceOfTabBar];
         [sharedSingleton dataSourceOfSegment];
-        [sharedSingleton dataSourceOfHomeTop];
+        [sharedSingleton dataSourceOfHomeRecommend];
     });
     return sharedSingleton;
 }
@@ -34,7 +34,7 @@
     self.segmentTitleArray = [[NSArray alloc] initWithObjects:@"音单", @"推荐", @"分类", nil];
 }
 
-- (void)dataSourceOfHomeTop
+- (void)dataSourceOfHomeRecommend
 {
     self.homeTopImageDic = @{@"activity": @"hp3_icon_activity_40x40_",
                              @"channel": @"hp3_icon_channel_41x40_",
@@ -44,6 +44,8 @@
                              @"rank_title": @"排行",
                              @"channel_title": @"广播剧",
                              @"mission_title": @"任务"};
-
+    
+    self.hotCellDic = @{@"image": @"hp3_icon_msound_small_26x26_",
+                        @"title": @"人气M音"};
 }
 @end

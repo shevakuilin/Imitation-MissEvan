@@ -29,7 +29,6 @@
         
         self.classifyImageView = [UIImageView new];
         [self addSubview:self.classifyImageView];
-        self.classifyImageView.image = [UIImage imageNamed:@"hp3_icon_msound_small_26x26_"];
         [self.classifyImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self).with.offset(0);
             make.left.equalTo(self).with.offset(6);
@@ -39,13 +38,12 @@
         
         self.classifyLabel = [UILabel new];
         [self addSubview:self.classifyLabel];
-        self.classifyLabel.text = @"人气M音";
         self.classifyLabel.font = [UIFont systemFontOfSize:13];
         [self.classifyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self).with.offset(0);
             make.left.equalTo(self.classifyImageView.mas_right).with.offset(3);
             
-            make.size.mas_equalTo(CGSizeMake(15 * self.classifyLabel.text.length, 22));
+            make.size.mas_equalTo(CGSizeMake(15 * [NSString stringWithFormat:@"%@", self.dic[@"title"]].length, 22));
         }];
         
         self.moreButton = [UIButton new];
@@ -84,6 +82,13 @@
         }];
     }
     return self;
+}
+
+- (void)setDic:(NSDictionary *)dic
+{
+    _dic = dic;
+    self.classifyLabel.text = dic[@"title"];
+    self.classifyImageView.image = [UIImage imageNamed:dic[@"image"]];
 }
 
 @end

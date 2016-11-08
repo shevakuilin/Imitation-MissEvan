@@ -10,6 +10,7 @@
 #import "MEHeader.h"
 #import "MEHomeRecommendTopTableViewCell.h"
 #import "MEHomeRecommendMoreTableViewCell.h"
+#import "MEHotMVoiceTableViewCell.h"
 
 @interface MEHomeViewController ()<MEPageControl_AutoScrollDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UIViewController * soundListView;
@@ -90,7 +91,7 @@
         make.right.equalTo(backgroundScroll).with.offset(0);
         make.bottom.equalTo(backgroundScroll).with.offset(0);
         
-        make.size.mas_equalTo(CGSizeMake(ME_Width, 800));
+        make.size.mas_equalTo(CGSizeMake(ME_Width, 1800));
     }];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -100,6 +101,7 @@
     
     [self.tableView registerClass:[MEHomeRecommendTopTableViewCell class] forCellReuseIdentifier:@"HomeRecommendTop"];
     [self.tableView registerClass:[MEHomeRecommendMoreTableViewCell class] forCellReuseIdentifier:@"HomeRecommendMore"];
+    [self.tableView registerClass:[MEHotMVoiceTableViewCell class] forCellReuseIdentifier:@"HotMVoice"];
 }
 
 - (void)goMusicView
@@ -139,11 +141,20 @@
         return cell;
         
     } else {
-        MEHomeRecommendMoreTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendMore"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.downShadow.hidden = YES;
-        
-        return cell;
+        if (indexPath.row == 0) {
+            MEHomeRecommendMoreTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendMore"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.downShadow.hidden = YES;
+            cell.dic = ME_DATASOURCE.hotCellDic;
+            
+            return cell;
+            
+        } else {
+            MEHotMVoiceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HotMVoice"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            return cell;
+        }
     }
     
 }
@@ -158,7 +169,11 @@
     if (indexPath.section == 0) {
         return 65;
     } else {
-        return 35;//380;
+        if (indexPath.row == 0) {
+            return 35;//380;
+        } else {
+            return 350;
+        }
     }
 }
 

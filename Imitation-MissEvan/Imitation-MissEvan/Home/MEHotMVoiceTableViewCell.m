@@ -77,7 +77,6 @@
         //主题图片
         self.leftThemesImageView = [UIImageView new];
         [self.leftView addSubview:self.leftThemesImageView];
-        self.leftThemesImageView.image = [UIImage imageNamed:@"hotMVoice_topLeft"];
         [self imageViewBounds:self.leftThemesImageView];
         [self.leftThemesImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.leftView).with.offset(0);
@@ -88,7 +87,6 @@
         
         self.centerThemesImageView = [UIImageView new];
         [self.centerView addSubview:self.centerThemesImageView];
-        self.centerThemesImageView.image = [UIImage imageNamed:@"hotMVoice_topCenter"];
         [self imageViewBounds:self.centerThemesImageView];
         [self.centerThemesImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.centerView).with.offset(0);
@@ -99,7 +97,6 @@
         
         self.rightThemesImageView = [UIImageView new];
         [self.rightView addSubview:self.rightThemesImageView];
-        self.rightThemesImageView.image = [UIImage imageNamed:@"hotMVoice_topRight"];
         [self imageViewBounds:self.rightThemesImageView];
         [self.rightThemesImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.rightView).with.offset(0);
@@ -144,7 +141,7 @@
         self.leftTitleLabel = [UILabel new];
         [self.leftView addSubview:self.leftTitleLabel];
         self.leftTitleLabel.font = [UIFont systemFontOfSize:12];
-        self.leftTitleLabel.text = @"ACG周刊-25期-你的名字终于要播...";
+        
         self.leftTitleLabel.numberOfLines = 0;
         [self.leftTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.leftThemesImageView.mas_bottom).with.offset(2);
@@ -156,7 +153,6 @@
         self.centerTitleLabel = [UILabel new];
         [self.centerView addSubview:self.centerTitleLabel];
         self.centerTitleLabel.font = [UIFont systemFontOfSize:12];
-        self.centerTitleLabel.text = @"【3D环绕】Alan Walker - Faded";
         self.centerTitleLabel.numberOfLines = 0;
         [self.centerTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.centerThemesImageView.mas_bottom).with.offset(2);
@@ -168,7 +164,6 @@
         self.rightTitleLabel = [UILabel new];
         [self.rightView addSubview:self.rightTitleLabel];
         self.rightTitleLabel.font = [UIFont systemFontOfSize:12];
-        self.rightTitleLabel.text = @"游术评（使命召唤系列）《使命召唤》";
         self.rightTitleLabel.numberOfLines = 0;
         [self.rightTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.rightThemesImageView.mas_bottom).with.offset(2);
@@ -206,7 +201,6 @@
         self.leftPlayedLabel = [UILabel new];
         [self addSubview:self.leftPlayedLabel];
         self.leftPlayedLabel.font = [UIFont systemFontOfSize:10];
-        self.leftPlayedLabel.text = @"3841";
         self.leftPlayedLabel.textColor = [UIColor lightGrayColor];//ME_Color(188, 188, 188);
         [self.leftPlayedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.leftPlayedIcon).with.offset(0);
@@ -216,7 +210,6 @@
         self.centerPlayedLabel = [UILabel new];
         [self addSubview:self.centerPlayedLabel];
         self.centerPlayedLabel.font = [UIFont systemFontOfSize:10];
-        self.centerPlayedLabel.text = @"4879";
         self.centerPlayedLabel.textColor = [UIColor lightGrayColor];//ME_Color(188, 188, 188);
         [self.centerPlayedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.centerPlayedIcon).with.offset(0);
@@ -226,7 +219,6 @@
         self.rightPlayedLabel = [UILabel new];
         [self addSubview:self.rightPlayedLabel];
         self.rightPlayedLabel.font = [UIFont systemFontOfSize:10];
-        self.rightPlayedLabel.text = @"3586";
         self.rightPlayedLabel.textColor = [UIColor lightGrayColor];//ME_Color(188, 188, 188);
         [self.rightPlayedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.rightPlayedIcon).with.offset(0);
@@ -237,7 +229,6 @@
         self.leftWordsLable = [UILabel new];
         [self addSubview:self.leftWordsLable];
         self.leftWordsLable.font = [UIFont systemFontOfSize:10];
-        self.leftWordsLable.text = @"37";
         self.leftWordsLable.textColor = [UIColor lightGrayColor];
         [self.leftWordsLable mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.leftPlayedIcon).with.offset(0);
@@ -247,7 +238,6 @@
         self.centerWordsLable = [UILabel new];
         [self addSubview:self.centerWordsLable];
         self.centerWordsLable.font = [UIFont systemFontOfSize:10];
-        self.centerWordsLable.text = @"38";
         self.centerWordsLable.textColor = [UIColor lightGrayColor];
         [self.centerWordsLable mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.centerPlayedIcon).with.offset(0);
@@ -257,7 +247,6 @@
         self.rightWordsLable = [UILabel new];
         [self addSubview:self.rightWordsLable];
         self.rightWordsLable.font = [UIFont systemFontOfSize:10];
-        self.rightWordsLable.text = @"14";
         self.rightWordsLable.textColor = [UIColor lightGrayColor];
         [self.rightWordsLable mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.rightPlayedIcon).with.offset(0);
@@ -308,4 +297,26 @@
     imageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     imageView.layer.borderWidth = 0.5;
 }
+
+- (void)setArray:(NSArray *)array
+{
+    _array = array;
+    self.leftThemesImageView.image = [UIImage imageNamed:array[0][@"themes_image"]];
+    self.centerThemesImageView.image = [UIImage imageNamed:array[1][@"themes_image"]];
+    self.rightThemesImageView.image = [UIImage imageNamed:array[2][@"themes_image"]];
+    
+    self.leftTitleLabel.text = array[0][@"title"];
+    self.centerTitleLabel.text = array[1][@"title"];
+    self.rightTitleLabel.text = array[2][@"title"];
+    
+    self.leftPlayedLabel.text = array[0][@"played_count"];
+    self.centerPlayedLabel.text = array[1][@"played_count"];
+    self.rightPlayedLabel.text = array[2][@"played_count"];
+    
+    self.leftWordsLable.text = array[0][@"words_count"];
+    self.centerWordsLable.text = array[1][@"words_count"];
+    self.rightWordsLable.text = array[2][@"words_count"];
+    
+}
+
 @end

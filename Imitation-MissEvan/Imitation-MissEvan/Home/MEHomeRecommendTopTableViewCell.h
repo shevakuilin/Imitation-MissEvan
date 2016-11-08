@@ -9,20 +9,20 @@
 #import <UIKit/UIKit.h>
 
 @interface MEHomeRecommendTopTableViewCell : UITableViewCell
-@property (nonatomic, strong) UIView * view1;
-@property (nonatomic, strong) UIView * view2;
-@property (nonatomic, strong) UIView * view3;
-@property (nonatomic, strong) UIView * view4;
+@property (nonatomic, strong) UIView * leftView;
+@property (nonatomic, strong) UIView * centLeftView;
+@property (nonatomic, strong) UIView * centRightView;
+@property (nonatomic, strong) UIView * rightView;
 
-@property (nonatomic, strong) UIImageView * imageView1;
-@property (nonatomic, strong) UIImageView * imageView2;
-@property (nonatomic, strong) UIImageView * imageView3;
-@property (nonatomic, strong) UIImageView * imageView4;
+@property (nonatomic, strong) UIImageView * leftImageView;
+@property (nonatomic, strong) UIImageView * centLeftImageView;
+@property (nonatomic, strong) UIImageView * centRightImageView;
+@property (nonatomic, strong) UIImageView * rightImageView;
 
-@property (nonatomic, strong) UILabel * label1;
-@property (nonatomic, strong) UILabel * label2;
-@property (nonatomic, strong) UILabel * label3;
-@property (nonatomic, strong) UILabel * label4;
+@property (nonatomic, strong) UILabel * leftLabel;
+@property (nonatomic, strong) UILabel * centLeftLabel;
+@property (nonatomic, strong) UILabel * centRightLabel;
+@property (nonatomic, strong) UILabel * rightLabel;
 
 @property (nonatomic, strong) NSDictionary * dic;
 

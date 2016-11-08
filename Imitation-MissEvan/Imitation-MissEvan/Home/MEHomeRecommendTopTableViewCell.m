@@ -28,9 +28,9 @@
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
         //draw - views
-        self.view1 = [UIView new];
-        [self addSubview:self.view1];
-        [self.view1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        self.leftView = [UIView new];
+        [self addSubview:self.leftView];
+        [self.leftView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).with.offset(0);
             make.left.equalTo(self).with.offset(0);
             make.bottom.equalTo(self).with.offset(0);
@@ -38,9 +38,9 @@
             make.size.mas_equalTo(CGSizeMake(ME_Width / 4, self.bounds.size.height));
         }];
         
-        self.view2 = [UIView new];
-        [self addSubview:self.view2];
-        [self.view2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        self.centLeftView = [UIView new];
+        [self addSubview:self.centLeftView];
+        [self.centLeftView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).with.offset(0);
             make.left.equalTo(self).with.offset(ME_Width / 4);
             make.bottom.equalTo(self).with.offset(0);
@@ -48,9 +48,9 @@
             make.size.mas_equalTo(CGSizeMake(ME_Width / 4, self.bounds.size.height));
         }];
         
-        self.view3 = [UIView new];
-        [self addSubview:self.view3];
-        [self.view3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        self.centRightView = [UIView new];
+        [self addSubview:self.centRightView];
+        [self.centRightView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).with.offset(0);
             make.left.equalTo(self).with.offset((ME_Width / 4) * 2);
             make.bottom.equalTo(self).with.offset(0);
@@ -58,9 +58,9 @@
             make.size.mas_equalTo(CGSizeMake(ME_Width / 4, self.bounds.size.height));
         }];
         
-        self.view4 = [UIView new];
-        [self addSubview:self.view4];
-        [self.view4 mas_makeConstraints:^(MASConstraintMaker *make) {
+        self.rightView = [UIView new];
+        [self addSubview:self.rightView];
+        [self.rightView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).with.offset(0);
             make.left.equalTo(self).with.offset((ME_Width / 4) * 3);
             make.bottom.equalTo(self).with.offset(0);
@@ -69,84 +69,84 @@
         }];
         
         //draw - others
-        self.imageView1 = [UIImageView new];
-        [self.view1 addSubview:self.imageView1];
-        [self.imageView1 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.view1).with.offset(0);
-            make.centerX.equalTo(self.view1).with.offset(0);
+        self.leftImageView = [UIImageView new];
+        [self.leftView addSubview:self.leftImageView];
+        [self.leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.leftView).with.offset(0);
+            make.centerX.equalTo(self.leftView).with.offset(0);
             make.size.mas_equalTo(CGSizeMake(40, 40));
             
         }];
         
-        self.imageView2 = [UIImageView new];
-        [self.view2 addSubview:self.imageView2];
-        [self.imageView2 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.view2).with.offset(0);
-            make.centerX.equalTo(self.view2).with.offset(0);
+        self.centLeftImageView = [UIImageView new];
+        [self.centLeftView addSubview:self.centLeftImageView];
+        [self.centLeftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.centLeftView).with.offset(0);
+            make.centerX.equalTo(self.centLeftView).with.offset(0);
             make.size.mas_equalTo(CGSizeMake(40, 40));
         }];
         
-        self.imageView3 = [UIImageView new];
-        [self.view3 addSubview:self.imageView3];
-        [self.imageView3 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.view3).with.offset(0);
-            make.centerX.equalTo(self.view3).with.offset(0);
+        self.centRightImageView = [UIImageView new];
+        [self.centRightView addSubview:self.centRightImageView];
+        [self.centRightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.centRightView).with.offset(0);
+            make.centerX.equalTo(self.centRightView).with.offset(0);
             make.size.mas_equalTo(CGSizeMake(40, 40));
         }];
         
-        self.imageView4 = [UIImageView new];
-        [self.view4 addSubview:self.imageView4];
-        [self.imageView4 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.view4).with.offset(0);
-            make.centerX.equalTo(self.view4).with.offset(0);
+        self.rightImageView = [UIImageView new];
+        [self.rightView addSubview:self.rightImageView];
+        [self.rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.rightView).with.offset(0);
+            make.centerX.equalTo(self.rightView).with.offset(0);
             make.size.mas_equalTo(CGSizeMake(40, 40));
         }];
         
         
-        self.label1 = [UILabel new];
-        [self.view1 addSubview:self.label1];
-        self.label1.textAlignment = NSTextAlignmentCenter;
-        self.label1.font = [UIFont systemFontOfSize:13];
-        [self.label1 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.view1).with.offset(40);
-            make.left.equalTo(self.view1).with.offset(0);
-            make.right.equalTo(self.view1).with.offset(0);
-            
-            make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 15));
-        }];
-        
-        self.label2 = [UILabel new];
-        [self.view2 addSubview:self.label2];
-        self.label2.textAlignment = NSTextAlignmentCenter;
-        self.label2.font = [UIFont systemFontOfSize:13];
-        [self.label2 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.view2).with.offset(40);
-            make.left.equalTo(self.view2).with.offset(0);
-            make.right.equalTo(self.view2).with.offset(0);
+        self.leftLabel = [UILabel new];
+        [self.leftView addSubview:self.leftLabel];
+        self.leftLabel.textAlignment = NSTextAlignmentCenter;
+        self.leftLabel.font = [UIFont systemFontOfSize:13];
+        [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.leftView).with.offset(40);
+            make.left.equalTo(self.leftView).with.offset(0);
+            make.right.equalTo(self.leftView).with.offset(0);
             
             make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 15));
         }];
         
-        self.label3 = [UILabel new];
-        [self.view3 addSubview:self.label3];
-        self.label3.textAlignment = NSTextAlignmentCenter;
-        self.label3.font = [UIFont systemFontOfSize:13];
-        [self.label3 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.view3).with.offset(40);
-            make.left.equalTo(self.view3).with.offset(0);
-            make.right.equalTo(self.view3).with.offset(0);
+        self.centLeftLabel = [UILabel new];
+        [self.centLeftView addSubview:self.centLeftLabel];
+        self.centLeftLabel.textAlignment = NSTextAlignmentCenter;
+        self.centLeftLabel.font = [UIFont systemFontOfSize:13];
+        [self.centLeftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.centLeftView).with.offset(40);
+            make.left.equalTo(self.centLeftView).with.offset(0);
+            make.right.equalTo(self.centLeftView).with.offset(0);
             
             make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 15));
         }];
         
-        self.label4 = [UILabel new];
-        [self.view4 addSubview:self.label4];
-        self.label4.textAlignment = NSTextAlignmentCenter;
-        self.label4.font = [UIFont systemFontOfSize:13];
-        [self.label4 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.view4).with.offset(40);
-            make.left.equalTo(self.view4).with.offset(0);
-            make.right.equalTo(self.view4).with.offset(0);
+        self.centRightLabel = [UILabel new];
+        [self.centRightView addSubview:self.centRightLabel];
+        self.centRightLabel.textAlignment = NSTextAlignmentCenter;
+        self.centRightLabel.font = [UIFont systemFontOfSize:13];
+        [self.centRightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.centRightView).with.offset(40);
+            make.left.equalTo(self.centRightView).with.offset(0);
+            make.right.equalTo(self.centRightView).with.offset(0);
+            
+            make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 15));
+        }];
+        
+        self.rightLabel = [UILabel new];
+        [self.rightView addSubview:self.rightLabel];
+        self.rightLabel.textAlignment = NSTextAlignmentCenter;
+        self.rightLabel.font = [UIFont systemFontOfSize:13];
+        [self.rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.rightView).with.offset(40);
+            make.left.equalTo(self.rightView).with.offset(0);
+            make.right.equalTo(self.rightView).with.offset(0);
             
             make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 15));
         }];
@@ -158,15 +158,15 @@
 - (void)setDic:(NSDictionary *)dic
 {
     _dic = dic;
-    self.imageView1.image = [UIImage imageNamed:dic[@"activity"]];
-    self.imageView2.image = [UIImage imageNamed:dic[@"rank"]];
-    self.imageView3.image = [UIImage imageNamed:dic[@"channel"]];
-    self.imageView4.image = [UIImage imageNamed:dic[@"mission"]];
+    self.leftImageView.image = [UIImage imageNamed:dic[@"activity"]];
+    self.centLeftImageView.image = [UIImage imageNamed:dic[@"rank"]];
+    self.centRightImageView.image = [UIImage imageNamed:dic[@"channel"]];
+    self.rightImageView.image = [UIImage imageNamed:dic[@"mission"]];
     
-    self.label1.text = dic[@"activity_title"];
-    self.label2.text = dic[@"rank_title"];
-    self.label3.text = dic[@"channel_title"];
-    self.label4.text = dic[@"mission_title"];
+    self.leftLabel.text = dic[@"activity_title"];
+    self.centLeftLabel.text = dic[@"rank_title"];
+    self.centRightLabel.text = dic[@"channel_title"];
+    self.rightLabel.text = dic[@"mission_title"];
 }
 
 

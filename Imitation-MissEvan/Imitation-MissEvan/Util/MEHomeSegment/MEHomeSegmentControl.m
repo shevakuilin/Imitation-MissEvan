@@ -79,6 +79,16 @@
     self.lineLayer = [[CALayer alloc] init];
     self.lineLayer.backgroundColor = self.highlightColor.CGColor;
     [self.scrollView.layer addSublayer:self.lineLayer];
+    
+    // 添加navigation的下划线
+    self.downShadow = [UIImageView new];
+    [self addSubview:self.downShadow];
+    self.downShadow.backgroundColor = ME_Color(205, 206, 209);//229, 230, 230
+    [self.downShadow mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self).with.offset(0);
+        
+        make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
+    }];
 }
 
 - (void)createItems

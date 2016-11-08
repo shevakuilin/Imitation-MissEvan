@@ -37,6 +37,7 @@ typedef NS_ENUM(NSInteger, MESegmentType)
 @property (nonatomic) CGFloat borderWidth;
 @property (nonatomic, strong) UIColor * titleColor;
 @property (nonatomic, strong) UIFont * titleFont;
+@property (nonatomic, strong) UIImageView * downShadow;
 
 //@property(nonatomic, strong, readonly) UIView * segmentView;
 

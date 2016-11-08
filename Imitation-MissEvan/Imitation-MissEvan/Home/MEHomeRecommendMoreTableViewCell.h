@@ -19,4 +19,7 @@
 @property (nonatomic, strong) UIView * downCenterView;
 @property (nonatomic, strong) UIView * downRightView;
 
+@property (nonatomic, strong) UIImageView * topShadow;
+@property (nonatomic, strong) UIImageView * downShadow;
+
 @end

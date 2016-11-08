@@ -9,6 +9,7 @@
 #import "MEHomeViewController.h"
 #import "MEHeader.h"
 #import "MEHomeRecommendTopTableViewCell.h"
+#import "MEHomeRecommendMoreTableViewCell.h"
 
 @interface MEHomeViewController ()<MEPageControl_AutoScrollDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UIViewController * soundListView;
@@ -81,7 +82,7 @@
     
     
     self.tableView = [UITableView new];
-    self.tableView.backgroundColor = ME_Color(244, 244, 244);
+    self.tableView.backgroundColor = ME_Color(250, 250, 250);
     [backgroundScroll addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(backgroundScroll).with.offset(135);
@@ -95,8 +96,10 @@
     self.tableView.delegate = self;
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.separatorStyle = NO;
+    self.tableView.scrollEnabled = NO;
     
     [self.tableView registerClass:[MEHomeRecommendTopTableViewCell class] forCellReuseIdentifier:@"HomeRecommendTop"];
+    [self.tableView registerClass:[MEHomeRecommendMoreTableViewCell class] forCellReuseIdentifier:@"HomeRecommendMore"];
 }
 
 - (void)goMusicView
@@ -123,13 +126,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MEHomeRecommendTopTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendTop"];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.section == 0) {
+        MEHomeRecommendTopTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendTop"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.dic = ME_DATASOURCE.homeTopImageDic;
+        
+        return cell;
+        
+    } else {
+        MEHomeRecommendMoreTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendMore"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        return cell;
     }
     
-    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -139,7 +149,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 65;
+    if (indexPath.section == 0) {
+        return 65;
+    } else {
+        return 380;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -151,4 +165,11 @@
     }
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView * sectionView = [UIView new];
+    sectionView.backgroundColor = ME_Color(250, 250, 250);
+    
+    return sectionView;
+}
 @end

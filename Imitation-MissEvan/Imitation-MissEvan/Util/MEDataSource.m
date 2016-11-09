@@ -45,8 +45,28 @@
                              @"channel_title": @"广播剧",
                              @"mission_title": @"任务"};
     
-    self.hotCellDic = @{@"image": @"hp3_icon_msound_small_26x26_",
-                        @"title": @"人气M音"};
+    //topCell
+    NSDictionary * mVoiceDic = @{@"image": @"hp3_icon_msound_small_26x26_",
+                                 @"title": @"人气M音"};
+    
+    NSDictionary * channelDic = @{@"image": @"hp3_icon_channel_small_26x27_",
+                                  @"title": @"频道"};
+    
+    NSDictionary * voiceListDic = @{@"image": @"hp3_icon_album_small_26x26_",
+                                    @"title": @"音单"};
+    
+    NSDictionary * bellDic = @{@"image": @"hp3_icon_ring_small_26x26_",
+                               @"title": @"铃声"};
+    
+    NSDictionary * recommendAkiraDic = @{@"image": @"hp3_icon_seiyu_small_26x26_",
+                                         @"title": @"推荐声优"};
+    
+    NSDictionary * radioDic = @{@"image": @"hp3_icon_5_26x26_",
+                                @"title": @"广播剧"};
+    
+    self.topCellArray = [[NSArray alloc] initWithObjects:mVoiceDic, channelDic, voiceListDic, bellDic, recommendAkiraDic, radioDic, nil];
+    
+    
     //周末在家用plist表来装基本数据
     NSDictionary * dic1 = @{@"themes_image": @"hotMVoice_topLeft",
                            @"title": @"ACG周刊-25期-你的名字终于要播...",

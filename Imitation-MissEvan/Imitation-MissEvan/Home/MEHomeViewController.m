@@ -118,7 +118,7 @@
 #pragma mark - tableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 8;
+    return 7;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -146,8 +146,15 @@
         if (indexPath.row == 0) {
             MEHomeRecommendMoreTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendMore"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.downShadow.hidden = YES;
-            cell.dic = ME_DATASOURCE.hotCellDic;
+            MELog(@"section == %@", @(indexPath.section));
+            cell.dic = ME_DATASOURCE.topCellArray[indexPath.section - 1];
+            if (indexPath.section == 4 || indexPath.section == 5) {
+                cell.moreButton.hidden = YES;
+                cell.downShadow.hidden = NO;
+            } else {
+                cell.moreButton.hidden = NO;
+                cell.downShadow.hidden = YES;
+            }
             
             return cell;
             

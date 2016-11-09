@@ -36,4 +36,7 @@
 
 @property (nonatomic, strong) UIImageView * downShadow;
 
+
+@property (nonatomic, strong) NSArray * array;
+
 @end

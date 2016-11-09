@@ -47,5 +47,39 @@
     
     self.hotCellDic = @{@"image": @"hp3_icon_msound_small_26x26_",
                         @"title": @"人气M音"};
+    //周末在家用plist表来装基本数据
+    NSDictionary * dic1 = @{@"themes_image": @"hotMVoice_topLeft",
+                           @"title": @"ACG周刊-25期-你的名字终于要播...",
+                           @"played_count": @"3841",
+                           @"words_count": @"37"};
+    
+    NSDictionary * dic2 = @{@"themes_image": @"hotMVoice_topCenter",
+                            @"title": @"【3D环绕】Alan Walker - Faded",
+                            @"played_count": @"4879",
+                            @"words_count": @"38"};
+    
+    NSDictionary * dic3 = @{@"themes_image": @"hotMVoice_topRight",
+                            @"title": @"游术评（使命召唤系列）《使命召唤》",
+                            @"played_count": @"3586",
+                            @"words_count": @"14"};
+    
+    NSDictionary * dic4 = @{@"themes_image": @"hotMVoice_downLeft",
+                            @"title": @"【少年霜】世末歌者",
+                            @"played_count": @"3686",
+                            @"words_count": @"21"};
+    
+    NSDictionary * dic5 = @{@"themes_image": @"hotMVoice_downCenter",
+                            @"title": @"【请爱我到时光尽头】“愿你了解...",
+                            @"played_count": @"3789",
+                            @"words_count": @"18"};
+    
+    NSDictionary * dic6 = @{@"themes_image": @"hotMVoice_downRight",
+                            @"title": @"【3D】刀剑乱舞 花丸-心魂の在処",
+                            @"played_count": @"3924",
+                            @"words_count": @"13"};
+    
+    NSArray * array1 = [[NSArray alloc] initWithObjects:dic1, dic2, dic3, nil];
+    NSArray * array2 = [[NSArray alloc] initWithObjects:dic4, dic5, dic6, nil];
+    self.recommendCellArray = [[NSArray alloc] initWithObjects:array1, array2, nil];
 }
 @end

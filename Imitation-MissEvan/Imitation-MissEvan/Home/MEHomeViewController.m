@@ -125,6 +125,8 @@
 {
     if (section == 0) {
         return 1;
+    } else if (section == 1){
+        return 3;
     } else {
         return 2;
     }
@@ -149,9 +151,18 @@
             
             return cell;
             
+        } else if (indexPath.row == 1){
+            MEHotMVoiceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HotMVoice"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.array = ME_DATASOURCE.recommendCellArray[indexPath.row - 1];
+            cell.downShadow.hidden = YES;
+            
+            return cell;
+            
         } else {
             MEHotMVoiceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HotMVoice"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.array = ME_DATASOURCE.recommendCellArray[indexPath.row - 1];
             
             return cell;
         }
@@ -172,7 +183,7 @@
         if (indexPath.row == 0) {
             return 35;//380;
         } else {
-            return 350;
+            return 174;
         }
     }
 }

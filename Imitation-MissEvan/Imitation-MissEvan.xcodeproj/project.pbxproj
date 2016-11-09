@@ -13,6 +13,7 @@
 		771AB1F61DD06E4B00DDBA44 /* MEHomeRecommendTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 771AB1F51DD06E4B00DDBA44 /* MEHomeRecommendTopTableViewCell.m */; };
 		774482471DC1A8860044EE55 /* METabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774482461DC1A8860044EE55 /* METabBarViewController.m */; };
 		7744824B1DC1ED600044EE55 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744824A1DC1ED600044EE55 /* iCarousel.m */; };
+		776812C71DD2CA180035C451 /* MEChannelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 776812C61DD2CA180035C451 /* MEChannelTableViewCell.m */; };
 		778123931DBDAD4500425E6A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 778123921DBDAD4500425E6A /* main.m */; };
 		778123961DBDAD4500425E6A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 778123951DBDAD4500425E6A /* AppDelegate.m */; };
 		7781239E1DBDAD4500425E6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7781239D1DBDAD4500425E6A /* Assets.xcassets */; };
@@ -70,6 +71,8 @@
 		774482461DC1A8860044EE55 /* METabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METabBarViewController.m; sourceTree = "<group>"; };
 		774482491DC1ED600044EE55 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		7744824A1DC1ED600044EE55 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		776812C51DD2CA180035C451 /* MEChannelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEChannelTableViewCell.h; sourceTree = "<group>"; };
+		776812C61DD2CA180035C451 /* MEChannelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEChannelTableViewCell.m; sourceTree = "<group>"; };
 		7781238E1DBDAD4500425E6A /* Imitation-MissEvan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Imitation-MissEvan.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		778123921DBDAD4500425E6A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		778123941DBDAD4500425E6A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -256,6 +259,8 @@
 				77188E551DD165D20031EEBB /* MEHomeRecommendMoreTableViewCell.m */,
 				77188E571DD1A9470031EEBB /* MEHotMVoiceTableViewCell.h */,
 				77188E581DD1A9470031EEBB /* MEHotMVoiceTableViewCell.m */,
+				776812C51DD2CA180035C451 /* MEChannelTableViewCell.h */,
+				776812C61DD2CA180035C451 /* MEChannelTableViewCell.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -532,6 +537,7 @@
 				77C8194B1DBDF53B0004EFFC /* METabBar.m in Sources */,
 				77C819391DBDB88E0004EFFC /* MEHomeViewController.m in Sources */,
 				7744824B1DC1ED600044EE55 /* iCarousel.m in Sources */,
+				776812C71DD2CA180035C451 /* MEChannelTableViewCell.m in Sources */,
 				77D5BDD61DCB2EBD00EA1DCB /* MEHomeSegmentItem.m in Sources */,
 				77D5BDD31DCB297800EA1DCB /* MEHomeSegmentControl.m in Sources */,
 				774482471DC1A8860044EE55 /* METabBarViewController.m in Sources */,

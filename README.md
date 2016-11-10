@@ -5,6 +5,8 @@ Imitation for MissEvan [猫儿FM(M站)]
 
 仿照版本 v3.6.3
 
-基本效果：
+仿写效果预览：
+
+
 <img src="http://ofg0p74ar.bkt.clouddn.com/%E9%AB%98%E4%BB%BFMissEvan.gif" width="370" height ="665" />
 

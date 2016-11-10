@@ -21,4 +21,6 @@
 @property (nonatomic, strong) UILabel * leftTitleLabel;
 @property (nonatomic, strong) UILabel * rightTitleLabel;
 
+@property (nonatomic, strong) UIImageView * downShadow;
+
 @end

@@ -11,6 +11,7 @@
 #import "MEHomeRecommendTopTableViewCell.h"
 #import "MEHomeRecommendMoreTableViewCell.h"
 #import "MEHotMVoiceTableViewCell.h"
+#import "MEChannelTableViewCell.h"
 
 @interface MEHomeViewController ()<MEPageControl_AutoScrollDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UIViewController * soundListView;
@@ -102,6 +103,7 @@
     [self.tableView registerClass:[MEHomeRecommendTopTableViewCell class] forCellReuseIdentifier:@"HomeRecommendTop"];
     [self.tableView registerClass:[MEHomeRecommendMoreTableViewCell class] forCellReuseIdentifier:@"HomeRecommendMore"];
     [self.tableView registerClass:[MEHotMVoiceTableViewCell class] forCellReuseIdentifier:@"HotMVoice"];
+    [self.tableView registerClass:[MEChannelTableViewCell class] forCellReuseIdentifier:@"Channel"];
 }
 
 - (void)goMusicView
@@ -159,19 +161,35 @@
             return cell;
             
         } else if (indexPath.row == 1){
-            MEHotMVoiceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HotMVoice"];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.array = ME_DATASOURCE.recommendCellArray[indexPath.row - 1];
-            cell.downShadow.hidden = YES;
-            
-            return cell;
+            if (indexPath.section == 1) {
+                MEHotMVoiceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HotMVoice"];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.array = ME_DATASOURCE.recommendCellArray[indexPath.row - 1];
+                cell.downShadow.hidden = YES;
+                
+                return cell;
+                
+            } else {
+                MEChannelTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Channel"];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                
+                return cell;
+            }
             
         } else {
-            MEHotMVoiceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HotMVoice"];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.array = ME_DATASOURCE.recommendCellArray[indexPath.row - 1];
-            
-            return cell;
+            if (indexPath.section == 1) {
+                MEHotMVoiceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HotMVoice"];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.array = ME_DATASOURCE.recommendCellArray[indexPath.row - 1];
+                
+                return cell;
+                
+            } else {
+                MEChannelTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Channel"];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                
+                return cell;
+            }
         }
     }
     

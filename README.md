@@ -1,7 +1,7 @@
 # Imitation-MissEvan
 ### Imitation for MissEvan [猫儿FM(M站)]
 
-高仿MissEvan iOS端App，暂时只提供oc版本
+高仿MissEvan iOS端App，暂时只提供![Language](https://img.shields.io/badge/Language-%20Objective%20C%20-blue.svg)版本
 
 仿照版本 v3.6.3
 

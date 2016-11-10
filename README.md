@@ -12,7 +12,7 @@ Imitation for MissEvan [猫儿FM(M站)]
 
 
 
-仿写效果预览：
+仿写效果预览：(注：预览效果由Simulator录制，存在分辨率差异，体验最优效果请移步真机 [戳这里](https://segmentfault.com/a/1190000004519978))
 
 
 <img src="http://ofg0p74ar.bkt.clouddn.com/%E9%AB%98%E4%BB%BFMissEvan.gif" width="370" height ="665" />

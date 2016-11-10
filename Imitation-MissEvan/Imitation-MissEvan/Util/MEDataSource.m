@@ -101,5 +101,25 @@
     NSArray * array1 = [[NSArray alloc] initWithObjects:dic1, dic2, dic3, nil];
     NSArray * array2 = [[NSArray alloc] initWithObjects:dic4, dic5, dic6, nil];
     self.recommendCellArray = [[NSArray alloc] initWithObjects:array1, array2, nil];
+    
+    NSDictionary * channelDic1 = @{@"themes_image": @"日常精分现场",
+                                   @"title": @"日常精分现场",
+                                   @"played_count": @"1864"};
+    
+    NSDictionary * channelDic2 = @{@"themes_image": @"剑网3",
+                                   @"title": @"剑网3",
+                                   @"played_count": @"2076"};
+    
+    NSDictionary * channelDic3 = @{@"themes_image": @"震撼心灵的史诗音乐",
+                                   @"title": @"震撼心灵的史诗音乐",
+                                   @"played_count": @"325"};
+    
+    NSDictionary * channelDic4 = @{@"themes_image": @"那些魔性的翻唱",
+                                   @"title": @"日常精分现场",
+                                   @"played_count": @"1864"};
+    
+    NSArray * channelArray1 = [[NSArray alloc] initWithObjects:channelDic1, channelDic2, nil];
+    NSArray * channelArray2 = [[NSArray alloc] initWithObjects:channelDic3, channelDic4, nil];
+    self.channelCellArray = [[NSArray alloc] initWithObjects:channelArray1, channelArray2, nil];
 }
 @end

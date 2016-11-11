@@ -32,7 +32,7 @@
             make.top.equalTo(self).with.offset(0);
             make.left.equalTo(self).with.offset(0);
             
-            make.size.mas_equalTo(CGSizeMake(ME_Width / 2, 174));
+            make.size.mas_equalTo(CGSizeMake(ME_Width / 2, 139));
         }];
         
         self.rightView = [UIView new];
@@ -41,7 +41,7 @@
             make.top.equalTo(self).with.offset(0);
             make.right.equalTo(self).with.offset(0);
             
-            make.size.mas_equalTo(CGSizeMake(ME_Width / 2, 174));
+            make.size.mas_equalTo(CGSizeMake(ME_Width / 2, 139));
         }];
         
         //主题图片
@@ -121,7 +121,6 @@
             make.centerY.equalTo(self.leftAlbumShadowImageView).with.offset(0);
             make.right.equalTo(self.leftThemesImageView).with.offset(-4);
             
-            make.size.mas_equalTo(CGSizeMake(7 * [NSString stringWithFormat:@"%@", self.array[0][@"played_count"]].length, 13));
         }];
         
         self.rightPlayedLabel = [UILabel new];
@@ -134,8 +133,7 @@
         [self.rightPlayedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.rightAlbumShadowImageView).with.offset(0);
             make.right.equalTo(self.rightThemesImageView).with.offset(-4);
-            
-            make.size.mas_equalTo(CGSizeMake(7 * [NSString stringWithFormat:@"%@", self.array[1][@"played_count"]].length, 13));
+
         }];
         
         //参与人数小图标
@@ -182,6 +180,25 @@
     
     self.leftPlayedLabel.text = array[0][@"played_count"];
     self.rightPlayedLabel.text = array[1][@"played_count"];
+    
+    [self layoutOfPlayedLabel];
+}
+
+- (void)layoutOfPlayedLabel
+{
+    [self.leftPlayedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.leftAlbumShadowImageView).with.offset(0);
+        make.right.equalTo(self.leftThemesImageView).with.offset(-4);
+        
+        make.size.mas_equalTo(CGSizeMake(7 * [NSString stringWithFormat:@"%@", self.array[0][@"played_count"]].length, 13));
+    }];
+    
+    [self.rightPlayedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.rightAlbumShadowImageView).with.offset(0);
+        make.right.equalTo(self.rightThemesImageView).with.offset(-4);
+        
+        make.size.mas_equalTo(CGSizeMake(7 * [NSString stringWithFormat:@"%@", self.array[1][@"played_count"]].length, 13));
+    }];
 }
 
 @end

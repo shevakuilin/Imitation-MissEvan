@@ -18,5 +18,6 @@
 @property (copy, nonatomic) NSDictionary * homeTopImageDic;
 @property (copy, nonatomic) NSArray * topCellArray;
 @property (copy, nonatomic) NSArray * recommendCellArray;
+@property (copy, nonatomic) NSArray * channelCellArray;
 
 @end

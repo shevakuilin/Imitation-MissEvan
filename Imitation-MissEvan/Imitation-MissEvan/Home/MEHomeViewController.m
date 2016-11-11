@@ -127,7 +127,7 @@
 {
     if (section == 0) {
         return 1;
-    } else if (section == 1){
+    } else if (section == 1 || section == 2){
         return 3;
     } else {
         return 2;
@@ -172,6 +172,7 @@
             } else {
                 MEChannelTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Channel"];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.array = ME_DATASOURCE.channelCellArray[indexPath.row - 1];
                 
                 return cell;
             }
@@ -187,6 +188,7 @@
             } else {
                 MEChannelTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Channel"];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.array = ME_DATASOURCE.channelCellArray[indexPath.row - 1];
                 
                 return cell;
             }
@@ -202,14 +204,19 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        return 65;
-    } else {
-        if (indexPath.row == 0) {
+    if (indexPath.row == 0) {
+        if (indexPath.section == 0) {
+            return 65;
+        } else {
             return 35;//380;
+        }
+    } else {
+        if (indexPath.section == 2) {
+            return 145;
         } else {
             return 174;
         }
+        
     }
 }
 

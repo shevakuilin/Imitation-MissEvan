@@ -9,6 +9,15 @@
 #import "MEChannelTableViewCell.h"
 #import "MEHeader.h"
 
+@interface MEChannelTableViewCell ()
+@property (nonatomic, strong) UIImageView * leftAlbumShadowImageView;
+@property (nonatomic, strong) UIImageView * rightAlbumShadowImageView;
+
+@property (nonatomic, strong) UIImageView * leftPlayedImageView;
+@property (nonatomic, strong) UIImageView * rightPlayedImageView;
+
+@end
+
 @implementation MEChannelTableViewCell
 
 - (void)awakeFromNib {

@@ -55,7 +55,7 @@
             make.top.equalTo(self).with.offset(0);
             make.left.equalTo(self).with.offset(0);
             
-            make.size.mas_equalTo(CGSizeMake(ME_Width / 3, 174));
+            make.size.mas_equalTo(CGSizeMake(ME_Width / 3, 154));
         }];
         
         self.centerView = [UIView new];
@@ -64,7 +64,7 @@
             make.top.equalTo(self).with.offset(0);
             make.centerX.equalTo(self).with.offset(0);
             
-            make.size.mas_equalTo(CGSizeMake(ME_Width / 3, 174));
+            make.size.mas_equalTo(CGSizeMake(ME_Width / 3, 154));
         }];
         
         self.rightView = [UIView new];
@@ -73,7 +73,7 @@
             make.top.equalTo(self).with.offset(0);
             make.right.equalTo(self).with.offset(0);
             
-            make.size.mas_equalTo(CGSizeMake(ME_Width / 3, 174));
+            make.size.mas_equalTo(CGSizeMake(ME_Width / 3, 154));
         }];
         
         //底部图层
@@ -141,7 +141,6 @@
         //主题图片
         self.leftThemesImageView = [UIImageView new];
         [self.leftView addSubview:self.leftThemesImageView];
-        self.leftThemesImageView.image = [UIImage imageNamed:@"心灵的旋律"];
         self.leftThemesImageView.layer.masksToBounds = YES;
         self.leftThemesImageView.layer.cornerRadius = 5;
         [self.leftThemesImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -153,7 +152,6 @@
         
         self.centerThemesImageView = [UIImageView new];
         [self.centerView addSubview:self.centerThemesImageView];
-        self.centerThemesImageView.image = [UIImage imageNamed:@"岁月如酒，江湖如歌"];
         self.centerThemesImageView.layer.masksToBounds = YES;
         self.centerThemesImageView.layer.cornerRadius = 5;
         [self.centerThemesImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -165,7 +163,6 @@
         
         self.rightThemesImageView = [UIImageView new];
         [self.rightView addSubview:self.rightThemesImageView];
-        self.rightThemesImageView.image = [UIImage imageNamed:@"3D耳机音乐盛宴"];
         self.rightThemesImageView.layer.masksToBounds = YES;
         self.rightThemesImageView.layer.cornerRadius = 5;
         [self.rightThemesImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -211,7 +208,6 @@
         self.leftListCountLabel = [UILabel new];
         [self.leftThemesImageView addSubview:self.leftListCountLabel];
         self.leftListCountLabel.font = [UIFont systemFontOfSize:11];
-        self.leftListCountLabel.text = @"34";
         self.leftListCountLabel.textColor = [UIColor whiteColor];
         [self.leftListCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.leftAlbumShadowImageView).with.offset(0);
@@ -222,7 +218,6 @@
         self.centerListCountLabel = [UILabel new];
         [self.centerThemesImageView addSubview:self.centerListCountLabel];
         self.centerListCountLabel.font = [UIFont systemFontOfSize:11];
-        self.centerListCountLabel.text = @"19";
         self.centerListCountLabel.textColor = [UIColor whiteColor];
         [self.centerListCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.centerAlbumShadowImageView).with.offset(0);
@@ -233,7 +228,6 @@
         self.rightListCountLabel = [UILabel new];
         [self.rightThemesImageView addSubview:self.rightListCountLabel];
         self.rightListCountLabel.font = [UIFont systemFontOfSize:11];
-        self.rightListCountLabel.text = @"11";
         self.rightListCountLabel.textColor = [UIColor whiteColor];
         [self.rightListCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.rightAlbumShadowImageView).with.offset(0);
@@ -271,7 +265,6 @@
         self.leftTitleLabel = [UILabel new];
         [self addSubview:self.leftTitleLabel];
         self.leftTitleLabel.font = [UIFont systemFontOfSize:12];
-        self.leftTitleLabel.text = @"【节奏纯音】心灵的旋律";
         self.leftTitleLabel.numberOfLines = 0;
         [self.leftTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.leftThemesImageView.mas_bottom).with.offset(2);
@@ -283,7 +276,6 @@
         self.centerTitleLabel = [UILabel new];
         [self addSubview:self.centerTitleLabel];
         self.centerTitleLabel.font = [UIFont systemFontOfSize:12];
-        self.centerTitleLabel.text = @"【古风】岁月如酒，江湖如歌";
         self.centerTitleLabel.numberOfLines = 0;
         [self.centerTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.centerThemesImageView.mas_bottom).with.offset(2);
@@ -295,7 +287,6 @@
         self.rightTitleLabel = [UILabel new];
         [self addSubview:self.rightTitleLabel];
         self.rightTitleLabel.font = [UIFont systemFontOfSize:12];
-        self.rightTitleLabel.text = @"【3D大碟】3D耳机音乐盛宴 纵享狂欢";
         self.rightTitleLabel.numberOfLines = 0;
         [self.rightTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.rightThemesImageView.mas_bottom).with.offset(2);
@@ -323,6 +314,22 @@
     imageView.layer.cornerRadius = 5;
     imageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     imageView.layer.borderWidth = 0.5;
+}
+
+- (void)setArray:(NSArray *)array
+{
+    _array = array;
+    self.leftThemesImageView.image = [UIImage imageNamed:array[0][@"themes_image"]];
+    self.centerThemesImageView.image = [UIImage imageNamed:array[1][@"themes_image"]];
+    self.rightThemesImageView.image = [UIImage imageNamed:array[2][@"themes_image"]];
+    
+    self.leftTitleLabel.text = array[0][@"title"];
+    self.centerTitleLabel.text = array[1][@"title"];
+    self.rightTitleLabel.text = array[2][@"title"];
+    
+    self.leftListCountLabel.text = array[0][@"voice_count"];
+    self.centerListCountLabel.text = array[1][@"voice_count"];
+    self.rightListCountLabel.text = array[2][@"voice_count"];
 }
 
 @end

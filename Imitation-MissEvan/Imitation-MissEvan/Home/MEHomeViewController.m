@@ -12,6 +12,7 @@
 #import "MEHomeRecommendMoreTableViewCell.h"
 #import "MEHotMVoiceTableViewCell.h"
 #import "MEChannelTableViewCell.h"
+#import "MEVoiceListTableViewCell.h"
 
 @interface MEHomeViewController ()<MEPageControl_AutoScrollDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UIViewController * soundListView;
@@ -104,6 +105,7 @@
     [self.tableView registerClass:[MEHomeRecommendMoreTableViewCell class] forCellReuseIdentifier:@"HomeRecommendMore"];
     [self.tableView registerClass:[MEHotMVoiceTableViewCell class] forCellReuseIdentifier:@"HotMVoice"];
     [self.tableView registerClass:[MEChannelTableViewCell class] forCellReuseIdentifier:@"Channel"];
+    [self.tableView registerClass:[MEVoiceListTableViewCell class] forCellReuseIdentifier:@"VoiceList"];
 }
 
 - (void)goMusicView
@@ -169,10 +171,21 @@
                 
                 return cell;
                 
-            } else {
+            } else if (indexPath.section == 2){
                 MEChannelTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Channel"];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.array = ME_DATASOURCE.channelCellArray[indexPath.row - 1];
+                if (indexPath.row == 1) {
+                    cell.downShadow.hidden = YES;
+                } else {
+                    cell.downShadow.hidden = NO;
+                }
+                
+                
+                return cell;
+            } else {
+                MEVoiceListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"VoiceList"];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 
                 return cell;
             }
@@ -185,10 +198,15 @@
                 
                 return cell;
                 
-            } else {
+            }  else if (indexPath.section == 2){
                 MEChannelTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Channel"];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.array = ME_DATASOURCE.channelCellArray[indexPath.row - 1];
+                
+                return cell;
+            } else {
+                MEVoiceListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"VoiceList"];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 
                 return cell;
             }

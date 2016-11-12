@@ -141,7 +141,6 @@
         self.leftTitleLabel = [UILabel new];
         [self.leftView addSubview:self.leftTitleLabel];
         self.leftTitleLabel.font = [UIFont systemFontOfSize:12];
-        
         self.leftTitleLabel.numberOfLines = 0;
         [self.leftTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.leftThemesImageView.mas_bottom).with.offset(2);

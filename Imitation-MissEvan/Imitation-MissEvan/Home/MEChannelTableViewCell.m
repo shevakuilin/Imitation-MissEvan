@@ -105,7 +105,7 @@
             make.top.equalTo(self.leftThemesImageView).with.offset(0);
             make.right.equalTo(self.leftThemesImageView).with.offset(0);
             
-            make.size.mas_equalTo(CGSizeMake(((ME_Width / 2) - 12) / 2, 20));
+            make.size.mas_equalTo(CGSizeMake(((ME_Width / 2) - 12) / 2, 18.5));
         }];
         
         self.rightAlbumShadowImageView = [UIImageView new];
@@ -115,7 +115,7 @@
             make.top.equalTo(self.rightThemesImageView).with.offset(0);
             make.right.equalTo(self.rightThemesImageView).with.offset(0);
             
-            make.size.mas_equalTo(CGSizeMake(((ME_Width / 2) - 12) / 2, 20));
+            make.size.mas_equalTo(CGSizeMake(((ME_Width / 2) - 12) / 2, 18.5));
         }];
         
         //参与人数
@@ -151,9 +151,9 @@
         self.leftPlayedImageView.image = [UIImage imageNamed:@"cc_icon_user_15x13_"];
         [self.leftPlayedImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.leftPlayedLabel).with.offset(0);
-            make.right.equalTo(self.leftPlayedLabel.mas_left).with.offset(-1);
+            make.right.equalTo(self.leftPlayedLabel.mas_left).with.offset(-2);
             
-            make.size.mas_equalTo(CGSizeMake(14, 13));
+//            make.size.mas_equalTo(CGSizeMake(14, 13));
         }];
         
         self.rightPlayedImageView = [UIImageView new];
@@ -161,9 +161,9 @@
         self.rightPlayedImageView.image = [UIImage imageNamed:@"cc_icon_user_15x13_"];
         [self.rightPlayedImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.rightPlayedLabel).with.offset(0);
-            make.right.equalTo(self.rightPlayedLabel.mas_left).with.offset(-1);
+            make.right.equalTo(self.rightPlayedLabel.mas_left).with.offset(-2);
             
-            make.size.mas_equalTo(CGSizeMake(14, 13));
+//            make.size.mas_equalTo(CGSizeMake(14, 13));
         }];
         
         self.downShadow = [UIImageView new];
@@ -189,25 +189,7 @@
     
     self.leftPlayedLabel.text = array[0][@"played_count"];
     self.rightPlayedLabel.text = array[1][@"played_count"];
-    
-    [self layoutOfPlayedLabel];
-}
 
-- (void)layoutOfPlayedLabel
-{
-    [self.leftPlayedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.leftAlbumShadowImageView).with.offset(0);
-        make.right.equalTo(self.leftThemesImageView).with.offset(-4);
-        
-        make.size.mas_equalTo(CGSizeMake(7 * [NSString stringWithFormat:@"%@", self.array[0][@"played_count"]].length, 13));
-    }];
-    
-    [self.rightPlayedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.rightAlbumShadowImageView).with.offset(0);
-        make.right.equalTo(self.rightThemesImageView).with.offset(-4);
-        
-        make.size.mas_equalTo(CGSizeMake(7 * [NSString stringWithFormat:@"%@", self.array[1][@"played_count"]].length, 13));
-    }];
 }
 
 @end

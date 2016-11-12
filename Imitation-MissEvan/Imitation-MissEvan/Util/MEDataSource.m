@@ -104,7 +104,7 @@
     
     NSDictionary * channelDic1 = @{@"themes_image": @"日常精分现场",
                                    @"title": @"日常精分现场",
-                                   @"played_count": @"1864"};
+                                   @"played_count": @"1866"};
     
     NSDictionary * channelDic2 = @{@"themes_image": @"剑网3",
                                    @"title": @"剑网3",
@@ -116,7 +116,7 @@
     
     NSDictionary * channelDic4 = @{@"themes_image": @"那些魔性的翻唱",
                                    @"title": @"日常精分现场",
-                                   @"played_count": @"1864"};
+                                   @"played_count": @"85"};
     
     NSArray * channelArray1 = [[NSArray alloc] initWithObjects:channelDic1, channelDic2, nil];
     NSArray * channelArray2 = [[NSArray alloc] initWithObjects:channelDic3, channelDic4, nil];

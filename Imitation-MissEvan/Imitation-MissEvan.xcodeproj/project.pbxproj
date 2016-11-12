@@ -37,6 +37,7 @@
 		77D5BDD61DCB2EBD00EA1DCB /* MEHomeSegmentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5BDD51DCB2EBD00EA1DCB /* MEHomeSegmentItem.m */; };
 		77D5BDD91DCB30B700EA1DCB /* MEHomeSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5BDD81DCB30B700EA1DCB /* MEHomeSegmentViewController.m */; };
 		C9539F1C10181F2A520BDDE3 /* libPods-Imitation-MissEvan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20DBB35C9F8E09611DFD0293 /* libPods-Imitation-MissEvan.a */; };
+		E4C3B56D1DD7787C00A672D1 /* MEScaleToSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B56C1DD7787C00A672D1 /* MEScaleToSize.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,8 @@
 		77D5BDD71DCB30B700EA1DCB /* MEHomeSegmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEHomeSegmentViewController.h; sourceTree = "<group>"; };
 		77D5BDD81DCB30B700EA1DCB /* MEHomeSegmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEHomeSegmentViewController.m; sourceTree = "<group>"; };
 		78521F705BB0DCF560EE7105 /* Pods-Imitation-MissEvan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imitation-MissEvan.release.xcconfig"; path = "Pods/Target Support Files/Pods-Imitation-MissEvan/Pods-Imitation-MissEvan.release.xcconfig"; sourceTree = "<group>"; };
+		E4C3B56B1DD7787C00A672D1 /* MEScaleToSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEScaleToSize.h; sourceTree = "<group>"; };
+		E4C3B56C1DD7787C00A672D1 /* MEScaleToSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEScaleToSize.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,6 +301,8 @@
 				7711C3A91DC6D522005AAA2E /* MEHeader.h */,
 				77C2E70E1DC2FE6A00EC6B4A /* MEUtil.h */,
 				77C2E70F1DC2FE6A00EC6B4A /* MEUtil.m */,
+				E4C3B56B1DD7787C00A672D1 /* MEScaleToSize.h */,
+				E4C3B56C1DD7787C00A672D1 /* MEScaleToSize.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -541,6 +546,7 @@
 				77188E561DD165D20031EEBB /* MEHomeRecommendMoreTableViewCell.m in Sources */,
 				77C8194B1DBDF53B0004EFFC /* METabBar.m in Sources */,
 				77C819391DBDB88E0004EFFC /* MEHomeViewController.m in Sources */,
+				E4C3B56D1DD7787C00A672D1 /* MEScaleToSize.m in Sources */,
 				7744824B1DC1ED600044EE55 /* iCarousel.m in Sources */,
 				776812C71DD2CA180035C451 /* MEChannelTableViewCell.m in Sources */,
 				77D5BDD61DCB2EBD00EA1DCB /* MEHomeSegmentItem.m in Sources */,

@@ -16,6 +16,7 @@
 #import "iCarousel.h"
 #import "MEUtil.h"
 #import "MEPageControl+AutoScroll.h"
+#import "MEScaleToSize.h"
 
 #define ME_DATASOURCE   [MEDataSource shareDataSource]
 

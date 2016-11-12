@@ -183,7 +183,7 @@
                 
                 
                 return cell;
-            } else {
+            } else if (indexPath.section == 3){
                 MEVoiceListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"VoiceList"];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.array = ME_DATASOURCE.voiceListArray[indexPath.row - 1];
@@ -192,6 +192,12 @@
                 } else {
                     cell.downShadow.hidden = NO;
                 }
+                
+                return cell;
+            } else {
+                MEHomeRecommendTopTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendTop"];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.dic = ME_DATASOURCE.radioDic;
                 
                 return cell;
             }
@@ -236,17 +242,23 @@
 {
     if (indexPath.row == 0) {
         if (indexPath.section == 0) {
-            return 65;
+            return 75;
         } else {
-            return 35;//380;
+            return 45;//380;
         }
     } else {
         if (indexPath.section == 2) {
-            return 145;
-        } else if (indexPath.section == 3) {
             return 155;
+        } else if (indexPath.section == 3) {
+            return 165;
+
+        } else if (indexPath.section == 4) {
+            return 75;
         } else {
-            return 174;
+            if (indexPath.row == 2) {
+                return 166;
+            }
+            return 180;
         }
         
     }

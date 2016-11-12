@@ -84,7 +84,7 @@
             make.top.equalTo(self.leftView).with.offset(0);
             make.centerX.equalTo(self.leftView).with.offset(0);
             
-            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, 105));
+            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, ((ME_Width - 12) / 3) - 12));
         }];
         
         self.centerDownImageView = [UIImageView new];
@@ -94,7 +94,7 @@
             make.top.equalTo(self.centerView).with.offset(0);
             make.centerX.equalTo(self.centerView).with.offset(0);
             
-            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, 105));
+            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, ((ME_Width - 12) / 3) - 12));
         }];
         
         self.rightDownImageView = [UIImageView new];
@@ -104,7 +104,7 @@
             make.top.equalTo(self.rightView).with.offset(0);
             make.centerX.equalTo(self.rightView).with.offset(0);
             
-            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, 105));
+            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, ((ME_Width - 12) / 3) - 12));
         }];
         
         //中部图层
@@ -115,7 +115,7 @@
             make.top.equalTo(self.leftDownImageView.mas_top).with.offset(2);
             make.left.equalTo(self.leftDownImageView.mas_left).with.offset(-2);
             
-            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, 105));
+            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, ((ME_Width - 12) / 3) - 12));
         }];
         
         self.centerCenterImageView = [UIImageView new];
@@ -125,7 +125,7 @@
             make.top.equalTo(self.centerDownImageView.mas_top).with.offset(2);
             make.left.equalTo(self.centerDownImageView.mas_left).with.offset(-2);
             
-            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, 105));
+            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, ((ME_Width - 12) / 3) - 12));
         }];
         
         self.rightCenterImageView = [UIImageView new];
@@ -135,7 +135,7 @@
             make.top.equalTo(self.rightDownImageView.mas_top).with.offset(2);
             make.left.equalTo(self.rightDownImageView.mas_left).with.offset(-2);
             
-            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, 105));
+            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, ((ME_Width - 12) / 3) - 12));
         }];
         
         //主题图片
@@ -147,7 +147,7 @@
             make.top.equalTo(self.leftCenterImageView.mas_top).with.offset(2);
             make.left.equalTo(self.leftCenterImageView.mas_left).with.offset(-2);
             
-            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, 105));
+            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, ((ME_Width - 12) / 3) - 12));
         }];
         
         self.centerThemesImageView = [UIImageView new];
@@ -158,7 +158,7 @@
             make.top.equalTo(self.centerCenterImageView.mas_top).with.offset(2);
             make.left.equalTo(self.centerCenterImageView.mas_left).with.offset(-2);
             
-            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, 105));
+            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, ((ME_Width - 12) / 3) - 12));
         }];
         
         self.rightThemesImageView = [UIImageView new];
@@ -169,7 +169,7 @@
             make.top.equalTo(self.rightCenterImageView.mas_top).with.offset(2);
             make.left.equalTo(self.rightCenterImageView.mas_left).with.offset(-2);
             
-            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, 105));
+            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, ((ME_Width - 12) / 3) - 12));
         }];
         
         

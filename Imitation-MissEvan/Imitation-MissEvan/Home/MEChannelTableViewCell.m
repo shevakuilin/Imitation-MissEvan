@@ -62,7 +62,7 @@
             make.top.equalTo(self.leftView).with.offset(0);
             make.left.equalTo(self.leftView).with.offset(6);
             
-            make.size.mas_equalTo(CGSizeMake((ME_Width / 2) - 12, 100));
+            make.size.mas_equalTo(CGSizeMake((ME_Width / 2) - 12, ((ME_Width - 12) / 3) - 12));
         }];
         
         self.rightThemesImageView = [UIImageView new];
@@ -73,7 +73,7 @@
             make.top.equalTo(self.rightView).with.offset(0);
             make.right.equalTo(self.rightView).with.offset(-6);
             
-            make.size.mas_equalTo(CGSizeMake((ME_Width / 2) - 12, 100));
+            make.size.mas_equalTo(CGSizeMake((ME_Width / 2) - 12, ((ME_Width - 12) / 3) - 12));
         }];
         
         //标题

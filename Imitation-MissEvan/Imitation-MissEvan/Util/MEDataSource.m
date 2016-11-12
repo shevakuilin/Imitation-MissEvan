@@ -46,6 +46,15 @@
                              @"channel_title": @"广播剧",
                              @"mission_title": @"任务"};
     
+    self.radioDic = @{@"activity": @"hp3_title_bell2_40x40_",
+                      @"rank": @"hp3_title_message2_40x40_",
+                      @"channel": @"hp3_title_phone2_40x40_",
+                      @"mission": @"hp3_title_sleep2_40x40_",
+                      @"activity_title": @"闹铃",
+                      @"rank_title": @"短信",
+                      @"channel_title": @"来电",
+                      @"mission_title": @"催眠"};
+    
     //topCell
     NSDictionary * mVoiceDic = @{@"image": @"hp3_icon_msound_small_26x26_",
                                  @"title": @"人气M音"};

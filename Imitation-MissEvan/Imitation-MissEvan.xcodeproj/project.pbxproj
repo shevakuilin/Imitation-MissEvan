@@ -20,6 +20,7 @@
 		778123A11DBDAD4500425E6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7781239F1DBDAD4500425E6A /* LaunchScreen.storyboard */; };
 		778123AC1DBDAD4500425E6A /* Imitation_MissEvanTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 778123AB1DBDAD4500425E6A /* Imitation_MissEvanTests.m */; };
 		778123B71DBDAD4500425E6A /* Imitation_MissEvanUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 778123B61DBDAD4500425E6A /* Imitation_MissEvanUITests.m */; };
+		77BB25031DD5739400C3E60E /* MEVoiceListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BB25021DD5739400C3E60E /* MEVoiceListTableViewCell.m */; };
 		77C2E7101DC2FE6A00EC6B4A /* MEUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C2E70F1DC2FE6A00EC6B4A /* MEUtil.m */; };
 		77C8192F1DBDB6B50004EFFC /* MEHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77C8192E1DBDB6B50004EFFC /* MEHome.storyboard */; };
 		77C819321DBDB6EB0004EFFC /* MEChannel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77C819311DBDB6EB0004EFFC /* MEChannel.storyboard */; };
@@ -86,6 +87,8 @@
 		778123B21DBDAD4500425E6A /* Imitation-MissEvanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Imitation-MissEvanUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		778123B61DBDAD4500425E6A /* Imitation_MissEvanUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Imitation_MissEvanUITests.m; sourceTree = "<group>"; };
 		778123B81DBDAD4500425E6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77BB25011DD5739400C3E60E /* MEVoiceListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEVoiceListTableViewCell.h; sourceTree = "<group>"; };
+		77BB25021DD5739400C3E60E /* MEVoiceListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEVoiceListTableViewCell.m; sourceTree = "<group>"; };
 		77C2E70E1DC2FE6A00EC6B4A /* MEUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEUtil.h; sourceTree = "<group>"; };
 		77C2E70F1DC2FE6A00EC6B4A /* MEUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEUtil.m; sourceTree = "<group>"; };
 		77C8192E1DBDB6B50004EFFC /* MEHome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MEHome.storyboard; sourceTree = "<group>"; };
@@ -261,6 +264,8 @@
 				77188E581DD1A9470031EEBB /* MEHotMVoiceTableViewCell.m */,
 				776812C51DD2CA180035C451 /* MEChannelTableViewCell.h */,
 				776812C61DD2CA180035C451 /* MEChannelTableViewCell.m */,
+				77BB25011DD5739400C3E60E /* MEVoiceListTableViewCell.h */,
+				77BB25021DD5739400C3E60E /* MEVoiceListTableViewCell.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -546,6 +551,7 @@
 				77C8194E1DBDFE960004EFFC /* METabBarButton.m in Sources */,
 				771AB1F61DD06E4B00DDBA44 /* MEHomeRecommendTopTableViewCell.m in Sources */,
 				77C8193C1DBDB9050004EFFC /* MEChannelViewController.m in Sources */,
+				77BB25031DD5739400C3E60E /* MEVoiceListTableViewCell.m in Sources */,
 				778123931DBDAD4500425E6A /* main.m in Sources */,
 				77C2E7101DC2FE6A00EC6B4A /* MEUtil.m in Sources */,
 			);

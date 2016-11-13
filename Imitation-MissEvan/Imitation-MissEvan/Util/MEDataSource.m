@@ -134,7 +134,7 @@
                                    @"played_count": @"325"};
     
     NSDictionary * channelDic4 = @{@"themes_image": @"那些魔性的翻唱",
-                                   @"title": @"日常精分现场",
+                                   @"title": @"那些魔性的翻唱",
                                    @"played_count": @"85"};
     
     NSArray * channelArray1 = [[NSArray alloc] initWithObjects:channelDic1, channelDic2, nil];

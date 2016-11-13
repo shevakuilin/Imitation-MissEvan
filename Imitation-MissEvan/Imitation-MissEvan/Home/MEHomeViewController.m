@@ -14,6 +14,7 @@
 #import "MEChannelTableViewCell.h"
 #import "MEVoiceListTableViewCell.h"
 #import "MEAkiraTableViewCell.h"
+#import "MECustomColumnTableViewCell.h"
 
 @interface MEHomeViewController ()<MEPageControl_AutoScrollDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UIViewController * soundListView;
@@ -94,7 +95,7 @@
         make.right.equalTo(backgroundScroll).with.offset(0);
         make.bottom.equalTo(backgroundScroll).with.offset(0);
         
-        make.size.mas_equalTo(CGSizeMake(ME_Width, 1800));
+        make.size.mas_equalTo(CGSizeMake(ME_Width, 1896));
     }];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -108,6 +109,7 @@
     [self.tableView registerClass:[MEChannelTableViewCell class] forCellReuseIdentifier:@"Channel"];
     [self.tableView registerClass:[MEVoiceListTableViewCell class] forCellReuseIdentifier:@"VoiceList"];
     [self.tableView registerClass:[MEAkiraTableViewCell class] forCellReuseIdentifier:@"Akira"];
+    [self.tableView registerClass:[MECustomColumnTableViewCell class] forCellReuseIdentifier:@"CustomColumn"];
 }
 
 - (void)goMusicView
@@ -124,12 +126,12 @@
 #pragma mark - tableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 7;
+    return 8;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
+    if (section == 0 || section == 7) {
         return 1;
     } else if (section == 1 || section == 2 || section == 3){
         return 3;
@@ -145,6 +147,12 @@
         MEHomeRecommendTopTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendTop"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.dic = ME_DATASOURCE.homeTopImageDic;
+        
+        return cell;
+        
+    } else if (indexPath.section == 7) {
+        MECustomColumnTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"CustomColumn"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         return cell;
         
@@ -274,9 +282,9 @@
         } else if (indexPath.section == 5) {
             return 105;
         } else {
-//            if (indexPath.row == 2) {
-//                return 166;
-//            }
+            if (indexPath.row == 1) {
+                return 181;
+            }
             return 166;
         }
         

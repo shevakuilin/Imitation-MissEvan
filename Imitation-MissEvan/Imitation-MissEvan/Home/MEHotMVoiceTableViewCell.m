@@ -137,35 +137,35 @@
         //标题
         self.leftTitleLabel = [UILabel new];
         [self.leftView addSubview:self.leftTitleLabel];
-        self.leftTitleLabel.font = [UIFont systemFontOfSize:12];
+        self.leftTitleLabel.font = [UIFont systemFontOfSize:13];
         self.leftTitleLabel.numberOfLines = 0;
         [self.leftTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.leftThemesImageView.mas_bottom).with.offset(2);
+            make.top.equalTo(self.leftThemesImageView.mas_bottom).with.offset(0);
             make.centerX.equalTo(self.leftView).with.offset(0);
             
-            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, 30));
+            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, 35));
         }];
         
         self.centerTitleLabel = [UILabel new];
         [self.centerView addSubview:self.centerTitleLabel];
-        self.centerTitleLabel.font = [UIFont systemFontOfSize:12];
+        self.centerTitleLabel.font = [UIFont systemFontOfSize:13];
         self.centerTitleLabel.numberOfLines = 0;
         [self.centerTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.centerThemesImageView.mas_bottom).with.offset(2);
+            make.top.equalTo(self.centerThemesImageView.mas_bottom).with.offset(0);
             make.centerX.equalTo(self.centerView).with.offset(0);
             
-            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, 30));
+            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, 35));
         }];
         
         self.rightTitleLabel = [UILabel new];
         [self.rightView addSubview:self.rightTitleLabel];
-        self.rightTitleLabel.font = [UIFont systemFontOfSize:12];
+        self.rightTitleLabel.font = [UIFont systemFontOfSize:13];
         self.rightTitleLabel.numberOfLines = 0;
         [self.rightTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.rightThemesImageView.mas_bottom).with.offset(2);
+            make.top.equalTo(self.rightThemesImageView.mas_bottom).with.offset(0);
             make.centerX.equalTo(self.rightView).with.offset(0);
             
-            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, 30));
+            make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, 35));
         }];
         
         //播放小图标

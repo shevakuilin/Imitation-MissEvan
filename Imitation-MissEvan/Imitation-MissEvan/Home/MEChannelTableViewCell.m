@@ -79,7 +79,7 @@
         //标题
         self.leftTitleLabel = [UILabel new];
         [self.leftView addSubview:self.leftTitleLabel];
-        self.leftTitleLabel.font = [UIFont systemFontOfSize:12];
+        self.leftTitleLabel.font = [UIFont systemFontOfSize:13];
         [self.leftTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.leftThemesImageView.mas_bottom).with.offset(2);
             make.left.equalTo(self.leftThemesImageView.mas_left).with.offset(0);
@@ -89,7 +89,7 @@
         
         self.rightTitleLabel = [UILabel new];
         [self.rightView addSubview:self.rightTitleLabel];
-        self.rightTitleLabel.font = [UIFont systemFontOfSize:12];
+        self.rightTitleLabel.font = [UIFont systemFontOfSize:13];
         [self.rightTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.rightThemesImageView.mas_bottom).with.offset(2);
             make.left.equalTo(self.rightThemesImageView.mas_left).with.offset(0);

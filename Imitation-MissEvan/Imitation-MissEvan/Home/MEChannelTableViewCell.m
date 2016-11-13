@@ -81,7 +81,7 @@
         [self.leftView addSubview:self.leftTitleLabel];
         self.leftTitleLabel.font = [UIFont systemFontOfSize:13];
         [self.leftTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.leftThemesImageView.mas_bottom).with.offset(2);
+            make.top.equalTo(self.leftThemesImageView.mas_bottom).with.offset(3);
             make.left.equalTo(self.leftThemesImageView.mas_left).with.offset(0);
             
             make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 2) - 12, 15));
@@ -91,7 +91,7 @@
         [self.rightView addSubview:self.rightTitleLabel];
         self.rightTitleLabel.font = [UIFont systemFontOfSize:13];
         [self.rightTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.rightThemesImageView.mas_bottom).with.offset(2);
+            make.top.equalTo(self.rightThemesImageView.mas_bottom).with.offset(3);
             make.left.equalTo(self.rightThemesImageView.mas_left).with.offset(0);
             
             make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 2) - 12, 15));

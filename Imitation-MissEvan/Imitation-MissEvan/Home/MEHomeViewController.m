@@ -278,9 +278,9 @@
             return 165;
 
         } else if (indexPath.section == 4) {
-            return 85;
+            return 80;
         } else if (indexPath.section == 5) {
-            return 105;
+            return 108;
         } else {
             if (indexPath.row == 1 && indexPath.section < 6) {
                 return 176;

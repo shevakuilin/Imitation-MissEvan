@@ -72,7 +72,7 @@
         self.leftImageView = [UIImageView new];
         [self.leftView addSubview:self.leftImageView];
         [self.leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.leftView).with.offset(10);
+            make.top.equalTo(self.leftView).with.offset(8);
             make.centerX.equalTo(self.leftView).with.offset(0);
 
             
@@ -81,7 +81,7 @@
         self.centLeftImageView = [UIImageView new];
         [self.centLeftView addSubview:self.centLeftImageView];
         [self.centLeftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.centLeftView).with.offset(10);
+            make.top.equalTo(self.centLeftView).with.offset(8);
             make.centerX.equalTo(self.centLeftView).with.offset(0);
 
         }];
@@ -89,7 +89,7 @@
         self.centRightImageView = [UIImageView new];
         [self.centRightView addSubview:self.centRightImageView];
         [self.centRightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.centRightView).with.offset(10);
+            make.top.equalTo(self.centRightView).with.offset(8);
             make.centerX.equalTo(self.centRightView).with.offset(0);
 
         }];
@@ -97,7 +97,7 @@
         self.rightImageView = [UIImageView new];
         [self.rightView addSubview:self.rightImageView];
         [self.rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.rightView).with.offset(10);
+            make.top.equalTo(self.rightView).with.offset(8);
             make.centerX.equalTo(self.rightView).with.offset(0);
 
         }];
@@ -108,7 +108,7 @@
         self.leftLabel.textAlignment = NSTextAlignmentCenter;
         self.leftLabel.font = [UIFont systemFontOfSize:13];
         [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.leftImageView.mas_bottom).with.offset(1.5);
+            make.top.equalTo(self.leftImageView.mas_bottom).with.offset(3.5);
             make.centerX.equalTo(self.leftImageView).with.offset(0);
 
         }];
@@ -118,7 +118,7 @@
         self.centLeftLabel.textAlignment = NSTextAlignmentCenter;
         self.centLeftLabel.font = [UIFont systemFontOfSize:13];
         [self.centLeftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.centLeftImageView.mas_bottom).with.offset(1.5);
+            make.top.equalTo(self.centLeftImageView.mas_bottom).with.offset(3.5);
             make.centerX.equalTo(self.centLeftImageView).with.offset(0);
 
         }];
@@ -128,7 +128,7 @@
         self.centRightLabel.textAlignment = NSTextAlignmentCenter;
         self.centRightLabel.font = [UIFont systemFontOfSize:13];
         [self.centRightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.centRightImageView.mas_bottom).with.offset(1.5);
+            make.top.equalTo(self.centRightImageView.mas_bottom).with.offset(3.5);
             make.centerX.equalTo(self.centRightImageView).with.offset(0);
 
         }];
@@ -138,7 +138,7 @@
         self.rightLabel.textAlignment = NSTextAlignmentCenter;
         self.rightLabel.font = [UIFont systemFontOfSize:13];
         [self.rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.rightImageView.mas_bottom).with.offset(1.5);
+            make.top.equalTo(self.rightImageView.mas_bottom).with.offset(3.5);
             make.centerX.equalTo(self.rightImageView).with.offset(0);
 
         }];

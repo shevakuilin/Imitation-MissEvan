@@ -37,7 +37,7 @@
         
         self.classifyLabel = [UILabel new];
         [self addSubview:self.classifyLabel];
-        self.classifyLabel.font = [UIFont systemFontOfSize:15];
+        self.classifyLabel.font = [UIFont systemFontOfSize:16];
         [self.classifyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self).with.offset(0);
             make.left.equalTo(self.classifyImageView.mas_right).with.offset(3);

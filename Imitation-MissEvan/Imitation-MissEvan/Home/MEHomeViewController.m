@@ -95,7 +95,7 @@
         make.right.equalTo(backgroundScroll).with.offset(0);
         make.bottom.equalTo(backgroundScroll).with.offset(0);
         
-        make.size.mas_equalTo(CGSizeMake(ME_Width, 1896));
+        make.size.mas_equalTo(CGSizeMake(ME_Width, 1885));
     }];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -267,7 +267,7 @@
 {
     if (indexPath.row == 0) {
         if (indexPath.section == 0) {
-            return 75;
+            return 80;
         } else {
             return 45;//380;
         }
@@ -278,12 +278,12 @@
             return 165;
 
         } else if (indexPath.section == 4) {
-            return 75;
+            return 80;
         } else if (indexPath.section == 5) {
             return 105;
         } else {
-            if (indexPath.row == 1) {
-                return 181;
+            if (indexPath.row == 1 && indexPath.section < 6) {
+                return 176;
             }
             return 166;
         }

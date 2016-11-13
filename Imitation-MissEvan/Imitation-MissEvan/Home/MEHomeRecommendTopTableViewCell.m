@@ -72,7 +72,7 @@
         self.leftImageView = [UIImageView new];
         [self.leftView addSubview:self.leftImageView];
         [self.leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.leftView).with.offset(5);
+            make.top.equalTo(self.leftView).with.offset(10);
             make.centerX.equalTo(self.leftView).with.offset(0);
 
             
@@ -81,7 +81,7 @@
         self.centLeftImageView = [UIImageView new];
         [self.centLeftView addSubview:self.centLeftImageView];
         [self.centLeftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.centLeftView).with.offset(5);
+            make.top.equalTo(self.centLeftView).with.offset(10);
             make.centerX.equalTo(self.centLeftView).with.offset(0);
 
         }];
@@ -89,7 +89,7 @@
         self.centRightImageView = [UIImageView new];
         [self.centRightView addSubview:self.centRightImageView];
         [self.centRightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.centRightView).with.offset(5);
+            make.top.equalTo(self.centRightView).with.offset(10);
             make.centerX.equalTo(self.centRightView).with.offset(0);
 
         }];
@@ -97,7 +97,7 @@
         self.rightImageView = [UIImageView new];
         [self.rightView addSubview:self.rightImageView];
         [self.rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.rightView).with.offset(5);
+            make.top.equalTo(self.rightView).with.offset(10);
             make.centerX.equalTo(self.rightView).with.offset(0);
 
         }];

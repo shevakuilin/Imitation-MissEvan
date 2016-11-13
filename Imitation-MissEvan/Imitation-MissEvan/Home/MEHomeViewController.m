@@ -214,7 +214,7 @@
                 MEHotMVoiceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HotMVoice"];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.array = ME_DATASOURCE.radioArray[indexPath.row - 1];
-                cell.downShadow.hidden = YES;
+                cell.downShadow.hidden = NO;
                 
                 return cell;
             }

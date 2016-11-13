@@ -46,7 +46,7 @@
                              @"channel_title": @"广播剧",
                              @"mission_title": @"任务"};
     
-    self.radioDic = @{@"activity": @"hp3_title_bell2_40x40_",
+    self.bellDic = @{@"activity": @"hp3_title_bell2_40x40_",
                       @"rank": @"hp3_title_message2_40x40_",
                       @"channel": @"hp3_title_phone2_40x40_",
                       @"mission": @"hp3_title_sleep2_40x40_",
@@ -86,7 +86,7 @@
     self.topCellArray = [[NSArray alloc] initWithObjects:mVoiceDic, channelDic, voiceListDic, bellDic, recommendAkiraDic, radioDic, nil];
     
     
-    //周末在家用plist表来装基本数据
+    //如果抓包困难可以考虑用plist表来装基本数据
     NSDictionary * dic1 = @{@"themes_image": @"hotMVoice_topLeft",
                            @"title": @"ACG周刊-25期-你的名字终于要播...",
                            @"played_count": @"3841",
@@ -140,6 +140,25 @@
     NSArray * channelArray1 = [[NSArray alloc] initWithObjects:channelDic1, channelDic2, nil];
     NSArray * channelArray2 = [[NSArray alloc] initWithObjects:channelDic3, channelDic4, nil];
     self.channelCellArray = [[NSArray alloc] initWithObjects:channelArray1, channelArray2, nil];
+    
+    
+    NSDictionary * radioDic1 = @{@"themes_image": @"暴龙小猫咪",
+                            @"title": @"现代耽美广播剧【我的暴龙小猫咪】全一期",
+                            @"played_count": @"1010",
+                            @"words_count": @"8"};
+    
+    NSDictionary * radioDic2 = @{@"themes_image": @"足下的恋人",
+                            @"title": @"【BD·SM慎入】《足下的恋人》第三期",
+                            @"played_count": @"630",
+                            @"words_count": @"2"};
+    
+    NSDictionary * radioDic3 = @{@"themes_image": @"渣攻",
+                            @"title": @"渣功重生手册第一期",
+                            @"played_count": @"177",
+                            @"words_count": @"0"};
+    NSArray * radioArray = [[NSArray alloc] initWithObjects:radioDic1, radioDic2, radioDic3, nil];
+    self.radioArray = [[NSArray alloc] initWithObjects:radioArray, nil];
+    
 }
 
 - (void)dataSourceOfVoiceList

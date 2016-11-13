@@ -13,6 +13,7 @@
 #import "MEHotMVoiceTableViewCell.h"
 #import "MEChannelTableViewCell.h"
 #import "MEVoiceListTableViewCell.h"
+#import "MEAkiraTableViewCell.h"
 
 @interface MEHomeViewController ()<MEPageControl_AutoScrollDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UIViewController * soundListView;
@@ -106,6 +107,7 @@
     [self.tableView registerClass:[MEHotMVoiceTableViewCell class] forCellReuseIdentifier:@"HotMVoice"];
     [self.tableView registerClass:[MEChannelTableViewCell class] forCellReuseIdentifier:@"Channel"];
     [self.tableView registerClass:[MEVoiceListTableViewCell class] forCellReuseIdentifier:@"VoiceList"];
+    [self.tableView registerClass:[MEAkiraTableViewCell class] forCellReuseIdentifier:@"Akira"];
 }
 
 - (void)goMusicView
@@ -194,10 +196,18 @@
                 }
                 
                 return cell;
-            } else {
+            } else if (indexPath.section == 4){
                 MEHomeRecommendTopTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendTop"];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.dic = ME_DATASOURCE.radioDic;
+                cell.topShadow.hidden = YES;
+                
+                return cell;
+            } else {
+                MEAkiraTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Akira"];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.dic = ME_DATASOURCE.akiraDic;
+                cell.topShadow.hidden = YES;
                 
                 return cell;
             }
@@ -254,6 +264,8 @@
 
         } else if (indexPath.section == 4) {
             return 75;
+        } else if (indexPath.section == 5) {
+            return 105;
         } else {
             if (indexPath.row == 2) {
                 return 166;

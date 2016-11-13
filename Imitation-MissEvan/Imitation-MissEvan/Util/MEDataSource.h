@@ -21,5 +21,5 @@
 @property (copy, nonatomic) NSArray * channelCellArray;
 @property (copy, nonatomic) NSArray * voiceListArray;
 @property (copy, nonatomic) NSDictionary * radioDic;
-
+@property (copy, nonatomic) NSDictionary * akiraDic;
 @end

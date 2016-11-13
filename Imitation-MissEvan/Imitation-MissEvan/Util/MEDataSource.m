@@ -55,6 +55,15 @@
                       @"channel_title": @"来电",
                       @"mission_title": @"催眠"};
     
+    self.akiraDic = @{@"activity": @"梶裕贵",
+                      @"rank": @"小野大辅",
+                      @"channel": @"花江夏树",
+                      @"mission": @"钉宫理惠",
+                      @"activity_title": @"梶裕贵",
+                      @"rank_title": @"小野大辅",
+                      @"channel_title": @"花江夏树",
+                      @"mission_title": @"钉宫理惠"};
+    
     //topCell
     NSDictionary * mVoiceDic = @{@"image": @"hp3_icon_msound_small_26x26_",
                                  @"title": @"人气M音"};

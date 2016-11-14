@@ -19,5 +19,8 @@
 @property (copy, nonatomic) NSArray * topCellArray;
 @property (copy, nonatomic) NSArray * recommendCellArray;
 @property (copy, nonatomic) NSArray * channelCellArray;
-
+@property (copy, nonatomic) NSArray * voiceListArray;
+@property (copy, nonatomic) NSDictionary * bellDic;
+@property (copy, nonatomic) NSDictionary * akiraDic;
+@property (copy, nonatomic) NSArray * radioArray;
 @end

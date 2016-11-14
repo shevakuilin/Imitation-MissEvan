@@ -33,33 +33,32 @@
             make.centerY.equalTo(self).with.offset(0);
             make.left.equalTo(self).with.offset(6);
             
-            make.size.mas_equalTo(CGSizeMake(22, 22));
         }];
         
         self.classifyLabel = [UILabel new];
         [self addSubview:self.classifyLabel];
-        self.classifyLabel.font = [UIFont systemFontOfSize:13];
+        self.classifyLabel.font = [UIFont systemFontOfSize:16];
         [self.classifyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self).with.offset(0);
             make.left.equalTo(self.classifyImageView.mas_right).with.offset(3);
             
-            make.size.mas_equalTo(CGSizeMake(15 * [NSString stringWithFormat:@"%@", self.dic[@"title"]].length, 22));
         }];
         
         self.moreButton = [UIButton new];
         [self addSubview:self.moreButton];
         [self.moreButton setTitle:@"更多" forState:UIControlStateNormal];
         [self.moreButton setTitleColor:ME_Color(167, 167, 167) forState:UIControlStateNormal];
-        self.moreButton.titleLabel.font = [UIFont systemFontOfSize:12];
-        [self.moreButton setImage:[UIImage imageNamed:@"goto_ac_16x15_"] forState:UIControlStateNormal];
-        [self.moreButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -6, 0, 10)];
-        [self.moreButton setImageEdgeInsets:UIEdgeInsetsMake(0, 48, 0, 0)];
+        self.moreButton.titleLabel.font = [UIFont systemFontOfSize:13];
+        UIImage * image = [UIImage imageNamed:@"goto_ac_16x15_"];
+        [self.moreButton setImage:[image scaleToSize:CGSizeMake(19, 19)] forState:UIControlStateNormal];
+        [self.moreButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 20)];
+        [self.moreButton setImageEdgeInsets:UIEdgeInsetsMake(0, 45, 0, 0)];
         
         [self.moreButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self).with.offset(0);
             make.right.equalTo(self).with.offset(-6);
             
-            make.size.mas_equalTo(CGSizeMake(65, 22));
+            make.size.mas_equalTo(CGSizeMake(65, 30));
         }];
         
         

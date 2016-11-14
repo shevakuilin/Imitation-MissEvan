@@ -12,6 +12,9 @@
 #import "MEHomeRecommendMoreTableViewCell.h"
 #import "MEHotMVoiceTableViewCell.h"
 #import "MEChannelTableViewCell.h"
+#import "MEVoiceListTableViewCell.h"
+#import "MEAkiraTableViewCell.h"
+#import "MECustomColumnTableViewCell.h"
 
 @interface MEHomeViewController ()<MEPageControl_AutoScrollDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UIViewController * soundListView;
@@ -92,7 +95,7 @@
         make.right.equalTo(backgroundScroll).with.offset(0);
         make.bottom.equalTo(backgroundScroll).with.offset(0);
         
-        make.size.mas_equalTo(CGSizeMake(ME_Width, 1800));
+        make.size.mas_equalTo(CGSizeMake(ME_Width, 1888));
     }];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -104,6 +107,9 @@
     [self.tableView registerClass:[MEHomeRecommendMoreTableViewCell class] forCellReuseIdentifier:@"HomeRecommendMore"];
     [self.tableView registerClass:[MEHotMVoiceTableViewCell class] forCellReuseIdentifier:@"HotMVoice"];
     [self.tableView registerClass:[MEChannelTableViewCell class] forCellReuseIdentifier:@"Channel"];
+    [self.tableView registerClass:[MEVoiceListTableViewCell class] forCellReuseIdentifier:@"VoiceList"];
+    [self.tableView registerClass:[MEAkiraTableViewCell class] forCellReuseIdentifier:@"Akira"];
+    [self.tableView registerClass:[MECustomColumnTableViewCell class] forCellReuseIdentifier:@"CustomColumn"];
 }
 
 - (void)goMusicView
@@ -120,14 +126,14 @@
 #pragma mark - tableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 7;
+    return 8;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
+    if (section == 0 || section == 7) {
         return 1;
-    } else if (section == 1 || section == 2){
+    } else if (section == 1 || section == 2 || section == 3){
         return 3;
     } else {
         return 2;
@@ -141,6 +147,12 @@
         MEHomeRecommendTopTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendTop"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.dic = ME_DATASOURCE.homeTopImageDic;
+        
+        return cell;
+        
+    } else if (indexPath.section == 7) {
+        MECustomColumnTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"CustomColumn"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         return cell;
         
@@ -169,10 +181,48 @@
                 
                 return cell;
                 
-            } else {
+            } else if (indexPath.section == 2){
                 MEChannelTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Channel"];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.array = ME_DATASOURCE.channelCellArray[indexPath.row - 1];
+                if (indexPath.row == 1) {
+                    cell.downShadow.hidden = YES;
+                } else {
+                    cell.downShadow.hidden = NO;
+                }
+                
+                
+                return cell;
+            } else if (indexPath.section == 3){
+                MEVoiceListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"VoiceList"];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.array = ME_DATASOURCE.voiceListArray[indexPath.row - 1];
+                if (indexPath.row == 1) {
+                    cell.downShadow.hidden = YES;
+                } else {
+                    cell.downShadow.hidden = NO;
+                }
+                
+                return cell;
+            } else if (indexPath.section == 4){
+                MEHomeRecommendTopTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendTop"];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.dic = ME_DATASOURCE.bellDic;
+                cell.topShadow.hidden = YES;
+                
+                return cell;
+            } else if (indexPath.section == 5){
+                MEAkiraTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Akira"];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.dic = ME_DATASOURCE.akiraDic;
+                cell.topShadow.hidden = YES;
+                
+                return cell;
+            } else {
+                MEHotMVoiceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HotMVoice"];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.array = ME_DATASOURCE.radioArray[indexPath.row - 1];
+                cell.downShadow.hidden = NO;
                 
                 return cell;
             }
@@ -185,10 +235,21 @@
                 
                 return cell;
                 
-            } else {
+            }  else if (indexPath.section == 2){
                 MEChannelTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Channel"];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.array = ME_DATASOURCE.channelCellArray[indexPath.row - 1];
+                
+                return cell;
+            } else {
+                MEVoiceListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"VoiceList"];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.array = ME_DATASOURCE.voiceListArray[indexPath.row - 1];
+                if (indexPath.row == 1) {
+                    cell.downShadow.hidden = YES;
+                } else {
+                    cell.downShadow.hidden = NO;
+                }
                 
                 return cell;
             }
@@ -206,15 +267,25 @@
 {
     if (indexPath.row == 0) {
         if (indexPath.section == 0) {
-            return 65;
+            return 80;
         } else {
-            return 35;//380;
+            return 45;//380;
         }
     } else {
         if (indexPath.section == 2) {
-            return 145;
+            return 155;
+        } else if (indexPath.section == 3) {
+            return 165;
+
+        } else if (indexPath.section == 4) {
+            return 80;
+        } else if (indexPath.section == 5) {
+            return 108;
         } else {
-            return 174;
+            if (indexPath.row == 1 && indexPath.section < 6) {
+                return 176;
+            }
+            return 166;
         }
         
     }

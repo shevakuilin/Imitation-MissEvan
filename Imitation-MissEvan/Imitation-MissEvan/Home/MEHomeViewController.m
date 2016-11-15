@@ -15,6 +15,7 @@
 #import "MEVoiceListTableViewCell.h"
 #import "MEAkiraTableViewCell.h"
 #import "MECustomColumnTableViewCell.h"
+#import "MEBellsTableViewCell.h"
 
 @interface MEHomeViewController ()<MEPageControl_AutoScrollDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UIViewController * soundListView;
@@ -65,7 +66,7 @@
     /*
      ** PageControl & AutoScroll
      */
-    MEPageControl_AutoScroll * view = [[MEPageControl_AutoScroll alloc]initWithFrame:CGRectMake(0, 0, ME_Width, 135)];
+    MEPageControl_AutoScroll * view = [[MEPageControl_AutoScroll alloc]initWithFrame:CGRectMake(0, 0, ME_Width, 145)];
     NSMutableArray * pageImageArray = [[NSMutableArray alloc] init];
     for (NSInteger i = 1; i < 5; i ++) {
         UIImageView * imageView = [UIImageView new];
@@ -82,7 +83,7 @@
         make.left.equalTo(backgroundScroll).with.offset(0);
         make.right.equalTo(backgroundScroll).with.offset(0);
         
-        make.size.mas_equalTo(CGSizeMake(ME_Width, 135));
+//        make.size.mas_equalTo(CGSizeMake(ME_Width, 145));
     }];
     
     
@@ -90,12 +91,12 @@
     self.tableView.backgroundColor = ME_Color(250, 250, 250);
     [backgroundScroll addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(backgroundScroll).with.offset(135);
+        make.top.equalTo(backgroundScroll).with.offset(145);
         make.left.equalTo(backgroundScroll).with.offset(0);
         make.right.equalTo(backgroundScroll).with.offset(0);
         make.bottom.equalTo(backgroundScroll).with.offset(0);
         
-        make.size.mas_equalTo(CGSizeMake(ME_Width, 1888));
+        make.size.mas_equalTo(CGSizeMake(ME_Width, 1864));
     }];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -108,6 +109,7 @@
     [self.tableView registerClass:[MEHotMVoiceTableViewCell class] forCellReuseIdentifier:@"HotMVoice"];
     [self.tableView registerClass:[MEChannelTableViewCell class] forCellReuseIdentifier:@"Channel"];
     [self.tableView registerClass:[MEVoiceListTableViewCell class] forCellReuseIdentifier:@"VoiceList"];
+    [self.tableView registerClass:[MEBellsTableViewCell class] forCellReuseIdentifier:@"Bells"];
     [self.tableView registerClass:[MEAkiraTableViewCell class] forCellReuseIdentifier:@"Akira"];
     [self.tableView registerClass:[MECustomColumnTableViewCell class] forCellReuseIdentifier:@"CustomColumn"];
 }
@@ -205,7 +207,7 @@
                 
                 return cell;
             } else if (indexPath.section == 4){
-                MEHomeRecommendTopTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendTop"];
+                MEBellsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Bells"];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.dic = ME_DATASOURCE.bellDic;
                 cell.topShadow.hidden = YES;
@@ -267,9 +269,9 @@
 {
     if (indexPath.row == 0) {
         if (indexPath.section == 0) {
-            return 80;
+            return 70;
         } else {
-            return 45;//380;
+            return 40;//380;
         }
     } else {
         if (indexPath.section == 2) {
@@ -283,9 +285,9 @@
             return 108;
         } else {
             if (indexPath.row == 1 && indexPath.section < 6) {
-                return 176;
+                return 181;
             }
-            return 166;
+            return 171;
         }
         
     }

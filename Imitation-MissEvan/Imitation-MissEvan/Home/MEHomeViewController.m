@@ -18,7 +18,7 @@
 #import "MEBellsTableViewCell.h"
 
 @interface MEHomeViewController ()<MEPageControl_AutoScrollDelegate, UITableViewDelegate, UITableViewDataSource>
-@property (nonatomic, strong) UIViewController * soundListView;
+@property (nonatomic, strong) UIViewController * voiceListView;
 @property (nonatomic, strong) UIViewController * recommendView;
 @property (nonatomic, strong) UIViewController * classifyView;
 
@@ -33,15 +33,21 @@
     
     self.navigationController.navigationBarHidden = YES;
     
-    self.soundListView = [[UIViewController alloc] init];
-    self.soundListView.title = @"音单";
+    self.voiceListView = [[UIViewController alloc] init];
+    self.voiceListView.title = @"音单";
     
     self.recommendView = [[UIViewController alloc] init];
     self.recommendView.title = @"推荐";
     
     self.classifyView = [[UIViewController alloc] init];
     self.classifyView.title = @"分类";
-    self.viewControllers = @[self.soundListView, self.recommendView, self.classifyView];
+    self.viewControllers = @[self.voiceListView, self.recommendView, self.classifyView];
+    
+    UIButton * rightBarButton = [MEUtil barButtonItemWithImage:@"v3player_0001_24x24_" target:self action:@selector(goMusicView) isLeft:NO isRight:YES];
+    UIButton * leftBarButton = [MEUtil barButtonItemWithImage:@"hp3_icon_search_24x22_" target:self action:@selector(goSearchView) isLeft:YES isRight:NO];
+    
+    [self.segmentControl addSubview:rightBarButton];
+    [self.segmentControl addSubview:leftBarButton];
     
     [self customRecommendView];
 }
@@ -49,13 +55,6 @@
 - (void)customRecommendView
 {
     //TODO:推荐界面
-
-    UIButton * rightBarButton = [MEUtil barButtonItemWithImage:@"v3player_0001_24x24_" target:self action:@selector(goMusicView) isLeft:NO isRight:YES];
-    UIButton * leftBarButton = [MEUtil barButtonItemWithImage:@"hp3_icon_search_24x22_" target:self action:@selector(goSearchView) isLeft:YES isRight:NO];
-
-    [self.segmentControl addSubview:rightBarButton];
-    [self.segmentControl addSubview:leftBarButton];
-    
     UIScrollView * backgroundScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ME_Width, ME_Height)];
     backgroundScroll.backgroundColor = [UIColor clearColor];
     [self.recommendView.view addSubview:backgroundScroll];
@@ -112,6 +111,19 @@
     [self.tableView registerClass:[MEBellsTableViewCell class] forCellReuseIdentifier:@"Bells"];
     [self.tableView registerClass:[MEAkiraTableViewCell class] forCellReuseIdentifier:@"Akira"];
     [self.tableView registerClass:[MECustomColumnTableViewCell class] forCellReuseIdentifier:@"CustomColumn"];
+}
+
+- (void)customVoiceListView
+{
+    //TODO:音单界面
+}
+
+- (void)customClassifyView
+{
+    //TODO:分类界面
+    UIView * view = [UIView new];
+    [self.classifyView.view addSubview:view];
+    view.backgroundColor = [UIColor yellowColor];
 }
 
 - (void)goMusicView

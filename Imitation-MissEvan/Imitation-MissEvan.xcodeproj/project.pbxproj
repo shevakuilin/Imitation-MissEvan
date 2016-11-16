@@ -40,6 +40,7 @@
 		E4C3B56D1DD7787C00A672D1 /* MEScaleToSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B56C1DD7787C00A672D1 /* MEScaleToSize.m */; };
 		E4C3B5701DD89E7400A672D1 /* MEAkiraTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B56F1DD89E7400A672D1 /* MEAkiraTableViewCell.m */; };
 		E4C3B5731DD8B04F00A672D1 /* MECustomColumnTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5721DD8B04F00A672D1 /* MECustomColumnTableViewCell.m */; };
+		E4C3B5761DDB627E00A672D1 /* MEBellsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5751DDB627E00A672D1 /* MEBellsTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,8 @@
 		E4C3B56F1DD89E7400A672D1 /* MEAkiraTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEAkiraTableViewCell.m; sourceTree = "<group>"; };
 		E4C3B5711DD8B04F00A672D1 /* MECustomColumnTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MECustomColumnTableViewCell.h; sourceTree = "<group>"; };
 		E4C3B5721DD8B04F00A672D1 /* MECustomColumnTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MECustomColumnTableViewCell.m; sourceTree = "<group>"; };
+		E4C3B5741DDB627E00A672D1 /* MEBellsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEBellsTableViewCell.h; sourceTree = "<group>"; };
+		E4C3B5751DDB627E00A672D1 /* MEBellsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEBellsTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +278,8 @@
 				776812C61DD2CA180035C451 /* MEChannelTableViewCell.m */,
 				77BB25011DD5739400C3E60E /* MEVoiceListTableViewCell.h */,
 				77BB25021DD5739400C3E60E /* MEVoiceListTableViewCell.m */,
+				E4C3B5741DDB627E00A672D1 /* MEBellsTableViewCell.h */,
+				E4C3B5751DDB627E00A672D1 /* MEBellsTableViewCell.m */,
 				E4C3B56E1DD89E7400A672D1 /* MEAkiraTableViewCell.h */,
 				E4C3B56F1DD89E7400A672D1 /* MEAkiraTableViewCell.m */,
 				E4C3B5711DD8B04F00A672D1 /* MECustomColumnTableViewCell.h */,
@@ -562,6 +567,7 @@
 				77D5BDD61DCB2EBD00EA1DCB /* MEHomeSegmentItem.m in Sources */,
 				77D5BDD31DCB297800EA1DCB /* MEHomeSegmentControl.m in Sources */,
 				774482471DC1A8860044EE55 /* METabBarViewController.m in Sources */,
+				E4C3B5761DDB627E00A672D1 /* MEBellsTableViewCell.m in Sources */,
 				E4C3B5731DD8B04F00A672D1 /* MECustomColumnTableViewCell.m in Sources */,
 				77C819421DBDB98C0004EFFC /* MEMyViewController.m in Sources */,
 				E4C3B5701DD89E7400A672D1 /* MEAkiraTableViewCell.m in Sources */,

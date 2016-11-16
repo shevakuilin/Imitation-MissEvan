@@ -50,6 +50,7 @@
     [self.segmentControl addSubview:leftBarButton];
     
     [self customRecommendView];
+    [self customClassifyView];
 }
 
 - (void)customRecommendView
@@ -124,6 +125,11 @@
     UIView * view = [UIView new];
     [self.classifyView.view addSubview:view];
     view.backgroundColor = [UIColor yellowColor];
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.classifyView.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+    }];
+    
+
 }
 
 - (void)goMusicView

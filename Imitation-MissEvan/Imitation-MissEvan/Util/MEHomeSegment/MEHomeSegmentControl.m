@@ -259,11 +259,13 @@
         
         MEHomeSegmentItem *item = self.items[selectIndex];
         [self segmentItemSelected:item];
+        
         //线的长度，可能会动态改变
         self.lineLayer.frame = CGRectMake(CGRectGetMinX(item.frame) + 24.5, CGRectGetHeight(item.frame) - self.lineHeight - 2, 35, self.lineHeight);//CGRectMake(25, CGRectGetHeight(item.frame) - self.lineHeight, 35, 10);
         self.lastSelectRect = self.lineLayer.frame;
         
         [self.scrollView scrollRectToVisible:item.frame animated:YES];
+        //此处可控制controllerView
         [self.delegate MESegmentSelectAtIndex:selectIndex animation:animation];
     }
 }

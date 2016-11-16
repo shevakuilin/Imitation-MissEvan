@@ -210,7 +210,9 @@
         previousView.frame = CGRectMake((index - 1) * CGRectGetWidth(self.scrollView.frame), 0, CGRectGetWidth(self.scrollView.frame), CGRectGetHeight(self.scrollView.frame));
     }
     
+    //可在此处控制view滚动速度
     [self.scrollView scrollRectToVisible:view.frame animated:animation];
+    
 }
 
 #pragma mark - UIScrollViewDelegate

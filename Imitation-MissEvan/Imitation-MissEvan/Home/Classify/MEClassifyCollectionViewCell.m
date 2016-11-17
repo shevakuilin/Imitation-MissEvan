@@ -8,6 +8,7 @@
 
 #import "MEClassifyCollectionViewCell.h"
 #import "MEHeader.h"
+
 @interface MEClassifyCollectionViewCell ()
 @property (nonatomic, strong) UIView * downView;
 
@@ -19,13 +20,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = ME_Color(250, 250, 250);
+        self.backgroundColor = [UIColor whiteColor];
         
         self.downView = [UIView new];
         [self addSubview:self.downView];
         self.downView.backgroundColor = [UIColor whiteColor];
         [self.downView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self).with.insets(UIEdgeInsetsMake(6, 6, 6, 6));
+            make.edges.equalTo(self).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
         }];
         
         self.classifyImageView = [UIImageView new];

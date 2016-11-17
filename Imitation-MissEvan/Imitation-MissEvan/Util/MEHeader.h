@@ -11,12 +11,13 @@
 
 #import "MEDataSource.h"
 #import <Masonry.h>
-#import <SDWebImage/UIImageView+WebCache.h>
+//#import <SDWebImage/UIImageView+WebCache.h>
 #import "UIImage+GIF.h"
 #import "iCarousel.h"
 #import "MEUtil.h"
 #import "MEPageControl+AutoScroll.h"
 #import "MEScaleToSize.h"
+#import "UIImageView+AFNetworking.h"
 
 #define ME_DATASOURCE   [MEDataSource shareDataSource]
 

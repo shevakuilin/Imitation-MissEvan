@@ -20,6 +20,7 @@
         [sharedSingleton dataSourceOfSegment];
         [sharedSingleton dataSourceOfHomeRecommend];
         [sharedSingleton dataSourceOfVoiceList];
+        [sharedSingleton dataSourceOfClassify];
     });
     return sharedSingleton;
 }
@@ -190,5 +191,12 @@
     NSArray * array1 = [[NSArray alloc] initWithObjects:dic1, dic2, dic3, nil];
     NSArray * array2 = [[NSArray alloc] initWithObjects:dic4, dic5, dic6, nil];
     self.voiceListArray = [[NSArray alloc] initWithObjects:array1, array2, nil];
+}
+
+- (void)dataSourceOfClassify
+{
+    self.classiftPic = [[NSArray alloc] initWithObjects:@"http://static.missevan.com/app/46.png", @"http://static.missevan.com/app/8.png", @"http://static.missevan.com/app/26.png", @"http://static.missevan.com/app/54.png", @"http://static.missevan.com/app/5.png", @"http://static.missevan.com/app/41.png", @"http://static.missevan.com/app/6.png", @"http://static.missevan.com/app/4.png", @"http://static.missevan.com/app/13.png", @"http://static.missevan.com/app/52.png", @"http://static.missevan.com/app/55.png", @"http://static.missevan.com/app/65.png", nil];
+    
+    self.classiftTitle = [[NSArray alloc] initWithObjects:@"有声漫画", @"音乐", @"娱乐", @"催眠", @"广播剧", @"日抓", @"听书", @"电台", @"声优库", @"配音", @"游戏", @"铃声", nil];
 }
 @end

@@ -16,6 +16,7 @@
 #import "MEAkiraTableViewCell.h"
 #import "MECustomColumnTableViewCell.h"
 #import "MEBellsTableViewCell.h"
+#import "MEClassifyCollectionViewCell.h"
 
 @interface MEHomeViewController ()<MEPageControl_AutoScrollDelegate, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UIViewController * voiceListView;
@@ -129,14 +130,21 @@
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.classifyView.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
-    
-    self.collectionView = [UICollectionView new];
+    //创建一个layout布局类
+    UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
+    //设置布局方向为垂直流布局
+    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    //创建collectionView 通过一个布局策略layout来创建
+    self.collectionView = [[UICollectionView alloc]initWithFrame:self.view.frame collectionViewLayout:layout];
     [view addSubview:self.collectionView];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
+    self.collectionView.backgroundColor = ME_Color(250, 250, 250);;
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+    }];
+    [self.collectionView registerClass:[MEClassifyCollectionViewCell class] forCellWithReuseIdentifier:@"Classify"];
     
-    
-
 }
 
 - (void)goMusicView
@@ -334,4 +342,48 @@
     
     return sectionView;
 }
+
+
+#pragma mark -
+#pragma mark - collectionView
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 12;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    MEClassifyCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Classify" forIndexPath:indexPath];
+    
+    
+    [cell.classifyImageView setImageWithURL:[NSURL URLWithString:ME_DATASOURCE.classiftPic[indexPath.row]] placeholderImage:nil];
+    
+    cell.classifyLabel.text = ME_DATASOURCE.classiftTitle[indexPath.row];
+
+    
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+//定义每个Item 的大小
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(((ME_Width - 12) / 3) - 12, ((ME_Width - 12) / 3) - 12);
+}
+
+//定义每个UICollectionView 的 margin
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(20, 10, 20, 10);
+}
+
 @end

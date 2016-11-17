@@ -12,4 +12,6 @@
 @property (nonatomic, strong) UIImageView * classifyImageView;
 @property (nonatomic, strong) UILabel * classifyLabel;
 
+@property (nonatomic, strong) NSString * picUrl;
+@property (nonatomic, strong) NSString * title;
 @end

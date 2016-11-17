@@ -17,12 +17,13 @@
 #import "MECustomColumnTableViewCell.h"
 #import "MEBellsTableViewCell.h"
 
-@interface MEHomeViewController ()<MEPageControl_AutoScrollDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface MEHomeViewController ()<MEPageControl_AutoScrollDelegate, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UIViewController * voiceListView;
 @property (nonatomic, strong) UIViewController * recommendView;
 @property (nonatomic, strong) UIViewController * classifyView;
 
 @property (nonatomic, strong) UITableView * tableView;
+@property (nonatomic, strong) UICollectionView * collectionView;
 
 @end
 
@@ -128,6 +129,12 @@
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.classifyView.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
+    
+    self.collectionView = [UICollectionView new];
+    [view addSubview:self.collectionView];
+    self.collectionView.dataSource = self;
+    self.collectionView.delegate = self;
+    
     
 
 }

@@ -8,8 +8,13 @@
 
 #import "AppDelegate.h"
 #import "METabBarViewController.h"
+#import "MEHeader.h"
 
 @interface AppDelegate ()
+{
+    NSTimer * time;
+}
+@property (weak, nonatomic) UIView * launchView;
 
 @end
 
@@ -62,21 +67,20 @@
     [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
     [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17], NSForegroundColorAttributeName:[UIColor blackColor]}];
-
     
-//    [[UISegmentedControl appearance] setDividerImage:[UIImage imageNamed:@"dikuang_750x50_@1x"]  forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-//    [[UISegmentedControl appearance] setDividerImage:[UIImage imageNamed:@"dikuang_750x50_@1x"]  forLeftSegmentState:UIControlStateSelected rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-//    [[UISegmentedControl appearance] setDividerImage:[UIImage imageNamed:@"dikuang_750x50_@1x"]  forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-//    
-//    [[UISegmentedControl appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14], NSForegroundColorAttributeName:ME_Color(180, 180, 180)} forState:UIControlStateNormal];
-//    [[UISegmentedControl appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14], NSForegroundColorAttributeName:[UIColor blackColor]} forState:UIControlStateSelected];
-//
-//    //    背景
-//    UIImage * image = [UIImage imageNamed:@"dikuang_750x50_@1x"];
-//    [[UISegmentedControl appearance] setBackgroundImage:[image resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-//    
-//    UIImage * image1 = [UIImage imageNamed:@"dikuang_750x50_@1x"];
-//    [[UISegmentedControl appearance] setBackgroundImage:[image1 resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    UIViewController * viewController = ME_GetViewController(@"LaunchScreen", @"LaunchScreen");
+    self.launchView = viewController.view;
+    UIImageView  * Imageview= [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    [self.launchView addSubview:Imageview];
+    [self.window addSubview:self.launchView];
+    [Imageview setImageWithURL:[NSURL URLWithString:@"http://static.missevan.com/mimages/201610/26/bf12252c78f3930b62cb71b2583b7bfb170900.png"] placeholderImage:[UIImage imageNamed:@""]];
+    time = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timeTick) userInfo:nil repeats:YES];
+}
+
+- (void)timeTick
+{
+    [time timeInterval];
+    [self.launchView removeFromSuperview];
 }
 
 @end

@@ -144,7 +144,6 @@
         make.edges.equalTo(view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
     [self.collectionView registerClass:[MEClassifyCollectionViewCell class] forCellWithReuseIdentifier:@"Classify"];
-    
 }
 
 - (void)goMusicView
@@ -359,11 +358,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     MEClassifyCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Classify" forIndexPath:indexPath];
-    
-    
-    [cell.classifyImageView setImageWithURL:[NSURL URLWithString:ME_DATASOURCE.classiftPic[indexPath.row]] placeholderImage:nil];
-    
-    cell.classifyLabel.text = ME_DATASOURCE.classiftTitle[indexPath.row];
+    cell.picUrl = ME_DATASOURCE.classiftPic[indexPath.row];
+    cell.title = ME_DATASOURCE.classiftTitle[indexPath.row];
 
     
     return cell;

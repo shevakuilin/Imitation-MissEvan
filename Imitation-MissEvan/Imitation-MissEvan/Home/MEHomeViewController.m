@@ -121,12 +121,6 @@
 - (void)customVoiceListView
 {
     //TODO:音单界面
-//    UIView * view = [UIView new];
-//    view.backgroundColor = ME_Color(243, 243, 243);
-//    [self.voiceListView.view addSubview:view];
-//    [view mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.equalTo(self.voiceListView.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
-//    }];
     UIScrollView * backgroundScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ME_Width, ME_Height)];
     backgroundScroll.backgroundColor = ME_Color(243, 243, 243);
     [self.voiceListView.view addSubview:backgroundScroll];

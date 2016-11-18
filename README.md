@@ -15,7 +15,7 @@
 ### 仿写效果预览：
 
 
-<img src="http://ofg0p74ar.bkt.clouddn.com/%E9%AB%98%E4%BB%BFMissEvan.gif" width="370" height ="665" />
+<img src="http://ofg0p74ar.bkt.clouddn.com/%E9%AB%98%E4%BB%BFMissEvan%E6%95%88%E6%9E%9C%E5%BD%95%E5%88%B6.gif" width="370" height ="665" />
 
 
 (注：预览效果由Simulator录制，存在较大分辨率差异，体验最优效果请移步真机    (☆ﾟ∀ﾟ)ノ゙  [☞ 戳这里](https://segmentfault.com/a/1190000004519978))

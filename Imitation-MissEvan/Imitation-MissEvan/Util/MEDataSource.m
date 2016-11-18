@@ -191,6 +191,22 @@
     NSArray * array1 = [[NSArray alloc] initWithObjects:dic1, dic2, dic3, nil];
     NSArray * array2 = [[NSArray alloc] initWithObjects:dic4, dic5, dic6, nil];
     self.voiceListArray = [[NSArray alloc] initWithObjects:array1, array2, nil];
+    
+    
+    NSDictionary * titleDic1 = @{@"title": @"古风",
+                                 @"image": @"new_line_soundlist_3x12_"};
+    NSDictionary * titleDic2 = @{@"title": @"作业向",
+                                 @"image": @"new_line_soundlist_3x12_"};
+    NSDictionary * titleDic3 = @{@"title": @"治愈",
+                                 @"image": @"new_line_soundlist_3x12_"};
+    NSDictionary * titleDic4 = @{@"title": @"热血",
+                                 @"image": @"new_line_soundlist_3x12_"};
+    NSDictionary * titleDic5 = @{@"title": @"翻唱",
+                                 @"image": @"new_line_soundlist_3x12_"};
+    NSDictionary * titleDic6 = @{@"title": @"催眠",
+                                 @"image": @"new_line_soundlist_3x12_"};
+    
+    self.voiceListTitle = [[NSArray alloc] initWithObjects:titleDic1, titleDic2, titleDic3, titleDic4, titleDic5, titleDic6, nil];
 }
 
 - (void)dataSourceOfClassify

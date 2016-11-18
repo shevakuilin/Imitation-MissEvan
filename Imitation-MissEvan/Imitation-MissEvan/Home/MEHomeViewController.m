@@ -25,6 +25,7 @@
 
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, strong) UICollectionView * collectionView;
+@property (nonatomic, strong) UITableView * voiceTableView;
 
 @end
 
@@ -53,6 +54,7 @@
     
     [self customRecommendView];
     [self customClassifyView];
+    [self customVoiceListView];
 }
 
 - (void)customRecommendView
@@ -119,6 +121,34 @@
 - (void)customVoiceListView
 {
     //TODO:音单界面
+//    UIView * view = [UIView new];
+//    view.backgroundColor = ME_Color(243, 243, 243);
+//    [self.voiceListView.view addSubview:view];
+//    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.equalTo(self.voiceListView.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+//    }];
+    UIScrollView * backgroundScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ME_Width, ME_Height)];
+    backgroundScroll.backgroundColor = ME_Color(243, 243, 243);
+    [self.voiceListView.view addSubview:backgroundScroll];
+    [backgroundScroll mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.voiceListView.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+    }];
+    
+    self.voiceTableView = [UITableView new];
+    self.voiceTableView.backgroundColor = ME_Color(243, 243, 243);
+    [backgroundScroll addSubview:self.voiceTableView];
+    [self.voiceTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(backgroundScroll).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+
+        make.size.mas_equalTo(CGSizeMake(ME_Width, 2284));
+    }];
+    self.voiceTableView.delegate = self;
+    self.voiceTableView.dataSource = self;
+    self.voiceTableView.separatorStyle = NO;
+    self.voiceTableView.scrollEnabled = NO;
+    self.voiceTableView.tableFooterView = [[UIView alloc] init];
+    [self.voiceTableView registerClass:[MEHomeRecommendMoreTableViewCell class] forCellReuseIdentifier:@"HomeRecommendMore"];
+    [self.voiceTableView registerClass:[MEVoiceListTableViewCell class] forCellReuseIdentifier:@"VoiceList"];
 }
 
 - (void)customClassifyView
@@ -142,6 +172,7 @@
     self.collectionView.backgroundColor = ME_Color(243, 243, 243);
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+        
     }];
     [self.collectionView registerClass:[MEClassifyCollectionViewCell class] forCellWithReuseIdentifier:@"Classify"];
 }
@@ -160,133 +191,167 @@
 #pragma mark - tableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 8;
+    if (tableView == self.tableView) {
+        return 8;
+    } else {
+        return 6;
+    }
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0 || section == 7) {
-        return 1;
-    } else if (section == 1 || section == 2 || section == 3){
-        return 3;
+    if (tableView == self.tableView) {
+        if (section == 0 || section == 7) {
+            return 1;
+        } else if (section == 1 || section == 2 || section == 3){
+            return 3;
+        } else {
+            return 2;
+        }
     } else {
-        return 2;
+        return 3;
     }
+    
     
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        MEHomeRecommendTopTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendTop"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.dic = ME_DATASOURCE.homeTopImageDic;
-        
-        return cell;
-        
-    } else if (indexPath.section == 7) {
-        MECustomColumnTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"CustomColumn"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        return cell;
-        
+    if (tableView == self.tableView) {
+        if (indexPath.section == 0) {
+            MEHomeRecommendTopTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendTop"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.dic = ME_DATASOURCE.homeTopImageDic;
+            
+            return cell;
+            
+        } else if (indexPath.section == 7) {
+            MECustomColumnTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"CustomColumn"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            return cell;
+            
+        } else {
+            if (indexPath.row == 0) {
+                MEHomeRecommendMoreTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendMore"];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                MELog(@"section == %@", @(indexPath.section));
+                cell.dic = ME_DATASOURCE.topCellArray[indexPath.section - 1];
+                if (indexPath.section == 4 || indexPath.section == 5) {
+                    cell.moreButton.hidden = YES;
+                    cell.downShadow.hidden = NO;
+                } else {
+                    cell.moreButton.hidden = NO;
+                    cell.downShadow.hidden = YES;
+                }
+                
+                return cell;
+                
+            } else if (indexPath.row == 1){
+                if (indexPath.section == 1) {
+                    MEHotMVoiceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HotMVoice"];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.array = ME_DATASOURCE.recommendCellArray[indexPath.row - 1];
+                    cell.downShadow.hidden = YES;
+                    
+                    return cell;
+                    
+                } else if (indexPath.section == 2){
+                    MEChannelTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Channel"];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.array = ME_DATASOURCE.channelCellArray[indexPath.row - 1];
+                    if (indexPath.row == 1) {
+                        cell.downShadow.hidden = YES;
+                    } else {
+                        cell.downShadow.hidden = NO;
+                    }
+                    
+                    
+                    return cell;
+                } else if (indexPath.section == 3){
+                    MEVoiceListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"VoiceList"];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.array = ME_DATASOURCE.voiceListArray[indexPath.row - 1];
+                    if (indexPath.row == 1) {
+                        cell.downShadow.hidden = YES;
+                    } else {
+                        cell.downShadow.hidden = NO;
+                    }
+                    
+                    return cell;
+                } else if (indexPath.section == 4){
+                    MEBellsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Bells"];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.dic = ME_DATASOURCE.bellDic;
+                    cell.topShadow.hidden = YES;
+                    
+                    return cell;
+                } else if (indexPath.section == 5){
+                    MEAkiraTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Akira"];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.dic = ME_DATASOURCE.akiraDic;
+                    cell.topShadow.hidden = YES;
+                    
+                    return cell;
+                } else {
+                    MEHotMVoiceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HotMVoice"];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.array = ME_DATASOURCE.radioArray[indexPath.row - 1];
+                    cell.downShadow.hidden = NO;
+                    
+                    return cell;
+                }
+                
+            } else {
+                if (indexPath.section == 1) {
+                    MEHotMVoiceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HotMVoice"];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.array = ME_DATASOURCE.recommendCellArray[indexPath.row - 1];
+                    
+                    return cell;
+                    
+                }  else if (indexPath.section == 2){
+                    MEChannelTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Channel"];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.array = ME_DATASOURCE.channelCellArray[indexPath.row - 1];
+                    
+                    return cell;
+                } else {
+                    MEVoiceListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"VoiceList"];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.array = ME_DATASOURCE.voiceListArray[indexPath.row - 1];
+                    if (indexPath.row == 1) {
+                        cell.downShadow.hidden = YES;
+                    } else {
+                        cell.downShadow.hidden = NO;
+                    }
+                    
+                    return cell;
+                }
+            }
+        }
+
     } else {
         if (indexPath.row == 0) {
             MEHomeRecommendMoreTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendMore"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.backgroundColor = ME_Color(243, 243, 243);
             MELog(@"section == %@", @(indexPath.section));
-            cell.dic = ME_DATASOURCE.topCellArray[indexPath.section - 1];
-            if (indexPath.section == 4 || indexPath.section == 5) {
-                cell.moreButton.hidden = YES;
-                cell.downShadow.hidden = NO;
-            } else {
-                cell.moreButton.hidden = NO;
-                cell.downShadow.hidden = YES;
-            }
+            cell.dic = ME_DATASOURCE.voiceListTitle[indexPath.section];
+            cell.downShadow.hidden = YES;
+            cell.topShadow.hidden = YES;
             
             return cell;
             
-        } else if (indexPath.row == 1){
-            if (indexPath.section == 1) {
-                MEHotMVoiceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HotMVoice"];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.array = ME_DATASOURCE.recommendCellArray[indexPath.row - 1];
-                cell.downShadow.hidden = YES;
-                
-                return cell;
-                
-            } else if (indexPath.section == 2){
-                MEChannelTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Channel"];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.array = ME_DATASOURCE.channelCellArray[indexPath.row - 1];
-                if (indexPath.row == 1) {
-                    cell.downShadow.hidden = YES;
-                } else {
-                    cell.downShadow.hidden = NO;
-                }
-                
-                
-                return cell;
-            } else if (indexPath.section == 3){
-                MEVoiceListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"VoiceList"];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.array = ME_DATASOURCE.voiceListArray[indexPath.row - 1];
-                if (indexPath.row == 1) {
-                    cell.downShadow.hidden = YES;
-                } else {
-                    cell.downShadow.hidden = NO;
-                }
-                
-                return cell;
-            } else if (indexPath.section == 4){
-                MEBellsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Bells"];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.dic = ME_DATASOURCE.bellDic;
-                cell.topShadow.hidden = YES;
-                
-                return cell;
-            } else if (indexPath.section == 5){
-                MEAkiraTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Akira"];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.dic = ME_DATASOURCE.akiraDic;
-                cell.topShadow.hidden = YES;
-                
-                return cell;
-            } else {
-                MEHotMVoiceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HotMVoice"];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.array = ME_DATASOURCE.radioArray[indexPath.row - 1];
-                cell.downShadow.hidden = NO;
-                
-                return cell;
-            }
-            
         } else {
-            if (indexPath.section == 1) {
-                MEHotMVoiceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HotMVoice"];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.array = ME_DATASOURCE.recommendCellArray[indexPath.row - 1];
-                
-                return cell;
-                
-            }  else if (indexPath.section == 2){
-                MEChannelTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Channel"];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.array = ME_DATASOURCE.channelCellArray[indexPath.row - 1];
-                
-                return cell;
-            } else {
-                MEVoiceListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"VoiceList"];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.array = ME_DATASOURCE.voiceListArray[indexPath.row - 1];
-                if (indexPath.row == 1) {
-                    cell.downShadow.hidden = YES;
-                } else {
-                    cell.downShadow.hidden = NO;
-                }
-                
-                return cell;
-            }
+            MEVoiceListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"VoiceList"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.array = ME_DATASOURCE.voiceListArray[indexPath.row - 1];
+            cell.backgroundColor = ME_Color(243, 243, 243);
+            cell.downShadow.hidden = YES;
+            
+            return cell;
         }
     }
     
@@ -299,46 +364,58 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
-        if (indexPath.section == 0) {
-            return 70;
+    if (tableView == self.tableView) {
+        if (indexPath.row == 0) {
+            if (indexPath.section == 0) {
+                return 70;
+            } else {
+                return 40;//380;
+            }
         } else {
-            return 40;//380;
+            if (indexPath.section == 2) {
+                return 155;
+            } else if (indexPath.section == 3) {
+                return 165;
+            } else if (indexPath.section == 4) {
+                return 80;
+            } else if (indexPath.section == 5) {
+                return 108;
+            } else {
+                if (indexPath.row == 1 && indexPath.section < 6) {
+                    return 181;
+                }
+                return 171;
+            }
+            
         }
     } else {
-        if (indexPath.section == 2) {
-            return 155;
-        } else if (indexPath.section == 3) {
+        if (indexPath.row == 0) {
+            return 40;
+        } else{
             return 165;
-
-        } else if (indexPath.section == 4) {
-            return 80;
-        } else if (indexPath.section == 5) {
-            return 108;
-        } else {
-            if (indexPath.row == 1 && indexPath.section < 6) {
-                return 181;
-            }
-            return 171;
         }
-        
     }
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section > 0) {
-        return 10;
+    if (tableView == self.tableView) {
+        if (section > 0) {
+            return 10;
+        } else {
+            return 0;
+        }
     } else {
         return 0;
     }
+    
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView * sectionView = [UIView new];
     sectionView.backgroundColor = ME_Color(250, 250, 250);
-    
     return sectionView;
 }
 

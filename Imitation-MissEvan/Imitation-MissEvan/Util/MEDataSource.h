@@ -23,7 +23,8 @@
 @property (copy, nonatomic) NSDictionary * bellDic;
 @property (copy, nonatomic) NSDictionary * akiraDic;
 @property (copy, nonatomic) NSArray * radioArray;
-
 @property (copy, nonatomic) NSArray * classiftPic;
 @property (copy, nonatomic) NSArray * classiftTitle;
+@property (copy, nonatomic) NSArray * voiceListTitle;
+
 @end

@@ -48,7 +48,7 @@
         [self.downView addSubview:self.classifyLabel];
         self.classifyLabel.font = [UIFont systemFontOfSize:13];
         [self.classifyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.classifyImageView.mas_bottom).with.offset(15);
+            make.top.equalTo(self.classifyImageView.mas_bottom).with.offset(10);
             make.centerX.equalTo(self.classifyImageView).with.offset(0);
         }];
     }

@@ -31,6 +31,7 @@
 		77D5BDD31DCB297800EA1DCB /* MEHomeSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5BDD21DCB297800EA1DCB /* MEHomeSegmentControl.m */; };
 		77D5BDD61DCB2EBD00EA1DCB /* MEHomeSegmentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5BDD51DCB2EBD00EA1DCB /* MEHomeSegmentItem.m */; };
 		77D5BDD91DCB30B700EA1DCB /* MEHomeSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5BDD81DCB30B700EA1DCB /* MEHomeSegmentViewController.m */; };
+		77DAF2211DDEE9EF001FE1A8 /* MEVoiceListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DAF2201DDEE9EF001FE1A8 /* MEVoiceListTableViewCell.m */; };
 		C9539F1C10181F2A520BDDE3 /* libPods-Imitation-MissEvan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20DBB35C9F8E09611DFD0293 /* libPods-Imitation-MissEvan.a */; };
 		E4C3B56D1DD7787C00A672D1 /* MEScaleToSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B56C1DD7787C00A672D1 /* MEScaleToSize.m */; };
 		E4C3B5891DDC8F5900A672D1 /* MEAkiraTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B57A1DDC8F5900A672D1 /* MEAkiraTableViewCell.m */; };
@@ -40,7 +41,6 @@
 		E4C3B58D1DDC8F5900A672D1 /* MEHomeRecommendMoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5821DDC8F5900A672D1 /* MEHomeRecommendMoreTableViewCell.m */; };
 		E4C3B58E1DDC8F5900A672D1 /* MEHomeRecommendTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5841DDC8F5900A672D1 /* MEHomeRecommendTopTableViewCell.m */; };
 		E4C3B58F1DDC8F5900A672D1 /* MEHotMVoiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5861DDC8F5900A672D1 /* MEHotMVoiceTableViewCell.m */; };
-		E4C3B5901DDC8F5900A672D1 /* MEVoiceListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5881DDC8F5900A672D1 /* MEVoiceListTableViewCell.m */; };
 		E4C3B5951DDC91E300A672D1 /* MEClassifyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5941DDC91E300A672D1 /* MEClassifyCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +110,8 @@
 		77D5BDD51DCB2EBD00EA1DCB /* MEHomeSegmentItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEHomeSegmentItem.m; sourceTree = "<group>"; };
 		77D5BDD71DCB30B700EA1DCB /* MEHomeSegmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEHomeSegmentViewController.h; sourceTree = "<group>"; };
 		77D5BDD81DCB30B700EA1DCB /* MEHomeSegmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEHomeSegmentViewController.m; sourceTree = "<group>"; };
+		77DAF21F1DDEE9EF001FE1A8 /* MEVoiceListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEVoiceListTableViewCell.h; sourceTree = "<group>"; };
+		77DAF2201DDEE9EF001FE1A8 /* MEVoiceListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEVoiceListTableViewCell.m; sourceTree = "<group>"; };
 		78521F705BB0DCF560EE7105 /* Pods-Imitation-MissEvan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imitation-MissEvan.release.xcconfig"; path = "Pods/Target Support Files/Pods-Imitation-MissEvan/Pods-Imitation-MissEvan.release.xcconfig"; sourceTree = "<group>"; };
 		E4C3B56B1DD7787C00A672D1 /* MEScaleToSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEScaleToSize.h; sourceTree = "<group>"; };
 		E4C3B56C1DD7787C00A672D1 /* MEScaleToSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEScaleToSize.m; sourceTree = "<group>"; };
@@ -127,8 +129,6 @@
 		E4C3B5841DDC8F5900A672D1 /* MEHomeRecommendTopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEHomeRecommendTopTableViewCell.m; sourceTree = "<group>"; };
 		E4C3B5851DDC8F5900A672D1 /* MEHotMVoiceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEHotMVoiceTableViewCell.h; sourceTree = "<group>"; };
 		E4C3B5861DDC8F5900A672D1 /* MEHotMVoiceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEHotMVoiceTableViewCell.m; sourceTree = "<group>"; };
-		E4C3B5871DDC8F5900A672D1 /* MEVoiceListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEVoiceListTableViewCell.h; sourceTree = "<group>"; };
-		E4C3B5881DDC8F5900A672D1 /* MEVoiceListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEVoiceListTableViewCell.m; sourceTree = "<group>"; };
 		E4C3B5931DDC91E200A672D1 /* MEClassifyCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEClassifyCollectionViewCell.h; sourceTree = "<group>"; };
 		E4C3B5941DDC91E300A672D1 /* MEClassifyCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEClassifyCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -271,8 +271,8 @@
 				77C8192E1DBDB6B50004EFFC /* MEHome.storyboard */,
 				77C819371DBDB88E0004EFFC /* MEHomeViewController.h */,
 				77C819381DBDB88E0004EFFC /* MEHomeViewController.m */,
+				77DAF21E1DDEE9EF001FE1A8 /* VoiceList */,
 				E4C3B5781DDC8F5900A672D1 /* Recommend */,
-				E4C3B5921DDC8FED00A672D1 /* VoiceList */,
 				E4C3B5911DDC8FED00A672D1 /* Classify */,
 			);
 			path = Home;
@@ -338,6 +338,15 @@
 			path = MEHomeSegment;
 			sourceTree = "<group>";
 		};
+		77DAF21E1DDEE9EF001FE1A8 /* VoiceList */ = {
+			isa = PBXGroup;
+			children = (
+				77DAF21F1DDEE9EF001FE1A8 /* MEVoiceListTableViewCell.h */,
+				77DAF2201DDEE9EF001FE1A8 /* MEVoiceListTableViewCell.m */,
+			);
+			path = VoiceList;
+			sourceTree = "<group>";
+		};
 		CD12B2E7146F7BB9CE190470 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -357,8 +366,6 @@
 				E4C3B5861DDC8F5900A672D1 /* MEHotMVoiceTableViewCell.m */,
 				E4C3B57D1DDC8F5900A672D1 /* MEChannelTableViewCell.h */,
 				E4C3B57E1DDC8F5900A672D1 /* MEChannelTableViewCell.m */,
-				E4C3B5871DDC8F5900A672D1 /* MEVoiceListTableViewCell.h */,
-				E4C3B5881DDC8F5900A672D1 /* MEVoiceListTableViewCell.m */,
 				E4C3B57B1DDC8F5900A672D1 /* MEBellsTableViewCell.h */,
 				E4C3B57C1DDC8F5900A672D1 /* MEBellsTableViewCell.m */,
 				E4C3B5791DDC8F5900A672D1 /* MEAkiraTableViewCell.h */,
@@ -376,13 +383,6 @@
 				E4C3B5941DDC91E300A672D1 /* MEClassifyCollectionViewCell.m */,
 			);
 			path = Classify;
-			sourceTree = "<group>";
-		};
-		E4C3B5921DDC8FED00A672D1 /* VoiceList */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = VoiceList;
 			sourceTree = "<group>";
 		};
 		F798BE94405AB0129663EC25 /* Pods */ = {
@@ -587,7 +587,6 @@
 				77D5BDD91DCB30B700EA1DCB /* MEHomeSegmentViewController.m in Sources */,
 				77C819541DBE00740004EFFC /* MEDataSource.m in Sources */,
 				E4C3B58E1DDC8F5900A672D1 /* MEHomeRecommendTopTableViewCell.m in Sources */,
-				E4C3B5901DDC8F5900A672D1 /* MEVoiceListTableViewCell.m in Sources */,
 				771AB1F01DD0560000DDBA44 /* MEPageControl+AutoScroll.m in Sources */,
 				E4C3B58A1DDC8F5900A672D1 /* MEBellsTableViewCell.m in Sources */,
 				77C8193F1DBDB9790004EFFC /* MEFollowViewController.m in Sources */,
@@ -597,6 +596,7 @@
 				E4C3B58C1DDC8F5900A672D1 /* MECustomColumnTableViewCell.m in Sources */,
 				E4C3B56D1DD7787C00A672D1 /* MEScaleToSize.m in Sources */,
 				E4C3B58B1DDC8F5900A672D1 /* MEChannelTableViewCell.m in Sources */,
+				77DAF2211DDEE9EF001FE1A8 /* MEVoiceListTableViewCell.m in Sources */,
 				7744824B1DC1ED600044EE55 /* iCarousel.m in Sources */,
 				77D5BDD61DCB2EBD00EA1DCB /* MEHomeSegmentItem.m in Sources */,
 				77D5BDD31DCB297800EA1DCB /* MEHomeSegmentControl.m in Sources */,

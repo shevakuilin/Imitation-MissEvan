@@ -126,7 +126,7 @@
     //TODO:分类界面
     UIView * view = [UIView new];
     [self.classifyView.view addSubview:view];
-    view.backgroundColor = [UIColor yellowColor];
+    view.backgroundColor = ME_Color(243, 243, 243);
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.classifyView.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
@@ -139,7 +139,7 @@
     [view addSubview:self.collectionView];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    self.collectionView.backgroundColor = ME_Color(250, 250, 250);;
+    self.collectionView.backgroundColor = ME_Color(243, 243, 243);
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
@@ -373,13 +373,30 @@
 //定义每个Item 的大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(((ME_Width - 12) / 3) - 12, ((ME_Width - 12) / 3) - 12);
+    return CGSizeMake((ME_Width - 12) / 3, (ME_Width - 12) / 3);
+}
+
+//item横向间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                    layout:(UICollectionViewLayout *)collectionViewLayout
+minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 0;
+}
+
+//item纵向间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                    layout:(UICollectionViewLayout *)collectionViewLayout
+minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 8;
 }
 
 //定义每个UICollectionView 的 margin
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(20, 10, 20, 10);
+    return UIEdgeInsetsMake(8, 5, 30, 5);
 }
+
 
 @end

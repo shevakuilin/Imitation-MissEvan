@@ -67,6 +67,15 @@
         make.edges.equalTo(self.recommendView.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
     
+//    UIView * backgroundView = [UIView new];
+//    [backgroundScroll addSubview:backgroundView];
+//    backgroundView.backgroundColor = [UIColor orangeColor];
+//    [backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.equalTo(backgroundScroll).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+//        
+//        make.size.mas_equalTo(CGSizeMake(backgroundScroll.bounds.size.width, backgroundScroll.bounds.size.height));
+//    }];
+    
     /*
      ** PageControl & AutoScroll
      */
@@ -87,7 +96,7 @@
         make.left.equalTo(backgroundScroll).with.offset(0);
         make.right.equalTo(backgroundScroll).with.offset(0);
         
-//        make.size.mas_equalTo(CGSizeMake(ME_Width, 145));
+        make.size.mas_equalTo(CGSizeMake(ME_Width, 145));
     }];
     
     

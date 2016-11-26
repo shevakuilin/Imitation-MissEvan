@@ -101,26 +101,18 @@
                                   @"played_count": @"3924",
                                   @"words_count": @"13"}];
 
-    
-    NSDictionary * channelDic1 = @{@"themes_image": @"日常精分现场",
-                                   @"title": @"日常精分现场",
-                                   @"played_count": @"1866"};
-    
-    NSDictionary * channelDic2 = @{@"themes_image": @"剑网3",
-                                   @"title": @"剑网3",
-                                   @"played_count": @"2076"};
-    
-    NSDictionary * channelDic3 = @{@"themes_image": @"震撼心灵的史诗音乐",
-                                   @"title": @"震撼心灵的史诗音乐",
-                                   @"played_count": @"325"};
-    
-    NSDictionary * channelDic4 = @{@"themes_image": @"那些魔性的翻唱",
-                                   @"title": @"那些魔性的翻唱",
-                                   @"played_count": @"85"};
-    
-    NSArray * channelArray1 = [[NSArray alloc] initWithObjects:channelDic1, channelDic2, nil];
-    NSArray * channelArray2 = [[NSArray alloc] initWithObjects:channelDic3, channelDic4, nil];
-    self.channelCellArray = [[NSArray alloc] initWithObjects:channelArray1, channelArray2, nil];
+    self.channelCellArray = @[@{@"themes_image": @"日常精分现场",
+                                @"title": @"日常精分现场",
+                                @"played_count": @"1866"},
+                              @{@"themes_image": @"剑网3",
+                                @"title": @"剑网3",
+                                @"played_count": @"2076"},
+                              @{@"themes_image": @"震撼心灵的史诗音乐",
+                                @"title": @"震撼心灵的史诗音乐",
+                                @"played_count": @"325"},
+                              @{@"themes_image": @"那些魔性的翻唱",
+                                @"title": @"那些魔性的翻唱",
+                                @"played_count": @"85"}];
     
     
     self.radioArray = @[@{@"themes_image": @"暴龙小猫咪",

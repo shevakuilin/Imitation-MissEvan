@@ -198,7 +198,7 @@
     if (tableView == self.tableView) {
         if (section == 0 || section == 7) {
             return 1;
-        } else if (section == 2 || section == 3){
+        } else if (section == 3){
             return 3;
         } else {
             return 2;
@@ -252,12 +252,7 @@
                 } else if (indexPath.section == 2){
                     MEChannelTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Channel"];
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                    cell.array = ME_DATASOURCE.channelCellArray[indexPath.row - 1];
-                    if (indexPath.row == 1) {
-                        cell.downShadow.hidden = YES;
-                    } else {
-                        cell.downShadow.hidden = NO;
-                    }
+                    cell.array = ME_DATASOURCE.channelCellArray;
                     
                     
                     return cell;
@@ -305,7 +300,7 @@
                 }  else if (indexPath.section == 2){
                     MEChannelTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Channel"];
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                    cell.array = ME_DATASOURCE.channelCellArray[indexPath.row - 1];
+                    cell.array = ME_DATASOURCE.channelCellArray;
                     
                     return cell;
                 } else {
@@ -364,7 +359,7 @@
             }
         } else {
             if (indexPath.section == 2) {
-                return 155;
+                return 310;
             } else if (indexPath.section == 3) {
                 return 165;
             } else if (indexPath.section == 4) {

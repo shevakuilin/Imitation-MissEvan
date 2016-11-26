@@ -87,7 +87,7 @@
         make.left.equalTo(backgroundScroll).with.offset(0);
         make.right.equalTo(backgroundScroll).with.offset(0);
         
-//        make.size.mas_equalTo(CGSizeMake(ME_Width, 145));
+        make.size.mas_equalTo(CGSizeMake(ME_Width, 145));
     }];
     
     

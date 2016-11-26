@@ -9,6 +9,12 @@
 #import "MEHomeRecommendTopCollectionViewCell.h"
 #import "MEHeader.h"
 
+@interface MEHomeRecommendTopCollectionViewCell ()
+@property (nonatomic, strong) UIImageView * typeImageView;
+@property (nonatomic, strong) UILabel * titleLabel;
+
+@end
+
 @implementation MEHomeRecommendTopCollectionViewCell
 
 - (instancetype)initWithFrame:(CGRect)frame

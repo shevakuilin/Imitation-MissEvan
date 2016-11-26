@@ -43,6 +43,7 @@
 		E4C3B58F1DDC8F5900A672D1 /* MEHotMVoiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5861DDC8F5900A672D1 /* MEHotMVoiceTableViewCell.m */; };
 		E4C3B5951DDC91E300A672D1 /* MEClassifyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5941DDC91E300A672D1 /* MEClassifyCollectionViewCell.m */; };
 		E4C3B5981DE9B2D000A672D1 /* MEHomeRecommendTopCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5971DE9B2D000A672D1 /* MEHomeRecommendTopCollectionViewCell.m */; };
+		E4C3B59B1DE9B9C400A672D1 /* MEHotMVoiceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B59A1DE9B9C400A672D1 /* MEHotMVoiceCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +135,8 @@
 		E4C3B5941DDC91E300A672D1 /* MEClassifyCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEClassifyCollectionViewCell.m; sourceTree = "<group>"; };
 		E4C3B5961DE9B2D000A672D1 /* MEHomeRecommendTopCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEHomeRecommendTopCollectionViewCell.h; sourceTree = "<group>"; };
 		E4C3B5971DE9B2D000A672D1 /* MEHomeRecommendTopCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEHomeRecommendTopCollectionViewCell.m; sourceTree = "<group>"; };
+		E4C3B5991DE9B9C400A672D1 /* MEHotMVoiceCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEHotMVoiceCollectionViewCell.h; sourceTree = "<group>"; };
+		E4C3B59A1DE9B9C400A672D1 /* MEHotMVoiceCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEHotMVoiceCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,6 +380,8 @@
 				E4C3B5801DDC8F5900A672D1 /* MECustomColumnTableViewCell.m */,
 				E4C3B5961DE9B2D000A672D1 /* MEHomeRecommendTopCollectionViewCell.h */,
 				E4C3B5971DE9B2D000A672D1 /* MEHomeRecommendTopCollectionViewCell.m */,
+				E4C3B5991DE9B9C400A672D1 /* MEHotMVoiceCollectionViewCell.h */,
+				E4C3B59A1DE9B9C400A672D1 /* MEHotMVoiceCollectionViewCell.m */,
 			);
 			path = Recommend;
 			sourceTree = "<group>";
@@ -596,6 +601,7 @@
 				E4C3B58A1DDC8F5900A672D1 /* MEBellsTableViewCell.m in Sources */,
 				77C8193F1DBDB9790004EFFC /* MEFollowViewController.m in Sources */,
 				E4C3B5891DDC8F5900A672D1 /* MEAkiraTableViewCell.m in Sources */,
+				E4C3B59B1DE9B9C400A672D1 /* MEHotMVoiceCollectionViewCell.m in Sources */,
 				77C8194B1DBDF53B0004EFFC /* METabBar.m in Sources */,
 				77C819391DBDB88E0004EFFC /* MEHomeViewController.m in Sources */,
 				E4C3B5981DE9B2D000A672D1 /* MEHomeRecommendTopCollectionViewCell.m in Sources */,

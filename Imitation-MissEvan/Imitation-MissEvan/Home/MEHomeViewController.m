@@ -198,7 +198,7 @@
     if (tableView == self.tableView) {
         if (section == 0 || section == 7) {
             return 1;
-        } else if (section == 1 || section == 2 || section == 3){
+        } else if (section == 2 || section == 3){
             return 3;
         } else {
             return 2;
@@ -216,7 +216,6 @@
         if (indexPath.section == 0) {
             MEHomeRecommendTopTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendTop"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//            cell.dic = ME_DATASOURCE.homeTopArray[indexPath.row];
             
             return cell;
             
@@ -246,8 +245,7 @@
                 if (indexPath.section == 1) {
                     MEHotMVoiceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HotMVoice"];
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                    cell.array = ME_DATASOURCE.recommendCellArray[indexPath.row - 1];
-                    cell.downShadow.hidden = YES;
+                    cell.array = ME_DATASOURCE.recommendCellArray;
                     
                     return cell;
                     
@@ -291,8 +289,7 @@
                 } else {
                     MEHotMVoiceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HotMVoice"];
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                    cell.array = ME_DATASOURCE.radioArray[indexPath.row - 1];
-                    cell.downShadow.hidden = NO;
+                    cell.array = ME_DATASOURCE.radioArray;
                     
                     return cell;
                 }
@@ -301,7 +298,7 @@
                 if (indexPath.section == 1) {
                     MEHotMVoiceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HotMVoice"];
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                    cell.array = ME_DATASOURCE.recommendCellArray[indexPath.row - 1];
+                    cell.array = ME_DATASOURCE.recommendCellArray;
                     
                     return cell;
                     
@@ -375,9 +372,12 @@
             } else if (indexPath.section == 5) {
                 return 108;
             } else {
-                if (indexPath.row == 1 && indexPath.section < 6) {
-                    return 181;
+                if (indexPath.section < 6) {
+                    return 352;
                 }
+//                if (indexPath.row == 1 && indexPath.section < 6) {
+//                    return 181;
+//                }
                 return 171;
             }
             

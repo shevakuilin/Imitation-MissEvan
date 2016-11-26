@@ -1,5 +1,5 @@
 //
-//  MEHomeRecommendTopCollectionViewCell.h
+//  MEHotMVoiceCollectionViewCell.h
 //  Imitation-MissEvan
 //
 //  Created by shevchenko on 16/11/26.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MEHomeRecommendTopCollectionViewCell : UICollectionViewCell
+@interface MEHotMVoiceCollectionViewCell : UICollectionViewCell
 @property (nonatomic, strong) NSDictionary * dic;
 
 @end

@@ -27,4 +27,6 @@
 @property (copy, nonatomic) NSArray * classiftTitle;
 @property (copy, nonatomic) NSArray * voiceListTitle;
 
+@property (copy, nonatomic) NSArray * homeTopArray;
+
 @end

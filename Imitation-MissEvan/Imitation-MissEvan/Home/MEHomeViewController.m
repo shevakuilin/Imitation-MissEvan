@@ -216,7 +216,7 @@
         if (indexPath.section == 0) {
             MEHomeRecommendTopTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendTop"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.dic = ME_DATASOURCE.homeTopImageDic;
+//            cell.dic = ME_DATASOURCE.homeTopArray[indexPath.row];
             
             return cell;
             

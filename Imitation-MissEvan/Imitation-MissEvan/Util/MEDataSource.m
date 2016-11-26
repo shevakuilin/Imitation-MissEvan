@@ -38,6 +38,11 @@
 
 - (void)dataSourceOfHomeRecommend
 {
+    self.homeTopArray = @[@{@"image":@"hp3_icon_activity_40x40_", @"title":@"活动"},
+                          @{@"image":@"hp3_icon_rank_41x40_", @"title":@"排行"},
+                          @{@"image":@"hp3_icon_channel_41x40_", @"title":@"广播剧"},
+                          @{@"image":@"hp3_icon_mission_40x40_", @"title":@"任务"}];
+    
     self.homeTopImageDic = @{@"activity": @"hp3_icon_activity_40x40_",
                              @"channel": @"hp3_icon_channel_41x40_",
                              @"mission": @"hp3_icon_mission_40x40_",

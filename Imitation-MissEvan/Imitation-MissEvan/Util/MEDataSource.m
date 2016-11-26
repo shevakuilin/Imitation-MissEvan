@@ -132,34 +132,24 @@
 
 - (void)dataSourceOfVoiceList
 {
-    NSDictionary * dic1 = @{@"themes_image": @"心灵的旋律",
-                                   @"title": @"【节奏纯音】心灵的旋律",
-                                   @"voice_count": @"34"};
-    
-    NSDictionary * dic2 = @{@"themes_image": @"岁月如酒，江湖如歌",
-                                   @"title": @"【古风】岁月如酒，江湖如歌",
-                                   @"voice_count": @"19"};
-    
-    NSDictionary * dic3 = @{@"themes_image": @"3D耳机音乐盛宴",
-                                   @"title": @"【3D大碟】3D耳机音乐盛宴 纵享狂欢",
-                                   @"voice_count": @"11"};
-    
-    NSDictionary * dic4 = @{@"themes_image": @"将抖腿进行到底",
-                                   @"title": @"【3D】将抖腿进行到底",
-                                   @"voice_count": @"24"};
-    
-    NSDictionary * dic5 = @{@"themes_image": @"小提琴&钢琴",
-                            @"title": @"【珠帘合璧】小提琴&钢琴，这该是天然缠绵出美好的一对",
-                            @"voice_count": @"9"};
-    
-    NSDictionary * dic6 = @{@"themes_image": @"vocaliod+",
-                            @"title": @"【高能（中毒）向】Vocaliod+电音remix",
-                            @"voice_count": @"14"};
-    
-    NSArray * array1 = [[NSArray alloc] initWithObjects:dic1, dic2, dic3, nil];
-    NSArray * array2 = [[NSArray alloc] initWithObjects:dic4, dic5, dic6, nil];
-    self.voiceListArray = [[NSArray alloc] initWithObjects:array1, array2, nil];
-    
+    self.voiceListArray = @[@{@"themes_image": @"心灵的旋律",
+                              @"title": @"【节奏纯音】心灵的旋律",
+                              @"voice_count": @"34"},
+                            @{@"themes_image": @"岁月如酒，江湖如歌",
+                              @"title": @"【古风】岁月如酒，江湖如歌",
+                              @"voice_count": @"19"},
+                            @{@"themes_image": @"3D耳机音乐盛宴",
+                              @"title": @"【3D大碟】3D耳机音乐盛宴 纵享狂欢",
+                              @"voice_count": @"11"},
+                            @{@"themes_image": @"将抖腿进行到底",
+                              @"title": @"【3D】将抖腿进行到底",
+                              @"voice_count": @"24"},
+                            @{@"themes_image": @"小提琴&钢琴",
+                              @"title": @"【珠帘合璧】小提琴&钢琴，这该是天然缠绵出美好的一对",
+                              @"voice_count": @"9"},
+                            @{@"themes_image": @"vocaliod+",
+                              @"title": @"【高能（中毒）向】Vocaliod+电音remix",
+                              @"voice_count": @"14"}];
     
     NSDictionary * titleDic1 = @{@"title": @"古风",
                                  @"image": @"new_line_soundlist_3x12_"};

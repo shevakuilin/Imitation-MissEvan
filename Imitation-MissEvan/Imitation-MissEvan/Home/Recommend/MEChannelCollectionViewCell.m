@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UILabel * titleLabel;
 @property (nonatomic, strong) UIImageView * albumShadowImageView;
 @property (nonatomic, strong) UIImageView * playedImageView;
+
 @end
 
 @implementation MEChannelCollectionViewCell

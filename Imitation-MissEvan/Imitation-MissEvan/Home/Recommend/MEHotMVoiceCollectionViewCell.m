@@ -24,6 +24,7 @@
 @property (nonatomic, strong) UIImageView * playedIcon;
 //留言小图标
 @property (nonatomic, strong) UIImageView * wordsIcon;
+
 @end
 
 @implementation MEHotMVoiceCollectionViewCell

@@ -109,18 +109,4 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     return 0;
 }
 
-//- (void)setArray:(NSArray *)array
-//{
-//    _array = array;
-//    self.leftThemesImageView.image = [UIImage imageNamed:array[0][@"themes_image"]];
-//    self.rightThemesImageView.image = [UIImage imageNamed:array[1][@"themes_image"]];
-//    
-//    self.leftTitleLabel.text = array[0][@"title"];
-//    self.rightTitleLabel.text = array[1][@"title"];
-//    
-//    self.leftPlayedLabel.text = array[0][@"played_count"];
-//    self.rightPlayedLabel.text = array[1][@"played_count"];
-//
-//}
-
 @end

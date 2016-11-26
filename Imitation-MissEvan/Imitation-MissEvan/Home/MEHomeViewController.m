@@ -198,8 +198,6 @@
     if (tableView == self.tableView) {
         if (section == 0 || section == 7) {
             return 1;
-        } else if (section == 3){
-            return 3;
         } else {
             return 2;
         }
@@ -259,12 +257,12 @@
                 } else if (indexPath.section == 3){
                     MEVoiceListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"VoiceList"];
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                    cell.array = ME_DATASOURCE.voiceListArray[indexPath.row - 1];
-                    if (indexPath.row == 1) {
-                        cell.downShadow.hidden = YES;
-                    } else {
-                        cell.downShadow.hidden = NO;
-                    }
+                    cell.array = ME_DATASOURCE.voiceListArray;
+//                    if (indexPath.row == 1) {
+//                        cell.downShadow.hidden = YES;
+//                    } else {
+//                        cell.downShadow.hidden = NO;
+//                    }
                     
                     return cell;
                 } else if (indexPath.section == 4){
@@ -306,12 +304,12 @@
                 } else {
                     MEVoiceListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"VoiceList"];
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                    cell.array = ME_DATASOURCE.voiceListArray[indexPath.row - 1];
-                    if (indexPath.row == 1) {
-                        cell.downShadow.hidden = YES;
-                    } else {
-                        cell.downShadow.hidden = NO;
-                    }
+                    cell.array = ME_DATASOURCE.voiceListArray;
+//                    if (indexPath.row == 1) {
+//                        cell.downShadow.hidden = YES;
+//                    } else {
+//                        cell.downShadow.hidden = NO;
+//                    }
                     
                     return cell;
                 }
@@ -333,9 +331,9 @@
         } else {
             MEVoiceListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"VoiceList"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.array = ME_DATASOURCE.voiceListArray[indexPath.row - 1];
+            cell.array = ME_DATASOURCE.voiceListArray;
             cell.backgroundColor = ME_Color(243, 243, 243);
-            cell.downShadow.hidden = YES;
+//            cell.downShadow.hidden = YES;
             
             return cell;
         }
@@ -361,7 +359,7 @@
             if (indexPath.section == 2) {
                 return 310;
             } else if (indexPath.section == 3) {
-                return 165;
+                return 330;
             } else if (indexPath.section == 4) {
                 return 80;
             } else if (indexPath.section == 5) {

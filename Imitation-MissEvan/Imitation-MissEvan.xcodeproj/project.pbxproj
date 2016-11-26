@@ -45,6 +45,7 @@
 		E4C3B5981DE9B2D000A672D1 /* MEHomeRecommendTopCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5971DE9B2D000A672D1 /* MEHomeRecommendTopCollectionViewCell.m */; };
 		E4C3B59B1DE9B9C400A672D1 /* MEHotMVoiceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B59A1DE9B9C400A672D1 /* MEHotMVoiceCollectionViewCell.m */; };
 		E4C3B59E1DE9D3DF00A672D1 /* MEChannelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B59D1DE9D3DF00A672D1 /* MEChannelCollectionViewCell.m */; };
+		E4C3B5A11DE9DD4100A672D1 /* MEVoiceListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5A01DE9DD4100A672D1 /* MEVoiceListCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +141,8 @@
 		E4C3B59A1DE9B9C400A672D1 /* MEHotMVoiceCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEHotMVoiceCollectionViewCell.m; sourceTree = "<group>"; };
 		E4C3B59C1DE9D3DF00A672D1 /* MEChannelCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEChannelCollectionViewCell.h; sourceTree = "<group>"; };
 		E4C3B59D1DE9D3DF00A672D1 /* MEChannelCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEChannelCollectionViewCell.m; sourceTree = "<group>"; };
+		E4C3B59F1DE9DD4100A672D1 /* MEVoiceListCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEVoiceListCollectionViewCell.h; sourceTree = "<group>"; };
+		E4C3B5A01DE9DD4100A672D1 /* MEVoiceListCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEVoiceListCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -352,6 +355,8 @@
 			children = (
 				77DAF21F1DDEE9EF001FE1A8 /* MEVoiceListTableViewCell.h */,
 				77DAF2201DDEE9EF001FE1A8 /* MEVoiceListTableViewCell.m */,
+				E4C3B59F1DE9DD4100A672D1 /* MEVoiceListCollectionViewCell.h */,
+				E4C3B5A01DE9DD4100A672D1 /* MEVoiceListCollectionViewCell.m */,
 			);
 			path = VoiceList;
 			sourceTree = "<group>";
@@ -612,6 +617,7 @@
 				E4C3B5981DE9B2D000A672D1 /* MEHomeRecommendTopCollectionViewCell.m in Sources */,
 				E4C3B58C1DDC8F5900A672D1 /* MECustomColumnTableViewCell.m in Sources */,
 				E4C3B56D1DD7787C00A672D1 /* MEScaleToSize.m in Sources */,
+				E4C3B5A11DE9DD4100A672D1 /* MEVoiceListCollectionViewCell.m in Sources */,
 				E4C3B58B1DDC8F5900A672D1 /* MEChannelTableViewCell.m in Sources */,
 				77DAF2211DDEE9EF001FE1A8 /* MEVoiceListTableViewCell.m in Sources */,
 				7744824B1DC1ED600044EE55 /* iCarousel.m in Sources */,

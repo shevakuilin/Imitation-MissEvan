@@ -30,7 +30,7 @@
 {
     if ([super initWithFrame:frame]) {
         if (self) {
-            self.backgroundColor = [UIColor whiteColor];
+//            self.backgroundColor = [UIColor whiteColor];
             
             //底部图层
             self.downImageView = [UIImageView new];

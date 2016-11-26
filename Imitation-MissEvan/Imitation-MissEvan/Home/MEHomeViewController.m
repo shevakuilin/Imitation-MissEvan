@@ -202,7 +202,7 @@
             return 2;
         }
     } else {
-        return 3;
+        return 2;
     }
     
     
@@ -231,10 +231,8 @@
                 cell.dic = ME_DATASOURCE.topCellArray[indexPath.section - 1];
                 if (indexPath.section == 4 || indexPath.section == 5) {
                     cell.moreButton.hidden = YES;
-                    cell.downShadow.hidden = NO;
                 } else {
                     cell.moreButton.hidden = NO;
-                    cell.downShadow.hidden = YES;
                 }
                 
                 return cell;
@@ -258,25 +256,16 @@
                     MEVoiceListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"VoiceList"];
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
                     cell.array = ME_DATASOURCE.voiceListArray;
-//                    if (indexPath.row == 1) {
-//                        cell.downShadow.hidden = YES;
-//                    } else {
-//                        cell.downShadow.hidden = NO;
-//                    }
                     
                     return cell;
                 } else if (indexPath.section == 4){
                     MEBellsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Bells"];
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                    cell.dic = ME_DATASOURCE.bellDic;
-                    cell.topShadow.hidden = YES;
                     
                     return cell;
                 } else if (indexPath.section == 5){
                     MEAkiraTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Akira"];
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                    cell.dic = ME_DATASOURCE.akiraDic;
-                    cell.topShadow.hidden = YES;
                     
                     return cell;
                 } else {
@@ -305,11 +294,6 @@
                     MEVoiceListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"VoiceList"];
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
                     cell.array = ME_DATASOURCE.voiceListArray;
-//                    if (indexPath.row == 1) {
-//                        cell.downShadow.hidden = YES;
-//                    } else {
-//                        cell.downShadow.hidden = NO;
-//                    }
                     
                     return cell;
                 }
@@ -323,7 +307,7 @@
             cell.backgroundColor = ME_Color(243, 243, 243);
             MELog(@"section == %@", @(indexPath.section));
             cell.dic = ME_DATASOURCE.voiceListTitle[indexPath.section];
-            cell.downShadow.hidden = YES;
+            cell.classifyLabel.font = [UIFont systemFontOfSize:14];
             cell.topShadow.hidden = YES;
             
             return cell;
@@ -332,8 +316,7 @@
             MEVoiceListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"VoiceList"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.array = ME_DATASOURCE.voiceListArray;
-            cell.backgroundColor = ME_Color(243, 243, 243);
-//            cell.downShadow.hidden = YES;
+            cell.collectionView.backgroundColor = ME_Color(243, 243, 243);
             
             return cell;
         }
@@ -379,7 +362,7 @@
         if (indexPath.row == 0) {
             return 40;
         } else{
-            return 165;
+            return 330;
         }
     }
     

@@ -43,24 +43,15 @@
                           @{@"image":@"hp3_icon_channel_41x40_", @"title":@"广播剧"},
                           @{@"image":@"hp3_icon_mission_40x40_", @"title":@"任务"}];
     
+    self.bellArray = @[@{@"image":@"hp3_title_bell2_40x40_", @"title":@"闹铃"},
+                       @{@"image":@"hp3_title_message2_40x40_", @"title":@"短信"},
+                       @{@"image":@"hp3_title_phone2_40x40_", @"title":@"来电"},
+                       @{@"image":@"hp3_title_sleep2_40x40_", @"title":@"催眠"}];
     
-    self.bellDic = @{@"activity": @"hp3_title_bell2_40x40_",
-                      @"rank": @"hp3_title_message2_40x40_",
-                      @"channel": @"hp3_title_phone2_40x40_",
-                      @"mission": @"hp3_title_sleep2_40x40_",
-                      @"activity_title": @"闹铃",
-                      @"rank_title": @"短信",
-                      @"channel_title": @"来电",
-                      @"mission_title": @"催眠"};
-    
-    self.akiraDic = @{@"activity": @"梶裕贵",
-                      @"rank": @"小野大辅",
-                      @"channel": @"花江夏树",
-                      @"mission": @"钉宫理惠",
-                      @"activity_title": @"梶裕贵",
-                      @"rank_title": @"小野大辅",
-                      @"channel_title": @"花江夏树",
-                      @"mission_title": @"钉宫理惠"};
+    self.akiraArray = @[@{@"image":@"梶裕贵", @"name":@"梶裕贵"},
+                        @{@"image":@"小野大辅", @"name":@"小野大辅"},
+                        @{@"image":@"花江夏树", @"name":@"花江夏树"},
+                        @{@"image":@"钉宫理惠", @"name":@"钉宫理惠"}];
     
     self.topCellArray = @[@{@"image": @"hp3_icon_msound_small_26x26_",
                           @"title": @"人气M音"},
@@ -151,20 +142,18 @@
                               @"title": @"【高能（中毒）向】Vocaliod+电音remix",
                               @"voice_count": @"14"}];
     
-    NSDictionary * titleDic1 = @{@"title": @"古风",
-                                 @"image": @"new_line_soundlist_3x12_"};
-    NSDictionary * titleDic2 = @{@"title": @"作业向",
-                                 @"image": @"new_line_soundlist_3x12_"};
-    NSDictionary * titleDic3 = @{@"title": @"治愈",
-                                 @"image": @"new_line_soundlist_3x12_"};
-    NSDictionary * titleDic4 = @{@"title": @"热血",
-                                 @"image": @"new_line_soundlist_3x12_"};
-    NSDictionary * titleDic5 = @{@"title": @"翻唱",
-                                 @"image": @"new_line_soundlist_3x12_"};
-    NSDictionary * titleDic6 = @{@"title": @"催眠",
-                                 @"image": @"new_line_soundlist_3x12_"};
-    
-    self.voiceListTitle = [[NSArray alloc] initWithObjects:titleDic1, titleDic2, titleDic3, titleDic4, titleDic5, titleDic6, nil];
+    self.voiceListTitle = @[@{@"title": @"古风",
+                              @"image": @"new_line_soundlist_3x12_"},
+                            @{@"title": @"作业向",
+                              @"image": @"new_line_soundlist_3x12_"},
+                            @{@"title": @"治愈",
+                              @"image": @"new_line_soundlist_3x12_"},
+                            @{@"title": @"热血",
+                              @"image": @"new_line_soundlist_3x12_"},
+                            @{@"title": @"翻唱",
+                              @"image": @"new_line_soundlist_3x12_"},
+                            @{@"title": @"催眠",
+                              @"image": @"new_line_soundlist_3x12_"}];
 }
 
 - (void)dataSourceOfClassify

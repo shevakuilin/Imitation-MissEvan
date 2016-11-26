@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MEVoiceListTableViewCell : UITableViewCell
+@property (strong, nonatomic) UICollectionView * collectionView;
 @property (nonatomic, strong) NSArray * array;
-
 @end

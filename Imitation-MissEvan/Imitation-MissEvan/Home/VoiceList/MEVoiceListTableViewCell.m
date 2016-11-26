@@ -11,7 +11,7 @@
 #import "MEVoiceListCollectionViewCell.h"
 
 @interface MEVoiceListTableViewCell ()<UICollectionViewDelegate, UICollectionViewDataSource>
-@property (strong, nonatomic) UICollectionView * collectionView;
+
 
 @end
 

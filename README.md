@@ -4,7 +4,10 @@
 「布局精确到像素」的高仿MissEvan iOS端App，暂时只提供 ![Language](https://img.shields.io/badge/Language-%20Objective%20C%20-blue.svg) 版本
 
 仿照版本 v3.6.3
-(￣y▽￣)~* 如果你觉得不错，别忘了 ★Star
+
+
+
+矮油，觉得还不错？  (￣y▽￣)~*  ★Star 一下又不会怀孕
 
 ### 版本效果截屏：
 

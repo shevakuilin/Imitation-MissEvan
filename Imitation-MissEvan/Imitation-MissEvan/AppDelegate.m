@@ -9,10 +9,12 @@
 #import "AppDelegate.h"
 #import "METabBarViewController.h"
 #import "MEHeader.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface AppDelegate ()
 {
     NSTimer * time;
+    AVAudioPlayer * player;
 }
 @property (weak, nonatomic) UIView * launchView;
 
@@ -68,18 +70,36 @@
     [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17], NSForegroundColorAttributeName:[UIColor blackColor]}];
     
+    
+    
     UIViewController * viewController = ME_GetViewController(@"LaunchScreen", @"LaunchScreen");
     self.launchView = viewController.view;
-    UIImageView  * Imageview= [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    [self.launchView addSubview:Imageview];
+    UIImageView  * imageView= [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    [self.launchView addSubview:imageView];
     [self.window addSubview:self.launchView];
-    [Imageview setImageWithURL:[NSURL URLWithString:@"http://static.missevan.com/mimages/201610/26/bf12252c78f3930b62cb71b2583b7bfb170900.png"] placeholderImage:[UIImage imageNamed:@""]];
+//    imageView.image = [UIImage imageNamed:@"钉宫理惠"];
+    [imageView setImageWithURL:[NSURL URLWithString:@"http://static.missevan.com/mimages/201610/26/bf12252c78f3930b62cb71b2583b7bfb170900.png"] placeholderImage:[UIImage imageNamed:@""]];
+    
+    //    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    NSString * urlStr = @"http://static.missevan.com/sound/201607/05/8541a2c408b8cda2ff671ef35c27e8e7134938.mp3";
+    NSURL * url = [[NSURL alloc]initWithString:urlStr];
+    NSData * audioData = [NSData dataWithContentsOfURL:url];
+    //将数据保存到本地指定位置
+    NSString * docDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString * filePath = [NSString stringWithFormat:@"%@/%@.mp3", docDirPath , @"temp"];
+    [audioData writeToFile:filePath atomically:YES];
+    //播放本地音乐
+    NSURL * fileURL = [NSURL fileURLWithPath:filePath];
+    player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
+    [player play];
+    
     time = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timeTick) userInfo:nil repeats:YES];
 }
 
 - (void)timeTick
 {
     [time timeInterval];
+    [player stop];
     [self.launchView removeFromSuperview];
 }
 

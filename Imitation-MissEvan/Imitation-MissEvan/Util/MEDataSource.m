@@ -51,7 +51,7 @@
     self.akiraArray = @[@{@"image":@"梶裕贵", @"name":@"梶裕贵"},
                         @{@"image":@"小野大辅", @"name":@"小野大辅"},
                         @{@"image":@"花江夏树", @"name":@"花江夏树"},
-                        @{@"image":@"钉宫理惠", @"name":@"钉宫理惠"}];
+                        @{@"image":@"钉宫理惠-1.jpg", @"name":@"钉宫理惠"}];
     
     self.topCellArray = @[@{@"image": @"hp3_icon_msound_small_26x26_",
                           @"title": @"人气M音"},

@@ -9,10 +9,11 @@
 #import "MESearchView.h"
 #import "MEHeader.h"
 
-@interface MESearchView ()<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+@interface MESearchView ()<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UITextField * searchTextFiled;
 @property (nonatomic, strong) UIButton * cancelButton;
 @property (nonatomic, strong) UITableView * tableView;
+@property (nonatomic, strong) UICollectionView * collectionView;
 
 @end
 
@@ -22,6 +23,8 @@
 {
     if ([super initWithFrame:frame]) {
         if (self) {
+            self.backgroundColor = ME_Color(243, 243, 243);
+            
             UIView * navigationView = [UIView new];
             [self addSubview:navigationView];
             navigationView.backgroundColor = [UIColor whiteColor];
@@ -81,15 +84,48 @@
                 make.centerY.equalTo(searchView).with.offset(0);
             }];
             
+            UIView * hotSearchView = [UIView new];
+            [self addSubview:hotSearchView];
+            hotSearchView.backgroundColor = ME_Color(243, 243, 243);
+            [hotSearchView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(navigationView.mas_bottom).with.offset(0);
+                make.left.equalTo(self).with.offset(0);
+                make.right.equalTo(self).with.offset(0);
+                
+                make.size.mas_equalTo(CGSizeMake(ME_Width, 45));
+            }];
+            
+            UILabel * hotSearchLabel = [UILabel new];
+            [hotSearchView addSubview:hotSearchLabel];
+            hotSearchLabel.font = [UIFont systemFontOfSize:14];
+            hotSearchLabel.text = @"热门搜索";
+            [hotSearchLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(hotSearchView).with.offset(0);
+                make.left.equalTo(hotSearchView).with.offset(16);
+            }];
+            
+            UIImageView * hotImageView = [UIImageView new];
+            [hotSearchView addSubview:hotImageView];
+            hotImageView.backgroundColor = [UIColor lightGrayColor];
+            [hotImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(hotSearchView).with.offset(10);
+                make.right.equalTo(hotSearchView).with.offset(0);
+                make.bottom.equalTo(hotSearchView).with.offset(0);
+                
+                make.size.mas_equalTo(CGSizeMake(ME_Width - 10, 1));
+            }];
+            
             self.tableView = [UITableView new];
             [self addSubview:self.tableView];
             self.tableView.backgroundColor = ME_Color(243, 243, 243);
             [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(navigationView.mas_bottom).with.offset(0);
+                make.top.equalTo(hotSearchView.mas_bottom).with.offset(0);
                 make.left.equalTo(self).with.offset(0);
                 make.right.equalTo(self).with.offset(0);
                 make.bottom.equalTo(self).with.offset(0);
             }];
+            
+            
         }
     }
     return self;

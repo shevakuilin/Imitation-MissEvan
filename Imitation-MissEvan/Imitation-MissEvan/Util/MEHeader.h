@@ -37,6 +37,16 @@
 #   define MELog(...)
 #endif
 
+//网络宏定义
+#define ME_URL_GLOBAL  @"http://static.missevan.com/"
+#define ME_URL_SOUND   @"sound/"
+#define ME_URL_IMAGE   @"mimages/"
+#define ME_SOUND_MIAO  @"201607/05/8541a2c408b8cda2ff671ef35c27e8e7134938"
+#define ME_IMAGE_START  @"201610/26/bf12252c78f3930b62cb71b2583b7bfb170900"
+//http://static.missevan.com/sound/201607/05/8541a2c408b8cda2ff671ef35c27e8e7134938.mp3;  //喵音
+//http://static.missevan.com/mimages/201610/26/bf12252c78f3930b62cb71b2583b7bfb170900.png //启动图
+
+
 /*
  ** MEHomeSegment
  */

@@ -15,6 +15,7 @@
 {
     NSTimer * time;
     AVAudioPlayer * player;
+    UIImageView  * imageView;
 }
 @property (weak, nonatomic) UIView * launchView;
 
@@ -70,18 +71,23 @@
     [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17], NSForegroundColorAttributeName:[UIColor blackColor]}];
     
-    
-    
     UIViewController * viewController = ME_GetViewController(@"LaunchScreen", @"LaunchScreen");
     self.launchView = viewController.view;
-    UIImageView  * imageView= [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    imageView = [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [self.launchView addSubview:imageView];
     [self.window addSubview:self.launchView];
-//    imageView.image = [UIImage imageNamed:@"钉宫理惠"];
-    [imageView setImageWithURL:[NSURL URLWithString:@"http://static.missevan.com/mimages/201610/26/bf12252c78f3930b62cb71b2583b7bfb170900.png"] placeholderImage:[UIImage imageNamed:@""]];
     
-    //    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-    NSString * urlStr = @"http://static.missevan.com/sound/201607/05/8541a2c408b8cda2ff671ef35c27e8e7134938.mp3";
+    imageView.image = [UIImage imageNamed:@"defaultStartImage"];
+    time = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(addNetworkImageAndSound) userInfo:nil repeats:YES];
+    
+}
+
+- (void)addNetworkImageAndSound
+{
+    [time timeInterval];
+    [imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@.png", ME_URL_GLOBAL, ME_URL_IMAGE, ME_IMAGE_START]] placeholderImage:[UIImage imageNamed:@""]];
+    
+    NSString * urlStr = [NSString stringWithFormat:@"%@%@%@.mp3", ME_URL_GLOBAL, ME_URL_SOUND, ME_SOUND_MIAO];
     NSURL * url = [[NSURL alloc]initWithString:urlStr];
     NSData * audioData = [NSData dataWithContentsOfURL:url];
     //将数据保存到本地指定位置

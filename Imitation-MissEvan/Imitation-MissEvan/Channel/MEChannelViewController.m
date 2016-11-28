@@ -18,6 +18,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"频道";
+    UIImageView * imageView = [UIImageView new];
+    [self.view addSubview:imageView];
+    imageView.image = [UIImage imageNamed:@"defaultStartImage"];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+    }];
 }
 
 

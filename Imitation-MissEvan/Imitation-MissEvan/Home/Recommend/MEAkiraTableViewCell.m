@@ -8,6 +8,12 @@
 
 #import "MEAkiraTableViewCell.h"
 #import "MEHeader.h"
+#import "MEAkiraCollectionViewCell.h"
+
+@interface MEAkiraTableViewCell ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@property (strong, nonatomic) UICollectionView * collectionView;
+
+@end
 
 @implementation MEAkiraTableViewCell
 
@@ -26,142 +32,38 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        //draw - views
-        self.leftView = [UIView new];
-        [self addSubview:self.leftView];
-        [self.leftView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).with.offset(0);
-            make.left.equalTo(self).with.offset(0);
-            make.bottom.equalTo(self).with.offset(0);
-            
-            make.size.mas_equalTo(CGSizeMake(ME_Width / 4, self.bounds.size.height));
-        }];
+        self.backgroundColor = [UIColor whiteColor];
         
-        self.centLeftView = [UIView new];
-        [self addSubview:self.centLeftView];
-        [self.centLeftView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).with.offset(0);
-            make.left.equalTo(self).with.offset(ME_Width / 4);
-            make.bottom.equalTo(self).with.offset(0);
-            
-            make.size.mas_equalTo(CGSizeMake(ME_Width / 4, self.bounds.size.height));
-        }];
-        
-        self.centRightView = [UIView new];
-        [self addSubview:self.centRightView];
-        [self.centRightView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).with.offset(0);
-            make.left.equalTo(self).with.offset((ME_Width / 4) * 2);
-            make.bottom.equalTo(self).with.offset(0);
-            
-            make.size.mas_equalTo(CGSizeMake(ME_Width / 4, self.bounds.size.height));
-        }];
-        
-        self.rightView = [UIView new];
-        [self addSubview:self.rightView];
-        [self.rightView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).with.offset(0);
-            make.left.equalTo(self).with.offset((ME_Width / 4) * 3);
-            make.bottom.equalTo(self).with.offset(0);
-            
-            make.size.mas_equalTo(CGSizeMake(ME_Width / 4, self.bounds.size.height));
-        }];
-        
-        //draw - others
-        self.leftImageView = [UIImageView new];
-        [self.leftView addSubview:self.leftImageView];
-        [self.leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.leftView).with.offset(10);
-            make.centerX.equalTo(self.leftView).with.offset(0);
-            
-            make.size.mas_equalTo(CGSizeMake((ME_Width / 4) - 32, (ME_Width / 4) - 32));
-        }];
-        [self imageViewBounds:self.leftImageView];
-        
-        self.centLeftImageView = [UIImageView new];
-        [self.centLeftView addSubview:self.centLeftImageView];
-        [self.centLeftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.centLeftView).with.offset(10);
-            make.centerX.equalTo(self.centLeftView).with.offset(0);
-            
-            make.size.mas_equalTo(CGSizeMake((ME_Width / 4) - 32, (ME_Width / 4) - 32));
-        }];
-        [self imageViewBounds:self.centLeftImageView];
-        
-        self.centRightImageView = [UIImageView new];
-        [self.centRightView addSubview:self.centRightImageView];
-        [self.centRightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.centRightView).with.offset(10);
-            make.centerX.equalTo(self.centRightView).with.offset(0);
-            
-            make.size.mas_equalTo(CGSizeMake((ME_Width / 4) - 32, (ME_Width / 4) - 32));
-        }];
-        [self imageViewBounds:_centRightImageView];
-        
-        self.rightImageView = [UIImageView new];
-        [self.rightView addSubview:self.rightImageView];
-        [self.rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.rightView).with.offset(10);
-            make.centerX.equalTo(self.rightView).with.offset(0);
-            
-            make.size.mas_equalTo(CGSizeMake((ME_Width / 4) - 32, (ME_Width / 4) - 32));
-        }];
-        [self imageViewBounds:self.rightImageView];
-        
-        
-        self.leftLabel = [UILabel new];
-        [self.leftView addSubview:self.leftLabel];
-        self.leftLabel.textAlignment = NSTextAlignmentCenter;
-        self.leftLabel.font = [UIFont systemFontOfSize:13];
-        [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.leftImageView.mas_bottom).with.offset(10);
-            make.centerX.equalTo(self.leftImageView).with.offset(0);
+        //创建一个layout布局类
+        UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
+        //设置布局方向为垂直流布局
+        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        //创建collectionView 通过一个布局策略layout来创建
+        self.collectionView = [[UICollectionView alloc]initWithFrame:self.frame collectionViewLayout:layout];
+        [self addSubview:self.collectionView];
+        self.collectionView.dataSource = self;
+        self.collectionView.delegate = self;
+        self.collectionView.backgroundColor = [UIColor whiteColor];
+        self.collectionView.scrollEnabled = NO;
+        [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
             
         }];
+        [self.collectionView registerClass:[MEAkiraCollectionViewCell class] forCellWithReuseIdentifier:@"Akira"];
         
-        self.centLeftLabel = [UILabel new];
-        [self.centLeftView addSubview:self.centLeftLabel];
-        self.centLeftLabel.textAlignment = NSTextAlignmentCenter;
-        self.centLeftLabel.font = [UIFont systemFontOfSize:13];
-        [self.centLeftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.centLeftImageView.mas_bottom).with.offset(10);
-            make.centerX.equalTo(self.centLeftImageView).with.offset(0);
-            
-        }];
-        
-        self.centRightLabel = [UILabel new];
-        [self.centRightView addSubview:self.centRightLabel];
-        self.centRightLabel.textAlignment = NSTextAlignmentCenter;
-        self.centRightLabel.font = [UIFont systemFontOfSize:13];
-        [self.centRightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.centRightImageView.mas_bottom).with.offset(10);
-            make.centerX.equalTo(self.centRightImageView).with.offset(0);
-            
-        }];
-        
-        self.rightLabel = [UILabel new];
-        [self.rightView addSubview:self.rightLabel];
-        self.rightLabel.textAlignment = NSTextAlignmentCenter;
-        self.rightLabel.font = [UIFont systemFontOfSize:13];
-        [self.rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.rightImageView.mas_bottom).with.offset(10);
-            make.centerX.equalTo(self.rightImageView).with.offset(0);
-            
-        }];
-        
-        self.topShadow = [UIImageView new];
-        [self addSubview:self.topShadow];
-        self.topShadow.backgroundColor = ME_Color(238, 238, 238);
-        [self.topShadow mas_makeConstraints:^(MASConstraintMaker *make) {
+        UIImageView * topShadow = [UIImageView new];
+        [self addSubview:topShadow];
+        topShadow.backgroundColor = ME_Color(238, 238, 238);
+        [topShadow mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).with.offset(0);
             
             make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
         }];
         
-        self.downShadow = [UIImageView new];
-        [self addSubview:self.downShadow];
-        self.downShadow.backgroundColor = ME_Color(238, 238, 238);//229, 230, 230
-        [self.downShadow mas_makeConstraints:^(MASConstraintMaker *make) {
+        UIImageView * downShadow = [UIImageView new];
+        [self addSubview:downShadow];
+        downShadow.backgroundColor = ME_Color(238, 238, 238);//229, 230, 230
+        [downShadow mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self).with.offset(0);
             
             make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
@@ -171,24 +73,51 @@
     return self;
 }
 
-- (void)imageViewBounds:(UIImageView *)imageView
+#pragma mark -
+#pragma mark - collectionView
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    imageView.layer.masksToBounds = YES;
-    imageView.layer.cornerRadius = ((ME_Width / 4) - 32) / 2;
+    return 1;
 }
 
-- (void)setDic:(NSDictionary *)dic
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    _dic = dic;
-    self.leftImageView.image = [UIImage imageNamed:dic[@"activity"]];
-    self.centLeftImageView.image = [UIImage imageNamed:dic[@"rank"]];
-    self.centRightImageView.image = [UIImage imageNamed:dic[@"channel"]];
-    self.rightImageView.image = [UIImage imageNamed:dic[@"mission"]];
+    return 4;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    MEAkiraCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Akira" forIndexPath:indexPath];
+    cell.dic = ME_DATASOURCE.akiraArray[indexPath.row];
     
-    self.leftLabel.text = dic[@"activity_title"];
-    self.centLeftLabel.text = dic[@"rank_title"];
-    self.centRightLabel.text = dic[@"channel_title"];
-    self.rightLabel.text = dic[@"mission_title"];
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+//定义每个Item 的大小
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(ME_Width / 4, 108);
+}
+
+//item横向间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                   layout:(UICollectionViewLayout *)collectionViewLayout
+minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 0;
+}
+
+//item纵向间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                   layout:(UICollectionViewLayout *)collectionViewLayout
+minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 0;
 }
 
 @end

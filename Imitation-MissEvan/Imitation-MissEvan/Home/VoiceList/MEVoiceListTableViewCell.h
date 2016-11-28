@@ -9,24 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MEVoiceListTableViewCell : UITableViewCell
-@property (nonatomic, strong) UIView * leftView;
-@property (nonatomic, strong) UIView * centerView;
-@property (nonatomic, strong) UIView * rightView;
-
-@property (nonatomic, strong) UIImageView * leftThemesImageView;
-@property (nonatomic, strong) UIImageView * centerThemesImageView;
-@property (nonatomic, strong) UIImageView * rightThemesImageView;
-
-@property (nonatomic, strong) UILabel * leftListCountLabel;
-@property (nonatomic, strong) UILabel * centerListCountLabel;
-@property (nonatomic, strong) UILabel * rightListCountLabel;
-
-@property (nonatomic, strong) UILabel * leftTitleLabel;
-@property (nonatomic, strong) UILabel * centerTitleLabel;
-@property (nonatomic, strong) UILabel * rightTitleLabel;
-
-@property (nonatomic, strong) UIImageView * downShadow;
-
+@property (strong, nonatomic) UICollectionView * collectionView;
 @property (nonatomic, strong) NSArray * array;
-
 @end

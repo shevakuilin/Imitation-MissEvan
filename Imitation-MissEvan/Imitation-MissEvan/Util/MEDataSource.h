@@ -15,16 +15,17 @@
 @property (copy, nonatomic) NSArray * imageNameArray;
 @property (copy, nonatomic) NSArray * barTitleArray;
 @property (copy, nonatomic) NSArray * segmentTitleArray;
-@property (copy, nonatomic) NSDictionary * homeTopImageDic;
 @property (copy, nonatomic) NSArray * topCellArray;
 @property (copy, nonatomic) NSArray * recommendCellArray;
 @property (copy, nonatomic) NSArray * channelCellArray;
 @property (copy, nonatomic) NSArray * voiceListArray;
-@property (copy, nonatomic) NSDictionary * bellDic;
-@property (copy, nonatomic) NSDictionary * akiraDic;
+
 @property (copy, nonatomic) NSArray * radioArray;
 @property (copy, nonatomic) NSArray * classiftPic;
 @property (copy, nonatomic) NSArray * classiftTitle;
 @property (copy, nonatomic) NSArray * voiceListTitle;
 
+@property (copy, nonatomic) NSArray * homeTopArray;
+@property (copy, nonatomic) NSArray * bellArray;
+@property (copy, nonatomic) NSArray * akiraArray;
 @end

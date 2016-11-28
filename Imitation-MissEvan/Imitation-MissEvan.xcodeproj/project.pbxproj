@@ -42,6 +42,12 @@
 		E4C3B58E1DDC8F5900A672D1 /* MEHomeRecommendTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5841DDC8F5900A672D1 /* MEHomeRecommendTopTableViewCell.m */; };
 		E4C3B58F1DDC8F5900A672D1 /* MEHotMVoiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5861DDC8F5900A672D1 /* MEHotMVoiceTableViewCell.m */; };
 		E4C3B5951DDC91E300A672D1 /* MEClassifyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5941DDC91E300A672D1 /* MEClassifyCollectionViewCell.m */; };
+		E4C3B5981DE9B2D000A672D1 /* MEHomeRecommendTopCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5971DE9B2D000A672D1 /* MEHomeRecommendTopCollectionViewCell.m */; };
+		E4C3B59B1DE9B9C400A672D1 /* MEHotMVoiceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B59A1DE9B9C400A672D1 /* MEHotMVoiceCollectionViewCell.m */; };
+		E4C3B59E1DE9D3DF00A672D1 /* MEChannelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B59D1DE9D3DF00A672D1 /* MEChannelCollectionViewCell.m */; };
+		E4C3B5A11DE9DD4100A672D1 /* MEVoiceListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5A01DE9DD4100A672D1 /* MEVoiceListCollectionViewCell.m */; };
+		E4C3B5A41DE9E5D500A672D1 /* MEBellsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5A31DE9E5D500A672D1 /* MEBellsCollectionViewCell.m */; };
+		E4C3B5A71DE9E97200A672D1 /* MEAkiraCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5A61DE9E97200A672D1 /* MEAkiraCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +137,18 @@
 		E4C3B5861DDC8F5900A672D1 /* MEHotMVoiceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEHotMVoiceTableViewCell.m; sourceTree = "<group>"; };
 		E4C3B5931DDC91E200A672D1 /* MEClassifyCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEClassifyCollectionViewCell.h; sourceTree = "<group>"; };
 		E4C3B5941DDC91E300A672D1 /* MEClassifyCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEClassifyCollectionViewCell.m; sourceTree = "<group>"; };
+		E4C3B5961DE9B2D000A672D1 /* MEHomeRecommendTopCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEHomeRecommendTopCollectionViewCell.h; sourceTree = "<group>"; };
+		E4C3B5971DE9B2D000A672D1 /* MEHomeRecommendTopCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEHomeRecommendTopCollectionViewCell.m; sourceTree = "<group>"; };
+		E4C3B5991DE9B9C400A672D1 /* MEHotMVoiceCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEHotMVoiceCollectionViewCell.h; sourceTree = "<group>"; };
+		E4C3B59A1DE9B9C400A672D1 /* MEHotMVoiceCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEHotMVoiceCollectionViewCell.m; sourceTree = "<group>"; };
+		E4C3B59C1DE9D3DF00A672D1 /* MEChannelCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEChannelCollectionViewCell.h; sourceTree = "<group>"; };
+		E4C3B59D1DE9D3DF00A672D1 /* MEChannelCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEChannelCollectionViewCell.m; sourceTree = "<group>"; };
+		E4C3B59F1DE9DD4100A672D1 /* MEVoiceListCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEVoiceListCollectionViewCell.h; sourceTree = "<group>"; };
+		E4C3B5A01DE9DD4100A672D1 /* MEVoiceListCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEVoiceListCollectionViewCell.m; sourceTree = "<group>"; };
+		E4C3B5A21DE9E5D500A672D1 /* MEBellsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEBellsCollectionViewCell.h; sourceTree = "<group>"; };
+		E4C3B5A31DE9E5D500A672D1 /* MEBellsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEBellsCollectionViewCell.m; sourceTree = "<group>"; };
+		E4C3B5A51DE9E97200A672D1 /* MEAkiraCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEAkiraCollectionViewCell.h; sourceTree = "<group>"; };
+		E4C3B5A61DE9E97200A672D1 /* MEAkiraCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEAkiraCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,6 +361,8 @@
 			children = (
 				77DAF21F1DDEE9EF001FE1A8 /* MEVoiceListTableViewCell.h */,
 				77DAF2201DDEE9EF001FE1A8 /* MEVoiceListTableViewCell.m */,
+				E4C3B59F1DE9DD4100A672D1 /* MEVoiceListCollectionViewCell.h */,
+				E4C3B5A01DE9DD4100A672D1 /* MEVoiceListCollectionViewCell.m */,
 			);
 			path = VoiceList;
 			sourceTree = "<group>";
@@ -360,16 +380,26 @@
 			children = (
 				E4C3B5831DDC8F5900A672D1 /* MEHomeRecommendTopTableViewCell.h */,
 				E4C3B5841DDC8F5900A672D1 /* MEHomeRecommendTopTableViewCell.m */,
+				E4C3B5961DE9B2D000A672D1 /* MEHomeRecommendTopCollectionViewCell.h */,
+				E4C3B5971DE9B2D000A672D1 /* MEHomeRecommendTopCollectionViewCell.m */,
 				E4C3B5811DDC8F5900A672D1 /* MEHomeRecommendMoreTableViewCell.h */,
 				E4C3B5821DDC8F5900A672D1 /* MEHomeRecommendMoreTableViewCell.m */,
 				E4C3B5851DDC8F5900A672D1 /* MEHotMVoiceTableViewCell.h */,
 				E4C3B5861DDC8F5900A672D1 /* MEHotMVoiceTableViewCell.m */,
+				E4C3B5991DE9B9C400A672D1 /* MEHotMVoiceCollectionViewCell.h */,
+				E4C3B59A1DE9B9C400A672D1 /* MEHotMVoiceCollectionViewCell.m */,
 				E4C3B57D1DDC8F5900A672D1 /* MEChannelTableViewCell.h */,
 				E4C3B57E1DDC8F5900A672D1 /* MEChannelTableViewCell.m */,
+				E4C3B59C1DE9D3DF00A672D1 /* MEChannelCollectionViewCell.h */,
+				E4C3B59D1DE9D3DF00A672D1 /* MEChannelCollectionViewCell.m */,
 				E4C3B57B1DDC8F5900A672D1 /* MEBellsTableViewCell.h */,
 				E4C3B57C1DDC8F5900A672D1 /* MEBellsTableViewCell.m */,
+				E4C3B5A21DE9E5D500A672D1 /* MEBellsCollectionViewCell.h */,
+				E4C3B5A31DE9E5D500A672D1 /* MEBellsCollectionViewCell.m */,
 				E4C3B5791DDC8F5900A672D1 /* MEAkiraTableViewCell.h */,
 				E4C3B57A1DDC8F5900A672D1 /* MEAkiraTableViewCell.m */,
+				E4C3B5A51DE9E97200A672D1 /* MEAkiraCollectionViewCell.h */,
+				E4C3B5A61DE9E97200A672D1 /* MEAkiraCollectionViewCell.m */,
 				E4C3B57F1DDC8F5900A672D1 /* MECustomColumnTableViewCell.h */,
 				E4C3B5801DDC8F5900A672D1 /* MECustomColumnTableViewCell.m */,
 			);
@@ -591,18 +621,24 @@
 				E4C3B58A1DDC8F5900A672D1 /* MEBellsTableViewCell.m in Sources */,
 				77C8193F1DBDB9790004EFFC /* MEFollowViewController.m in Sources */,
 				E4C3B5891DDC8F5900A672D1 /* MEAkiraTableViewCell.m in Sources */,
+				E4C3B59B1DE9B9C400A672D1 /* MEHotMVoiceCollectionViewCell.m in Sources */,
 				77C8194B1DBDF53B0004EFFC /* METabBar.m in Sources */,
 				77C819391DBDB88E0004EFFC /* MEHomeViewController.m in Sources */,
+				E4C3B5981DE9B2D000A672D1 /* MEHomeRecommendTopCollectionViewCell.m in Sources */,
 				E4C3B58C1DDC8F5900A672D1 /* MECustomColumnTableViewCell.m in Sources */,
+				E4C3B5A41DE9E5D500A672D1 /* MEBellsCollectionViewCell.m in Sources */,
 				E4C3B56D1DD7787C00A672D1 /* MEScaleToSize.m in Sources */,
+				E4C3B5A11DE9DD4100A672D1 /* MEVoiceListCollectionViewCell.m in Sources */,
 				E4C3B58B1DDC8F5900A672D1 /* MEChannelTableViewCell.m in Sources */,
 				77DAF2211DDEE9EF001FE1A8 /* MEVoiceListTableViewCell.m in Sources */,
 				7744824B1DC1ED600044EE55 /* iCarousel.m in Sources */,
 				77D5BDD61DCB2EBD00EA1DCB /* MEHomeSegmentItem.m in Sources */,
 				77D5BDD31DCB297800EA1DCB /* MEHomeSegmentControl.m in Sources */,
 				774482471DC1A8860044EE55 /* METabBarViewController.m in Sources */,
+				E4C3B5A71DE9E97200A672D1 /* MEAkiraCollectionViewCell.m in Sources */,
 				77C819421DBDB98C0004EFFC /* MEMyViewController.m in Sources */,
 				778123961DBDAD4500425E6A /* AppDelegate.m in Sources */,
+				E4C3B59E1DE9D3DF00A672D1 /* MEChannelCollectionViewCell.m in Sources */,
 				77C8194E1DBDFE960004EFFC /* METabBarButton.m in Sources */,
 				77C8193C1DBDB9050004EFFC /* MEChannelViewController.m in Sources */,
 				778123931DBDAD4500425E6A /* main.m in Sources */,

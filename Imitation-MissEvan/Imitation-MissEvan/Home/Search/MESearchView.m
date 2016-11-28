@@ -23,8 +23,6 @@
 {
     if ([super initWithFrame:frame]) {
         if (self) {
-            self.backgroundColor = ME_Color(243, 243, 243);
-            
             UIView * navigationView = [UIView new];
             [self addSubview:navigationView];
             navigationView.backgroundColor = [UIColor whiteColor];

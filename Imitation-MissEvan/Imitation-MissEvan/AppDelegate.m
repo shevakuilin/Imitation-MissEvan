@@ -74,18 +74,17 @@
     UIViewController * viewController = ME_GetViewController(@"LaunchScreen", @"LaunchScreen");
     self.launchView = viewController.view;
     imageView = [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    imageView.image = [UIImage imageNamed:@"defaultStartImage"];
     [self.launchView addSubview:imageView];
     [self.window addSubview:self.launchView];
     
-    imageView.image = [UIImage imageNamed:@"defaultStartImage"];
     time = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(addNetworkImageAndSound) userInfo:nil repeats:YES];
     
 }
 
 - (void)addNetworkImageAndSound
 {
-    [time timeInterval];
-    [imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@.png", ME_URL_GLOBAL, ME_URL_IMAGE, ME_IMAGE_START]] placeholderImage:[UIImage imageNamed:@""]];
+    [time invalidate];
     
     NSString * urlStr = [NSString stringWithFormat:@"%@%@%@.mp3", ME_URL_GLOBAL, ME_URL_SOUND, ME_SOUND_MIAO];
     NSURL * url = [[NSURL alloc]initWithString:urlStr];
@@ -99,12 +98,14 @@
     player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
     [player play];
     
-    time = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timeTick) userInfo:nil repeats:YES];
+    [imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@.png", ME_URL_GLOBAL, ME_URL_IMAGE, ME_IMAGE_START]] placeholderImage:[UIImage imageNamed:@""]];
+    
+    time = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(timeTick) userInfo:nil repeats:YES];
 }
 
 - (void)timeTick
 {
-    [time timeInterval];
+    [time invalidate];
     [player stop];
     [self.launchView removeFromSuperview];
 }

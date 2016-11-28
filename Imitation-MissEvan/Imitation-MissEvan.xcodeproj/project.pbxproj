@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		770DBD401DEC23A30019D206 /* MESearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 770DBD3F1DEC23A30019D206 /* MESearchView.m */; };
 		771AB1F01DD0560000DDBA44 /* MEPageControl+AutoScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 771AB1EF1DD0560000DDBA44 /* MEPageControl+AutoScroll.m */; };
 		774482471DC1A8860044EE55 /* METabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774482461DC1A8860044EE55 /* METabBarViewController.m */; };
 		7744824B1DC1ED600044EE55 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744824A1DC1ED600044EE55 /* iCarousel.m */; };
@@ -70,6 +71,8 @@
 /* Begin PBXFileReference section */
 		0DAEBD253CF221B554034028 /* Pods-Imitation-MissEvan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imitation-MissEvan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Imitation-MissEvan/Pods-Imitation-MissEvan.debug.xcconfig"; sourceTree = "<group>"; };
 		20DBB35C9F8E09611DFD0293 /* libPods-Imitation-MissEvan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Imitation-MissEvan.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		770DBD3E1DEC23A30019D206 /* MESearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MESearchView.h; sourceTree = "<group>"; };
+		770DBD3F1DEC23A30019D206 /* MESearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MESearchView.m; sourceTree = "<group>"; };
 		7711C3A91DC6D522005AAA2E /* MEHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MEHeader.h; sourceTree = "<group>"; };
 		771AB1EE1DD0560000DDBA44 /* MEPageControl+AutoScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MEPageControl+AutoScroll.h"; sourceTree = "<group>"; };
 		771AB1EF1DD0560000DDBA44 /* MEPageControl+AutoScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MEPageControl+AutoScroll.m"; sourceTree = "<group>"; };
@@ -177,6 +180,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		770DBD3D1DEC23870019D206 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				770DBD3E1DEC23A30019D206 /* MESearchView.h */,
+				770DBD3F1DEC23A30019D206 /* MESearchView.m */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		771AB1ED1DD055EC00DDBA44 /* MEPageControl+AutoScroll */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +301,7 @@
 				77C8192E1DBDB6B50004EFFC /* MEHome.storyboard */,
 				77C819371DBDB88E0004EFFC /* MEHomeViewController.h */,
 				77C819381DBDB88E0004EFFC /* MEHomeViewController.m */,
+				770DBD3D1DEC23870019D206 /* Search */,
 				77DAF21E1DDEE9EF001FE1A8 /* VoiceList */,
 				E4C3B5781DDC8F5900A672D1 /* Recommend */,
 				E4C3B5911DDC8FED00A672D1 /* Classify */,
@@ -615,6 +628,7 @@
 				E4C3B5951DDC91E300A672D1 /* MEClassifyCollectionViewCell.m in Sources */,
 				E4C3B58F1DDC8F5900A672D1 /* MEHotMVoiceTableViewCell.m in Sources */,
 				77D5BDD91DCB30B700EA1DCB /* MEHomeSegmentViewController.m in Sources */,
+				770DBD401DEC23A30019D206 /* MESearchView.m in Sources */,
 				77C819541DBE00740004EFFC /* MEDataSource.m in Sources */,
 				E4C3B58E1DDC8F5900A672D1 /* MEHomeRecommendTopTableViewCell.m in Sources */,
 				771AB1F01DD0560000DDBA44 /* MEPageControl+AutoScroll.m in Sources */,

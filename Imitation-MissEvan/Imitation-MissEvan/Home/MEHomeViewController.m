@@ -17,6 +17,7 @@
 #import "MECustomColumnTableViewCell.h"
 #import "MEBellsTableViewCell.h"
 #import "MEClassifyCollectionViewCell.h"
+#import "MESearchView.h"
 
 @interface MEHomeViewController ()<MEPageControl_AutoScrollDelegate, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UIViewController * voiceListView;
@@ -60,7 +61,7 @@
 - (void)customRecommendView
 {
     //TODO:推荐界面
-    UIScrollView * backgroundScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ME_Width, ME_Height)];
+    UIScrollView * backgroundScroll = [UIScrollView new];//[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ME_Width, ME_Height)];
     backgroundScroll.backgroundColor = [UIColor clearColor];
     [self.recommendView.view addSubview:backgroundScroll];
     [backgroundScroll mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -121,7 +122,7 @@
 - (void)customVoiceListView
 {
     //TODO:音单界面
-    UIScrollView * backgroundScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ME_Width, ME_Height)];
+    UIScrollView * backgroundScroll = [UIScrollView new];//[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ME_Width, ME_Height)];
     backgroundScroll.backgroundColor = ME_Color(243, 243, 243);
     [self.voiceListView.view addSubview:backgroundScroll];
     [backgroundScroll mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -179,6 +180,8 @@
 - (void)goSearchView
 {
     //TODO:搜索界面
+    MESearchView * searchView = [[MESearchView alloc] initWithFrame:CGRectMake(0, 0, ME_Width, ME_Height)];
+    [self.view addSubview:searchView];
 }
 
 #pragma mark -

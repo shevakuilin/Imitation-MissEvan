@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MESearchView : UIView
+@property (nonatomic, strong) UITextField * searchTextFiled;
 
 @end

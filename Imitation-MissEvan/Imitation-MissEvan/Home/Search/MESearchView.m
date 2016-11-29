@@ -10,7 +10,7 @@
 #import "MEHeader.h"
 
 @interface MESearchView ()<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
-@property (nonatomic, strong) UITextField * searchTextFiled;
+
 @property (nonatomic, strong) UIButton * cancelButton;
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, strong) UICollectionView * collectionView;
@@ -75,7 +75,7 @@
             self.searchTextFiled.tintColor = [UIColor blackColor];
             self.searchTextFiled.returnKeyType = UIReturnKeySearch;
             self.searchTextFiled.delegate = self;
-            [self.searchTextFiled becomeFirstResponder];
+//            [self.searchTextFiled becomeFirstResponder];
             [self.searchTextFiled mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(searchIcon.mas_right).with.offset(8);
                 make.right.equalTo(searchView).with.offset(0);
@@ -132,7 +132,9 @@
 - (void)cancel
 {
     //TODO:取消
-    [self removeFromSuperview];
+//    [self removeFromSuperview];
+    self.hidden = YES;
+    [self endEditing:YES];
 }
 
 #pragma mark - 
@@ -140,7 +142,9 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if (self.searchTextFiled.text.length == 0) {
-        [self removeFromSuperview];
+//        [self removeFromSuperview];
+        self.hidden = YES;
+        [self endEditing:YES];
     } else {
         [self.searchTextFiled resignFirstResponder];
     }

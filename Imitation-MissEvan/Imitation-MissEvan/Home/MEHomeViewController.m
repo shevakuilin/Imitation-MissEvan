@@ -27,6 +27,7 @@
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, strong) UICollectionView * collectionView;
 @property (nonatomic, strong) UITableView * voiceTableView;
+@property (nonatomic, strong) MESearchView * searchView;
 
 @end
 
@@ -56,6 +57,7 @@
     [self customRecommendView];
     [self customClassifyView];
     [self customVoiceListView];
+    [self addSearchView];
 }
 
 - (void)customRecommendView
@@ -177,11 +179,19 @@
     //TODO:播放界面
 }
 
+- (void)addSearchView
+{
+    //TODO:加载搜索界面
+    self.searchView = [[MESearchView alloc] initWithFrame:CGRectMake(0, 0, ME_Width, ME_Height)];
+    [self.view addSubview:self.searchView];
+    self.searchView.hidden = YES;
+}
+
 - (void)goSearchView
 {
     //TODO:搜索界面
-    MESearchView * searchView = [[MESearchView alloc] initWithFrame:CGRectMake(0, 0, ME_Width, ME_Height)];
-    [self.view addSubview:searchView];
+    self.searchView.hidden = NO;
+    [self.searchView.searchTextFiled becomeFirstResponder];
 }
 
 #pragma mark -

@@ -117,7 +117,8 @@
             }];
             
             //创建一个layout布局类
-            UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
+//            UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
+            UICollectionViewLeftAlignedLayout * layout = [[UICollectionViewLeftAlignedLayout alloc] init];
             //设置布局方向为垂直流布局
             layout.scrollDirection = UICollectionViewScrollDirectionVertical;
             //创建collectionView 通过一个布局策略layout来创建

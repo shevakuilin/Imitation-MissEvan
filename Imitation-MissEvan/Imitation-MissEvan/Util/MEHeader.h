@@ -18,6 +18,7 @@
 #import "MEPageControl+AutoScroll.h"
 #import "MEScaleToSize.h"
 #import "UIImageView+AFNetworking.h"
+#import "UICollectionViewLeftAlignedLayout.h"
 
 #define ME_DATASOURCE   [MEDataSource shareDataSource]
 

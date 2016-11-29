@@ -94,7 +94,7 @@
                 make.left.equalTo(self).with.offset(0);
                 make.right.equalTo(self).with.offset(0);
                 
-                make.size.mas_equalTo(CGSizeMake(ME_Width, 55));
+                make.size.mas_equalTo(CGSizeMake(ME_Width, 45));
             }];
             
             UILabel * hotSearchLabel = [UILabel new];
@@ -102,7 +102,7 @@
             hotSearchLabel.font = [UIFont systemFontOfSize:14];
             hotSearchLabel.text = @"热门搜索";
             [hotSearchLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerY.equalTo(hotSearchView).with.offset(0);
+                make.centerY.equalTo(hotSearchView).with.offset(-4);
                 make.left.equalTo(hotSearchView).with.offset(16);
             }];
             
@@ -130,7 +130,7 @@
             self.collectionView.backgroundColor = ME_Color(243, 243, 243);
             self.collectionView.scrollEnabled = NO;
             [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(hotSearchView.mas_bottom).with.offset(30);
+                make.top.equalTo(hotSearchView.mas_bottom).with.offset(10);
                 make.left.equalTo(self).with.offset(20);
                 make.right.equalTo(self).with.offset(-20);
                 
@@ -148,7 +148,7 @@
                 make.left.equalTo(self).with.offset(0);
                 make.right.equalTo(self).with.offset(0);
                 
-                make.size.mas_equalTo(CGSizeMake(ME_Width, 55));
+                make.size.mas_equalTo(CGSizeMake(ME_Width, 45));
             }];
             
             UILabel * historySearchLabel = [UILabel new];
@@ -156,7 +156,7 @@
             historySearchLabel.font = [UIFont systemFontOfSize:14];
             historySearchLabel.text = @"历史搜索";
             [historySearchLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerY.equalTo(historySearchView).with.offset(0);
+                make.centerY.equalTo(historySearchView).with.offset(-5);
                 make.left.equalTo(historySearchView).with.offset(16);
             }];
             
@@ -166,7 +166,7 @@
             [cleanButton addTarget:self action:@selector(cleanSearchWords) forControlEvents:UIControlEventTouchUpInside];
             [cleanButton mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(historySearchView).with.offset(-16);
-                make.centerY.equalTo(historySearchView).with.offset(0);
+                make.centerY.equalTo(historySearchLabel).with.offset(0);
             }];
             
             UIImageView * historyLine = [UIImageView new];

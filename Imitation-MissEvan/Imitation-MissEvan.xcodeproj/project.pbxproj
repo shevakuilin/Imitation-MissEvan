@@ -50,6 +50,7 @@
 		E4C3B5A11DE9DD4100A672D1 /* MEVoiceListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5A01DE9DD4100A672D1 /* MEVoiceListCollectionViewCell.m */; };
 		E4C3B5A41DE9E5D500A672D1 /* MEBellsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5A31DE9E5D500A672D1 /* MEBellsCollectionViewCell.m */; };
 		E4C3B5A71DE9E97200A672D1 /* MEAkiraCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5A61DE9E97200A672D1 /* MEAkiraCollectionViewCell.m */; };
+		E4C3B5AA1DEDC93100A672D1 /* MESearchHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5A91DEDC93100A672D1 /* MESearchHistoryTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,6 +156,8 @@
 		E4C3B5A31DE9E5D500A672D1 /* MEBellsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEBellsCollectionViewCell.m; sourceTree = "<group>"; };
 		E4C3B5A51DE9E97200A672D1 /* MEAkiraCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEAkiraCollectionViewCell.h; sourceTree = "<group>"; };
 		E4C3B5A61DE9E97200A672D1 /* MEAkiraCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEAkiraCollectionViewCell.m; sourceTree = "<group>"; };
+		E4C3B5A81DEDC93100A672D1 /* MESearchHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MESearchHistoryTableViewCell.h; sourceTree = "<group>"; };
+		E4C3B5A91DEDC93100A672D1 /* MESearchHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MESearchHistoryTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +193,8 @@
 				770DBD3F1DEC23A30019D206 /* MESearchView.m */,
 				77E0D4291DED1D98006A7814 /* MEHotSearchCollectionViewCell.h */,
 				77E0D42A1DED1D98006A7814 /* MEHotSearchCollectionViewCell.m */,
+				E4C3B5A81DEDC93100A672D1 /* MESearchHistoryTableViewCell.h */,
+				E4C3B5A91DEDC93100A672D1 /* MESearchHistoryTableViewCell.m */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -658,6 +663,7 @@
 				E4C3B5A71DE9E97200A672D1 /* MEAkiraCollectionViewCell.m in Sources */,
 				77C819421DBDB98C0004EFFC /* MEMyViewController.m in Sources */,
 				778123961DBDAD4500425E6A /* AppDelegate.m in Sources */,
+				E4C3B5AA1DEDC93100A672D1 /* MESearchHistoryTableViewCell.m in Sources */,
 				E4C3B59E1DE9D3DF00A672D1 /* MEChannelCollectionViewCell.m in Sources */,
 				77C8194E1DBDFE960004EFFC /* METabBarButton.m in Sources */,
 				77C8193C1DBDB9050004EFFC /* MEChannelViewController.m in Sources */,

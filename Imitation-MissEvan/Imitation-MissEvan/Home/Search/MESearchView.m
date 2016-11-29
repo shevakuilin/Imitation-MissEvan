@@ -9,6 +9,7 @@
 #import "MESearchView.h"
 #import "MEHeader.h"
 #import "MEHotSearchCollectionViewCell.h"
+#import "MESearchHistoryTableViewCell.h"
 
 @interface MESearchView ()<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -93,7 +94,7 @@
                 make.left.equalTo(self).with.offset(0);
                 make.right.equalTo(self).with.offset(0);
                 
-                make.size.mas_equalTo(CGSizeMake(ME_Width, 45));
+                make.size.mas_equalTo(CGSizeMake(ME_Width, 55));
             }];
             
             UILabel * hotSearchLabel = [UILabel new];
@@ -111,7 +112,7 @@
             [hotLine mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(hotSearchView).with.offset(10);
                 make.right.equalTo(hotSearchView).with.offset(0);
-                make.bottom.equalTo(hotSearchView).with.offset(0);
+                make.bottom.equalTo(hotSearchView).with.offset(-8);
                 
                 make.size.mas_equalTo(CGSizeMake(ME_Width - 10, 1));
             }];
@@ -133,20 +134,66 @@
                 make.left.equalTo(self).with.offset(20);
                 make.right.equalTo(self).with.offset(-20);
                 
-                make.size.mas_equalTo(CGSizeMake(ME_Width - 40, 300));
+                make.size.mas_equalTo(CGSizeMake(ME_Width - 40, 130));
                 
             }];
             [self.collectionView registerClass:[MEHotSearchCollectionViewCell class] forCellWithReuseIdentifier:@"HotSearch"];
             
-//            self.tableView = [UITableView new];
-//            [self addSubview:self.tableView];
-//            self.tableView.backgroundColor = ME_Color(243, 243, 243);
-//            [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-//                make.top.equalTo(hotSearchView.mas_bottom).with.offset(0);
-//                make.left.equalTo(self).with.offset(0);
-//                make.right.equalTo(self).with.offset(0);
-//                make.bottom.equalTo(self).with.offset(0);
-//            }];
+            
+            UIView * historySearchView = [UIView new];
+            [self addSubview:historySearchView];
+            historySearchView.backgroundColor = ME_Color(243, 243, 243);
+            [historySearchView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.collectionView.mas_bottom).with.offset(0);
+                make.left.equalTo(self).with.offset(0);
+                make.right.equalTo(self).with.offset(0);
+                
+                make.size.mas_equalTo(CGSizeMake(ME_Width, 55));
+            }];
+            
+            UILabel * historySearchLabel = [UILabel new];
+            [historySearchView addSubview:historySearchLabel];
+            historySearchLabel.font = [UIFont systemFontOfSize:14];
+            historySearchLabel.text = @"历史搜索";
+            [historySearchLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(historySearchView).with.offset(0);
+                make.left.equalTo(historySearchView).with.offset(16);
+            }];
+            
+            UIButton * cleanButton = [UIButton new];
+            [historySearchView addSubview:cleanButton];
+            [cleanButton setImage:[UIImage imageNamed:@"hp_clear_16x16_"] forState:UIControlStateNormal];
+            [cleanButton addTarget:self action:@selector(cleanSearchWords) forControlEvents:UIControlEventTouchUpInside];
+            [cleanButton mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(historySearchView).with.offset(-16);
+                make.centerY.equalTo(historySearchView).with.offset(0);
+            }];
+            
+            UIImageView * historyLine = [UIImageView new];
+            [historySearchView addSubview:historyLine];
+            historyLine.backgroundColor = ME_Color(189, 189, 189);
+            [historyLine mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(historySearchView).with.offset(10);
+                make.right.equalTo(historySearchView).with.offset(0);
+                make.bottom.equalTo(historySearchView).with.offset(-8);
+                
+                make.size.mas_equalTo(CGSizeMake(ME_Width - 10, 1));
+            }];
+            
+            self.tableView = [UITableView new];
+            [self addSubview:self.tableView];
+            self.tableView.backgroundColor = ME_Color(243, 243, 243);
+            [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(historySearchView.mas_bottom).with.offset(0);
+                make.left.equalTo(self).with.offset(0);
+                make.right.equalTo(self).with.offset(0);
+                make.bottom.equalTo(self).with.offset(0);
+            }];
+            self.tableView.delegate = self;
+            self.tableView.dataSource = self;
+            self.tableView.tableFooterView = [[UIView alloc] init];
+            self.tableView.separatorStyle = NO;
+            [self.tableView registerClass:[MESearchHistoryTableViewCell class] forCellReuseIdentifier:@"SearchHistory"];
             
             
         }
@@ -160,6 +207,12 @@
 //    [self removeFromSuperview];
     self.hidden = YES;
     [self endEditing:YES];
+}
+
+- (void)cleanSearchWords
+{
+    //TODO:清空历史记录
+    
 }
 
 #pragma mark - 
@@ -263,5 +316,36 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 //{
 //    return UIEdgeInsetsMake(30, 0, 30, 0);
 //}
+
+#pragma mark -
+#pragma mark - UITableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 2;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MESearchHistoryTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"SearchHistory"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 45;
+}
+
 
 @end

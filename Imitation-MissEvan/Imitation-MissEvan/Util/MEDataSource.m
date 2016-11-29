@@ -119,6 +119,17 @@
                           @"played_count": @"177",
                           @"words_count": @"0"}];
     
+    self.hotWordsArray = @[@{@"hotwords":@"高能"},
+                           @{@"hotwords":@"娇喘"},
+                           @{@"hotwords":@"asmr"},
+                           @{@"hotwords":@"佐藤拓也"},
+                           @{@"hotwords":@"黑猫男友"},
+                           @{@"hotwords":@"慎"},
+                           @{@"hotwords":@"ten"},
+                           @{@"hotwords":@"古川慎"},
+                           @{@"hotwords":@"count"},
+                           @{@"hotwords":@"平川大辅"}];
+    
 }
 
 - (void)dataSourceOfVoiceList

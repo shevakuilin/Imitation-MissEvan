@@ -28,4 +28,6 @@
 @property (copy, nonatomic) NSArray * homeTopArray;
 @property (copy, nonatomic) NSArray * bellArray;
 @property (copy, nonatomic) NSArray * akiraArray;
+
+@property (copy, nonatomic) NSArray * hotWordsArray;
 @end

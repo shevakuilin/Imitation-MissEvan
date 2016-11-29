@@ -458,5 +458,4 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     return UIEdgeInsetsMake(8, 5, 30, 5);
 }
 
-
 @end

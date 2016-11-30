@@ -1,7 +1,7 @@
 # Imitation-MissEvan
 ### Imitation for MissEvan [猫儿FM(M站)]
 
-「布局精确到像素」的高仿MissEvan iOS端App，暂时只提供 ![Language](https://img.shields.io/badge/Language-%20Objective%20C%20-blue.svg) 版本
+纯代码「布局精确到像素」的高仿MissEvan iOS端App，暂时只提供 ![Language](https://img.shields.io/badge/Language-%20Objective%20C%20-blue.svg) 版本
 
 仿照版本 v3.6.3
 
@@ -23,3 +23,34 @@
 
 
 (注：预览效果由Simulator录制，存在较大分辨率差异，体验最优效果请移步真机    (☆ﾟ∀ﾟ)ノ゙  [☞ 戳这里](https://segmentfault.com/a/1190000004519978))
+
+
+## 开源组件声明
+
+
+----------------
+SDWebImage
+----------------
+version: 3.8.1
+(https://github.com/rs/SDWebImage))
+
+
+----------------
+Masonry
+----------------
+version: 1.0.1
+(https://github.com/SnapKit/Masonry))
+
+
+----------------
+AFNetworking
+----------------
+version: 3.1.0
+(https://github.com/AFNetworking/AFNetworking))
+
+
+----------------
+UICollectionViewLeftAlignedLayout
+----------------
+version: 1.0.2
+(https://github.com/mokagio/UICollectionViewLeftAlignedLayout))

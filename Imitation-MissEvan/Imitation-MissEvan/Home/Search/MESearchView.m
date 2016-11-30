@@ -324,14 +324,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     return 10;
 }
 
-//- (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
-//{
-//    NSArray * attributes = [super layoutAttributesForElementsInRect:rect];
-//    
-//    return attributes;
-//    
-//}
-
 //定义每个UICollectionView 的 margin
 //-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 //{

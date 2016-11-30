@@ -38,7 +38,7 @@
             titleLabel.text = @"我的消息";
             [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self).with.offset(10);
-                make.top.equalTo(self).with.offset(10);
+                make.top.equalTo(self).with.offset(11);
             }];
             
             UIImageView * topShadow = [UIImageView new];
@@ -67,7 +67,7 @@
             self.collectionView = [[UICollectionView alloc]initWithFrame:self.frame collectionViewLayout:layout];            [self addSubview:self.collectionView];
             self.collectionView.backgroundColor = [UIColor whiteColor];
             [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(titleLabel.mas_bottom).with.offset(10);
+                make.top.equalTo(titleLabel.mas_bottom).with.offset(9);
                 make.left.equalTo(self).with.offset(0);
                 make.right.equalTo(self).with.offset(0);
                 make.bottom.equalTo(self).with.offset(-1);

@@ -27,9 +27,8 @@
 
 ## 开源组件声明：
 
-
-###SDWebImage
 ----------------
+###SDWebImage
 
 Version: 3.8.1 
 
@@ -37,8 +36,8 @@ Version: 3.8.1
 Download: ->(https://github.com/rs/SDWebImage)
 
 
-###Masonry
 ----------------
+###Masonry
 
 Version: 1.0.1
 
@@ -46,8 +45,8 @@ Version: 1.0.1
 Download: ->(https://github.com/SnapKit/Masonry)
 
 
-###AFNetworking
 ----------------
+###AFNetworking
 
 Version: 3.1.0
 
@@ -55,8 +54,8 @@ Version: 3.1.0
 Download: ->(https://github.com/AFNetworking/AFNetworking)
 
 
-###UICollectionViewLeftAlignedLayout
 ----------------
+###UICollectionViewLeftAlignedLayout
 
 Version: 1.0.2
 

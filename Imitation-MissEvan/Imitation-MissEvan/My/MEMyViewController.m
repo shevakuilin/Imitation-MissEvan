@@ -18,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"我的";
+    self.view.backgroundColor = ME_Color(243, 242, 243);
 }
 
 

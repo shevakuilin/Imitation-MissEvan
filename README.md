@@ -33,7 +33,7 @@
 Version: 3.8.1 
 
 
-Download: ->(https://github.com/rs/SDWebImage)
+From: ->(https://github.com/rs/SDWebImage)
 
 
 ----------------
@@ -42,16 +42,16 @@ Download: ->(https://github.com/rs/SDWebImage)
 Version: 1.0.1
 
 
-Download: ->(https://github.com/SnapKit/Masonry)
+From: ->(https://github.com/SnapKit/Masonry)
 
 
 ----------------
 ###AFNetworking
 
-Version: 3.1.0
+From: 3.1.0
 
 
-Download: ->(https://github.com/AFNetworking/AFNetworking)
+From: ->(https://github.com/AFNetworking/AFNetworking)
 
 
 ----------------
@@ -60,4 +60,4 @@ Download: ->(https://github.com/AFNetworking/AFNetworking)
 Version: 1.0.2
 
 
-Download: ->(https://github.com/mokagio/UICollectionViewLeftAlignedLayout)
+From: ->(https://github.com/mokagio/UICollectionViewLeftAlignedLayout)

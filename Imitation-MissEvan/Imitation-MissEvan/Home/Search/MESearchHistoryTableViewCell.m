@@ -9,6 +9,10 @@
 #import "MESearchHistoryTableViewCell.h"
 #import "MEHeader.h"
 
+@interface MESearchHistoryTableViewCell ()
+@property (nonatomic, strong) UILabel * historyWordsLabel;
+@end
+
 @implementation MESearchHistoryTableViewCell
 
 - (void)awakeFromNib {
@@ -36,11 +40,10 @@
                 make.centerY.equalTo(self).with.offset(0);
             }];
             
-            UILabel * historyWordsLabel = [UILabel new];
-            [self addSubview:historyWordsLabel];
-            historyWordsLabel.font = [UIFont systemFontOfSize:13];
-            historyWordsLabel.text = @"平川大辅";
-            [historyWordsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            self.historyWordsLabel = [UILabel new];
+            [self addSubview:self.historyWordsLabel];
+            self.historyWordsLabel.font = [UIFont systemFontOfSize:13];
+            [self.historyWordsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(historyIcon.mas_right).with.offset(10);
                 make.centerY.equalTo(self).with.offset(0);
             }];
@@ -48,6 +51,7 @@
             UIButton * deleteButton = [UIButton new];
             [self addSubview:deleteButton];
             [deleteButton setImage:[UIImage imageNamed:@"hp_delete_11x10_"] forState:UIControlStateNormal];
+            [deleteButton addTarget:self action:@selector(delete) forControlEvents:UIControlEventTouchUpInside];
             [deleteButton mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(self).with.offset(-16);
                 make.centerY.equalTo(self).with.offset(0);
@@ -55,6 +59,20 @@
         }
     }
     return self;
+}
+
+- (void)delete
+{
+    //TODO:删除该条记录
+    if ([self.delegate respondsToSelector:@selector(deleteTheHistoryWords:)]) {
+        [self.delegate deleteTheHistoryWords:self];
+    }
+}
+
+- (void)setSearchWords:(NSString *)searchWords
+{
+    _searchWords = searchWords;
+    self.historyWordsLabel.text = searchWords;
 }
 
 @end

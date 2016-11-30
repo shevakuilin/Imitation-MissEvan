@@ -11,11 +11,12 @@
 #import "MEHotSearchCollectionViewCell.h"
 #import "MESearchHistoryTableViewCell.h"
 
-@interface MESearchView ()<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
+@interface MESearchView ()<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource, deleteTheWords>
 
 @property (nonatomic, strong) UIButton * cancelButton;
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, strong) UICollectionView * collectionView;
+@property (nonatomic, strong) NSMutableArray * searchHistroyArray;
 
 @end
 
@@ -25,7 +26,15 @@
 {
     if ([super initWithFrame:frame]) {
         if (self) {
+            self.searchHistroyArray = [[NSMutableArray alloc] init];
+            NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+            NSArray * array = [userDefaults arrayForKey:@"historyWords"];
+            if (array) {
+                [self.searchHistroyArray addObjectsFromArray:array];
+            }
+            
             self.backgroundColor = ME_Color(243, 243, 243);
+            
             
             UIView * navigationView = [UIView new];
             [self addSubview:navigationView];
@@ -194,8 +203,6 @@
             self.tableView.tableFooterView = [[UIView alloc] init];
             self.tableView.separatorStyle = NO;
             [self.tableView registerClass:[MESearchHistoryTableViewCell class] forCellReuseIdentifier:@"SearchHistory"];
-            
-            
         }
     }
     return self;
@@ -212,7 +219,10 @@
 - (void)cleanSearchWords
 {
     //TODO:清空历史记录
-    
+    [self.searchHistroyArray removeAllObjects];
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults removeObjectForKey:@"historyWords"];
+    [self.tableView reloadData];
 }
 
 #pragma mark - 
@@ -225,6 +235,12 @@
         [self endEditing:YES];
     } else {
         [self.searchTextFiled resignFirstResponder];
+        [self.searchHistroyArray addObject:self.searchTextFiled.text];
+        NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:self.searchHistroyArray forKey:@"historyWords"];
+        [userDefaults synchronize];//强制写入
+        MELog(@"存入的历史搜索记录为：%@", [userDefaults arrayForKey:@"historyWords"]);
+        [self.tableView reloadData];
     }
     return YES;
 }
@@ -251,7 +267,12 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    [self.searchHistroyArray addObject:ME_DATASOURCE.hotWordsArray[indexPath.row][@"hotwords"]];
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:self.searchHistroyArray forKey:@"historyWords"];
+    [userDefaults synchronize];
+    MELog(@"存入的历史搜索记录为：%@", [userDefaults arrayForKey:@"historyWords"]);
+    [self.tableView reloadData];
 }
 
 //定义每个Item 的大小
@@ -317,6 +338,17 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 //    return UIEdgeInsetsMake(30, 0, 30, 0);
 //}
 
+- (void)deleteTheHistoryWords:(MESearchHistoryTableViewCell *)cell
+{
+    NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
+    [self.searchHistroyArray removeObjectAtIndex:indexPath.row];
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults removeObjectForKey:@"historyWords"];
+    [userDefaults setObject:self.searchHistroyArray forKey:@"historyWords"];
+    [userDefaults synchronize];
+    [self.tableView reloadData];
+}
+
 #pragma mark -
 #pragma mark - UITableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -326,13 +358,15 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return self.searchHistroyArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MESearchHistoryTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"SearchHistory"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.delegate = self;
+    cell.searchWords = self.searchHistroyArray[indexPath.row];
     
     return cell;
 }

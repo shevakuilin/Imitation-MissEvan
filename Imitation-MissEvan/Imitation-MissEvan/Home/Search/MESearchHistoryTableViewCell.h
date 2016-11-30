@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+@class MESearchHistoryTableViewCell;
+@protocol deleteTheWords <NSObject>
+
+- (void)deleteTheHistoryWords:(MESearchHistoryTableViewCell *)cell;
+
+@end
 
 @interface MESearchHistoryTableViewCell : UITableViewCell
+@property (nonatomic, strong) NSString * searchWords;
+@property (weak, nonatomic) id<deleteTheWords> delegate;
 
 @end

@@ -30,27 +30,35 @@
 
 ----------------
 ###SDWebImage
-----------------
-version: 3.8.1-> 
-(https://github.com/rs/SDWebImage))
+
+version: 3.8.1 
+
+
+download: https://github.com/rs/SDWebImage
 
 
 ----------------
 ###Masonry
-----------------
-version: 1.0.1-> 
-(https://github.com/SnapKit/Masonry))
+
+version: 1.0.1
+
+
+download :https://github.com/SnapKit/Masonry
 
 
 ----------------
 ###AFNetworking
-----------------
-version: 3.1.0-> 
-(https://github.com/AFNetworking/AFNetworking))
+
+version: 3.1.0
+
+
+download :https://github.com/AFNetworking/AFNetworking
 
 
 ----------------
 ###UICollectionViewLeftAlignedLayout
-----------------
-version: 1.0.2-> 
-(https://github.com/mokagio/UICollectionViewLeftAlignedLayout))
+
+version: 1.0.2
+
+
+download: https://github.com/mokagio/UICollectionViewLeftAlignedLayout

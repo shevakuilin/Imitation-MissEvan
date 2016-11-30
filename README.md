@@ -48,7 +48,7 @@ From: ->(https://github.com/SnapKit/Masonry)
 ----------------
 ###AFNetworking
 
-From: 3.1.0
+Version: 3.1.0
 
 
 From: ->(https://github.com/AFNetworking/AFNetworking)

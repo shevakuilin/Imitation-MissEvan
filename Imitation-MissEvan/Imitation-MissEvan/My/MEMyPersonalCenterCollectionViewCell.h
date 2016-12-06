@@ -11,5 +11,6 @@
 @interface MEMyPersonalCenterCollectionViewCell : UICollectionViewCell
 @property (strong, nonatomic) UIImageView * classifyImageView;
 @property (strong, nonatomic) UILabel * classifyLabel;
+@property (nonatomic, strong) NSDictionary * dic;
 
 @end

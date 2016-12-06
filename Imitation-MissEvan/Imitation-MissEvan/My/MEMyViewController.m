@@ -63,14 +63,21 @@
         
         return cell;
         
-    } else if (indexPath.section == 1){
+    }
+//    else if (indexPath.section == 1){
+//        MEMyPersonalCenterTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MyPersonalCenter"];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        
+//        return cell;
+//    }
+    else {
+//        MEMyMessageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MyMessage"];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        
+//        return cell;
         MEMyPersonalCenterTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MyPersonalCenter"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        return cell;
-    } else {
-        MEMyMessageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MyMessage"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.array = ME_DATASOURCE.myIconArray[indexPath.section - 1];
         
         return cell;
     }

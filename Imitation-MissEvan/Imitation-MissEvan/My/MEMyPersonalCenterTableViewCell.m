@@ -12,6 +12,7 @@
 
 @interface MEMyPersonalCenterTableViewCell ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) UICollectionView * collectionView;
+@property (strong, nonatomic) UILabel * titleLabel;
 
 @end
 
@@ -32,11 +33,10 @@
 {
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         if (self) {
-            UILabel * titleLabel = [UILabel new];
-            [self addSubview:titleLabel];
-            titleLabel.font = [UIFont systemFontOfSize:15];
-            titleLabel.text = @"个人中心";
-            [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            self.titleLabel = [UILabel new];
+            [self addSubview:self.titleLabel];
+            self.titleLabel.font = [UIFont systemFontOfSize:15];
+            [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self).with.offset(10);
                 make.top.equalTo(self).with.offset(11);
             }];
@@ -67,7 +67,7 @@
             self.collectionView = [[UICollectionView alloc]initWithFrame:self.frame collectionViewLayout:layout];            [self addSubview:self.collectionView];
             self.collectionView.backgroundColor = [UIColor whiteColor];
             [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(titleLabel.mas_bottom).with.offset(9);
+                make.top.equalTo(self.titleLabel.mas_bottom).with.offset(9);
                 make.left.equalTo(self).with.offset(0);
                 make.right.equalTo(self).with.offset(0);
                 make.bottom.equalTo(self).with.offset(-1);
@@ -90,12 +90,29 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 8;
+    if (self.array.count == 2) {
+        return 4;
+    }
+    return self.array.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     MEMyPersonalCenterCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MyPersonalCenter" forIndexPath:indexPath];
+    if (self.array.count == 2) {
+        self.titleLabel.text = @"我的消息";
+        if (indexPath.row < 2) {
+            cell.classifyImageView.hidden = NO;
+            cell.classifyLabel.hidden = NO;
+            cell.dic = self.array[indexPath.row];
+        } else {
+            cell.classifyImageView.hidden = YES;
+            cell.classifyLabel.hidden = YES;
+        }
+    } else {
+        cell.dic = self.array[indexPath.row];
+        self.titleLabel.text = @"个人中心";
+    }
     
     return cell;
 }

@@ -63,4 +63,11 @@
     return self;
 }
 
+- (void)setDic:(NSDictionary *)dic
+{
+    _dic = dic;
+    self.classifyImageView.image = [UIImage imageNamed:dic[@"image"]];
+    self.classifyLabel.text = dic[@"title"];
+}
+
 @end

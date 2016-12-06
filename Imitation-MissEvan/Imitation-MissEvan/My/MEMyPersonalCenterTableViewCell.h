@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MEMyPersonalCenterTableViewCell : UITableViewCell
+@property (nonatomic, strong) NSArray * array;
 
 @end

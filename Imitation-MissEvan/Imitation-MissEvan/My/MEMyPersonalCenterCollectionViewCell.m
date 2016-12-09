@@ -52,9 +52,9 @@
             [self addSubview:rightShadow];
             rightShadow.backgroundColor = ME_Color(238, 238, 238);
             [rightShadow mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self).with.offset(0);
+                make.top.equalTo(self).with.offset(1);
                 make.right.equalTo(self).with.offset(-1);
-                make.bottom.equalTo(self).with.offset(0);
+                make.bottom.equalTo(self).with.offset(1);
                 
                 make.size.mas_equalTo(CGSizeMake(1, 90));
             }];

@@ -56,6 +56,8 @@
         topShadow.backgroundColor = ME_Color(238, 238, 238);
         [topShadow mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).with.offset(0);
+            make.left.equalTo(self);
+            make.right.equalTo(self);
             
             make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
         }];
@@ -65,6 +67,8 @@
         downShadow.backgroundColor = ME_Color(238, 238, 238);//229, 230, 230
         [downShadow mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self).with.offset(0);
+            make.left.equalTo(self);
+            make.right.equalTo(self);
             
             make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
         }];

@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MEChannelCollectionViewCell : UICollectionViewCell
+@property (nonatomic, strong) UIImageView * themesImageView;
 @property (nonatomic, strong) NSDictionary * dic;
+
 @end

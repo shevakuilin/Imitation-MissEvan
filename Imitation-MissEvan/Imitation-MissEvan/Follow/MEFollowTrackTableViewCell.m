@@ -47,7 +47,7 @@
             
             self.trackDateLabel = [UILabel new];
             [self addSubview:self.trackDateLabel];
-            self.trackDateLabel.font = [UIFont systemFontOfSize:12];
+            self.trackDateLabel.font = [UIFont systemFontOfSize:13];
             self.trackDateLabel.textColor = [UIColor lightGrayColor];
             self.trackDateLabel.text = @"1月前";
             [self.trackDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -10,7 +10,6 @@
 #import "MEHeader.h"
 
 @interface MEChannelCollectionViewCell ()
-@property (nonatomic, strong) UIImageView * themesImageView;
 @property (nonatomic, strong) UILabel * playedLabel;
 @property (nonatomic, strong) UILabel * titleLabel;
 @property (nonatomic, strong) UIImageView * albumShadowImageView;

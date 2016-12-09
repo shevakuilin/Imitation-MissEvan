@@ -61,7 +61,7 @@
     titleLabel.textColor = [UIColor grayColor];
     titleLabel.text = @"分类：";
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(topView).with.offset(15);
+        make.left.equalTo(topView).with.offset(10);
         make.centerY.equalTo(topView);
     }];
     
@@ -120,7 +120,7 @@
     cell.backgroundColor = ME_Color(243, 243, 243);
     [cell.themesImageView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(cell).with.offset(6);
-        make.size.mas_equalTo(CGSizeMake((ME_Width / 2) - 12, ((ME_Width - 12) / 3) - 30));
+        make.size.mas_equalTo(CGSizeMake((ME_Width / 2) - 12, ((ME_Width - 12) / 3) - 25));
     }];
     
     return cell;

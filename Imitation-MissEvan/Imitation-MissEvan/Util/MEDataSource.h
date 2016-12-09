@@ -30,4 +30,6 @@
 @property (copy, nonatomic) NSArray * akiraArray;
 
 @property (copy, nonatomic) NSArray * hotWordsArray;
+
+@property (copy, nonatomic) NSArray * myIconArray;
 @end

@@ -51,6 +51,10 @@
 		E4C3B5A41DE9E5D500A672D1 /* MEBellsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5A31DE9E5D500A672D1 /* MEBellsCollectionViewCell.m */; };
 		E4C3B5A71DE9E97200A672D1 /* MEAkiraCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5A61DE9E97200A672D1 /* MEAkiraCollectionViewCell.m */; };
 		E4C3B5AA1DEDC93100A672D1 /* MESearchHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5A91DEDC93100A672D1 /* MESearchHistoryTableViewCell.m */; };
+		E4C3B5AD1DEF0BAD00A672D1 /* MEMyUserInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5AC1DEF0BAD00A672D1 /* MEMyUserInfoTableViewCell.m */; };
+		E4C3B5B01DEF132300A672D1 /* MEMyPersonalCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5AF1DEF132300A672D1 /* MEMyPersonalCenterTableViewCell.m */; };
+		E4C3B5B31DEF17F000A672D1 /* MEMyPersonalCenterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5B21DEF17F000A672D1 /* MEMyPersonalCenterCollectionViewCell.m */; };
+		E4C3B5B61DEF183600A672D1 /* MEMyMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5B51DEF183600A672D1 /* MEMyMessageTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +162,14 @@
 		E4C3B5A61DE9E97200A672D1 /* MEAkiraCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEAkiraCollectionViewCell.m; sourceTree = "<group>"; };
 		E4C3B5A81DEDC93100A672D1 /* MESearchHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MESearchHistoryTableViewCell.h; sourceTree = "<group>"; };
 		E4C3B5A91DEDC93100A672D1 /* MESearchHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MESearchHistoryTableViewCell.m; sourceTree = "<group>"; };
+		E4C3B5AB1DEF0BAD00A672D1 /* MEMyUserInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEMyUserInfoTableViewCell.h; sourceTree = "<group>"; };
+		E4C3B5AC1DEF0BAD00A672D1 /* MEMyUserInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEMyUserInfoTableViewCell.m; sourceTree = "<group>"; };
+		E4C3B5AE1DEF132300A672D1 /* MEMyPersonalCenterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEMyPersonalCenterTableViewCell.h; sourceTree = "<group>"; };
+		E4C3B5AF1DEF132300A672D1 /* MEMyPersonalCenterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEMyPersonalCenterTableViewCell.m; sourceTree = "<group>"; };
+		E4C3B5B11DEF17F000A672D1 /* MEMyPersonalCenterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEMyPersonalCenterCollectionViewCell.h; sourceTree = "<group>"; };
+		E4C3B5B21DEF17F000A672D1 /* MEMyPersonalCenterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEMyPersonalCenterCollectionViewCell.m; sourceTree = "<group>"; };
+		E4C3B5B41DEF183600A672D1 /* MEMyMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEMyMessageTableViewCell.h; sourceTree = "<group>"; };
+		E4C3B5B51DEF183600A672D1 /* MEMyMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEMyMessageTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +337,14 @@
 				77C819351DBDB76E0004EFFC /* MEMy.storyboard */,
 				77C819401DBDB98C0004EFFC /* MEMyViewController.h */,
 				77C819411DBDB98C0004EFFC /* MEMyViewController.m */,
+				E4C3B5AB1DEF0BAD00A672D1 /* MEMyUserInfoTableViewCell.h */,
+				E4C3B5AC1DEF0BAD00A672D1 /* MEMyUserInfoTableViewCell.m */,
+				E4C3B5AE1DEF132300A672D1 /* MEMyPersonalCenterTableViewCell.h */,
+				E4C3B5AF1DEF132300A672D1 /* MEMyPersonalCenterTableViewCell.m */,
+				E4C3B5B11DEF17F000A672D1 /* MEMyPersonalCenterCollectionViewCell.h */,
+				E4C3B5B21DEF17F000A672D1 /* MEMyPersonalCenterCollectionViewCell.m */,
+				E4C3B5B41DEF183600A672D1 /* MEMyMessageTableViewCell.h */,
+				E4C3B5B51DEF183600A672D1 /* MEMyMessageTableViewCell.m */,
 			);
 			path = My;
 			sourceTree = "<group>";
@@ -651,6 +671,7 @@
 				77C819391DBDB88E0004EFFC /* MEHomeViewController.m in Sources */,
 				E4C3B5981DE9B2D000A672D1 /* MEHomeRecommendTopCollectionViewCell.m in Sources */,
 				E4C3B58C1DDC8F5900A672D1 /* MECustomColumnTableViewCell.m in Sources */,
+				E4C3B5AD1DEF0BAD00A672D1 /* MEMyUserInfoTableViewCell.m in Sources */,
 				E4C3B5A41DE9E5D500A672D1 /* MEBellsCollectionViewCell.m in Sources */,
 				E4C3B56D1DD7787C00A672D1 /* MEScaleToSize.m in Sources */,
 				E4C3B5A11DE9DD4100A672D1 /* MEVoiceListCollectionViewCell.m in Sources */,
@@ -661,13 +682,16 @@
 				77D5BDD31DCB297800EA1DCB /* MEHomeSegmentControl.m in Sources */,
 				774482471DC1A8860044EE55 /* METabBarViewController.m in Sources */,
 				E4C3B5A71DE9E97200A672D1 /* MEAkiraCollectionViewCell.m in Sources */,
+				E4C3B5B61DEF183600A672D1 /* MEMyMessageTableViewCell.m in Sources */,
 				77C819421DBDB98C0004EFFC /* MEMyViewController.m in Sources */,
 				778123961DBDAD4500425E6A /* AppDelegate.m in Sources */,
 				E4C3B5AA1DEDC93100A672D1 /* MESearchHistoryTableViewCell.m in Sources */,
 				E4C3B59E1DE9D3DF00A672D1 /* MEChannelCollectionViewCell.m in Sources */,
+				E4C3B5B31DEF17F000A672D1 /* MEMyPersonalCenterCollectionViewCell.m in Sources */,
 				77C8194E1DBDFE960004EFFC /* METabBarButton.m in Sources */,
 				77C8193C1DBDB9050004EFFC /* MEChannelViewController.m in Sources */,
 				778123931DBDAD4500425E6A /* main.m in Sources */,
+				E4C3B5B01DEF132300A672D1 /* MEMyPersonalCenterTableViewCell.m in Sources */,
 				E4C3B58D1DDC8F5900A672D1 /* MEHomeRecommendMoreTableViewCell.m in Sources */,
 				77C2E7101DC2FE6A00EC6B4A /* MEUtil.m in Sources */,
 			);

@@ -21,6 +21,7 @@
         [sharedSingleton dataSourceOfHomeRecommend];
         [sharedSingleton dataSourceOfVoiceList];
         [sharedSingleton dataSourceOfClassify];
+        [sharedSingleton dataSourceOfMy];
     });
     return sharedSingleton;
 }
@@ -172,5 +173,19 @@
     self.classiftPic = [[NSArray alloc] initWithObjects:@"http://static.missevan.com/app/46.png", @"http://static.missevan.com/app/8.png", @"http://static.missevan.com/app/26.png", @"http://static.missevan.com/app/54.png", @"http://static.missevan.com/app/5.png", @"http://static.missevan.com/app/41.png", @"http://static.missevan.com/app/6.png", @"http://static.missevan.com/app/4.png", @"http://static.missevan.com/app/13.png", @"http://static.missevan.com/app/52.png", @"http://static.missevan.com/app/55.png", @"http://static.missevan.com/app/65.png", nil];
     
     self.classiftTitle = [[NSArray alloc] initWithObjects:@"有声漫画", @"音乐", @"娱乐", @"催眠", @"广播剧", @"日抓", @"听书", @"电台", @"声优库", @"配音", @"游戏", @"铃声", nil];
+}
+
+- (void)dataSourceOfMy
+{
+    self.myIconArray = @[@[@{@"image":@"m_icon_history_45x45_", @"title":@"历史记录"},
+                           @{@"image":@"m_icon_bell_45x45_", @"title":@"铃声设置"},
+                           @{@"image":@"m_icon_collect_45x45_", @"title":@"我的收藏"},
+                           @{@"image":@"m_icon_attention_45x45_", @"title":@"我的关注"},
+                           @{@"image":@"m_icon_download_45x45_", @"title":@"本地下载"},
+                           @{@"image":@"m_icon_mission_45x45_", @"title":@"每日任务"},
+                           @{@"image":@"m_icon_timer_45x45_", @"title":@"定时关闭"},
+                           @{@"image":@"m_icon_feedback_45x45_", @"title":@"意见反馈"}],
+                         @[@{@"image":@"m_icon_comment_45x45_", @"title":@"我的评论"},
+                           @{@"image":@"m_icon_message_45x45_", @"title":@"我的私信"}]];
 }
 @end

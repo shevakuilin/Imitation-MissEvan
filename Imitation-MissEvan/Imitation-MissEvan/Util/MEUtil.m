@@ -27,5 +27,19 @@
     return button;
 }
 
++ (UIBarButtonItem *)backButtonWithTarget:(id)target action:(SEL)selector
+{
+    UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(10, 0, 30, 30);
+    [button setImageEdgeInsets:UIEdgeInsetsMake(0, -8, 0, 8)];
+    [button setTitleEdgeInsets:UIEdgeInsetsMake(0, -4, 0, 4)];
+    [button setImage:[UIImage imageNamed:@"sp_button_back_22x22_"] forState:UIControlStateNormal];
+    //    [button setTitle:@"返回" forState:UIControlStateNormal];
+    //    button.titleLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:14];
+    UIBarButtonItem * barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    [button addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
+    return barButtonItem;
+}
+
 
 @end

@@ -13,4 +13,6 @@
 
 + (UIButton *)barButtonItemWithImage:(NSString *)image target:(id)target action:(SEL)selector isLeft:(BOOL)isLeft isRight:(BOOL)isRight;
 
++ (UIBarButtonItem *)backButtonWithTarget:(id)target action:(SEL)selector;
+
 @end

@@ -13,12 +13,12 @@
 #import <Masonry.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UIImage+GIF.h"
-#import "iCarousel.h"
 #import "MEUtil.h"
 #import "MEPageControl+AutoScroll.h"
 #import "MEScaleToSize.h"
 #import "UIImageView+AFNetworking.h"
 #import "UICollectionViewLeftAlignedLayout.h"
+#import "UINavigationBar+Awesome.h"
 
 #define ME_DATASOURCE   [MEDataSource shareDataSource]
 
@@ -31,6 +31,8 @@
 #define ME_Height   [UIScreen mainScreen].bounds.size.height
 
 #define ME_GetViewController(vcID, sbName) [[UIStoryboard storyboardWithName:sbName bundle:nil] instantiateViewControllerWithIdentifier:vcID]
+
+#define NAVBAR_CHANGE_POINT 50
 
 #ifdef DEBUG
 #   define MELog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);

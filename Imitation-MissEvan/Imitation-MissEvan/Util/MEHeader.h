@@ -34,6 +34,10 @@
 
 #define NAVBAR_CHANGE_POINT 50
 
+#define kBitsPerComponent (8)
+#define kBitsPerPixel (32)
+#define kPixelChannelCount (4)
+
 #ifdef DEBUG
 #   define MELog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
 #else

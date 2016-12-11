@@ -11,6 +11,8 @@
 
 @interface MEBarrageViewController ()<UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView * scrollView;
+@property (nonatomic, strong) UIImageView * mosaicThemeImageView;//马赛克主题背景
+@property (nonatomic, strong) UIImageView * themeImageView;
 
 @end
 
@@ -35,14 +37,18 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.navigationItem.leftBarButtonItem = [MEUtil backButtonWithTarget:self action:@selector(backView)];
+    self.navigationItem.leftBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(backView) withImage:[UIImage imageNamed:@"sp_button_back_22x22_"]];
+    self.navigationItem.rightBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(showMorePopView) withImage:[UIImage imageNamed:@"new_more_32x27_"]];
+    UIImage * image = self.mosaicThemeImageView.image;
+    self.mosaicThemeImageView.image = [MEUtil transToMosaicImage:image blockLevel:35];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     //暂时解决leftBarButtonItem替换延迟的问题
-    self.navigationItem.leftBarButtonItem = [MEUtil backButtonWithTarget:self action:@selector(backView)];
+    self.navigationItem.leftBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(backView) withImage:[UIImage imageNamed:@"sp_button_back_22x22_"]];
+    self.navigationItem.rightBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(showMorePopView) withImage:[UIImage imageNamed:@"new_more_32x27_"]];
     
 }
 
@@ -65,15 +71,40 @@
     self.scrollView.delegate = self;
     self.scrollView.showsVerticalScrollIndicator = NO;
     
+    self.mosaicThemeImageView = [UIImageView new];
+    [self.scrollView addSubview:self.mosaicThemeImageView];
+    [self.mosaicThemeImageView setImageWithURL:[NSURL URLWithString:@"http://static.missevan.com/coversmini/201612/08/244f19cebb8cf2136ac1939f31a943e1160549.jpg"] placeholderImage:[UIImage imageNamed:@""]];
+    [self.mosaicThemeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.scrollView).with.offset(-64);
+        make.left.equalTo(self.scrollView);
+        make.right.equalTo(self.scrollView);
+        make.centerX.equalTo(self.scrollView);
+
+        make.size.mas_equalTo(CGSizeMake(ME_Width, 400));
+    }];
+    
+    self.themeImageView = [UIImageView new];
+    [self.mosaicThemeImageView addSubview:self.themeImageView];
+    [self.themeImageView setImageWithURL:[NSURL URLWithString:@"http://static.missevan.com/coversmini/201612/08/244f19cebb8cf2136ac1939f31a943e1160549.jpg"] placeholderImage:[UIImage imageNamed:@""]];
+    self.themeImageView.layer.masksToBounds = YES;
+    self.themeImageView.layer.cornerRadius = 100;
+    self.themeImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.themeImageView.layer.borderWidth = 1.5;
+    [self.themeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.mosaicThemeImageView).with.offset(40);
+        make.centerX.equalTo(self.mosaicThemeImageView);
+        
+        make.size.mas_equalTo(CGSizeMake(200, 200));
+    }];
+    
     UIButton * button = [UIButton new];
     [self.scrollView addSubview:button];
     [button setTitle:@"弹幕" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.scrollView).with.offset(0);
-        make.top.equalTo(self.scrollView).with.offset(1000);
-        make.left.equalTo(self.scrollView).with.offset(100);
-        make.right.equalTo(self.scrollView).with.offset(100);
+        make.top.equalTo(self.mosaicThemeImageView.mas_bottom).with.offset(1000);
+
         make.centerX.equalTo(self.scrollView);
         
         make.size.mas_equalTo(CGSizeMake(100, 100));
@@ -83,6 +114,11 @@
 - (void)backView
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)showMorePopView
+{
+    //TODO:更多选项
 }
 
 /*
@@ -97,6 +133,14 @@
         [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:alpha]];
     } else {
         [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:0]];
+    }
+    //限制scrollView滑动到顶部后的继续滑动
+    CGPoint offset = scrollView.contentOffset;//scrollview当前显示区域定点相对于fram顶点的偏移量
+    //currentOffset与maximumOffset的值相等时，说明scrollview已经滑到底部了，即偏移量达到最大值
+    if (offset.y <= 0) {
+        MELog(@"滑到顶部");
+        scrollView.contentOffset = CGPointMake(0, 0);
+        return;
     }
 }
 

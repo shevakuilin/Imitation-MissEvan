@@ -18,8 +18,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.leftBarButtonItem = [MEUtil backButtonWithTarget:self action:@selector(backView)];
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];//去掉阴影下划线
+    
     self.view.backgroundColor = ME_Color(243, 243, 243);
     [self customView];
 }
@@ -29,10 +32,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.navigationItem.leftBarButtonItem = [MEUtil backButtonWithTarget:self action:@selector(backView)];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    //暂时解决leftBarButtonItem替换延迟的问题
+    self.navigationItem.leftBarButtonItem = [MEUtil backButtonWithTarget:self action:@selector(backView)];
+    
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor whiteColor]];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor blackColor]}];
+    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
+    [self.navigationController.navigationBar setShadowImage:nil];
 }
 
 - (void)customView

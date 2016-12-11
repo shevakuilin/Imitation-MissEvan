@@ -20,6 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"动态";
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor blackColor]}];
+    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     [self customView];
 }
 

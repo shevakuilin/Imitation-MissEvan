@@ -25,6 +25,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"频道";
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor blackColor]}];
+    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     [self customView];
 }
 
@@ -34,7 +37,7 @@
     [self.view addSubview:topView];
     topView.backgroundColor = ME_Color(243, 243, 243);
     [topView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view);
+        make.top.equalTo(self.view).with.offset(65);
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
         

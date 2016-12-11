@@ -65,11 +65,11 @@
 
 - (void)customAppearance
 {
-    [[UINavigationBar appearance] setTranslucent:NO];
-    [[UIBarButtonItem appearance] setTintColor:[UIColor blackColor]];
-    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17], NSForegroundColorAttributeName:[UIColor blackColor]}];
+//    [[UINavigationBar appearance] setTranslucent:NO];
+//    [[UIBarButtonItem appearance] setTintColor:[UIColor blackColor]];
+//    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
+//    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+//    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17], NSForegroundColorAttributeName:[UIColor blackColor]}];
     
     UIViewController * viewController = ME_GetViewController(@"LaunchScreen", @"LaunchScreen");
     self.launchView = viewController.view;

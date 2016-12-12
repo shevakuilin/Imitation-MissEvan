@@ -39,8 +39,8 @@
     [super viewDidAppear:animated];
     self.navigationItem.leftBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(backView) withImage:[UIImage imageNamed:@"sp_button_back_22x22_"]];
     self.navigationItem.rightBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(showMorePopView) withImage:[UIImage imageNamed:@"new_more_32x27_"]];
-    UIImage * image = self.mosaicThemeImageView.image;
-    self.mosaicThemeImageView.image = [MEUtil transToMosaicImage:image blockLevel:35];
+//    UIImage * image = self.mosaicThemeImageView.image;
+//    self.mosaicThemeImageView.image = [MEUtil transToMosaicImage:image blockLevel:35];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -73,28 +73,36 @@
     
     self.mosaicThemeImageView = [UIImageView new];
     [self.scrollView addSubview:self.mosaicThemeImageView];
-    [self.mosaicThemeImageView setImageWithURL:[NSURL URLWithString:@"http://static.missevan.com/coversmini/201612/08/244f19cebb8cf2136ac1939f31a943e1160549.jpg"] placeholderImage:[UIImage imageNamed:@""]];
+//    [self.mosaicThemeImageView setImageWithURL:[NSURL URLWithString:@"http://static.missevan.com/coversmini/201612/08/244f19cebb8cf2136ac1939f31a943e1160549.jpg"] placeholderImage:[UIImage imageNamed:@""]];
+    self.mosaicThemeImageView.contentMode = UIViewContentModeScaleAspectFill;
+    UIImage * image = [UIImage imageNamed:@"hotMVoice_downLeft"];
+    UIImage * mosaicImage = [MEUtil transToMosaicImage:image blockLevel:34];
+    UIImage * blurImage = [MEUtil boxblurImage:mosaicImage withBlurNumber:0.5];
+    self.mosaicThemeImageView.image = blurImage;
+//    self.mosaicThemeImageView.image = [MEUtil transToMosaicImage:self.mosaicThemeImageView.image blockLevel:34];
+    self.mosaicThemeImageView.clipsToBounds = YES;
     [self.mosaicThemeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.scrollView).with.offset(-64);
         make.left.equalTo(self.scrollView);
         make.right.equalTo(self.scrollView);
         make.centerX.equalTo(self.scrollView);
 
-        make.size.mas_equalTo(CGSizeMake(ME_Width, 400));
+        make.size.mas_equalTo(CGSizeMake(ME_Width, 450));
     }];
     
     self.themeImageView = [UIImageView new];
     [self.mosaicThemeImageView addSubview:self.themeImageView];
-    [self.themeImageView setImageWithURL:[NSURL URLWithString:@"http://static.missevan.com/coversmini/201612/08/244f19cebb8cf2136ac1939f31a943e1160549.jpg"] placeholderImage:[UIImage imageNamed:@""]];
+//    [self.themeImageView setImageWithURL:[NSURL URLWithString:@"http://static.missevan.com/coversmini/201612/08/244f19cebb8cf2136ac1939f31a943e1160549.jpg"] placeholderImage:[UIImage imageNamed:@""]];
+    self.themeImageView.image = [UIImage imageNamed:@"hotMVoice_downLeft"];
     self.themeImageView.layer.masksToBounds = YES;
-    self.themeImageView.layer.cornerRadius = 100;
+    self.themeImageView.layer.cornerRadius = 110;
     self.themeImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.themeImageView.layer.borderWidth = 1.5;
     [self.themeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.mosaicThemeImageView).with.offset(40);
+        make.centerY.equalTo(self.mosaicThemeImageView).with.offset(25);
         make.centerX.equalTo(self.mosaicThemeImageView);
         
-        make.size.mas_equalTo(CGSizeMake(200, 200));
+        make.size.mas_equalTo(CGSizeMake(220, 220));
     }];
     
     UIButton * button = [UIButton new];

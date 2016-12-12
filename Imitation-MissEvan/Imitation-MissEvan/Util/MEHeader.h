@@ -19,6 +19,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "UICollectionViewLeftAlignedLayout.h"
 #import "UINavigationBar+Awesome.h"
+#import <Accelerate/Accelerate.h>//处理图像模糊
 
 #define ME_DATASOURCE   [MEDataSource shareDataSource]
 

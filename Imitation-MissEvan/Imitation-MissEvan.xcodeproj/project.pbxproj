@@ -39,6 +39,7 @@
 		E427440B1DFAFBA10048F3C6 /* MEBarrageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E427440A1DFAFBA10048F3C6 /* MEBarrageViewController.m */; };
 		E445057C1DFC557C0094FEDE /* METabBarCatImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E445057B1DFC557C0094FEDE /* METabBarCatImageView.m */; };
 		E445057F1DFC65C70094FEDE /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = E445057E1DFC65C70094FEDE /* UINavigationBar+Awesome.m */; };
+		E4B71B081DFE56290013F34F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B71B071DFE56290013F34F /* Accelerate.framework */; };
 		E4C3B56D1DD7787C00A672D1 /* MEScaleToSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B56C1DD7787C00A672D1 /* MEScaleToSize.m */; };
 		E4C3B5891DDC8F5900A672D1 /* MEAkiraTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B57A1DDC8F5900A672D1 /* MEAkiraTableViewCell.m */; };
 		E4C3B58A1DDC8F5900A672D1 /* MEBellsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B57C1DDC8F5900A672D1 /* MEBellsTableViewCell.m */; };
@@ -141,6 +142,7 @@
 		E445057B1DFC557C0094FEDE /* METabBarCatImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METabBarCatImageView.m; sourceTree = "<group>"; };
 		E445057D1DFC65C70094FEDE /* UINavigationBar+Awesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Awesome.h"; sourceTree = "<group>"; };
 		E445057E1DFC65C70094FEDE /* UINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Awesome.m"; sourceTree = "<group>"; };
+		E4B71B071DFE56290013F34F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		E4C3B56B1DD7787C00A672D1 /* MEScaleToSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEScaleToSize.h; sourceTree = "<group>"; };
 		E4C3B56C1DD7787C00A672D1 /* MEScaleToSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEScaleToSize.m; sourceTree = "<group>"; };
 		E4C3B5791DDC8F5900A672D1 /* MEAkiraTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEAkiraTableViewCell.h; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4B71B081DFE56290013F34F /* Accelerate.framework in Frameworks */,
 				C9539F1C10181F2A520BDDE3 /* libPods-Imitation-MissEvan.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -421,6 +424,7 @@
 		CD12B2E7146F7BB9CE190470 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E4B71B071DFE56290013F34F /* Accelerate.framework */,
 				20DBB35C9F8E09611DFD0293 /* libPods-Imitation-MissEvan.a */,
 			);
 			name = Frameworks;

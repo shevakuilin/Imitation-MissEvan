@@ -16,6 +16,8 @@
 + (UIBarButtonItem *)barButtonWithTarget:(id)target action:(SEL)selector withImage:(UIImage *)image;
 
 //图像马赛克
-+ (UIImage *)transToMosaicImage:(UIImage*)orginImage blockLevel:(NSUInteger)level;
++ (UIImage *)transToMosaicImage:(UIImage *)orginImage blockLevel:(NSUInteger)level;
 
+//处理图像模糊
++ (UIImage *)boxblurImage:(UIImage *)image withBlurNumber:(CGFloat)blur;
 @end

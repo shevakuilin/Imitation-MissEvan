@@ -137,7 +137,7 @@
     int x = scrollView.contentOffset.x;
     MELog(@"x is %d",x);
     //往下翻一张
-    if(x >= (2*self.frame.size.width)) {
+    if(x >= (2 * self.frame.size.width)) {
         if (self.currentPage + 1 == [self.viewsArray count]) {
             self.currentPage = 0;
         }

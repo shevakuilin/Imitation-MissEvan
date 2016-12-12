@@ -859,6 +859,7 @@
 			baseConfigurationReference = 0DAEBD253CF221B554034028 /* Pods-Imitation-MissEvan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "Imitation-MissEvan/Info.plist";
@@ -874,6 +875,7 @@
 			baseConfigurationReference = 78521F705BB0DCF560EE7105 /* Pods-Imitation-MissEvan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "Imitation-MissEvan/Info.plist";

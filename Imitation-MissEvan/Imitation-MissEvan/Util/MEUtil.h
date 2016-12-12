@@ -20,4 +20,8 @@
 
 //处理图像模糊
 + (UIImage *)boxblurImage:(UIImage *)image withBlurNumber:(CGFloat)blur;
+
+//压缩图片
++ (NSData *)imageWithImage:(UIImage*)image
+              scaledToSize:(CGSize)newSize;
 @end

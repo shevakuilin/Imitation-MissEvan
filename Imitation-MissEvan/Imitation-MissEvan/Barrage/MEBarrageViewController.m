@@ -13,6 +13,12 @@
 @property (nonatomic, strong) UIScrollView * scrollView;
 @property (nonatomic, strong) UIImageView * mosaicThemeImageView;//马赛克主题背景
 @property (nonatomic, strong) UIImageView * themeImageView;
+@property (nonatomic, strong) UIView * bottomPlayView;
+@property (nonatomic, strong) UIButton * playButton;
+@property (nonatomic, strong) UIButton * nextButton;
+@property (nonatomic, strong) UIButton * previousButton;
+@property (nonatomic, strong) UIButton * listButton;
+@property (nonatomic, strong) UIButton * repeatButton;
 
 @end
 
@@ -73,11 +79,10 @@
     
     self.mosaicThemeImageView = [UIImageView new];
     [self.scrollView addSubview:self.mosaicThemeImageView];
-//    [self.mosaicThemeImageView setImageWithURL:[NSURL URLWithString:@"http://static.missevan.com/coversmini/201612/08/244f19cebb8cf2136ac1939f31a943e1160549.jpg"] placeholderImage:[UIImage imageNamed:@""]];
     self.mosaicThemeImageView.contentMode = UIViewContentModeScaleAspectFill;
     UIImage * image = [UIImage imageNamed:@"hotMVoice_downLeft"];
-    UIImage * blurImage = [MEUtil boxblurImage:image withBlurNumber:3.6];
-    UIImage * mosaicImage = [MEUtil transToMosaicImage:blurImage blockLevel:34];
+    UIImage * blurImage = [MEUtil boxblurImage:image withBlurNumber:3.6];//图像虚化
+    UIImage * mosaicImage = [MEUtil transToMosaicImage:blurImage blockLevel:34];//图像添加马赛克
     self.mosaicThemeImageView.image = mosaicImage;
     [MEUtil transToMosaicImage:blurImage blockLevel:34];
     
@@ -119,6 +124,57 @@
         
         make.size.mas_equalTo(CGSizeMake(100, 100));
     }];
+    
+    self.bottomPlayView = [UIView new];
+    [self.view addSubview:self.bottomPlayView];
+    [self.bottomPlayView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view);
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
+        
+        make.size.mas_equalTo(CGSizeMake(ME_Width, 55));
+    }];
+    self.bottomPlayView.backgroundColor = [UIColor blackColor];
+    self.bottomPlayView.alpha = 0.8;
+    
+    self.playButton = [UIButton new];
+    [self.bottomPlayView addSubview:self.playButton];
+    [self.playButton setImage:[UIImage imageNamed:@"npv_button_play_41x41_"] forState:UIControlStateNormal];
+    [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.bottomPlayView);
+    }];
+    
+    self.nextButton = [UIButton new];
+    [self.bottomPlayView addSubview:self.nextButton];
+    [self.nextButton setImage:[UIImage imageNamed:@"npv_button_next_29x29_"] forState:UIControlStateNormal];
+    [self.nextButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.playButton.mas_right).with.offset(30);
+        make.centerY.equalTo(self.playButton);
+    }];
+    
+    self.previousButton = [UIButton new];
+    [self.bottomPlayView addSubview:self.previousButton];
+    [self.previousButton setImage:[UIImage imageNamed:@"npv_button_previous_29x29_"] forState:UIControlStateNormal];
+    [self.previousButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.playButton.mas_left).with.offset(-30);
+        make.centerY.equalTo(self.playButton);
+    }];
+    
+    self.repeatButton = [UIButton new];
+    [self.bottomPlayView addSubview:self.repeatButton];
+    [self.repeatButton setImage:[UIImage imageNamed:@"npv_button_circle_repeat_21x20_"] forState:UIControlStateNormal];
+    [self.repeatButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.bottomPlayView).with.offset(20);
+        make.centerY.equalTo(self.playButton);
+    }];
+    
+    self.listButton = [UIButton new];
+    [self.bottomPlayView addSubview:self.listButton];
+    [self.listButton setImage:[UIImage imageNamed:@"npv_button_list_21x14_@1x"] forState:UIControlStateNormal];
+    [self.listButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.bottomPlayView).with.offset(-20);
+        make.centerY.equalTo(self.playButton);
+    }];
 }
 
 - (void)backView
@@ -139,7 +195,7 @@
     UIColor * color = [UIColor blackColor];
     CGFloat offsetY = scrollView.contentOffset.y;
     if (offsetY > NAVBAR_CHANGE_POINT) {
-        CGFloat alpha = MIN(0.8, 0.8 - ((NAVBAR_CHANGE_POINT + 64 - offsetY) / 64));
+        CGFloat alpha = MIN(0.8, 0.8 - ((NAVBAR_CHANGE_POINT + 64 - offsetY) / 64));//这里控制alpha最大值
         [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:alpha]];
     } else {
         [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:0]];

@@ -13,4 +13,11 @@
 
 + (UIButton *)barButtonItemWithImage:(NSString *)image target:(id)target action:(SEL)selector isLeft:(BOOL)isLeft isRight:(BOOL)isRight;
 
++ (UIBarButtonItem *)barButtonWithTarget:(id)target action:(SEL)selector withImage:(UIImage *)image;
+
+//图像马赛克
++ (UIImage *)transToMosaicImage:(UIImage *)orginImage blockLevel:(NSUInteger)level;
+
+//处理图像模糊
++ (UIImage *)boxblurImage:(UIImage *)image withBlurNumber:(CGFloat)blur;
 @end

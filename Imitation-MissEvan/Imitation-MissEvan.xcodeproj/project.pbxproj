@@ -10,7 +10,6 @@
 		770DBD401DEC23A30019D206 /* MESearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 770DBD3F1DEC23A30019D206 /* MESearchView.m */; };
 		771AB1F01DD0560000DDBA44 /* MEPageControl+AutoScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 771AB1EF1DD0560000DDBA44 /* MEPageControl+AutoScroll.m */; };
 		774482471DC1A8860044EE55 /* METabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774482461DC1A8860044EE55 /* METabBarViewController.m */; };
-		7744824B1DC1ED600044EE55 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744824A1DC1ED600044EE55 /* iCarousel.m */; };
 		778123931DBDAD4500425E6A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 778123921DBDAD4500425E6A /* main.m */; };
 		778123961DBDAD4500425E6A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 778123951DBDAD4500425E6A /* AppDelegate.m */; };
 		7781239E1DBDAD4500425E6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7781239D1DBDAD4500425E6A /* Assets.xcassets */; };
@@ -36,6 +35,11 @@
 		77DAF2211DDEE9EF001FE1A8 /* MEVoiceListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DAF2201DDEE9EF001FE1A8 /* MEVoiceListTableViewCell.m */; };
 		77E0D42B1DED1D98006A7814 /* MEHotSearchCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E0D42A1DED1D98006A7814 /* MEHotSearchCollectionViewCell.m */; };
 		C9539F1C10181F2A520BDDE3 /* libPods-Imitation-MissEvan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20DBB35C9F8E09611DFD0293 /* libPods-Imitation-MissEvan.a */; };
+		E42744081DFAFAF20048F3C6 /* MEBarrage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E42744071DFAFAF20048F3C6 /* MEBarrage.storyboard */; };
+		E427440B1DFAFBA10048F3C6 /* MEBarrageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E427440A1DFAFBA10048F3C6 /* MEBarrageViewController.m */; };
+		E445057C1DFC557C0094FEDE /* METabBarCatImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E445057B1DFC557C0094FEDE /* METabBarCatImageView.m */; };
+		E445057F1DFC65C70094FEDE /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = E445057E1DFC65C70094FEDE /* UINavigationBar+Awesome.m */; };
+		E4B71B081DFE56290013F34F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B71B071DFE56290013F34F /* Accelerate.framework */; };
 		E4C3B56D1DD7787C00A672D1 /* MEScaleToSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B56C1DD7787C00A672D1 /* MEScaleToSize.m */; };
 		E4C3B5891DDC8F5900A672D1 /* MEAkiraTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B57A1DDC8F5900A672D1 /* MEAkiraTableViewCell.m */; };
 		E4C3B58A1DDC8F5900A672D1 /* MEBellsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B57C1DDC8F5900A672D1 /* MEBellsTableViewCell.m */; };
@@ -85,8 +89,6 @@
 		771AB1EF1DD0560000DDBA44 /* MEPageControl+AutoScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MEPageControl+AutoScroll.m"; sourceTree = "<group>"; };
 		774482451DC1A8860044EE55 /* METabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METabBarViewController.h; sourceTree = "<group>"; };
 		774482461DC1A8860044EE55 /* METabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METabBarViewController.m; sourceTree = "<group>"; };
-		774482491DC1ED600044EE55 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
-		7744824A1DC1ED600044EE55 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		7781238E1DBDAD4500425E6A /* Imitation-MissEvan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Imitation-MissEvan.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		778123921DBDAD4500425E6A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		778123941DBDAD4500425E6A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -133,6 +135,14 @@
 		77E0D4291DED1D98006A7814 /* MEHotSearchCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEHotSearchCollectionViewCell.h; sourceTree = "<group>"; };
 		77E0D42A1DED1D98006A7814 /* MEHotSearchCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEHotSearchCollectionViewCell.m; sourceTree = "<group>"; };
 		78521F705BB0DCF560EE7105 /* Pods-Imitation-MissEvan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imitation-MissEvan.release.xcconfig"; path = "Pods/Target Support Files/Pods-Imitation-MissEvan/Pods-Imitation-MissEvan.release.xcconfig"; sourceTree = "<group>"; };
+		E42744071DFAFAF20048F3C6 /* MEBarrage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MEBarrage.storyboard; sourceTree = "<group>"; };
+		E42744091DFAFBA10048F3C6 /* MEBarrageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEBarrageViewController.h; sourceTree = "<group>"; };
+		E427440A1DFAFBA10048F3C6 /* MEBarrageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEBarrageViewController.m; sourceTree = "<group>"; };
+		E445057A1DFC557C0094FEDE /* METabBarCatImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METabBarCatImageView.h; sourceTree = "<group>"; };
+		E445057B1DFC557C0094FEDE /* METabBarCatImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METabBarCatImageView.m; sourceTree = "<group>"; };
+		E445057D1DFC65C70094FEDE /* UINavigationBar+Awesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Awesome.h"; sourceTree = "<group>"; };
+		E445057E1DFC65C70094FEDE /* UINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Awesome.m"; sourceTree = "<group>"; };
+		E4B71B071DFE56290013F34F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		E4C3B56B1DD7787C00A672D1 /* MEScaleToSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEScaleToSize.h; sourceTree = "<group>"; };
 		E4C3B56C1DD7787C00A672D1 /* MEScaleToSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEScaleToSize.m; sourceTree = "<group>"; };
 		E4C3B5791DDC8F5900A672D1 /* MEAkiraTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEAkiraTableViewCell.h; sourceTree = "<group>"; };
@@ -180,6 +190,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4B71B081DFE56290013F34F /* Accelerate.framework in Frameworks */,
 				C9539F1C10181F2A520BDDE3 /* libPods-Imitation-MissEvan.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,15 +234,6 @@
 			path = "MEPageControl+AutoScroll";
 			sourceTree = "<group>";
 		};
-		774482481DC1ED600044EE55 /* iCarousel */ = {
-			isa = PBXGroup;
-			children = (
-				774482491DC1ED600044EE55 /* iCarousel.h */,
-				7744824A1DC1ED600044EE55 /* iCarousel.m */,
-			);
-			path = iCarousel;
-			sourceTree = "<group>";
-		};
 		778123851DBDAD4500425E6A = {
 			isa = PBXGroup;
 			children = (
@@ -260,6 +262,7 @@
 				77C819451DBDF4E10004EFFC /* Structure */,
 				778123C61DBDB29D00425E6A /* Home */,
 				778123C41DBDB29D00425E6A /* Channel */,
+				E42744061DFAFA800048F3C6 /* Barrage */,
 				778123C51DBDB29D00425E6A /* Follow */,
 				778123C71DBDB29D00425E6A /* My */,
 				77C819431DBDBB0D0004EFFC /* Lib */,
@@ -357,7 +360,8 @@
 		77C819431DBDBB0D0004EFFC /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				774482481DC1ED600044EE55 /* iCarousel */,
+				E445057D1DFC65C70094FEDE /* UINavigationBar+Awesome.h */,
+				E445057E1DFC65C70094FEDE /* UINavigationBar+Awesome.m */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -385,6 +389,8 @@
 				77C8194A1DBDF53B0004EFFC /* METabBar.m */,
 				77C8194C1DBDFE960004EFFC /* METabBarButton.h */,
 				77C8194D1DBDFE960004EFFC /* METabBarButton.m */,
+				E445057A1DFC557C0094FEDE /* METabBarCatImageView.h */,
+				E445057B1DFC557C0094FEDE /* METabBarCatImageView.m */,
 				774482451DC1A8860044EE55 /* METabBarViewController.h */,
 				774482461DC1A8860044EE55 /* METabBarViewController.m */,
 			);
@@ -418,9 +424,20 @@
 		CD12B2E7146F7BB9CE190470 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E4B71B071DFE56290013F34F /* Accelerate.framework */,
 				20DBB35C9F8E09611DFD0293 /* libPods-Imitation-MissEvan.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E42744061DFAFA800048F3C6 /* Barrage */ = {
+			isa = PBXGroup;
+			children = (
+				E42744071DFAFAF20048F3C6 /* MEBarrage.storyboard */,
+				E42744091DFAFBA10048F3C6 /* MEBarrageViewController.h */,
+				E427440A1DFAFBA10048F3C6 /* MEBarrageViewController.m */,
+			);
+			path = Barrage;
 			sourceTree = "<group>";
 		};
 		E4C3B5781DDC8F5900A672D1 /* Recommend */ = {
@@ -585,6 +602,7 @@
 				778123A11DBDAD4500425E6A /* LaunchScreen.storyboard in Resources */,
 				77C8192F1DBDB6B50004EFFC /* MEHome.storyboard in Resources */,
 				77C819321DBDB6EB0004EFFC /* MEChannel.storyboard in Resources */,
+				E42744081DFAFAF20048F3C6 /* MEBarrage.storyboard in Resources */,
 				77C819341DBDB7000004EFFC /* MEFollow.storyboard in Resources */,
 				77C819361DBDB76E0004EFFC /* MEMy.storyboard in Resources */,
 				7781239E1DBDAD4500425E6A /* Assets.xcassets in Resources */,
@@ -663,6 +681,7 @@
 				E4C3B5951DDC91E300A672D1 /* MEClassifyCollectionViewCell.m in Sources */,
 				E4C3B58F1DDC8F5900A672D1 /* MEHotMVoiceTableViewCell.m in Sources */,
 				77D5BDD91DCB30B700EA1DCB /* MEHomeSegmentViewController.m in Sources */,
+				E445057C1DFC557C0094FEDE /* METabBarCatImageView.m in Sources */,
 				770DBD401DEC23A30019D206 /* MESearchView.m in Sources */,
 				77C819541DBE00740004EFFC /* MEDataSource.m in Sources */,
 				E4C3B58E1DDC8F5900A672D1 /* MEHomeRecommendTopTableViewCell.m in Sources */,
@@ -679,10 +698,10 @@
 				E4C3B5AD1DEF0BAD00A672D1 /* MEMyUserInfoTableViewCell.m in Sources */,
 				E4C3B5A41DE9E5D500A672D1 /* MEBellsCollectionViewCell.m in Sources */,
 				E4C3B56D1DD7787C00A672D1 /* MEScaleToSize.m in Sources */,
+				E427440B1DFAFBA10048F3C6 /* MEBarrageViewController.m in Sources */,
 				E4C3B5A11DE9DD4100A672D1 /* MEVoiceListCollectionViewCell.m in Sources */,
 				E4C3B58B1DDC8F5900A672D1 /* MEChannelTableViewCell.m in Sources */,
 				77DAF2211DDEE9EF001FE1A8 /* MEVoiceListTableViewCell.m in Sources */,
-				7744824B1DC1ED600044EE55 /* iCarousel.m in Sources */,
 				77D5BDD61DCB2EBD00EA1DCB /* MEHomeSegmentItem.m in Sources */,
 				77D5BDD31DCB297800EA1DCB /* MEHomeSegmentControl.m in Sources */,
 				774482471DC1A8860044EE55 /* METabBarViewController.m in Sources */,
@@ -690,6 +709,7 @@
 				E4C3B5B61DEF183600A672D1 /* MEMyMessageTableViewCell.m in Sources */,
 				77C819421DBDB98C0004EFFC /* MEMyViewController.m in Sources */,
 				778123961DBDAD4500425E6A /* AppDelegate.m in Sources */,
+				E445057F1DFC65C70094FEDE /* UINavigationBar+Awesome.m in Sources */,
 				E4C3B5AA1DEDC93100A672D1 /* MESearchHistoryTableViewCell.m in Sources */,
 				E4C3B59E1DE9D3DF00A672D1 /* MEChannelCollectionViewCell.m in Sources */,
 				E4C3B5B31DEF17F000A672D1 /* MEMyPersonalCenterCollectionViewCell.m in Sources */,

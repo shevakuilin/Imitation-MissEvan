@@ -36,8 +36,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationController.navigationBarHidden = YES;
-    
     self.voiceListView = [[UIViewController alloc] init];
     self.voiceListView.title = @"音单";
     
@@ -58,6 +56,19 @@
     [self customClassifyView];
     [self customVoiceListView];
     [self addSearchView];
+}
+
+//为了方便暂时留着
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)customRecommendView

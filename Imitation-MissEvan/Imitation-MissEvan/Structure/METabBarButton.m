@@ -12,7 +12,7 @@
 
 - (void)setHighlighted:(BOOL)highlighted
 {
-    //无需做任何处理
+    //取消高亮，无需做任何处理
 }
 
 @end

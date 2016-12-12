@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "METabBarCatImageView.h"
+
 @class METabBar;
 
 @protocol METabBarDelegate <NSObject>
@@ -21,6 +23,8 @@
 
 @interface METabBar : UIView
 
+@property (nonatomic, strong) METabBarCatImageView * catImageView;
+
 @property (weak, nonatomic) id<METabBarDelegate> delegate;
 /**
  *  使用特定图片来创建按钮, 这样做的好处就是可扩展性. 拿到别的项目里面去也能换图片直接用
@@ -28,6 +32,6 @@
  *  @param defaultImage  普通状态下的图片
  *  @param selectedImage 选中状态下的图片
  */
-- (void)addButtonWithImage:(UIImage *)defaultImage selectedImage:(UIImage *)selectedImage;
+//- (void)addButtonWithImage:(UIImage *)defaultImage selectedImage:(UIImage *)selectedImage;
 
 @end

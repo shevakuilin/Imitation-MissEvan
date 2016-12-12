@@ -45,11 +45,15 @@
             button.imageEdgeInsets = UIEdgeInsetsMake(-10, 20, 0, 0);
 //            button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;//设置button的内容横向居中  设置content是title和image一起变化
             
+            
             [self addSubview:button];
             
             button.tag = i;//设置按钮的标记, 方便来索引当前的按钮,并跳转到相应的视图
             
             [button addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+            
+            //初始化睡觉猫
+            self.catImageView = [[METabBarCatImageView alloc] init];
             
             if (0 == i) {
               [self clickBtn:button];
@@ -59,71 +63,77 @@
     return self;
 }
 
-- (void)addButtonWithImage:(UIImage *)defaultImage selectedImage:(UIImage *)selectedImage
-{
-    UIButton * button = [[UIButton alloc] init];
-
-    [button setImage:defaultImage forState:UIControlStateNormal];
-    [button setImage:selectedImage forState:UIControlStateSelected];
-    
-    [self addSubview:button];
-    
-    [button addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
-    
-    //如果是第一个按钮, 则选中(按顺序一个个添加)
-    if (self.subviews.count == 1) {
-        [self clickBtn:button];
-    }
-}
+//- (void)addButtonWithImage:(UIImage *)defaultImage selectedImage:(UIImage *)selectedImage
+//{
+//    UIButton * button = [[UIButton alloc] init];
+//
+//    [button setImage:defaultImage forState:UIControlStateNormal];
+//    [button setImage:selectedImage forState:UIControlStateSelected];
+//    
+//    [self addSubview:button];
+//    
+//    [button addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    //如果是第一个按钮, 则选中(按顺序一个个添加)
+//    if (self.subviews.count == 1) {
+//        [self clickBtn:button];
+//    }
+//}
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     
-    NSInteger count = self.subviews.count;
+    NSInteger count = self.subviews.count + 1;//此处+1为了代替中间的睡觉猫的位置
     for (NSInteger i = 0; i < count; i ++) {
         //获取按钮
         UIButton * button = self.subviews[i];
         
         button.tag = i;//设置按钮的标记, 方便来索引当前的按钮,并跳转到相应的视图
         
-        CGFloat x = i * self.bounds.size.width / count;
+        CGFloat x = 0;//i * self.bounds.size.width / count;
+        if (i < 2) {
+            x = i * self.bounds.size.width / count;
+        } else {
+            x = (i + 1) * self.bounds.size.width / count;
+        }
         CGFloat y = 0;
         CGFloat width = self.bounds.size.width / count;
         CGFloat height = self.bounds.size.height;
         
-        //中间的睡觉猫需要做特殊处理
-        
         button.frame = CGRectMake(x, y, width, height);
+        //中间的睡觉猫需要做特殊处理
+        self.catImageView.frame = CGRectMake(2 * self.bounds.size.width / count, -35, 80, 80);
+        [self addSubview:self.catImageView];
         
-        if (i == 2) {
-            NSMutableArray * stackImageArray = [NSMutableArray new];
-            for (NSInteger i = 1; i < 141; i ++) {
-                NSString * stackImageName;
-                if (i < 10) {
-                    stackImageName = [NSString stringWithFormat:@"DRRR猫 睡觉000%@_200x200_@1x", @(i)];
-                } else if (i > 9 && i < 100){
-                    stackImageName = [NSString stringWithFormat:@"DRRR猫 睡觉00%@_200x200_@1x", @(i)];
-                } else {
-                    stackImageName = [NSString stringWithFormat:@"DRRR猫 睡觉0%@_200x200_@1x", @(i)];
-                }
-                UIImage * imageName = [UIImage imageNamed:stackImageName];
-                [stackImageArray addObject:imageName];
-            }
-            
-            //设置图片的序列帧 图片数组
-            //                [button setImage:[uiim] forState:<#(UIControlState)#>];
-            UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(2 * self.bounds.size.width / count, -35, 80, 80)];
-            // 设置图片的序列帧 图片数组
-            imageView.animationImages = stackImageArray;
-            //动画重复次数
-            imageView.animationRepeatCount = 10000000 * 10000000;
-            //动画执行时间,多长时间执行完动画
-            imageView.animationDuration = 8.0;
-            //开始动画
-            [imageView startAnimating];
-            [self addSubview:imageView];
-        }
+//        NSMutableArray * stackImageArray = [NSMutableArray new];
+//        for (NSInteger i = 1; i < 141; i ++) {
+//            NSString * stackImageName;
+//            if (i < 10) {
+//                stackImageName = [NSString stringWithFormat:@"DRRR猫 睡觉000%@_200x200_@1x", @(i)];
+//            } else if (i > 9 && i < 100){
+//                stackImageName = [NSString stringWithFormat:@"DRRR猫 睡觉00%@_200x200_@1x", @(i)];
+//            } else {
+//                stackImageName = [NSString stringWithFormat:@"DRRR猫 睡觉0%@_200x200_@1x", @(i)];
+//            }
+//            UIImage * imageName = [UIImage imageNamed:stackImageName];
+//            [stackImageArray addObject:imageName];
+//        }
+        
+        //设置图片的序列帧 图片数组
+        //                [button setImage:[uiim] forState:<#(UIControlState)#>];
+//        self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(2 * self.bounds.size.width / count, -35, 80, 80)];
+//        // 设置图片的序列帧 图片数组
+//        self.imageView.animationImages = stackImageArray;
+//        //动画重复次数
+//        self.imageView.animationRepeatCount = 10000000 * 10000000;
+//        //动画执行时间,多长时间执行完动画
+//        self.imageView.animationDuration = 8.0;
+//        //开始动画
+//        [self.imageView startAnimating];
+//        [self addSubview:self.imageView];
+//        if (i == 2) {
+//        }
         
     }
 }
@@ -144,4 +154,5 @@
     }
 
 }
+
 @end

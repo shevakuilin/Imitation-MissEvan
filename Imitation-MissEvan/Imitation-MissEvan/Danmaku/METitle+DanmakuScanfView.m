@@ -116,6 +116,7 @@
             self.danmakuTextField.font = [UIFont systemFontOfSize:11];
             self.danmakuTextField.textColor = [UIColor whiteColor];
             self.danmakuTextField.text = @"来点弹幕啊~";
+            self.danmakuTextField.returnKeyType = UIReturnKeySend;
             self.danmakuTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
             [self.danmakuTextField mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(self.danmakuScanfView);

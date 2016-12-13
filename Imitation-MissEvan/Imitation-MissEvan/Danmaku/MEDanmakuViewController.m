@@ -10,7 +10,7 @@
 #import "MEHeader.h"
 #import "METitle+DanmakuScanfView.h"
 
-@interface MEDanmakuViewController ()<UIScrollViewDelegate, DanmakuDelegate>
+@interface MEDanmakuViewController ()<UIScrollViewDelegate, DanmakuDelegate, UITextFieldDelegate>
 @property (nonatomic, strong) UIScrollView * scrollView;
 @property (nonatomic, strong) UIImageView * mosaicThemeImageView;//马赛克主题背景
 @property (nonatomic, strong) UIImageView * themeImageView;
@@ -57,7 +57,8 @@
     [super viewDidAppear:animated];
     self.navigationItem.leftBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(backView) withImage:[UIImage imageNamed:@"sp_button_back_22x22_"]];
     self.navigationItem.rightBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(showMorePopView) withImage:[UIImage imageNamed:@"new_more_32x27_"]];
-    [self showTitleAndScanfView];
+    [self showTitleAndScanfView];//显示标题&弹幕输入框
+    [self onStartClick];//自动播放
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -181,11 +182,13 @@
     
     self.playButton = [UIButton new];
     [self.bottomPlayView addSubview:self.playButton];
-    [self.playButton setImage:[UIImage imageNamed:@"npv_button_play_41x41_"] forState:UIControlStateNormal];
+//    [self.playButton setImage:[UIImage imageNamed:@"npv_button_play_41x41_"] forState:UIControlStateNormal];
     [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.bottomPlayView);
     }];
-    [self.playButton addTarget:self action:@selector(onStartClick) forControlEvents:UIControlEventTouchUpInside];
+//    [self.playButton addTarget:self action:@selector(onStartClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.playButton addTarget:self action:@selector(onPauseClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.playButton setImage:[UIImage imageNamed:@"npv_button_pause_41x41_"] forState:UIControlStateNormal];
     
     self.nextButton = [UIButton new];
     [self.bottomPlayView addSubview:self.nextButton];
@@ -412,6 +415,18 @@
     }
 }
 
+#pragma mark - 
+#pragma marl - UITextFieldDelete
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField.text.length == 0) {
+        [textField resignFirstResponder];
+    } else {
+        [self sendDanmaku];
+    }
+    return YES;
+}
+
 #pragma mark -
 #pragma mark - 弹幕设置相关
 - (float)danmakuViewGetPlayTime:(DanmakuView *)danmakuView
@@ -470,7 +485,7 @@
     int time = ([self danmakuViewGetPlayTime:nil] + 1) * 1000;
     int type = rand() % 3;
     NSString * pString = [NSString stringWithFormat:@"%d,%d,1,00EBFF,125", time, type];//随即弹幕颜色和轨道类型
-    NSString * mString = @"舍瓦其谁发送了一条弹幕🐶";
+    NSString * mString = self.title_DanmakuScanfView.danmakuTextField.text;//@"舍瓦其谁发送了一条弹幕🐶";
     DanmakuSource * danmakuSource = [DanmakuSource createWithP:pString M:mString];
     [self.danmakuView sendDanmakuSource:danmakuSource];
 }

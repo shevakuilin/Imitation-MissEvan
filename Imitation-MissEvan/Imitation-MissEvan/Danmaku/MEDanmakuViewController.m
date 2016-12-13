@@ -30,6 +30,7 @@
 @property (nonatomic, strong) UILabel * allTimeLabel;
 
 @property (nonatomic, strong) METitle_DanmakuScanfView * title_DanmakuScanfView;//标题&弹幕输入显示
+@property (nonatomic, strong) NSTimer * showTimer;
 
 @end
 
@@ -56,6 +57,7 @@
     [super viewDidAppear:animated];
     self.navigationItem.leftBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(backView) withImage:[UIImage imageNamed:@"sp_button_back_22x22_"]];
     self.navigationItem.rightBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(showMorePopView) withImage:[UIImage imageNamed:@"new_more_32x27_"]];
+    [self showTitleAndScanfView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -66,7 +68,6 @@
     self.navigationItem.rightBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(showMorePopView) withImage:[UIImage imageNamed:@"new_more_32x27_"]];
     NSData * imageDate = [MEUtil imageWithImage:self.mosaicThemeImageView.image scaledToSize:CGSizeMake(200, 200)];
     self.mosaicThemeImageView.image = [UIImage imageWithData:imageDate];
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -136,6 +137,7 @@
     NSArray * danmakus = [NSArray arrayWithContentsOfFile:danmakufile];
     [_danmakuView prepareDanmakus:danmakus];
     
+    //TODO:标题&弹幕输入显示
     self.title_DanmakuScanfView = [[METitle_DanmakuScanfView alloc] init];
     [self.scrollView insertSubview:self.title_DanmakuScanfView aboveSubview:self.danmakuView];
     [self.title_DanmakuScanfView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -145,6 +147,12 @@
         
         make.size.mas_equalTo(CGSizeMake(ME_Width, 350));
     }];
+    UITapGestureRecognizer * hiddenGesture = [[UITapGestureRecognizer alloc] init];
+    [hiddenGesture addTarget:self action:@selector(hiddenTitleAndScanfView)];
+    [self.title_DanmakuScanfView addGestureRecognizer:hiddenGesture];
+//    UITapGestureRecognizer * showGesture = [[UITapGestureRecognizer alloc] init];
+//    [showGesture addTarget:self action:@selector(showTitleAndScanfView)];
+//    [self.title_DanmakuScanfView addGestureRecognizer:showGesture];
     
     UIButton * button = [UIButton new];
     [self.scrollView addSubview:button];
@@ -370,6 +378,7 @@
         make.top.equalTo(rightCenterImageView.mas_bottom).with.offset(2);
         make.centerX.equalTo(rightCenterImageView);
     }];
+    
 }
 
 - (void)backView
@@ -463,7 +472,7 @@
     NSString * pString = [NSString stringWithFormat:@"%d,%d,1,00EBFF,125", time, type];//随即弹幕颜色和轨道类型
     NSString * mString = @"舍瓦其谁发送了一条弹幕🐶";
     DanmakuSource * danmakuSource = [DanmakuSource createWithP:pString M:mString];
-    [_danmakuView sendDanmakuSource:danmakuSource];
+    [self.danmakuView sendDanmakuSource:danmakuSource];
 }
 
 - (void)onTimeChange
@@ -474,6 +483,76 @@
     NSString * str_second = [NSString stringWithFormat:@"%02ld",seconds % 60];
     NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
     self.currentTimeLabel.text = format_time;//[NSString stringWithFormat:@"%.0fs", self.slider.value * 120.0];
+}
+
+- (void)showTitleAndScanfView
+{
+    //TODO:显示标题和弹幕输入框
+    //获取初始坐标
+    CGPoint titlePoint = self.title_DanmakuScanfView.titleView.center;
+    CGPoint autoScrollLabelPoint = self.title_DanmakuScanfView.autoScrollLabel.center;
+    CGPoint danmakuPoint = self.title_DanmakuScanfView.danmakuView.center;
+    CGPoint scanfPoint = self.title_DanmakuScanfView.danmakuScanfView.center;
+    CGPoint textFieldPoint = self.title_DanmakuScanfView.danmakuTextField.center;
+    CGPoint closerOfOpenPoint = self.title_DanmakuScanfView.closeOrOpenDanmaku.center;
+    CGPoint statusPoint = self.title_DanmakuScanfView.danmakuStatusLabel.center;
+    //执行动画
+    [UIView animateWithDuration:0.5 animations:^{
+        //自上向下进入屏幕
+        self.title_DanmakuScanfView.titleView.center = CGPointMake(titlePoint.x, titlePoint.y + 64);
+        self.title_DanmakuScanfView.autoScrollLabel.center = CGPointMake(autoScrollLabelPoint.x, autoScrollLabelPoint.y + 64);
+        //自下而上进入屏幕
+        self.title_DanmakuScanfView.danmakuView.center = CGPointMake(danmakuPoint.x, danmakuPoint.y - 55);
+        self.title_DanmakuScanfView.danmakuScanfView.center = CGPointMake(scanfPoint.x, scanfPoint.y - 55);
+        self.title_DanmakuScanfView.danmakuTextField.center = CGPointMake(textFieldPoint.x, textFieldPoint.y - 55);
+        self.title_DanmakuScanfView.closeOrOpenDanmaku.center = CGPointMake(closerOfOpenPoint.x, closerOfOpenPoint.y - 55);
+        self.title_DanmakuScanfView.danmakuStatusLabel.center = CGPointMake(statusPoint.x, statusPoint.y - 55);
+        
+    } completion:^(BOOL finished) {
+        [self showTimerStart];
+        UITapGestureRecognizer * hiddenGesture = [[UITapGestureRecognizer alloc] init];
+        [hiddenGesture addTarget:self action:@selector(hiddenTitleAndScanfView)];
+        [self.title_DanmakuScanfView addGestureRecognizer:hiddenGesture];
+    }];
+}
+
+- (void)showTimerStart
+{
+    self.showTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(hiddenTitleAndScanfView) userInfo:nil repeats:YES];
+}
+
+- (void)hiddenTitleAndScanfView
+{
+    //TODO:隐藏标题和弹幕输入框
+    if (self.showTimer) {
+        [self.showTimer invalidate];
+        self.showTimer = nil;
+    }
+    //获取初始坐标
+    CGPoint titlePoint = self.title_DanmakuScanfView.titleView.center;
+    CGPoint autoScrollLabelPoint = self.title_DanmakuScanfView.autoScrollLabel.center;
+    CGPoint danmakuPoint = self.title_DanmakuScanfView.danmakuView.center;
+    CGPoint scanfPoint = self.title_DanmakuScanfView.danmakuScanfView.center;
+    CGPoint textFieldPoint = self.title_DanmakuScanfView.danmakuTextField.center;
+    CGPoint closerOfOpenPoint = self.title_DanmakuScanfView.closeOrOpenDanmaku.center;
+    CGPoint statusPoint = self.title_DanmakuScanfView.danmakuStatusLabel.center;
+    //执行动画
+    [UIView animateWithDuration:0.5 animations:^{
+        //自下而上退出屏幕
+        self.title_DanmakuScanfView.titleView.center = CGPointMake(titlePoint.x, titlePoint.y - 64);
+        self.title_DanmakuScanfView.autoScrollLabel.center = CGPointMake(autoScrollLabelPoint.x, autoScrollLabelPoint.y - 64);
+        //自上向下退出屏幕
+        self.title_DanmakuScanfView.danmakuView.center = CGPointMake(danmakuPoint.x, danmakuPoint.y + 55);
+        self.title_DanmakuScanfView.danmakuScanfView.center = CGPointMake(scanfPoint.x, scanfPoint.y + 55);
+        self.title_DanmakuScanfView.danmakuTextField.center = CGPointMake(textFieldPoint.x, textFieldPoint.y + 55);
+        self.title_DanmakuScanfView.closeOrOpenDanmaku.center = CGPointMake(closerOfOpenPoint.x, closerOfOpenPoint.y + 55);
+        self.title_DanmakuScanfView.danmakuStatusLabel.center = CGPointMake(statusPoint.x, statusPoint.y + 55);
+        
+    } completion:^(BOOL finished) {
+        UITapGestureRecognizer * showGesture = [[UITapGestureRecognizer alloc] init];
+        [showGesture addTarget:self action:@selector(showTitleAndScanfView)];
+        [self.title_DanmakuScanfView addGestureRecognizer:showGesture];
+    }];
 }
 
 @end

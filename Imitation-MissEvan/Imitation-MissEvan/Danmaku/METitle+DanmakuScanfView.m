@@ -25,7 +25,8 @@
             self.titleView.backgroundColor = [UIColor whiteColor];
             self.titleView.alpha = 0.05;
             [self.titleView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self);
+//                make.top.equalTo(self);
+                make.top.equalTo(self).with.offset(-64);
                 make.left.equalTo(self);
                 make.right.equalTo(self);
                 
@@ -59,7 +60,8 @@
             self.danmakuView.backgroundColor = [UIColor whiteColor];
             self.danmakuView.alpha = 0.05;
             [self.danmakuView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.bottom.equalTo(self);
+//                make.bottom.equalTo(self);
+                make.bottom.equalTo(self).with.offset(55);
                 make.left.equalTo(self);
                 make.right.equalTo(self);
                 

@@ -50,8 +50,9 @@
 
 - (void)imageViewBounds:(UIImageView *)imageView
 {
-    imageView.layer.masksToBounds = YES;
-    imageView.layer.cornerRadius = ((ME_Width / 4) - 32) / 2;
+//    imageView.layer.masksToBounds = YES;
+//    imageView.layer.cornerRadius = ((ME_Width / 4) - 32) / 2;
+    imageView.aliCornerRadius = ((ME_Width / 4) - 32) / 2;//圆角优化
 }
 
 

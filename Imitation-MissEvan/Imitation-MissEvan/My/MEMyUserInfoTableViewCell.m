@@ -36,8 +36,9 @@
             self.userHeadImageView = [UIImageView new];
             [self addSubview:self.userHeadImageView];
             [self.userHeadImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@icon01.png", ME_URL_GLOBAL, ME_URL_AVATARRS]] placeholderImage:[UIImage imageNamed:@""]];
-            self.userHeadImageView.layer.masksToBounds = YES;
-            self.userHeadImageView.layer.cornerRadius = 30;
+//            self.userHeadImageView.layer.masksToBounds = YES;
+//            self.userHeadImageView.layer.cornerRadius = 30;
+            self.userHeadImageView.aliCornerRadius = 30;//圆角优化
             [self.userHeadImageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self).with.offset(15);
                 make.centerY.equalTo(self).with.offset(0);

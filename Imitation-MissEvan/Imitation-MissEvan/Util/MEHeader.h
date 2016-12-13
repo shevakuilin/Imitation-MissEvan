@@ -22,6 +22,7 @@
 #import <Accelerate/Accelerate.h>//处理图像模糊
 #import "DanmakuView.h"//弹幕
 #import "HJCornerRadius.h"//圆角优化
+#import "CBAutoScrollLabel.h"//滚动标题
 
 #define ME_DATASOURCE   [MEDataSource shareDataSource]
 

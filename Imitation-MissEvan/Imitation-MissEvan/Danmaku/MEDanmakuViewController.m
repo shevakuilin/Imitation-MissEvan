@@ -8,6 +8,7 @@
 
 #import "MEDanmakuViewController.h"
 #import "MEHeader.h"
+#import "METitle+DanmakuScanfView.h"
 
 @interface MEDanmakuViewController ()<UIScrollViewDelegate, DanmakuDelegate>
 @property (nonatomic, strong) UIScrollView * scrollView;
@@ -27,6 +28,8 @@
 @property (nonatomic, strong) UISlider * slider;
 @property (nonatomic, strong) UILabel * currentTimeLabel;//视频当前时间
 @property (nonatomic, strong) UILabel * allTimeLabel;
+
+@property (nonatomic, strong) METitle_DanmakuScanfView * title_DanmakuScanfView;//标题&弹幕输入显示
 
 @end
 
@@ -133,6 +136,15 @@
     NSArray * danmakus = [NSArray arrayWithContentsOfFile:danmakufile];
     [_danmakuView prepareDanmakus:danmakus];
     
+    self.title_DanmakuScanfView = [[METitle_DanmakuScanfView alloc] init];
+    [self.scrollView insertSubview:self.title_DanmakuScanfView aboveSubview:self.danmakuView];
+    [self.title_DanmakuScanfView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.scrollView);
+        make.left.equalTo(self.scrollView);
+        make.right.equalTo(self.scrollView);
+        
+        make.size.mas_equalTo(CGSizeMake(ME_Width, 350));
+    }];
     
     UIButton * button = [UIButton new];
     [self.scrollView addSubview:button];
@@ -247,6 +259,7 @@
         make.left.equalTo(leftView).with.offset(10);
     }];
     
+    
     UIImageView * leftImageView = [UIImageView new];
     [leftView addSubview:leftImageView];
     leftImageView.image = [UIImage imageNamed:@"new_shared_24x25_"];
@@ -301,6 +314,17 @@
         make.right.equalTo(chooseView);
         
         make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
+    }];
+    
+    //TODO:总时间
+    self.allTimeLabel = [UILabel new];
+    [rightView addSubview:self.allTimeLabel];
+    self.allTimeLabel.font = [UIFont systemFontOfSize:9];
+    self.allTimeLabel.textColor = [UIColor lightGrayColor];
+    self.allTimeLabel.text = @"02:00";
+    [self.allTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(rightView).with.offset(6);
+        make.right.equalTo(rightView).with.offset(-10);
     }];
     
     UIImageView * rightImageView = [UIImageView new];

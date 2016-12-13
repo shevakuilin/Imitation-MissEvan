@@ -127,7 +127,7 @@
     configuration.maxShowCount = 45;
     self.danmakuView = [[DanmakuView alloc] initWithFrame:rect configuration:configuration];
     self.danmakuView.delegate = self;
-    [self.view insertSubview:self.danmakuView aboveSubview:self.mosaicThemeImageView];//将弹幕添加到马赛克背景上
+    [self.scrollView insertSubview:self.danmakuView aboveSubview:self.mosaicThemeImageView];//将弹幕添加到马赛克背景上
     //读取弹幕数据
     NSString * danmakufile = [[NSBundle mainBundle] pathForResource:@"danmakufile" ofType:nil];
     NSArray * danmakus = [NSArray arrayWithContentsOfFile:danmakufile];
@@ -199,9 +199,24 @@
         make.centerY.equalTo(self.playButton);
     }];
     
+    
+    UIView * chooseView = [UIView new];
+    [self.scrollView addSubview:chooseView];
+    chooseView.backgroundColor = [UIColor whiteColor];
+    [chooseView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mosaicThemeImageView.mas_bottom);
+        make.left.equalTo(self.scrollView);
+        make.right.equalTo(self.scrollView);
+        
+        make.size.mas_equalTo(CGSizeMake(ME_Width, 65));
+    }];
+    
     //TODO:进度条
     self.slider = [UISlider new];
-    [self.scrollView addSubview:self.slider];
+    [self.scrollView insertSubview:self.slider aboveSubview:chooseView];//插入进度条
+    [self.slider setThumbImage:[UIImage imageNamed:@"fs_img_slider_circle_14x14_"] forState:UIControlStateNormal];
+    [self.slider setMinimumTrackTintColor:ME_Color(215, 32, 27)];
+    [self.slider setMaximumTrackTintColor:[UIColor grayColor]];
     [self.slider mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mosaicThemeImageView.mas_bottom);
         make.left.equalTo(self.scrollView);
@@ -212,29 +227,31 @@
     [self.slider addTarget:self action:@selector(onTimeChange) forControlEvents:UIControlEventValueChanged];
     
     UIView * leftView = [UIView new];
-    [self.scrollView addSubview:leftView];
+    [chooseView addSubview:leftView];
     leftView.backgroundColor = [UIColor whiteColor];
     [leftView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.slider.mas_bottom);
-        make.left.equalTo(self.scrollView);
+        make.left.equalTo(chooseView);
         
         make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
     }];
     
+    //TODO:当前时间
     self.currentTimeLabel = [UILabel new];
     [leftView addSubview:self.currentTimeLabel];
     self.currentTimeLabel.font = [UIFont systemFontOfSize:9];
     self.currentTimeLabel.textColor = [UIColor lightGrayColor];
+    self.currentTimeLabel.text = @"00:00";
     [self.currentTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(leftView).with.offset(3);
-        make.left.equalTo(leftView).with.offset(5);
+        make.top.equalTo(leftView).with.offset(6);
+        make.left.equalTo(leftView).with.offset(10);
     }];
     
     UIImageView * leftImageView = [UIImageView new];
     [leftView addSubview:leftImageView];
     leftImageView.image = [UIImage imageNamed:@"new_shared_24x25_"];
     [leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(leftView).with.offset(18);
+        make.top.equalTo(leftView).with.offset(20);
         make.centerX.equalTo(leftView);
     }];
     
@@ -249,7 +266,7 @@
     
     
     UIView * leftCenterView = [UIView new];
-    [self.scrollView addSubview:leftCenterView];
+    [chooseView addSubview:leftCenterView];
     leftCenterView.backgroundColor = [UIColor whiteColor];
     [leftCenterView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.slider.mas_bottom);
@@ -262,7 +279,7 @@
     [leftCenterView addSubview:leftCenterImageView];
     leftCenterImageView.image = [UIImage imageNamed:@"like2Nor_27x23_@1x"];
     [leftCenterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(leftCenterView).with.offset(20);
+        make.top.equalTo(leftCenterView).with.offset(22);
         make.centerX.equalTo(leftCenterView);
     }];
     
@@ -277,11 +294,11 @@
     
     
     UIView * rightView = [UIView new];
-    [self.scrollView addSubview:rightView];
+    [chooseView addSubview:rightView];
     rightView.backgroundColor = [UIColor whiteColor];
     [rightView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.slider.mas_bottom);
-        make.right.equalTo(self.scrollView);
+        make.right.equalTo(chooseView);
         
         make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
     }];
@@ -290,7 +307,7 @@
     [rightView addSubview:rightImageView];
     rightImageView.image = [UIImage imageNamed:@"new_full_23x23_"];
     [rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(rightView).with.offset(20);
+        make.top.equalTo(rightView).with.offset(22);
         make.centerX.equalTo(rightView);
     }];
     
@@ -304,7 +321,7 @@
     }];
     
     UIView * rightCenterView = [UIView new];
-    [self.scrollView addSubview:rightCenterView];
+    [chooseView addSubview:rightCenterView];
     rightCenterView.backgroundColor = [UIColor whiteColor];
     [rightCenterView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.slider.mas_bottom);
@@ -317,7 +334,7 @@
     [rightCenterView addSubview:rightCenterImageView];
     rightCenterImageView.image = [UIImage imageNamed:@"new_down_25x24_"];
     [rightCenterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(rightCenterView).with.offset(19);
+        make.top.equalTo(rightCenterView).with.offset(20);
         make.centerX.equalTo(rightCenterView);
     }];
     
@@ -428,7 +445,11 @@
 - (void)onTimeChange
 {
     //TODO:进度条时间
-    self.currentTimeLabel.text = [NSString stringWithFormat:@"%.0fs", self.slider.value * 120.0];
+    NSInteger seconds = self.slider.value * 120.0;
+    NSString * str_minute = [NSString stringWithFormat:@"%02ld",seconds / 60];
+    NSString * str_second = [NSString stringWithFormat:@"%02ld",seconds % 60];
+    NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
+    self.currentTimeLabel.text = format_time;//[NSString stringWithFormat:@"%.0fs", self.slider.value * 120.0];
 }
 
 @end

@@ -6,10 +6,10 @@
 //  Copyright © 2016年 xkl. All rights reserved.
 //
 
-#import "MEBarrageViewController.h"
+#import "MEDanmakuViewController.h"
 #import "MEHeader.h"
 
-@interface MEBarrageViewController ()<UIScrollViewDelegate>
+@interface MEDanmakuViewController ()<UIScrollViewDelegate, DanmakuDelegate>
 @property (nonatomic, strong) UIScrollView * scrollView;
 @property (nonatomic, strong) UIImageView * mosaicThemeImageView;//马赛克主题背景
 @property (nonatomic, strong) UIImageView * themeImageView;
@@ -20,9 +20,17 @@
 @property (nonatomic, strong) UIButton * listButton;
 @property (nonatomic, strong) UIButton * repeatButton;
 
+//弹幕设置
+@property (nonatomic, strong) DanmakuView * danmakuView;
+@property (nonatomic, strong) NSDate * startDate;
+@property (nonatomic, strong) NSTimer * timer;
+@property (nonatomic, strong) UISlider * slider;
+@property (nonatomic, strong) UILabel * currentTimeLabel;//视频当前时间
+@property (nonatomic, strong) UILabel * allTimeLabel;
+
 @end
 
-@implementation MEBarrageViewController
+@implementation MEDanmakuViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -85,7 +93,6 @@
     UIImage * mosaicImage = [MEUtil transToMosaicImage:blurImage blockLevel:34];//图像添加马赛克
     self.mosaicThemeImageView.image = mosaicImage;
     [MEUtil transToMosaicImage:blurImage blockLevel:34];
-    
     self.mosaicThemeImageView.clipsToBounds = YES;
     [self.mosaicThemeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.scrollView).with.offset(0);
@@ -98,19 +105,34 @@
     
     self.themeImageView = [UIImageView new];
     [self.mosaicThemeImageView addSubview:self.themeImageView];
-//    [self.themeImageView setImageWithURL:[NSURL URLWithString:@"http://static.missevan.com/coversmini/201612/08/244f19cebb8cf2136ac1939f31a943e1160549.jpg"] placeholderImage:[UIImage imageNamed:@""]];
     self.themeImageView.image = [UIImage imageNamed:@"hotMVoice_downLeft"];
     self.themeImageView.layer.masksToBounds = YES;
     self.themeImageView.layer.cornerRadius = 110;
     self.themeImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.themeImageView.layer.borderWidth = 1.5;
     [self.themeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerY.equalTo(self.mosaicThemeImageView).with.offset(25);
-//        make.centerX.equalTo(self.mosaicThemeImageView);
         make.center.equalTo(self.mosaicThemeImageView);
         
         make.size.mas_equalTo(CGSizeMake(220, 220));
     }];
+    
+    //TODO:弹幕
+    CGRect rect =  CGRectMake(0, 2, ME_Width, 345);
+    DanmakuConfiguration * configuration = [[DanmakuConfiguration alloc] init];
+    configuration.duration = 6.5;
+    configuration.paintHeight = 21;
+    configuration.fontSize = 17;
+    configuration.largeFontSize = 19;
+    configuration.maxLRShowCount = 30;
+    configuration.maxShowCount = 45;
+    self.danmakuView = [[DanmakuView alloc] initWithFrame:rect configuration:configuration];
+    self.danmakuView.delegate = self;
+    [self.view insertSubview:self.danmakuView aboveSubview:self.mosaicThemeImageView];//将弹幕添加到马赛克背景上
+    //读取弹幕数据
+    NSString * danmakufile = [[NSBundle mainBundle] pathForResource:@"danmakufile" ofType:nil];
+    NSArray * danmakus = [NSArray arrayWithContentsOfFile:danmakufile];
+    [_danmakuView prepareDanmakus:danmakus];
+    
     
     UIButton * button = [UIButton new];
     [self.scrollView addSubview:button];
@@ -143,6 +165,7 @@
     [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.bottomPlayView);
     }];
+    [self.playButton addTarget:self action:@selector(onStartClick) forControlEvents:UIControlEventTouchUpInside];
     
     self.nextButton = [UIButton new];
     [self.bottomPlayView addSubview:self.nextButton];
@@ -176,14 +199,35 @@
         make.centerY.equalTo(self.playButton);
     }];
     
+    //TODO:进度条
+    self.slider = [UISlider new];
+    [self.scrollView addSubview:self.slider];
+    [self.slider mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mosaicThemeImageView.mas_bottom);
+        make.left.equalTo(self.scrollView);
+        make.right.equalTo(self.scrollView);
+        
+        make.size.mas_equalTo(CGSizeMake(ME_Width, 1.5));
+    }];
+    [self.slider addTarget:self action:@selector(onTimeChange) forControlEvents:UIControlEventValueChanged];
+    
     UIView * leftView = [UIView new];
     [self.scrollView addSubview:leftView];
     leftView.backgroundColor = [UIColor whiteColor];
     [leftView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mosaicThemeImageView.mas_bottom);
+        make.top.equalTo(self.slider.mas_bottom);
         make.left.equalTo(self.scrollView);
         
         make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
+    }];
+    
+    self.currentTimeLabel = [UILabel new];
+    [leftView addSubview:self.currentTimeLabel];
+    self.currentTimeLabel.font = [UIFont systemFontOfSize:9];
+    self.currentTimeLabel.textColor = [UIColor lightGrayColor];
+    [self.currentTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(leftView).with.offset(3);
+        make.left.equalTo(leftView).with.offset(5);
     }];
     
     UIImageView * leftImageView = [UIImageView new];
@@ -208,7 +252,7 @@
     [self.scrollView addSubview:leftCenterView];
     leftCenterView.backgroundColor = [UIColor whiteColor];
     [leftCenterView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mosaicThemeImageView.mas_bottom);
+        make.top.equalTo(self.slider.mas_bottom);
         make.left.equalTo(leftView.mas_right);
         
         make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
@@ -236,7 +280,7 @@
     [self.scrollView addSubview:rightView];
     rightView.backgroundColor = [UIColor whiteColor];
     [rightView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mosaicThemeImageView.mas_bottom);
+        make.top.equalTo(self.slider.mas_bottom);
         make.right.equalTo(self.scrollView);
         
         make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
@@ -263,7 +307,7 @@
     [self.scrollView addSubview:rightCenterView];
     rightCenterView.backgroundColor = [UIColor whiteColor];
     [rightCenterView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mosaicThemeImageView.mas_bottom);
+        make.top.equalTo(self.slider.mas_bottom);
         make.right.equalTo(rightView.mas_left);
         
         make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
@@ -285,9 +329,6 @@
         make.top.equalTo(rightCenterImageView.mas_bottom).with.offset(2);
         make.centerX.equalTo(rightCenterImageView);
     }];
-    
-    
-    
 }
 
 - (void)backView
@@ -300,9 +341,7 @@
     //TODO:更多选项
 }
 
-/*
- 判断移动scrollView的改变量
- */
+//判断移动scrollView的偏移量
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     UIColor * color = [UIColor blackColor];
@@ -321,6 +360,75 @@
         scrollView.contentOffset = CGPointMake(0, 0);
         return;
     }
+}
+
+#pragma mark -
+#pragma mark - 弹幕设置相关
+- (float)danmakuViewGetPlayTime:(DanmakuView *)danmakuView
+{
+    return self.slider.value * 120.0;
+}
+
+- (BOOL)danmakuViewIsBuffering:(DanmakuView *)danmakuView
+{
+    return NO;
+}
+
+- (void)danmakuViewPerpareComplete:(DanmakuView *)danmakuView
+{
+    [self.danmakuView start];
+}
+
+- (void)onTimeCount
+{
+    self.slider.value += 0.1 / 120;
+    if (self.slider.value > 120.0) {
+        self.slider.value = 0;
+    }
+    [self onTimeChange];
+}
+
+- (void)onStartClick
+{
+    //TODO:开始播放
+    if (self.danmakuView.isPrepared) {
+        if (!self.timer) {
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(onTimeCount) userInfo:nil repeats:YES];
+        }
+        [self.danmakuView start];
+        [self.playButton addTarget:self action:@selector(onPauseClick) forControlEvents:UIControlEventTouchUpInside];
+        [self.playButton setImage:[UIImage imageNamed:@"npv_button_pause_41x41_"] forState:UIControlStateNormal];
+    }
+    
+}
+
+- (void)onPauseClick
+{
+    //TODO:暂停播放
+    if (self.timer) {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
+    [self.danmakuView pause];
+    [self.playButton addTarget:self action:@selector(onStartClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.playButton setImage:[UIImage imageNamed:@"npv_button_play_41x41_"] forState:UIControlStateNormal];
+}
+
+- (void)sendDanmaku
+{
+    //TODO:插入/发送弹幕
+    int time = ([self danmakuViewGetPlayTime:nil] + 1) * 1000;
+    int type = rand() % 3;
+    NSString * pString = [NSString stringWithFormat:@"%d,%d,1,00EBFF,125", time, type];//随即弹幕颜色和轨道类型
+    NSString * mString = @"舍瓦其谁发送了一条弹幕🐶";
+    DanmakuSource * danmakuSource = [DanmakuSource createWithP:pString M:mString];
+    [_danmakuView sendDanmakuSource:danmakuSource];
+}
+
+- (void)onTimeChange
+{
+    //TODO:进度条时间
+    self.currentTimeLabel.text = [NSString stringWithFormat:@"%.0fs", self.slider.value * 120.0];
 }
 
 @end

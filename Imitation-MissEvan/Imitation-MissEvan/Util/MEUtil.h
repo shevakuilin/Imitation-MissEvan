@@ -15,10 +15,16 @@
 
 + (UIBarButtonItem *)barButtonWithTarget:(id)target action:(SEL)selector withImage:(UIImage *)image;
 
-//图像马赛克
+/** 图像马赛克
+ *
+ * @param level 马赛克色块的数量级
+ */
 + (UIImage *)transToMosaicImage:(UIImage *)orginImage blockLevel:(NSUInteger)level;
 
-//处理图像模糊
+/** 处理图像模糊
+ *
+ * @param blur  模糊滤镜值
+ */
 + (UIImage *)boxblurImage:(UIImage *)image withBlurNumber:(CGFloat)blur;
 
 //压缩图片

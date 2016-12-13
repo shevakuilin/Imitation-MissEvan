@@ -55,8 +55,8 @@
 - (void)goBarrage
 {
     //TODO:弹幕播放界面
-    UIViewController * barrage = ME_GetViewController(@"barrage", @"MEBarrage");
-    [((UINavigationController *)self.selectedViewController) pushViewController:barrage animated:YES];
+    UIViewController * danmaku = ME_GetViewController(@"danmaku", @"MEDanmaku");
+    [((UINavigationController *)self.selectedViewController) pushViewController:danmaku animated:YES];
 }
 
 

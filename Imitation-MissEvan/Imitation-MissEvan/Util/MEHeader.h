@@ -20,6 +20,7 @@
 #import "UICollectionViewLeftAlignedLayout.h"
 #import "UINavigationBar+Awesome.h"
 #import <Accelerate/Accelerate.h>//处理图像模糊
+#import "DanmakuView.h"//弹幕
 
 #define ME_DATASOURCE   [MEDataSource shareDataSource]
 

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MEBarrageViewController : UIViewController
+@interface MEDanmakuViewController : UIViewController
 
 @end

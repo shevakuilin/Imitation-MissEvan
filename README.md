@@ -61,3 +61,12 @@ Version: 1.0.2
 
 
 From: ->(https://github.com/mokagio/UICollectionViewLeftAlignedLayout)
+
+
+----------------
+###HJCornerRadius
+
+Version: Unknown
+
+
+From: ->(https://github.com/panghaijiao/HJCornerRadius)

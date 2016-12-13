@@ -127,7 +127,7 @@
     configuration.maxShowCount = 45;
     self.danmakuView = [[DanmakuView alloc] initWithFrame:rect configuration:configuration];
     self.danmakuView.delegate = self;
-    [self.scrollView insertSubview:self.danmakuView aboveSubview:self.mosaicThemeImageView];//将弹幕添加到马赛克背景上
+    [self.scrollView insertSubview:self.danmakuView aboveSubview:self.mosaicThemeImageView];//将弹幕插入到马赛克背景上
     //读取弹幕数据
     NSString * danmakufile = [[NSBundle mainBundle] pathForResource:@"danmakufile" ofType:nil];
     NSArray * danmakus = [NSArray arrayWithContentsOfFile:danmakufile];

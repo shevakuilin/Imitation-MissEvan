@@ -21,6 +21,7 @@
 #import "UINavigationBar+Awesome.h"
 #import <Accelerate/Accelerate.h>//处理图像模糊
 #import "DanmakuView.h"//弹幕
+#import "HJCornerRadius.h"//圆角优化
 
 #define ME_DATASOURCE   [MEDataSource shareDataSource]
 

@@ -93,7 +93,7 @@
         make.right.equalTo(self.scrollView);
         make.centerX.equalTo(self.scrollView);
 
-        make.size.mas_equalTo(CGSizeMake(ME_Width, 400));
+        make.size.mas_equalTo(CGSizeMake(ME_Width, 350));
     }];
     
     self.themeImageView = [UIImageView new];
@@ -175,6 +175,119 @@
         make.right.equalTo(self.bottomPlayView).with.offset(-20);
         make.centerY.equalTo(self.playButton);
     }];
+    
+    UIView * leftView = [UIView new];
+    [self.scrollView addSubview:leftView];
+    leftView.backgroundColor = [UIColor whiteColor];
+    [leftView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mosaicThemeImageView.mas_bottom);
+        make.left.equalTo(self.scrollView);
+        
+        make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
+    }];
+    
+    UIImageView * leftImageView = [UIImageView new];
+    [leftView addSubview:leftImageView];
+    leftImageView.image = [UIImage imageNamed:@"new_shared_24x25_"];
+    [leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(leftView).with.offset(18);
+        make.centerX.equalTo(leftView);
+    }];
+    
+    UILabel * leftLabel = [UILabel new];
+    [leftView addSubview:leftLabel];
+    leftLabel.font = [UIFont systemFontOfSize:10];
+    leftLabel.text = @"分享";
+    [leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(leftImageView.mas_bottom).with.offset(2);
+        make.centerX.equalTo(leftImageView);
+    }];
+    
+    
+    UIView * leftCenterView = [UIView new];
+    [self.scrollView addSubview:leftCenterView];
+    leftCenterView.backgroundColor = [UIColor whiteColor];
+    [leftCenterView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mosaicThemeImageView.mas_bottom);
+        make.left.equalTo(leftView.mas_right);
+        
+        make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
+    }];
+    
+    UIImageView * leftCenterImageView = [UIImageView new];
+    [leftCenterView addSubview:leftCenterImageView];
+    leftCenterImageView.image = [UIImage imageNamed:@"like2Nor_27x23_@1x"];
+    [leftCenterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(leftCenterView).with.offset(20);
+        make.centerX.equalTo(leftCenterView);
+    }];
+    
+    UILabel * leftCenterLabel = [UILabel new];
+    [leftCenterView addSubview:leftCenterLabel];
+    leftCenterLabel.font = [UIFont systemFontOfSize:10];
+    leftCenterLabel.text = @"喜欢";
+    [leftCenterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(leftCenterImageView.mas_bottom).with.offset(2);
+        make.centerX.equalTo(leftCenterImageView);
+    }];
+    
+    
+    UIView * rightView = [UIView new];
+    [self.scrollView addSubview:rightView];
+    rightView.backgroundColor = [UIColor whiteColor];
+    [rightView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mosaicThemeImageView.mas_bottom);
+        make.right.equalTo(self.scrollView);
+        
+        make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
+    }];
+    
+    UIImageView * rightImageView = [UIImageView new];
+    [rightView addSubview:rightImageView];
+    rightImageView.image = [UIImage imageNamed:@"new_full_23x23_"];
+    [rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(rightView).with.offset(20);
+        make.centerX.equalTo(rightView);
+    }];
+    
+    UILabel * rightLabel = [UILabel new];
+    [rightView addSubview:rightLabel];
+    rightLabel.font = [UIFont systemFontOfSize:10];
+    rightLabel.text = @"全屏";
+    [rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(rightImageView.mas_bottom).with.offset(2);
+        make.centerX.equalTo(rightImageView);
+    }];
+    
+    UIView * rightCenterView = [UIView new];
+    [self.scrollView addSubview:rightCenterView];
+    rightCenterView.backgroundColor = [UIColor whiteColor];
+    [rightCenterView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mosaicThemeImageView.mas_bottom);
+        make.right.equalTo(rightView.mas_left);
+        
+        make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
+    }];
+    
+    UIImageView * rightCenterImageView = [UIImageView new];
+    [rightCenterView addSubview:rightCenterImageView];
+    rightCenterImageView.image = [UIImage imageNamed:@"new_down_25x24_"];
+    [rightCenterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(rightCenterView).with.offset(19);
+        make.centerX.equalTo(rightCenterView);
+    }];
+    
+    UILabel * rightCenterLabel = [UILabel new];
+    [rightCenterView addSubview:rightCenterLabel];
+    rightCenterLabel.font = [UIFont systemFontOfSize:10];
+    rightCenterLabel.text = @"下载";
+    [rightCenterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(rightCenterImageView.mas_bottom).with.offset(2);
+        make.centerX.equalTo(rightCenterImageView);
+    }];
+    
+    
+    
 }
 
 - (void)backView

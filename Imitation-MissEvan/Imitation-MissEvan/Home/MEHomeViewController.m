@@ -188,6 +188,8 @@
 - (void)goMusicView
 {
     //TODO:播放界面
+    UIViewController * danmaku = ME_GetViewController(@"danmaku", @"MEDanmaku");
+    [self.navigationController pushViewController:danmaku animated:YES];
 }
 
 - (void)addSearchView

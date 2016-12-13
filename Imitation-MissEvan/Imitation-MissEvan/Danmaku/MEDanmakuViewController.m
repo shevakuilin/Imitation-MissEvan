@@ -10,7 +10,7 @@
 #import "MEHeader.h"
 #import "METitle+DanmakuScanfView.h"
 
-@interface MEDanmakuViewController ()<UIScrollViewDelegate, DanmakuDelegate, UITextFieldDelegate>
+@interface MEDanmakuViewController ()<UIScrollViewDelegate, DanmakuDelegate, UITextFieldDelegate, UIActionSheetDelegate>
 @property (nonatomic, strong) UIScrollView * scrollView;
 @property (nonatomic, strong) UIImageView * mosaicThemeImageView;//马赛克主题背景
 @property (nonatomic, strong) UIImageView * themeImageView;
@@ -395,6 +395,7 @@
 - (void)showMorePopView
 {
     //TODO:更多选项
+    [self moreOptionView];
 }
 
 //判断移动scrollView的偏移量
@@ -621,6 +622,12 @@
         self.title_DanmakuScanfView.danmakuStatusLabel.text = @"关弹幕";
         return;
     }
+}
+
+- (void)moreOptionView
+{
+    //TODO:更多选项
+    
 }
 
 @end

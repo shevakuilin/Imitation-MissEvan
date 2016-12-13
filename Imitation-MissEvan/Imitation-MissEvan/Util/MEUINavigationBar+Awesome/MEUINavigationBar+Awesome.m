@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 ltebean. All rights reserved.
 //
 
-#import "UINavigationBar+Awesome.h"
+#import "MEUINavigationBar+Awesome.h"
 #import <objc/runtime.h>
 
 @implementation UINavigationBar (Awesome)

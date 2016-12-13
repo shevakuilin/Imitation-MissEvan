@@ -21,7 +21,7 @@
 		776A07CE1DFF8FD10049A3A9 /* DanmakuFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 776A07C51DFF8FD10049A3A9 /* DanmakuFactory.m */; };
 		776A07CF1DFF8FD10049A3A9 /* DanmakuFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 776A07C71DFF8FD10049A3A9 /* DanmakuFilter.m */; };
 		776A07D61DFFB7D60049A3A9 /* HJCornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 776A07D21DFFB7D60049A3A9 /* HJCornerRadius.m */; };
-		776A07D71DFFB7D60049A3A9 /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 776A07D51DFFB7D60049A3A9 /* UINavigationBar+Awesome.m */; };
+		776A07DB1DFFBC300049A3A9 /* MEUINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 776A07DA1DFFBC300049A3A9 /* MEUINavigationBar+Awesome.m */; };
 		778123931DBDAD4500425E6A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 778123921DBDAD4500425E6A /* main.m */; };
 		778123961DBDAD4500425E6A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 778123951DBDAD4500425E6A /* AppDelegate.m */; };
 		7781239E1DBDAD4500425E6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7781239D1DBDAD4500425E6A /* Assets.xcassets */; };
@@ -118,8 +118,8 @@
 		776A07C71DFF8FD10049A3A9 /* DanmakuFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DanmakuFilter.m; sourceTree = "<group>"; };
 		776A07D11DFFB7D60049A3A9 /* HJCornerRadius.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJCornerRadius.h; sourceTree = "<group>"; };
 		776A07D21DFFB7D60049A3A9 /* HJCornerRadius.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJCornerRadius.m; sourceTree = "<group>"; };
-		776A07D41DFFB7D60049A3A9 /* UINavigationBar+Awesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Awesome.h"; sourceTree = "<group>"; };
-		776A07D51DFFB7D60049A3A9 /* UINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Awesome.m"; sourceTree = "<group>"; };
+		776A07D91DFFBC300049A3A9 /* MEUINavigationBar+Awesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MEUINavigationBar+Awesome.h"; sourceTree = "<group>"; };
+		776A07DA1DFFBC300049A3A9 /* MEUINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MEUINavigationBar+Awesome.m"; sourceTree = "<group>"; };
 		7781238E1DBDAD4500425E6A /* Imitation-MissEvan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Imitation-MissEvan.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		778123921DBDAD4500425E6A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		778123941DBDAD4500425E6A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -325,13 +325,13 @@
 			path = HJCornerRadius;
 			sourceTree = "<group>";
 		};
-		776A07D31DFFB7D60049A3A9 /* UINavigationBar+Awesome */ = {
+		776A07D81DFFBC300049A3A9 /* MEUINavigationBar+Awesome */ = {
 			isa = PBXGroup;
 			children = (
-				776A07D41DFFB7D60049A3A9 /* UINavigationBar+Awesome.h */,
-				776A07D51DFFB7D60049A3A9 /* UINavigationBar+Awesome.m */,
+				776A07D91DFFBC300049A3A9 /* MEUINavigationBar+Awesome.h */,
+				776A07DA1DFFBC300049A3A9 /* MEUINavigationBar+Awesome.m */,
 			);
-			path = "UINavigationBar+Awesome";
+			path = "MEUINavigationBar+Awesome";
 			sourceTree = "<group>";
 		};
 		778123851DBDAD4500425E6A = {
@@ -461,7 +461,6 @@
 			isa = PBXGroup;
 			children = (
 				776A07D01DFFB7D60049A3A9 /* HJCornerRadius */,
-				776A07D31DFFB7D60049A3A9 /* UINavigationBar+Awesome */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -470,6 +469,7 @@
 			isa = PBXGroup;
 			children = (
 				776A07B51DFF8FD10049A3A9 /* MEDanmaku */,
+				776A07D81DFFBC300049A3A9 /* MEUINavigationBar+Awesome */,
 				771AB1ED1DD055EC00DDBA44 /* MEPageControl+AutoScroll */,
 				77D5BDD01DCB22C800EA1DCB /* MEHomeSegment */,
 				77C819521DBE00730004EFFC /* MEDataSource.h */,
@@ -803,13 +803,13 @@
 				E4C3B5B61DEF183600A672D1 /* MEMyMessageTableViewCell.m in Sources */,
 				77C819421DBDB98C0004EFFC /* MEMyViewController.m in Sources */,
 				776A07CA1DFF8FD10049A3A9 /* DanmakuBaseModel.m in Sources */,
+				776A07DB1DFFBC300049A3A9 /* MEUINavigationBar+Awesome.m in Sources */,
 				776A07CF1DFF8FD10049A3A9 /* DanmakuFilter.m in Sources */,
 				778123961DBDAD4500425E6A /* AppDelegate.m in Sources */,
 				E4C3B5AA1DEDC93100A672D1 /* MESearchHistoryTableViewCell.m in Sources */,
 				776A07CE1DFF8FD10049A3A9 /* DanmakuFactory.m in Sources */,
 				E4C3B59E1DE9D3DF00A672D1 /* MEChannelCollectionViewCell.m in Sources */,
 				776A07C91DFF8FD10049A3A9 /* DanmakuView.m in Sources */,
-				776A07D71DFFB7D60049A3A9 /* UINavigationBar+Awesome.m in Sources */,
 				776A07CB1DFF8FD10049A3A9 /* DanmakuTime.m in Sources */,
 				E4C3B5B31DEF17F000A672D1 /* MEMyPersonalCenterCollectionViewCell.m in Sources */,
 				77C8194E1DBDFE960004EFFC /* METabBarButton.m in Sources */,

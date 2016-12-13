@@ -18,7 +18,7 @@
 #import "MEScaleToSize.h"
 #import "UIImageView+AFNetworking.h"
 #import "UICollectionViewLeftAlignedLayout.h"
-#import "UINavigationBar+Awesome.h"
+#import "MEUINavigationBar+Awesome.h"
 #import <Accelerate/Accelerate.h>//处理图像模糊
 #import "DanmakuView.h"//弹幕
 #import "HJCornerRadius.h"//圆角优化

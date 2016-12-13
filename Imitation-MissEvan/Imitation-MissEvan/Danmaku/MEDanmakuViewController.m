@@ -151,9 +151,13 @@
     UITapGestureRecognizer * hiddenGesture = [[UITapGestureRecognizer alloc] init];
     [hiddenGesture addTarget:self action:@selector(hiddenTitleAndScanfView)];
     [self.title_DanmakuScanfView addGestureRecognizer:hiddenGesture];
-//    UITapGestureRecognizer * showGesture = [[UITapGestureRecognizer alloc] init];
-//    [showGesture addTarget:self action:@selector(showTitleAndScanfView)];
-//    [self.title_DanmakuScanfView addGestureRecognizer:showGesture];
+    //弹幕输入框的代理及监听
+    self.title_DanmakuScanfView.danmakuTextField.delegate = self;
+    [self.title_DanmakuScanfView.danmakuTextField addTarget:self action:@selector(textfieldVauleChange:) forControlEvents:UIControlEventEditingChanged];
+    //开关弹幕
+    UITapGestureRecognizer * closeOrOpenGesture = [[UITapGestureRecognizer alloc] init];
+    [closeOrOpenGesture addTarget:self action:@selector(closeOrOpen)];
+    [self.title_DanmakuScanfView.closeOrOpenDanmaku addGestureRecognizer:closeOrOpenGesture];
     
     UIButton * button = [UIButton new];
     [self.scrollView addSubview:button];
@@ -182,13 +186,12 @@
     
     self.playButton = [UIButton new];
     [self.bottomPlayView addSubview:self.playButton];
-//    [self.playButton setImage:[UIImage imageNamed:@"npv_button_play_41x41_"] forState:UIControlStateNormal];
     [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.bottomPlayView);
     }];
-//    [self.playButton addTarget:self action:@selector(onStartClick) forControlEvents:UIControlEventTouchUpInside];
     [self.playButton addTarget:self action:@selector(onPauseClick) forControlEvents:UIControlEventTouchUpInside];
     [self.playButton setImage:[UIImage imageNamed:@"npv_button_pause_41x41_"] forState:UIControlStateNormal];
+    
     
     self.nextButton = [UIButton new];
     [self.bottomPlayView addSubview:self.nextButton];
@@ -419,12 +422,41 @@
 #pragma marl - UITextFieldDelete
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if (textField.text.length == 0) {
-        [textField resignFirstResponder];
-    } else {
+    [self.view endEditing:YES];
+    if (textField.text.length > 0) {
         [self sendDanmaku];
+        textField.text = @"";
+        self.title_DanmakuScanfView.placeholderLabel.hidden = NO;
     }
     return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (self.showTimer) {
+        [self.showTimer invalidate];
+        self.showTimer = nil;
+    }
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField.text.length == 0) {
+        self.title_DanmakuScanfView.placeholderLabel.hidden = NO;
+    } else {
+        self.title_DanmakuScanfView.placeholderLabel.hidden = YES;
+    }
+    [self showTimerStart];
+}
+
+//监听textField输入
+- (void)textfieldVauleChange:(UITextField *)textField
+{
+    if (textField.text.length > 0) {
+        self.title_DanmakuScanfView.placeholderLabel.hidden = YES;
+    } else {
+        self.title_DanmakuScanfView.placeholderLabel.hidden = NO;
+    }
 }
 
 #pragma mark -
@@ -515,6 +547,7 @@
     CGPoint textFieldPoint = self.title_DanmakuScanfView.danmakuTextField.center;
     CGPoint closerOfOpenPoint = self.title_DanmakuScanfView.closeOrOpenDanmaku.center;
     CGPoint statusPoint = self.title_DanmakuScanfView.danmakuStatusLabel.center;
+    CGPoint placeholder = self.title_DanmakuScanfView.placeholderLabel.center;
     //执行动画
     [UIView animateWithDuration:0.5 animations:^{
         //自上向下进入屏幕
@@ -526,6 +559,7 @@
         self.title_DanmakuScanfView.danmakuTextField.center = CGPointMake(textFieldPoint.x, textFieldPoint.y - 55);
         self.title_DanmakuScanfView.closeOrOpenDanmaku.center = CGPointMake(closerOfOpenPoint.x, closerOfOpenPoint.y - 55);
         self.title_DanmakuScanfView.danmakuStatusLabel.center = CGPointMake(statusPoint.x, statusPoint.y - 55);
+        self.title_DanmakuScanfView.placeholderLabel.center = CGPointMake(placeholder.x, placeholder.y - 55);
         
         UITapGestureRecognizer * hiddenGesture = [[UITapGestureRecognizer alloc] init];
         [hiddenGesture addTarget:self action:@selector(hiddenTitleAndScanfView)];
@@ -542,6 +576,7 @@
 - (void)hiddenTitleAndScanfView
 {
     //TODO:隐藏标题和弹幕输入框
+    [self.view endEditing:YES];
     if (self.showTimer) {
         [self.showTimer invalidate];
         self.showTimer = nil;
@@ -554,6 +589,7 @@
     CGPoint textFieldPoint = self.title_DanmakuScanfView.danmakuTextField.center;
     CGPoint closerOfOpenPoint = self.title_DanmakuScanfView.closeOrOpenDanmaku.center;
     CGPoint statusPoint = self.title_DanmakuScanfView.danmakuStatusLabel.center;
+    CGPoint placeholder = self.title_DanmakuScanfView.placeholderLabel.center;
     //执行动画
     [UIView animateWithDuration:0.5 animations:^{
         //自下而上退出屏幕
@@ -565,11 +601,26 @@
         self.title_DanmakuScanfView.danmakuTextField.center = CGPointMake(textFieldPoint.x, textFieldPoint.y + 55);
         self.title_DanmakuScanfView.closeOrOpenDanmaku.center = CGPointMake(closerOfOpenPoint.x, closerOfOpenPoint.y + 55);
         self.title_DanmakuScanfView.danmakuStatusLabel.center = CGPointMake(statusPoint.x, statusPoint.y + 55);
+        self.title_DanmakuScanfView.placeholderLabel.center = CGPointMake(placeholder.x, placeholder.y + 55);
         
         UITapGestureRecognizer * showGesture = [[UITapGestureRecognizer alloc] init];
         [showGesture addTarget:self action:@selector(showTitleAndScanfView)];
         [self.title_DanmakuScanfView addGestureRecognizer:showGesture];
     }];
+}
+
+- (void)closeOrOpen
+{
+    //TODO:关闭/打开弹幕
+    if (self.danmakuView.hidden == NO) {
+        self.danmakuView.hidden = YES;
+        self.title_DanmakuScanfView.danmakuStatusLabel.text = @"开弹幕";
+        return;
+    } else if (self.danmakuView.hidden == YES) {
+        self.danmakuView.hidden = NO;
+        self.title_DanmakuScanfView.danmakuStatusLabel.text = @"关弹幕";
+        return;
+    }
 }
 
 @end

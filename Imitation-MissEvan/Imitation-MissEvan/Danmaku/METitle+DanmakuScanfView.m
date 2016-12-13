@@ -111,11 +111,22 @@
                 
             }];
             
+            self.placeholderLabel = [UILabel new];
+            [self insertSubview:self.placeholderLabel aboveSubview:self.danmakuScanfView];
+            self.placeholderLabel.font = [UIFont systemFontOfSize:11];
+            self.placeholderLabel.textColor = [UIColor whiteColor];
+            self.placeholderLabel.text = @"来点弹幕啊~";
+            [self.placeholderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(self.danmakuScanfView);
+                make.left.equalTo(self.danmakuScanfView).with.offset(10);
+                make.right.equalTo(self.danmakuScanfView).with.offset(-10);
+            }];
+            
             self.danmakuTextField = [UITextField new];
             [self insertSubview:self.danmakuTextField aboveSubview:self.danmakuScanfView];
             self.danmakuTextField.font = [UIFont systemFontOfSize:11];
             self.danmakuTextField.textColor = [UIColor whiteColor];
-            self.danmakuTextField.text = @"来点弹幕啊~";
+            self.danmakuTextField.backgroundColor = [UIColor clearColor];
             self.danmakuTextField.returnKeyType = UIReturnKeySend;
             self.danmakuTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
             [self.danmakuTextField mas_makeConstraints:^(MASConstraintMaker *make) {

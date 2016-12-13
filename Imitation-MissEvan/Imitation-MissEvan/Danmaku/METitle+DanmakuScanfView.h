@@ -17,5 +17,6 @@
 @property (nonatomic, strong) UITextField * danmakuTextField;
 @property (nonatomic, strong) UIView * closeOrOpenDanmaku;//开关弹幕
 @property (nonatomic, strong) UILabel * danmakuStatusLabel;//弹幕状态
+@property (nonatomic, strong) UILabel * placeholderLabel;
 
 @end

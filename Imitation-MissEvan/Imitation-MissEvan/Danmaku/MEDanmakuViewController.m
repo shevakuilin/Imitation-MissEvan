@@ -516,7 +516,7 @@
         [hiddenGesture addTarget:self action:@selector(hiddenTitleAndScanfView)];
         [self.title_DanmakuScanfView addGestureRecognizer:hiddenGesture];
         [self showTimerStart];
-    };
+    }];
 }
 
 - (void)showTimerStart

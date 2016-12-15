@@ -12,6 +12,9 @@
 #import "MELasttimeRecordPopView.h"
 
 @interface MEDanmakuViewController ()<UIScrollViewDelegate, DanmakuDelegate, UITextFieldDelegate, UIActionSheetDelegate, MEActionSheetDelegate>
+{
+    BOOL isFirst;//是否第一次进入该界面
+}
 @property (nonatomic, strong) UIScrollView * scrollView;
 @property (nonatomic, strong) UIImageView * mosaicThemeImageView;//马赛克主题背景
 @property (nonatomic, strong) UIImageView * themeImageView;
@@ -25,15 +28,16 @@
 //弹幕设置
 @property (nonatomic, strong) DanmakuView * danmakuView;
 @property (nonatomic, strong) NSDate * startDate;
-@property (nonatomic, strong) NSTimer * timer;
+@property (nonatomic, strong) NSTimer * timer;//音频计时器
 @property (nonatomic, strong) UISlider * slider;
 @property (nonatomic, strong) UILabel * currentTimeLabel;//视频当前时间
 @property (nonatomic, strong) UILabel * allTimeLabel;
 
 @property (nonatomic, strong) METitle_DanmakuScanfView * title_DanmakuScanfView;//标题&弹幕输入显示
-@property (nonatomic, strong) NSTimer * showTimer;
+@property (nonatomic, strong) NSTimer * showTimer;//标题&弹幕计时器
 
-@property (nonatomic, strong) MELasttimeRecordPopView * lasttimePopView;//上次听到
+@property (nonatomic, strong) MELasttimeRecordPopView * lasttimePopView;//上次播放记录
+@property (nonatomic, strong) NSTimer * recordTimer;//播放记录计时器
 
 @end
 
@@ -45,9 +49,18 @@
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];//去掉阴影下划线
-    
     self.view.backgroundColor = ME_Color(243, 243, 243);
+    isFirst = YES;
     [self customView];
+    //TODO:在屏幕外创建播放记录
+    self.lasttimePopView = [MELasttimeRecordPopView new];
+    [self.scrollView insertSubview:self.lasttimePopView aboveSubview:self.danmakuView];
+    [self.lasttimePopView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.scrollView).with.offset(-96);
+        make.bottom.equalTo(self.danmakuView.mas_bottom).with.offset(-55);
+        
+        make.size.mas_equalTo(CGSizeMake(95, 25));
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,7 +75,7 @@
     self.navigationItem.rightBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(showMorePopView) withImage:[UIImage imageNamed:@"new_more_32x27_"]];
     [self showTitleAndScanfView];//显示标题&弹幕输入框
     [self onStartClick];//自动播放
-    [self lasttimeRecord];//上次听到
+    [self showLasttimeRecord];//上次播放记录从屏幕外滑入
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -396,16 +409,27 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)lasttimeRecord
+- (void)showLasttimeRecord
 {
-    //TODO:上次听到
-    self.lasttimePopView = [MELasttimeRecordPopView new];
-    [self.scrollView insertSubview:self.lasttimePopView aboveSubview:self.danmakuView];
-    [self.lasttimePopView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.scrollView).with.offset(-1);
-        make.bottom.equalTo(self.danmakuView.mas_bottom).with.offset(-55);
-        
-        make.size.mas_equalTo(CGSizeMake(95, 25));
+    //TODO:播放记录界面从左滑入
+    CGPoint point = self.lasttimePopView.center;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.lasttimePopView.center = CGPointMake(point.x + 95, point.y);
+    }];
+    self.recordTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(hiddenLasttimeRecord) userInfo:nil repeats:YES];
+}
+
+- (void)hiddenLasttimeRecord
+{
+    //TODO:播放记录界面从左滑出
+    isFirst = NO;
+    if (self.recordTimer) {
+        [self.recordTimer invalidate];
+        self.recordTimer = nil;
+    }
+    CGPoint point = self.lasttimePopView.center;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.lasttimePopView.center = CGPointMake(point.x - 95, point.y);
     }];
 }
 

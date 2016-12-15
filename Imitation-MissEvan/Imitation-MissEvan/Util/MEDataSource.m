@@ -194,6 +194,6 @@
 
 - (void)dataSourceOfOther
 {
-    self.pmIconArray = @[@"pm_timer_36x36_", @"danmakuSet_36x36_", @"pm_collection_36x36_", @"", @"pm_bell_36x36_"];
+    self.pmIconArray = @[@"pm_timer_36x36_", @"danmakuSet_36x36_", @"pm_collection_36x36_", @"pm_fish_36x36_", @"pm_bell_36x36_"];
 }
 @end

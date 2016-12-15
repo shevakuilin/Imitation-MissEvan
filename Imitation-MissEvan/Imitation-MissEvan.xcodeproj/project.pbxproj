@@ -30,6 +30,7 @@
 		778123A11DBDAD4500425E6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7781239F1DBDAD4500425E6A /* LaunchScreen.storyboard */; };
 		778123AC1DBDAD4500425E6A /* Imitation_MissEvanTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 778123AB1DBDAD4500425E6A /* Imitation_MissEvanTests.m */; };
 		778123B71DBDAD4500425E6A /* Imitation_MissEvanUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 778123B61DBDAD4500425E6A /* Imitation_MissEvanUITests.m */; };
+		778CDE301E022714008D48C9 /* MEActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 778CDE2F1E022714008D48C9 /* MEActionSheet.m */; };
 		7797DEB11DFA488400444141 /* MEFollowTrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7797DEB01DFA488400444141 /* MEFollowTrackTableViewCell.m */; };
 		77C2E7101DC2FE6A00EC6B4A /* MEUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C2E70F1DC2FE6A00EC6B4A /* MEUtil.m */; };
 		77C8192F1DBDB6B50004EFFC /* MEHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77C8192E1DBDB6B50004EFFC /* MEHome.storyboard */; };
@@ -139,6 +140,8 @@
 		778123B21DBDAD4500425E6A /* Imitation-MissEvanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Imitation-MissEvanUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		778123B61DBDAD4500425E6A /* Imitation_MissEvanUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Imitation_MissEvanUITests.m; sourceTree = "<group>"; };
 		778123B81DBDAD4500425E6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		778CDE2E1E022714008D48C9 /* MEActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEActionSheet.h; sourceTree = "<group>"; };
+		778CDE2F1E022714008D48C9 /* MEActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEActionSheet.m; sourceTree = "<group>"; };
 		7797DEAF1DFA488300444141 /* MEFollowTrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEFollowTrackTableViewCell.h; sourceTree = "<group>"; };
 		7797DEB01DFA488400444141 /* MEFollowTrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEFollowTrackTableViewCell.m; sourceTree = "<group>"; };
 		77C2E70E1DC2FE6A00EC6B4A /* MEUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEUtil.h; sourceTree = "<group>"; };
@@ -474,6 +477,15 @@
 			path = My;
 			sourceTree = "<group>";
 		};
+		778CDE2D1E0226D6008D48C9 /* MEActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				778CDE2E1E022714008D48C9 /* MEActionSheet.h */,
+				778CDE2F1E022714008D48C9 /* MEActionSheet.m */,
+			);
+			path = MEActionSheet;
+			sourceTree = "<group>";
+		};
 		77C819431DBDBB0D0004EFFC /* Lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -486,6 +498,7 @@
 		77C819441DBDBB0D0004EFFC /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				778CDE2D1E0226D6008D48C9 /* MEActionSheet */,
 				776A07B51DFF8FD10049A3A9 /* MEDanmaku */,
 				776A07D81DFFBC300049A3A9 /* MEUINavigationBar+Awesome */,
 				771AB1ED1DD055EC00DDBA44 /* MEPageControl+AutoScroll */,
@@ -795,6 +808,7 @@
 				776A07DE1DFFC74B0049A3A9 /* METitle+DanmakuScanfView.m in Sources */,
 				E445057C1DFC557C0094FEDE /* METabBarCatImageView.m in Sources */,
 				770DBD401DEC23A30019D206 /* MESearchView.m in Sources */,
+				778CDE301E022714008D48C9 /* MEActionSheet.m in Sources */,
 				77C819541DBE00740004EFFC /* MEDataSource.m in Sources */,
 				E4C3B58E1DDC8F5900A672D1 /* MEHomeRecommendTopTableViewCell.m in Sources */,
 				771AB1F01DD0560000DDBA44 /* MEPageControl+AutoScroll.m in Sources */,

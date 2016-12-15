@@ -22,6 +22,7 @@
         [sharedSingleton dataSourceOfVoiceList];
         [sharedSingleton dataSourceOfClassify];
         [sharedSingleton dataSourceOfMy];
+        [sharedSingleton dataSourceOfOther];
     });
     return sharedSingleton;
 }
@@ -189,5 +190,10 @@
                            @{@"image":@"m_icon_feedback_45x45_", @"title":@"意见反馈"}],
                          @[@{@"image":@"m_icon_comment_45x45_", @"title":@"我的评论"},
                            @{@"image":@"m_icon_message_45x45_", @"title":@"我的私信"}]];
+}
+
+- (void)dataSourceOfOther
+{
+    self.pmIconArray = @[@"pm_timer_36x36_", @"danmakuSet_36x36_", @"pm_collection_36x36_", @"", @"pm_bell_36x36_"];
 }
 @end

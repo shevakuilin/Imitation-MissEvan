@@ -23,6 +23,7 @@
 #import "DanmakuView.h"//弹幕
 #import "HJCornerRadius.h"//圆角优化
 #import "CBAutoScrollLabel.h"//滚动标题
+#import "MEActionSheet.h"
 
 #define ME_DATASOURCE   [MEDataSource shareDataSource]
 

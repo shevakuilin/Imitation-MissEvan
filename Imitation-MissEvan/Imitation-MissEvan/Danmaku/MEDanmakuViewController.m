@@ -10,7 +10,7 @@
 #import "MEHeader.h"
 #import "METitle+DanmakuScanfView.h"
 
-@interface MEDanmakuViewController ()<UIScrollViewDelegate, DanmakuDelegate, UITextFieldDelegate, UIActionSheetDelegate>
+@interface MEDanmakuViewController ()<UIScrollViewDelegate, DanmakuDelegate, UITextFieldDelegate, UIActionSheetDelegate, MEActionSheetDelegate>
 @property (nonatomic, strong) UIScrollView * scrollView;
 @property (nonatomic, strong) UIImageView * mosaicThemeImageView;//马赛克主题背景
 @property (nonatomic, strong) UIImageView * themeImageView;
@@ -105,7 +105,7 @@
         make.right.equalTo(self.scrollView);
         make.centerX.equalTo(self.scrollView);
 
-        make.size.mas_equalTo(CGSizeMake(ME_Width, 350));
+        make.size.mas_equalTo(CGSizeMake(ME_Width, 370));
     }];
     
     self.themeImageView = [UIImageView new];
@@ -122,7 +122,7 @@
     }];
     
     //TODO:弹幕
-    CGRect rect =  CGRectMake(0, 2, ME_Width, 345);
+    CGRect rect =  CGRectMake(0, 2, ME_Width, 365);
     DanmakuConfiguration * configuration = [[DanmakuConfiguration alloc] init];
     configuration.duration = 6.5;
     configuration.paintHeight = 21;
@@ -146,7 +146,7 @@
         make.left.equalTo(self.scrollView);
         make.right.equalTo(self.scrollView);
         
-        make.size.mas_equalTo(CGSizeMake(ME_Width, 350));
+        make.size.mas_equalTo(CGSizeMake(ME_Width, 370));
     }];
     UITapGestureRecognizer * hiddenGesture = [[UITapGestureRecognizer alloc] init];
     [hiddenGesture addTarget:self action:@selector(hiddenTitleAndScanfView)];
@@ -395,7 +395,9 @@
 - (void)showMorePopView
 {
     //TODO:更多选项
-    [self moreOptionView];
+    NSArray * images = ME_DATASOURCE.pmIconArray;
+    MEActionSheet * actionSheet = [MEActionSheet actionSheetWithTitle:@"" options:@[@"定时关闭", @"弹幕设置", @"收藏声音", @"投食鱼干", @"设为铃声"] images:images cancel:@"取消" style:MEActionSheetStyleDefault];
+    [actionSheet showInView:self.view.window];
 }
 
 //判断移动scrollView的偏移量
@@ -622,12 +624,6 @@
         self.title_DanmakuScanfView.danmakuStatusLabel.text = @"关弹幕";
         return;
     }
-}
-
-- (void)moreOptionView
-{
-    //TODO:更多选项
-    
 }
 
 @end

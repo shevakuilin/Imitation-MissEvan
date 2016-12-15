@@ -47,16 +47,16 @@
 - (UIView *)shadowView
 {
     //TODO:背景阴影
-    if (!self.shadowView) {
-        self.shadowView = [[UIView alloc] init];
-        self.shadowView.frame = CGRectMake(0, 0, ME_Width, ME_Height);
-        self.shadowView.backgroundColor = [UIColor blackColor];
-        self.shadowView.alpha = 0.4;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+    if (!_shadowView) {
+        _shadowView = [[UIView alloc] init];
+        _shadowView.frame = CGRectMake(0, 0, ME_Width, ME_Height);
+        _shadowView.backgroundColor = [UIColor blackColor];
+        _shadowView.alpha = 0.4;
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                               action:@selector(tapAction)];
-        [self.shadowView addGestureRecognizer:tap];
+        [_shadowView addGestureRecognizer:tap];
     }
-    return self.shadowView;
+    return _shadowView;
 }
 
 - (void)createSubviews
@@ -92,13 +92,14 @@
     
     //选项按钮
     CGFloat buttonHeight;
-    if (ME_Width <= 320) {
-        buttonHeight = 44;
-    }else if (ME_Width <= 375){
-        buttonHeight = 55;
-    }else{
-        buttonHeight = 60;
-    }
+    buttonHeight = 44;
+//    if (ME_Width <= 320) {
+//        buttonHeight = 44;
+//    }else if (ME_Width <= 375){
+//        buttonHeight = 55;
+//    }else{
+//        buttonHeight = 60;
+//    }
     for (int i = 0; i < self.options.count; i ++) {
         UIView * line = [[UIView alloc] init];
         line.backgroundColor = [UIColor whiteColor];
@@ -115,12 +116,12 @@
         UIButton * option = [UIButton buttonWithType:UIButtonTypeCustom];
         option.frame = CGRectMake(0, line.frame.origin.y + 0.5, ME_Width, buttonHeight);
         [option setTitle:self.options[i] forState:UIControlStateNormal];
-        option.titleLabel.font = [UIFont systemFontOfSize:17];
-        [option setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        option.titleLabel.font = [UIFont systemFontOfSize:15];
+        [option setTitleColor:ME_Color(117, 117, 117) forState:UIControlStateNormal];
         //默认样式
         if (self.style == MEActionSheetStyleDefault) {
-            [option setImage:self.images[i] forState:UIControlStateNormal];
-
+            [option setImage:[UIImage imageNamed:self.images[i]] forState:UIControlStateNormal];
+            [option setTitleEdgeInsets:UIEdgeInsetsMake(0, 8, 0, 0)];
         } else if(self.style == MEActionSheetStyleNoneImage){//无图样式
             [option setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
         }
@@ -132,26 +133,27 @@
     //取消与选项之间的分割线
     UIView * separator = [[UIView alloc] init];
     separator.backgroundColor = [UIColor colorWithWhite:0.667 alpha:0.400];
-    separator.frame = CGRectMake(0, titleHeight + optionHeight, ME_Width, 5);
+    separator.frame = CGRectMake(0, titleHeight + optionHeight, ME_Width, 10);
     [self addSubview:separator];
-    separatorHeight = 5;
+    separatorHeight = 10;
     
     //取消
     CGFloat cancleHeight;
-    if (ME_Width <= 320) {
-        cancleHeight = 44;
-    }else if (ME_Width <= 375){
-        cancleHeight = 50;
-    }else{
-        cancleHeight = 60;
-    }
+    cancleHeight = 44;
+//    if (ME_Width <= 320) {
+//        cancleHeight = 44;
+//    }else if (ME_Width <= 375){
+//        cancleHeight = 50;
+//    }else{
+//        cancleHeight = 60;
+//    }
     
     CGFloat cancelY = titleHeight + optionHeight + separatorHeight;
     UIButton * cancel = [UIButton buttonWithType:UIButtonTypeCustom];
     cancel.frame = CGRectMake(0, cancelY, ME_Width, cancleHeight);
-    [cancel setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [cancel setTitleColor:ME_Color(117, 117, 117) forState:UIControlStateNormal];
     [cancel setTitle:self.cancel forState:UIControlStateNormal];
-    cancel.titleLabel.font = [UIFont systemFontOfSize:17];
+    cancel.titleLabel.font = [UIFont systemFontOfSize:15];
     [cancel addTarget:self action:@selector(cancelButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:cancel];
     cancelHeight = cancleHeight;

@@ -51,7 +51,7 @@
         _shadowView = [[UIView alloc] init];
         _shadowView.frame = CGRectMake(0, 0, ME_Width, ME_Height);
         _shadowView.backgroundColor = [UIColor blackColor];
-        _shadowView.alpha = 0.4;
+        _shadowView.alpha = 0.2;
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                               action:@selector(tapAction)];
         [_shadowView addGestureRecognizer:tap];
@@ -139,7 +139,7 @@
     
     //取消
     CGFloat cancleHeight;
-    cancleHeight = 44;
+    cancleHeight = 46;
 //    if (ME_Width <= 320) {
 //        cancleHeight = 44;
 //    }else if (ME_Width <= 375){

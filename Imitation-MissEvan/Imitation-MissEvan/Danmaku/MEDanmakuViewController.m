@@ -9,6 +9,7 @@
 #import "MEDanmakuViewController.h"
 #import "MEHeader.h"
 #import "METitle+DanmakuScanfView.h"
+#import "MELasttimeRecordPopView.h"
 
 @interface MEDanmakuViewController ()<UIScrollViewDelegate, DanmakuDelegate, UITextFieldDelegate, UIActionSheetDelegate, MEActionSheetDelegate>
 @property (nonatomic, strong) UIScrollView * scrollView;
@@ -31,6 +32,8 @@
 
 @property (nonatomic, strong) METitle_DanmakuScanfView * title_DanmakuScanfView;//标题&弹幕输入显示
 @property (nonatomic, strong) NSTimer * showTimer;
+
+@property (nonatomic, strong) MELasttimeRecordPopView * lasttimePopView;//上次听到
 
 @end
 
@@ -59,6 +62,7 @@
     self.navigationItem.rightBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(showMorePopView) withImage:[UIImage imageNamed:@"new_more_32x27_"]];
     [self showTitleAndScanfView];//显示标题&弹幕输入框
     [self onStartClick];//自动播放
+    [self lasttimeRecord];//上次听到
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -390,6 +394,19 @@
 - (void)backView
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)lasttimeRecord
+{
+    //TODO:上次听到
+    self.lasttimePopView = [MELasttimeRecordPopView new];
+    [self.scrollView insertSubview:self.lasttimePopView aboveSubview:self.danmakuView];
+    [self.lasttimePopView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.scrollView).with.offset(-1);
+        make.bottom.equalTo(self.danmakuView.mas_bottom).with.offset(-55);
+        
+        make.size.mas_equalTo(CGSizeMake(95, 25));
+    }];
 }
 
 - (void)showMorePopView

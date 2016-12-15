@@ -31,6 +31,7 @@
 		778123AC1DBDAD4500425E6A /* Imitation_MissEvanTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 778123AB1DBDAD4500425E6A /* Imitation_MissEvanTests.m */; };
 		778123B71DBDAD4500425E6A /* Imitation_MissEvanUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 778123B61DBDAD4500425E6A /* Imitation_MissEvanUITests.m */; };
 		778CDE301E022714008D48C9 /* MEActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 778CDE2F1E022714008D48C9 /* MEActionSheet.m */; };
+		778CDE3C1E029F17008D48C9 /* MELasttimeRecordPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 778CDE3B1E029F17008D48C9 /* MELasttimeRecordPopView.m */; };
 		7797DEB11DFA488400444141 /* MEFollowTrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7797DEB01DFA488400444141 /* MEFollowTrackTableViewCell.m */; };
 		77C2E7101DC2FE6A00EC6B4A /* MEUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C2E70F1DC2FE6A00EC6B4A /* MEUtil.m */; };
 		77C8192F1DBDB6B50004EFFC /* MEHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77C8192E1DBDB6B50004EFFC /* MEHome.storyboard */; };
@@ -142,6 +143,8 @@
 		778123B81DBDAD4500425E6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		778CDE2E1E022714008D48C9 /* MEActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEActionSheet.h; sourceTree = "<group>"; };
 		778CDE2F1E022714008D48C9 /* MEActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEActionSheet.m; sourceTree = "<group>"; };
+		778CDE3A1E029F17008D48C9 /* MELasttimeRecordPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MELasttimeRecordPopView.h; sourceTree = "<group>"; };
+		778CDE3B1E029F17008D48C9 /* MELasttimeRecordPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MELasttimeRecordPopView.m; sourceTree = "<group>"; };
 		7797DEAF1DFA488300444141 /* MEFollowTrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEFollowTrackTableViewCell.h; sourceTree = "<group>"; };
 		7797DEB01DFA488400444141 /* MEFollowTrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEFollowTrackTableViewCell.m; sourceTree = "<group>"; };
 		77C2E70E1DC2FE6A00EC6B4A /* MEUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEUtil.h; sourceTree = "<group>"; };
@@ -277,6 +280,8 @@
 				776A07B21DFF8AE00049A3A9 /* MEDanmakuViewController.m */,
 				776A07DC1DFFC74B0049A3A9 /* METitle+DanmakuScanfView.h */,
 				776A07DD1DFFC74B0049A3A9 /* METitle+DanmakuScanfView.m */,
+				778CDE3A1E029F17008D48C9 /* MELasttimeRecordPopView.h */,
+				778CDE3B1E029F17008D48C9 /* MELasttimeRecordPopView.m */,
 			);
 			path = Danmaku;
 			sourceTree = "<group>";
@@ -801,6 +806,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				778CDE3C1E029F17008D48C9 /* MELasttimeRecordPopView.m in Sources */,
 				E4C3B5951DDC91E300A672D1 /* MEClassifyCollectionViewCell.m in Sources */,
 				E4C3B58F1DDC8F5900A672D1 /* MEHotMVoiceTableViewCell.m in Sources */,
 				776A07CD1DFF8FD10049A3A9 /* DanmakuRetainer.m in Sources */,

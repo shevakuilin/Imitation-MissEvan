@@ -66,6 +66,7 @@
     UITapGestureRecognizer * gesture = [[UITapGestureRecognizer alloc] init];
     [gesture addTarget:self action:@selector(sliderGoRecordTime)];
     [self.lasttimePopView addGestureRecognizer:gesture];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -591,6 +592,10 @@
         [self.playButton addTarget:self action:@selector(onPauseClick) forControlEvents:UIControlEventTouchUpInside];
         [self.playButton setImage:[UIImage imageNamed:@"npv_button_pause_41x41_"] forState:UIControlStateNormal];
     }
+    //创建一个消息对象
+    NSNotification * notice = [NSNotification notificationWithName:@"play" object:nil userInfo:@{@"isPlay":@"YES"}];
+    //发送消息给睡觉猫
+    [[NSNotificationCenter defaultCenter] postNotification:notice];
     
 }
 
@@ -604,6 +609,10 @@
     [self.danmakuView pause];
     [self.playButton addTarget:self action:@selector(onStartClick) forControlEvents:UIControlEventTouchUpInside];
     [self.playButton setImage:[UIImage imageNamed:@"npv_button_play_41x41_"] forState:UIControlStateNormal];
+    //创建一个消息对象
+    NSNotification * notice = [NSNotification notificationWithName:@"play" object:nil userInfo:@{@"isPlay":@"NO"}];
+    //发送消息给睡觉猫
+    [[NSNotificationCenter defaultCenter] postNotification:notice];
 }
 
 - (void)sendDanmaku

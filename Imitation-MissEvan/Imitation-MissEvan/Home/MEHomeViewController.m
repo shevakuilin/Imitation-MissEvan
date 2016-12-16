@@ -29,6 +29,8 @@
 @property (nonatomic, strong) UITableView * voiceTableView;
 @property (nonatomic, strong) MESearchView * searchView;
 
+@property (nonatomic, strong) UIButton * rightBarButton;
+
 @end
 
 @implementation MEHomeViewController
@@ -46,16 +48,54 @@
     self.classifyView.title = @"分类";
     self.viewControllers = @[self.voiceListView, self.recommendView, self.classifyView];
     
-    UIButton * rightBarButton = [MEUtil barButtonItemWithImage:@"v3player_0001_24x24_" target:self action:@selector(goMusicView) isLeft:NO isRight:YES];
+    self.rightBarButton = [MEUtil barButtonItemWithImage:@"v3player_0002_25x25_" target:self action:@selector(goMusicView) isLeft:NO isRight:YES];
     UIButton * leftBarButton = [MEUtil barButtonItemWithImage:@"hp3_icon_search_24x22_" target:self action:@selector(goSearchView) isLeft:YES isRight:NO];
     
-    [self.segmentControl addSubview:rightBarButton];
+    [self.segmentControl addSubview:self.rightBarButton];
     [self.segmentControl addSubview:leftBarButton];
     
     [self customRecommendView];
     [self customClassifyView];
     [self customVoiceListView];
     [self addSearchView];
+    
+    //获取通知中心单例对象
+    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+    //添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知
+    [center addObserver:self selector:@selector(notice:) name:@"play" object:nil];
+}
+
+- (void)notice:(id)sender
+{
+    MELog(@"Music图标接到通知:%@", sender);
+    //如果进入播放界面，那么根据播放状态决定动画播放状态
+    BOOL isPlay = [[sender userInfo][@"isPlay"] boolValue];
+    if (isPlay == YES) {
+        MELog(@"正在播放");
+        NSMutableArray * stackImageArray = [NSMutableArray new];
+        for (NSInteger i = 1; i < 97; i ++) {
+            NSString * stackImageName;
+            if (i < 10) {
+                stackImageName = [NSString stringWithFormat:@"v3player_000%@_25x25_", @(i)];
+            } else {
+                stackImageName = [NSString stringWithFormat:@"v3player_00%@_25x25_", @(i)];
+            }
+            UIImage * imageName = [UIImage imageNamed:stackImageName];
+            [stackImageArray addObject:imageName];
+            
+            self.rightBarButton.imageView.animationImages = stackImageArray;
+            //动画重复次数
+            self.rightBarButton.imageView.animationRepeatCount = 10000000 * 10000000;
+            //动画执行时间,多长时间执行完动画
+            self.rightBarButton.imageView.animationDuration = 8;
+            //开始动画
+            [self.rightBarButton.imageView startAnimating];
+        }
+
+    } else {
+        MELog(@"播放暂停");
+        [self.rightBarButton.imageView stopAnimating];
+    }
 }
 
 //为了方便暂时留着

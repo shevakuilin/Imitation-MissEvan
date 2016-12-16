@@ -47,7 +47,8 @@
     return self;
 }
 
-- (void)notice:(id)sender{
+- (void)notice:(id)sender
+{
     MELog(@"睡觉猫收到消息:%@", sender);
     //如果进入播放界面，那么根据播放状态切换睡觉猫帧图
     BOOL isPlay = [[sender userInfo][@"isPlay"] boolValue];

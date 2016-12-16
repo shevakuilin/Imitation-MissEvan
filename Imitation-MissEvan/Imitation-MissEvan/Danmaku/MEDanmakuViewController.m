@@ -424,6 +424,12 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)dealloc
+{
+    //TODO:销毁通知
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"play" object:nil];
+}
+
 #pragma mark -
 #pragma mark - 上次播放记录
 - (void)showLasttimeRecord

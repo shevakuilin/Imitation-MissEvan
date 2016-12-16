@@ -570,8 +570,12 @@
 - (void)onTimeCount
 {
     self.slider.value += 0.1 / 120;
-    if (self.slider.value > 120.0) {
+    if (self.slider.value == 1) {//如果播放结束
         self.slider.value = 0;
+        [self.timer invalidate];
+        self.timer = nil;
+        //单曲循环
+        [self onStartClick];
     }
     [self onTimeChange];
 }

@@ -102,6 +102,7 @@
         CGFloat height = self.bounds.size.height;
         
         button.frame = CGRectMake(x, y, width, height);
+        
         //中间的睡觉猫需要做特殊处理
         self.catImageView.frame = CGRectMake(2 * self.bounds.size.width / count, -35, 80, 80);
         [self addSubview:self.catImageView];

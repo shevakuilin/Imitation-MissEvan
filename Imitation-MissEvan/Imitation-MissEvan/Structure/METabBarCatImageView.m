@@ -68,7 +68,7 @@
             //动画重复次数
             self.animationRepeatCount = 10000000 * 10000000;
             //动画执行时间,多长时间执行完动画
-            self.animationDuration = 8.0;
+            self.animationDuration = 2.5;
             //开始动画
             [self startAnimating];
         }

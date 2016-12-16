@@ -35,7 +35,6 @@
             [self addSubview:self.recordTimeLabel];
             self.recordTimeLabel.font = [UIFont systemFontOfSize:10];
             self.recordTimeLabel.textColor = ME_Color(215, 32, 27);
-            self.recordTimeLabel.text = @"上次听到 00：04";
             [self.recordTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self).with.offset(5);
                 make.centerY.equalTo(self);

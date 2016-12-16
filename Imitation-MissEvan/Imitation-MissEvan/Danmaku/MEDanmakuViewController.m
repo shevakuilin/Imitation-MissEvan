@@ -14,6 +14,8 @@
 @interface MEDanmakuViewController ()<UIScrollViewDelegate, DanmakuDelegate, UITextFieldDelegate, UIActionSheetDelegate, MEActionSheetDelegate>
 {
     BOOL isFirst;//是否第一次进入该界面
+    NSInteger seconds;//进度条时间
+    CGFloat recordTime;//上次播放时间
 }
 @property (nonatomic, strong) UIScrollView * scrollView;
 @property (nonatomic, strong) UIImageView * mosaicThemeImageView;//马赛克主题背景
@@ -54,13 +56,16 @@
     [self customView];
     //TODO:在屏幕外创建播放记录
     self.lasttimePopView = [MELasttimeRecordPopView new];
-    [self.scrollView insertSubview:self.lasttimePopView aboveSubview:self.danmakuView];
+    [self.scrollView insertSubview:self.lasttimePopView aboveSubview:self.title_DanmakuScanfView];
     [self.lasttimePopView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.scrollView).with.offset(-96);
         make.bottom.equalTo(self.danmakuView.mas_bottom).with.offset(-55);
         
         make.size.mas_equalTo(CGSizeMake(95, 25));
     }];
+    UITapGestureRecognizer * gesture = [[UITapGestureRecognizer alloc] init];
+    [gesture addTarget:self action:@selector(sliderGoRecordTime)];
+    [self.lasttimePopView addGestureRecognizer:gesture];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,7 +80,11 @@
     self.navigationItem.rightBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(showMorePopView) withImage:[UIImage imageNamed:@"new_more_32x27_"]];
     [self showTitleAndScanfView];//显示标题&弹幕输入框
     [self onStartClick];//自动播放
-    [self showLasttimeRecord];//上次播放记录从屏幕外滑入
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    recordTime = [[userDefaults objectForKey:@"recordTime"] floatValue];
+    if (recordTime > 0) {
+        [self showLasttimeRecord];//上次播放记录从屏幕外滑入
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -95,6 +104,11 @@
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor blackColor]}];
     [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     [self.navigationController.navigationBar setShadowImage:nil];
+    MELog(@"本次播放时间为===%@", @(seconds));
+    if (seconds > 0) {
+        NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:@(seconds) forKey:@"recordTime"];
+    }
 }
 
 - (void)customView
@@ -409,9 +423,16 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark -
+#pragma mark - 上次播放记录
 - (void)showLasttimeRecord
 {
     //TODO:播放记录界面从左滑入
+    NSInteger recordSecons = recordTime;
+    NSString * str_minute = [NSString stringWithFormat:@"%02ld", recordSecons / 60];
+    NSString * str_second = [NSString stringWithFormat:@"%02ld", recordSecons % 60];
+    NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
+    self.lasttimePopView.recordTimeLabel.text = [NSString stringWithFormat:@"上次听到 %@", format_time];
     CGPoint point = self.lasttimePopView.center;
     [UIView animateWithDuration:0.5 animations:^{
         self.lasttimePopView.center = CGPointMake(point.x + 95, point.y);
@@ -429,8 +450,34 @@
     }
     CGPoint point = self.lasttimePopView.center;
     [UIView animateWithDuration:0.5 animations:^{
-        self.lasttimePopView.center = CGPointMake(point.x - 95, point.y);
+        
     }];
+    [UIView animateWithDuration:0.5 animations:^{
+        self.lasttimePopView.center = CGPointMake(point.x - 95, point.y);
+        
+    } completion:^(BOOL finished) {
+        //动画结束后撤销控件
+        [self.lasttimePopView removeFromSuperview];
+    }];
+}
+
+- (void)sliderGoRecordTime
+{
+    //TODO:前往上次播放的时间
+    [self hiddenLasttimeRecord];
+    if (self.timer) {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
+    NSInteger recordSecons = recordTime;
+    if (recordTime > 0) {
+        self.slider.value = recordTime / 120.0;//120.0 / recordTime;
+        NSString * str_minute = [NSString stringWithFormat:@"%02ld", recordSecons / 60];
+        NSString * str_second = [NSString stringWithFormat:@"%02ld", recordSecons % 60];
+        NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
+        self.currentTimeLabel.text = format_time;
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(onTimeCount) userInfo:nil repeats:YES];
+    }
 }
 
 - (void)showMorePopView
@@ -569,7 +616,7 @@
 - (void)onTimeChange
 {
     //TODO:进度条时间
-    NSInteger seconds = self.slider.value * 120.0;
+    seconds = self.slider.value * 120.0;
     NSString * str_minute = [NSString stringWithFormat:@"%02ld",seconds / 60];
     NSString * str_second = [NSString stringWithFormat:@"%02ld",seconds % 60];
     NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];

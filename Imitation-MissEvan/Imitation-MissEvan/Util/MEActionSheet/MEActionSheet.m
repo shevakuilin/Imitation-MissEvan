@@ -198,12 +198,12 @@
     [obj addSubview:self.shadowView];
     [obj addSubview:self];
     
-    CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    CABasicAnimation * opacity = [CABasicAnimation animationWithKeyPath:@"opacity"];
     opacity.fromValue = @(0);
     opacity.duration = 0.2;
     [self.shadowView.layer addAnimation:opacity forKey:nil];
     
-    CABasicAnimation *move = [CABasicAnimation animationWithKeyPath:@"position"];
+    CABasicAnimation * move = [CABasicAnimation animationWithKeyPath:@"position"];
     move.fromValue = [NSValue valueWithCGPoint:CGPointMake(self.window.center.x, ME_Height)];
     move.duration = 0.2;
     [self.layer addAnimation:move forKey:nil];

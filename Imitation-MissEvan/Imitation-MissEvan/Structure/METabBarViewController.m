@@ -37,7 +37,7 @@
     tabBar.delegate = self;
     tabBar.frame = rect;
     tabBar.backgroundColor = [UIColor clearColor];//ME_Color(244, 244, 244);
-    tabBar.alpha = 0.9;
+    tabBar.alpha = 1;
     tabBar.catImageView.userInteractionEnabled = YES;
     UITapGestureRecognizer * gesture = [[UITapGestureRecognizer alloc] init];
     [gesture addTarget:self action:@selector(goBarrage)];

@@ -68,32 +68,54 @@
                 make.size.mas_equalTo(CGSizeMake(ME_Width, 55));
             }];
             
-            self.closeOrOpenDanmaku = [UIView new];
-            [self insertSubview:self.closeOrOpenDanmaku aboveSubview:self.danmakuView];
-            self.closeOrOpenDanmaku.backgroundColor = ME_Color(112, 99, 95);
-            self.closeOrOpenDanmaku.alpha = 0.6;
-            self.closeOrOpenDanmaku.layer.masksToBounds = YES;
-            self.closeOrOpenDanmaku.layer.cornerRadius = 5;
-            self.closeOrOpenDanmaku.layer.borderColor = [UIColor whiteColor].CGColor;
-            self.closeOrOpenDanmaku.layer.borderWidth = 1;
-            [self.closeOrOpenDanmaku mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.right.equalTo(self.danmakuView).with.offset(-15);
+            self.fullscreenButton = [UIButton new];
+            [self insertSubview:self.fullscreenButton aboveSubview:self.danmakuView];
+            [self.fullscreenButton setImage:[UIImage imageNamed:@"new_full_screen_28x28_-1"] forState:UIControlStateNormal];
+            [self.fullscreenButton mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(self.danmakuView).with.offset(-10);
                 make.centerY.equalTo(self.danmakuView);
-                //                make.left.equalTo(self.danmakuScanfView.mas_right).with.offset(15);
                 
-                make.size.mas_equalTo(CGSizeMake(55, 25));
+                make.size.mas_equalTo(CGSizeMake(25, 25));
             }];
             
-            self.danmakuStatusLabel = [UILabel new];
-            [self insertSubview:self.danmakuStatusLabel aboveSubview:self.closeOrOpenDanmaku];
-            self.danmakuStatusLabel.font = [UIFont systemFontOfSize:11];
-            self.danmakuStatusLabel.textColor = [UIColor whiteColor];
-            self.danmakuStatusLabel.text = @"关弹幕";
-            [self.danmakuStatusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerY.equalTo(self.closeOrOpenDanmaku);
-                make.left.equalTo(self.closeOrOpenDanmaku).with.offset(10);
-                make.right.equalTo(self.closeOrOpenDanmaku).with.offset(-10);
+            self.closeOrOpenButton = [UIButton new];
+            [self insertSubview:self.closeOrOpenButton aboveSubview:self.danmakuView];
+            [self.closeOrOpenButton setImage:[UIImage imageNamed:@"new_close_danmu_28x28_"] forState:UIControlStateNormal];
+            [self.closeOrOpenButton setImage:[UIImage imageNamed:@"new_open_danmu_28x28_"] forState:UIControlStateSelected];
+            [self.closeOrOpenButton mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(self.fullscreenButton.mas_left).with.offset(-10);
+                make.centerY.equalTo(self.danmakuView);
+                
+                make.size.mas_equalTo(CGSizeMake(25, 25));
             }];
+            
+            
+//            self.closeOrOpenDanmaku = [UIView new];
+//            [self insertSubview:self.closeOrOpenDanmaku aboveSubview:self.danmakuView];
+//            self.closeOrOpenDanmaku.backgroundColor = ME_Color(112, 99, 95);
+//            self.closeOrOpenDanmaku.alpha = 0.6;
+//            self.closeOrOpenDanmaku.layer.masksToBounds = YES;
+//            self.closeOrOpenDanmaku.layer.cornerRadius = 5;
+//            self.closeOrOpenDanmaku.layer.borderColor = [UIColor whiteColor].CGColor;
+//            self.closeOrOpenDanmaku.layer.borderWidth = 1;
+//            [self.closeOrOpenDanmaku mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.right.equalTo(self.danmakuView).with.offset(-15);
+//                make.centerY.equalTo(self.danmakuView);
+//                //                make.left.equalTo(self.danmakuScanfView.mas_right).with.offset(15);
+//                
+//                make.size.mas_equalTo(CGSizeMake(55, 25));
+//            }];
+            
+//            self.danmakuStatusLabel = [UILabel new];
+//            [self insertSubview:self.danmakuStatusLabel aboveSubview:self.closeOrOpenDanmaku];
+//            self.danmakuStatusLabel.font = [UIFont systemFontOfSize:11];
+//            self.danmakuStatusLabel.textColor = [UIColor whiteColor];
+//            self.danmakuStatusLabel.text = @"关弹幕";
+//            [self.danmakuStatusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.centerY.equalTo(self.closeOrOpenDanmaku);
+//                make.left.equalTo(self.closeOrOpenDanmaku).with.offset(10);
+//                make.right.equalTo(self.closeOrOpenDanmaku).with.offset(-10);
+//            }];
             
             self.danmakuScanfView = [UIView new];
             [self insertSubview:self.danmakuScanfView aboveSubview:self.danmakuView];
@@ -106,8 +128,8 @@
             [self.danmakuScanfView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.danmakuView).with.offset(15);
                 make.centerY.equalTo(self.danmakuView);
-                make.right.equalTo(self.closeOrOpenDanmaku.mas_left).with.offset(-10);
-                make.height.equalTo(self.closeOrOpenDanmaku);
+                make.right.equalTo(self.closeOrOpenButton.mas_left).with.offset(-10);
+                make.height.mas_equalTo(self.closeOrOpenButton.mas_height);
                 
             }];
             

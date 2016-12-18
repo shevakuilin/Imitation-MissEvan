@@ -126,10 +126,15 @@
      */
     MEPageControl_AutoScroll * view = [[MEPageControl_AutoScroll alloc]initWithFrame:CGRectMake(0, 0, ME_Width, 145)];
     NSMutableArray * pageImageArray = [[NSMutableArray alloc] init];
-    for (NSInteger i = 1; i < 5; i ++) {
-        UIImageView * imageView = [UIImageView new];
-        imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"page%@", @(i)]];
-        [pageImageArray addObject:imageView];
+//    for (NSInteger i = 1; i < 5; i ++) {
+//        UIImageView * imageView = [UIImageView new];
+//        imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"page%@", @(i)]];
+//        [pageImageArray addObject:imageView];
+//    }
+    for (NSInteger i = 0; i < 4; i ++) {
+        UIImageView * bannerImageView = [UIImageView new];
+        [bannerImageView setImageWithURL:[NSURL URLWithString:ME_DATASOURCE.bannerArray[i][@"image"]] placeholderImage:[UIImage imageNamed:@""]];
+        [pageImageArray addObject:bannerImageView];
     }
     view.autoScrollDelayTime = 5.0;
     view.delegate = self;

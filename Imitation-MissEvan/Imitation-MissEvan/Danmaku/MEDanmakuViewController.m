@@ -187,9 +187,10 @@
     self.title_DanmakuScanfView.danmakuTextField.delegate = self;
     [self.title_DanmakuScanfView.danmakuTextField addTarget:self action:@selector(textfieldVauleChange:) forControlEvents:UIControlEventEditingChanged];
     //开关弹幕
-    UITapGestureRecognizer * closeOrOpenGesture = [[UITapGestureRecognizer alloc] init];
-    [closeOrOpenGesture addTarget:self action:@selector(closeOrOpen)];
-    [self.title_DanmakuScanfView.closeOrOpenDanmaku addGestureRecognizer:closeOrOpenGesture];
+//    UITapGestureRecognizer * closeOrOpenGesture = [[UITapGestureRecognizer alloc] init];
+//    [closeOrOpenGesture addTarget:self action:@selector(closeOrOpen)];
+//    [self.title_DanmakuScanfView.closeOrOpenDanmaku addGestureRecognizer:closeOrOpenGesture];
+    [self.title_DanmakuScanfView.closeOrOpenButton addTarget:self action:@selector(closeOrOpen) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton * button = [UIButton new];
     [self.scrollView addSubview:button];
@@ -308,18 +309,18 @@
     
     UIImageView * leftImageView = [UIImageView new];
     [leftView addSubview:leftImageView];
-    leftImageView.image = [UIImage imageNamed:@"new_shared_24x25_"];
+    leftImageView.image = [UIImage imageNamed:@"new_share_play_23x20_"];
     [leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(leftView).with.offset(20);
+        make.top.equalTo(leftView).with.offset(22);
         make.centerX.equalTo(leftView);
     }];
     
     UILabel * leftLabel = [UILabel new];
     [leftView addSubview:leftLabel];
     leftLabel.font = [UIFont systemFontOfSize:10];
-    leftLabel.text = @"分享";
+    leftLabel.text = @"分 享";
     [leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(leftImageView.mas_bottom).with.offset(2);
+        make.bottom.equalTo(leftView).with.offset(-5);
         make.centerX.equalTo(leftImageView);
     }];
     
@@ -338,16 +339,16 @@
     [leftCenterView addSubview:leftCenterImageView];
     leftCenterImageView.image = [UIImage imageNamed:@"like2Nor_27x23_@1x"];
     [leftCenterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(leftCenterView).with.offset(22);
+        make.top.equalTo(leftView).with.offset(22);
         make.centerX.equalTo(leftCenterView);
     }];
     
     UILabel * leftCenterLabel = [UILabel new];
     [leftCenterView addSubview:leftCenterLabel];
     leftCenterLabel.font = [UIFont systemFontOfSize:10];
-    leftCenterLabel.text = @"喜欢";
+    leftCenterLabel.text = @"喜 欢";
     [leftCenterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(leftCenterImageView.mas_bottom).with.offset(2);
+        make.bottom.equalTo(leftView).with.offset(-5);
         make.centerX.equalTo(leftCenterImageView);
     }];
     
@@ -375,18 +376,18 @@
     
     UIImageView * rightImageView = [UIImageView new];
     [rightView addSubview:rightImageView];
-    rightImageView.image = [UIImage imageNamed:@"new_full_23x23_"];
+    rightImageView.image = [UIImage imageNamed:@"new_feed_w_30x20_"];
     [rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(rightView).with.offset(22);
+        make.top.equalTo(leftView).with.offset(22);
         make.centerX.equalTo(rightView);
     }];
     
     UILabel * rightLabel = [UILabel new];
     [rightView addSubview:rightLabel];
     rightLabel.font = [UIFont systemFontOfSize:10];
-    rightLabel.text = @"全屏";
+    rightLabel.text = @"投 食";
     [rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(rightImageView.mas_bottom).with.offset(2);
+        make.bottom.equalTo(leftView).with.offset(-5);
         make.centerX.equalTo(rightImageView);
     }];
     
@@ -404,16 +405,16 @@
     [rightCenterView addSubview:rightCenterImageView];
     rightCenterImageView.image = [UIImage imageNamed:@"new_down_25x24_"];
     [rightCenterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(rightCenterView).with.offset(20);
+        make.top.equalTo(rightCenterView).with.offset(22);
         make.centerX.equalTo(rightCenterView);
     }];
     
     UILabel * rightCenterLabel = [UILabel new];
     [rightCenterView addSubview:rightCenterLabel];
     rightCenterLabel.font = [UIFont systemFontOfSize:10];
-    rightCenterLabel.text = @"下载";
+    rightCenterLabel.text = @"下 载";
     [rightCenterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(rightCenterImageView.mas_bottom).with.offset(2);
+        make.bottom.equalTo(leftView).with.offset(-5);
         make.centerX.equalTo(rightCenterImageView);
     }];
     
@@ -655,8 +656,10 @@
     CGPoint danmakuPoint = self.title_DanmakuScanfView.danmakuView.center;
     CGPoint scanfPoint = self.title_DanmakuScanfView.danmakuScanfView.center;
     CGPoint textFieldPoint = self.title_DanmakuScanfView.danmakuTextField.center;
-    CGPoint closerOfOpenPoint = self.title_DanmakuScanfView.closeOrOpenDanmaku.center;
-    CGPoint statusPoint = self.title_DanmakuScanfView.danmakuStatusLabel.center;
+//    CGPoint closerOfOpenPoint = self.title_DanmakuScanfView.closeOrOpenDanmaku.center;
+//    CGPoint statusPoint = self.title_DanmakuScanfView.danmakuStatusLabel.center;
+    CGPoint closerOfOpenPoint = self.title_DanmakuScanfView.closeOrOpenButton.center;
+    CGPoint fullscreenPoint = self.title_DanmakuScanfView.fullscreenButton.center;
     CGPoint placeholder = self.title_DanmakuScanfView.placeholderLabel.center;
     //执行动画
     [UIView animateWithDuration:0.5 animations:^{
@@ -667,8 +670,10 @@
         self.title_DanmakuScanfView.danmakuView.center = CGPointMake(danmakuPoint.x, danmakuPoint.y - 55);
         self.title_DanmakuScanfView.danmakuScanfView.center = CGPointMake(scanfPoint.x, scanfPoint.y - 55);
         self.title_DanmakuScanfView.danmakuTextField.center = CGPointMake(textFieldPoint.x, textFieldPoint.y - 55);
-        self.title_DanmakuScanfView.closeOrOpenDanmaku.center = CGPointMake(closerOfOpenPoint.x, closerOfOpenPoint.y - 55);
-        self.title_DanmakuScanfView.danmakuStatusLabel.center = CGPointMake(statusPoint.x, statusPoint.y - 55);
+//        self.title_DanmakuScanfView.closeOrOpenDanmaku.center = CGPointMake(closerOfOpenPoint.x, closerOfOpenPoint.y - 55);
+//        self.title_DanmakuScanfView.danmakuStatusLabel.center = CGPointMake(statusPoint.x, statusPoint.y - 55);
+        self.title_DanmakuScanfView.closeOrOpenButton.center = CGPointMake(closerOfOpenPoint.x, closerOfOpenPoint.y - 55);
+        self.title_DanmakuScanfView.fullscreenButton.center = CGPointMake(fullscreenPoint.x, fullscreenPoint.y - 55);
         self.title_DanmakuScanfView.placeholderLabel.center = CGPointMake(placeholder.x, placeholder.y - 55);
         
         UITapGestureRecognizer * hiddenGesture = [[UITapGestureRecognizer alloc] init];
@@ -697,8 +702,10 @@
     CGPoint danmakuPoint = self.title_DanmakuScanfView.danmakuView.center;
     CGPoint scanfPoint = self.title_DanmakuScanfView.danmakuScanfView.center;
     CGPoint textFieldPoint = self.title_DanmakuScanfView.danmakuTextField.center;
-    CGPoint closerOfOpenPoint = self.title_DanmakuScanfView.closeOrOpenDanmaku.center;
-    CGPoint statusPoint = self.title_DanmakuScanfView.danmakuStatusLabel.center;
+//    CGPoint closerOfOpenPoint = self.title_DanmakuScanfView.closeOrOpenDanmaku.center;
+//    CGPoint statusPoint = self.title_DanmakuScanfView.danmakuStatusLabel.center;
+    CGPoint closerOfOpenPoint = self.title_DanmakuScanfView.closeOrOpenButton.center;
+    CGPoint fullscreenPoint = self.title_DanmakuScanfView.fullscreenButton.center;
     CGPoint placeholder = self.title_DanmakuScanfView.placeholderLabel.center;
     //执行动画
     [UIView animateWithDuration:0.5 animations:^{
@@ -709,8 +716,10 @@
         self.title_DanmakuScanfView.danmakuView.center = CGPointMake(danmakuPoint.x, danmakuPoint.y + 55);
         self.title_DanmakuScanfView.danmakuScanfView.center = CGPointMake(scanfPoint.x, scanfPoint.y + 55);
         self.title_DanmakuScanfView.danmakuTextField.center = CGPointMake(textFieldPoint.x, textFieldPoint.y + 55);
-        self.title_DanmakuScanfView.closeOrOpenDanmaku.center = CGPointMake(closerOfOpenPoint.x, closerOfOpenPoint.y + 55);
-        self.title_DanmakuScanfView.danmakuStatusLabel.center = CGPointMake(statusPoint.x, statusPoint.y + 55);
+//        self.title_DanmakuScanfView.closeOrOpenDanmaku.center = CGPointMake(closerOfOpenPoint.x, closerOfOpenPoint.y + 55);
+//        self.title_DanmakuScanfView.danmakuStatusLabel.center = CGPointMake(statusPoint.x, statusPoint.y + 55);
+        self.title_DanmakuScanfView.closeOrOpenButton.center = CGPointMake(closerOfOpenPoint.x, closerOfOpenPoint.y + 55);
+        self.title_DanmakuScanfView.fullscreenButton.center = CGPointMake(fullscreenPoint.x, fullscreenPoint.y + 55);
         self.title_DanmakuScanfView.placeholderLabel.center = CGPointMake(placeholder.x, placeholder.y + 55);
         
         UITapGestureRecognizer * showGesture = [[UITapGestureRecognizer alloc] init];
@@ -724,11 +733,13 @@
     //TODO:关闭/打开弹幕
     if (self.danmakuView.hidden == NO) {
         self.danmakuView.hidden = YES;
-        self.title_DanmakuScanfView.danmakuStatusLabel.text = @"开弹幕";
+//        self.title_DanmakuScanfView.danmakuStatusLabel.text = @"开弹幕";
+        self.title_DanmakuScanfView.closeOrOpenButton.selected = YES;
         return;
     } else if (self.danmakuView.hidden == YES) {
         self.danmakuView.hidden = NO;
-        self.title_DanmakuScanfView.danmakuStatusLabel.text = @"关弹幕";
+//        self.title_DanmakuScanfView.danmakuStatusLabel.text = @"关弹幕";
+        self.title_DanmakuScanfView.closeOrOpenButton.selected = NO;
         return;
     }
 }

@@ -52,14 +52,14 @@
         [self.collectionView registerClass:[MEHomeRecommendTopCollectionViewCell class] forCellWithReuseIdentifier:@"HomeRecommendTop"];
         
         
-        self.topShadow = [UIImageView new];
-        [self addSubview:self.topShadow];
-        self.topShadow.backgroundColor = ME_Color(238, 238, 238);
-        [self.topShadow mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).with.offset(0);
-            
-            make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
-        }];
+//        self.topShadow = [UIImageView new];
+//        [self addSubview:self.topShadow];
+//        self.topShadow.backgroundColor = ME_Color(238, 238, 238);
+//        [self.topShadow mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(self).with.offset(0);
+//            
+//            make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
+//        }];
         
         self.downShadow = [UIImageView new];
         [self addSubview:self.downShadow];

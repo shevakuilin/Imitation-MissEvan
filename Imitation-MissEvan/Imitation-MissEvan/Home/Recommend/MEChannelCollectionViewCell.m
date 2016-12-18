@@ -23,7 +23,7 @@
 {
     if ([super initWithFrame:frame]) {
         if (self) {
-            self.backgroundColor = [UIColor whiteColor];
+            self.backgroundColor = ME_Color(250, 250, 250);
             
             //主题图片
             self.themesImageView = [UIImageView new];

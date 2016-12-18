@@ -15,8 +15,10 @@
 @property (nonatomic, strong) UIView * danmakuView;
 @property (nonatomic, strong) UIView * danmakuScanfView;
 @property (nonatomic, strong) UITextField * danmakuTextField;
-@property (nonatomic, strong) UIView * closeOrOpenDanmaku;//开关弹幕
-@property (nonatomic, strong) UILabel * danmakuStatusLabel;//弹幕状态
+//@property (nonatomic, strong) UIView * closeOrOpenDanmaku;//开关弹幕
+@property (nonatomic, strong) UIButton * closeOrOpenButton;//开关弹幕
+//@property (nonatomic, strong) UILabel * danmakuStatusLabel;//弹幕状态
 @property (nonatomic, strong) UILabel * placeholderLabel;
+@property (nonatomic, strong) UIButton * fullscreenButton;//全屏
 
 @end

@@ -32,7 +32,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = ME_Color(250, 250, 250);
         
         //创建一个layout布局类
         UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
@@ -43,7 +43,7 @@
         [self addSubview:self.collectionView];
         self.collectionView.dataSource = self;
         self.collectionView.delegate = self;
-        self.collectionView.backgroundColor = [UIColor whiteColor];
+        self.collectionView.backgroundColor = ME_Color(250, 250, 250);
         self.collectionView.scrollEnabled = NO;
         [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
@@ -62,16 +62,16 @@
             make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
         }];
         
-        UIImageView * downShadow = [UIImageView new];
-        [self addSubview:downShadow];
-        downShadow.backgroundColor = ME_Color(238, 238, 238);//229, 230, 230
-        [downShadow mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self).with.offset(0);
-            make.left.equalTo(self);
-            make.right.equalTo(self);
-            
-            make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
-        }];
+//        UIImageView * downShadow = [UIImageView new];
+//        [self addSubview:downShadow];
+//        downShadow.backgroundColor = ME_Color(238, 238, 238);//229, 230, 230
+//        [downShadow mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.bottom.equalTo(self).with.offset(0);
+//            make.left.equalTo(self);
+//            make.right.equalTo(self);
+//            
+//            make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
+//        }];
         
     }
     return self;

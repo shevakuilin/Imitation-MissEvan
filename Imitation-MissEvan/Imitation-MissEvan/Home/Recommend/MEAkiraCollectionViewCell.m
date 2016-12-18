@@ -21,7 +21,7 @@
 {
     if ([super initWithFrame:frame]) {
         if (self) {
-            self.backgroundColor = [UIColor whiteColor];
+            self.backgroundColor = ME_Color(250, 250, 250);
             
             self.typeImageView = [UIImageView new];
             [self addSubview:self.typeImageView];

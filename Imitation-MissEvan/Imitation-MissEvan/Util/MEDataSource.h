@@ -19,6 +19,7 @@
 @property (copy, nonatomic) NSArray * recommendCellArray;
 @property (copy, nonatomic) NSArray * channelCellArray;
 @property (copy, nonatomic) NSArray * voiceListArray;
+@property (copy, nonatomic) NSArray * bannerArray;
 
 @property (copy, nonatomic) NSArray * radioArray;
 @property (copy, nonatomic) NSArray * classiftPic;

@@ -42,10 +42,20 @@
 
 - (void)dataSourceOfHomeRecommend
 {
-    self.homeTopArray = @[@{@"image":@"hp3_icon_activity_40x40_", @"title":@"活动"},
-                          @{@"image":@"hp3_icon_rank_41x40_", @"title":@"排行"},
-                          @{@"image":@"hp3_icon_channel_41x40_", @"title":@"广播剧"},
-                          @{@"image":@"hp3_icon_mission_40x40_", @"title":@"任务"}];
+//    self.homeTopArray = @[@{@"image":@"hp3_icon_activity_40x40_", @"title":@"活动"},
+//                          @{@"image":@"hp3_icon_rank_41x40_", @"title":@"排行"},
+//                          @{@"image":@"hp3_icon_channel_41x40_", @"title":@"广播剧"},
+//                          @{@"image":@"hp3_icon_mission_40x40_", @"title":@"任务"}];
+    //v.3.7.0 -
+    self.bannerArray = @[@{@"image":@"http://static.missevan.com/mimages/201612/15/762273f7bd88e4d46442fdcd0c7da0ac103315.png"},
+                         @{@"image":@"http://static.missevan.com/mimages/201612/08/ab6a95e94933d5488b70dd872d2e1d16143051.jpg"},
+                         @{@"image":@"http://static.missevan.com/mimages/201612/16/ce5e17b747c0cc985d68276fbf3a2e17103110.png"},
+                         @{@"image":@"http://static.missevan.com/mimages/201612/08/87429797a90c4854ef1bdc9b6acc90ed155822.png"}];
+    
+    self.homeTopArray = @[@{@"image":@"nhp_title_topic_40x40_", @"title":@"专题"},
+                          @{@"image":@"nhp_title_rank_40x40_", @"title":@"排行"},
+                          @{@"image":@"nhp_title_drama_40x40_", @"title":@"广播剧"},
+                          @{@"image":@"nhp_title_mission_40x40_", @"title":@"任务"}];
     
     self.bellArray = @[@{@"image":@"hp3_title_bell2_40x40_", @"title":@"闹铃"},
                        @{@"image":@"hp3_title_message2_40x40_", @"title":@"短信"},
@@ -180,14 +190,26 @@
 
 - (void)dataSourceOfMy
 {
+//    self.myIconArray = @[@[@{@"image":@"m_icon_history_45x45_", @"title":@"历史记录"},
+//                           @{@"image":@"m_icon_bell_45x45_", @"title":@"铃声设置"},
+//                           @{@"image":@"m_icon_collect_45x45_", @"title":@"我的收藏"},
+//                           @{@"image":@"m_icon_attention_45x45_", @"title":@"我的关注"},
+//                           @{@"image":@"m_icon_download_45x45_", @"title":@"本地下载"},
+//                           @{@"image":@"m_icon_mission_45x45_", @"title":@"每日任务"},
+//                           @{@"image":@"m_icon_timer_45x45_", @"title":@"定时关闭"},
+//                           @{@"image":@"m_icon_feedback_45x45_", @"title":@"意见反馈"}],
+//                         @[@{@"image":@"m_icon_comment_45x45_", @"title":@"我的评论"},
+//                           @{@"image":@"m_icon_message_45x45_", @"title":@"我的私信"}]];
+    
+    //v3.7.0 -
     self.myIconArray = @[@[@{@"image":@"m_icon_history_45x45_", @"title":@"历史记录"},
-                           @{@"image":@"m_icon_bell_45x45_", @"title":@"铃声设置"},
                            @{@"image":@"m_icon_collect_45x45_", @"title":@"我的收藏"},
                            @{@"image":@"m_icon_attention_45x45_", @"title":@"我的关注"},
                            @{@"image":@"m_icon_download_45x45_", @"title":@"本地下载"},
                            @{@"image":@"m_icon_mission_45x45_", @"title":@"每日任务"},
                            @{@"image":@"m_icon_timer_45x45_", @"title":@"定时关闭"},
-                           @{@"image":@"m_icon_feedback_45x45_", @"title":@"意见反馈"}],
+                           @{@"image":@"m_icon_feedback_45x45_", @"title":@"意见反馈"},
+                           @{@"image":@"m_icon_theme_45x45_", @"title":@"主题切换"}],
                          @[@{@"image":@"m_icon_comment_45x45_", @"title":@"我的评论"},
                            @{@"image":@"m_icon_message_45x45_", @"title":@"我的私信"}]];
 }

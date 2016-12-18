@@ -35,7 +35,7 @@
             self.titleLabel.textAlignment = NSTextAlignmentCenter;
             self.titleLabel.font = [UIFont systemFontOfSize:13];
             [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self.typeImageView.mas_bottom).with.offset(1);
+                make.top.equalTo(self.typeImageView.mas_bottom).with.offset(3);
                 make.centerX.equalTo(self.typeImageView).with.offset(0);
             }];
         }

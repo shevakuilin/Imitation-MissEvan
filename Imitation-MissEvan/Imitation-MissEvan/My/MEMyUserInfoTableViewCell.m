@@ -13,6 +13,7 @@
 @property (strong, nonatomic) UIImageView * userHeadImageView;
 @property (strong, nonatomic) UILabel * userNameLabel;
 @property (strong, nonatomic) UILabel * mNumberLabel;
+@property (strong, nonatomic) UILabel * fishNumberLabel;
 
 @end
 
@@ -51,18 +52,32 @@
             self.userNameLabel.font = [UIFont systemFontOfSize:16];
             self.userNameLabel.text = @"舍瓦其谁";
             [self.userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self.userHeadImageView.mas_top).with.offset(10);
+                make.top.equalTo(self.userHeadImageView.mas_top).with.offset(5);
                 make.left.equalTo(self.userHeadImageView.mas_right).with.offset(15);
             }];
             
             self.mNumberLabel = [UILabel new];
             [self addSubview:self.mNumberLabel];
-            self.mNumberLabel.font = [UIFont systemFontOfSize:12];
-            self.mNumberLabel.textColor = [UIColor lightGrayColor];
-            self.mNumberLabel.text = @"M号:361555";
+            self.mNumberLabel.font = [UIFont systemFontOfSize:9];
+            self.mNumberLabel.textColor = [UIColor whiteColor];
+            self.mNumberLabel.text = @" MID:361555 ";
+            self.mNumberLabel.textAlignment = NSTextAlignmentCenter;
+            self.mNumberLabel.layer.masksToBounds = YES;
+            self.mNumberLabel.layer.cornerRadius = 3;
+            self.mNumberLabel.backgroundColor = [UIColor blackColor];
             [self.mNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self.userNameLabel.mas_bottom).with.offset(5);
+                make.top.equalTo(self.userNameLabel.mas_bottom).with.offset(3);
                 make.left.equalTo(self.userNameLabel.mas_left).with.offset(0);
+                make.width.mas_equalTo(self.userNameLabel.mas_width);
+            }];
+            
+            self.fishNumberLabel = [UILabel new];
+            [self addSubview:self.fishNumberLabel];
+            self.fishNumberLabel.font = [UIFont systemFontOfSize:11];
+            self.fishNumberLabel.text = @"小鱼干：67";
+            [self.fishNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.mNumberLabel.mas_bottom).with.offset(3);
+                make.left.equalTo(self.mNumberLabel.mas_left);
             }];
             
             UIImageView * right_arrowImageView = [UIImageView new];

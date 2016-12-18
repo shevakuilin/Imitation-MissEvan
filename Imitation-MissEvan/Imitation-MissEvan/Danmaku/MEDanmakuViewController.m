@@ -617,7 +617,7 @@
     [self.playButton setImage:[UIImage imageNamed:@"npv_button_play_41x41_"] forState:UIControlStateNormal];
     //创建一个消息对象
     NSNotification * notice = [NSNotification notificationWithName:@"play" object:nil userInfo:@{@"isPlay":@"NO"}];
-    //发送消息给睡觉猫
+    //发送消息给睡醒猫
     [[NSNotificationCenter defaultCenter] postNotification:notice];
 }
 

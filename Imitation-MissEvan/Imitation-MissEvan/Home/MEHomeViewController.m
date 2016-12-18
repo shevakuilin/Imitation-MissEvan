@@ -71,7 +71,7 @@
     //如果进入播放界面，那么根据播放状态决定动画播放状态
     BOOL isPlay = [[sender userInfo][@"isPlay"] boolValue];
     if (isPlay == YES) {
-        MELog(@"正在播放");
+        MELog(@"正在播放, Music动画开始执行");
         NSMutableArray * stackImageArray = [NSMutableArray new];
         for (NSInteger i = 1; i < 97; i ++) {
             NSString * stackImageName;
@@ -82,12 +82,12 @@
             }
             UIImage * imageName = [UIImage imageNamed:stackImageName];
             [stackImageArray addObject:imageName];
-            
+            MELog(@"Music动画开始执行第%@张图片", @(i - 1));
             self.rightBarButton.imageView.animationImages = stackImageArray;
             //动画重复次数
             self.rightBarButton.imageView.animationRepeatCount = 10000000 * 10000000;
             //动画执行时间,多长时间执行完动画
-            self.rightBarButton.imageView.animationDuration = 8;
+            self.rightBarButton.imageView.animationDuration = 7;
             //开始动画
             [self.rightBarButton.imageView startAnimating];
         }

@@ -53,7 +53,7 @@
     //如果进入播放界面，那么根据播放状态切换睡觉猫帧图
     BOOL isPlay = [[sender userInfo][@"isPlay"] boolValue];
     if (isPlay == YES) {
-        MELog(@"正在播放");
+        MELog(@"正在播放, 睡醒猫动画开始执行");
         NSMutableArray * stackImageArray = [NSMutableArray new];
         for (NSInteger i = 1; i < 72; i ++) {
             NSString * stackImageName;
@@ -64,7 +64,7 @@
             }
             UIImage * imageName = [UIImage imageNamed:stackImageName];
             [stackImageArray addObject:imageName];
-            
+            MELog(@"睡醒猫动画开始执行第%@张图片", @(i - 1));
             self.animationImages = stackImageArray;
             //动画重复次数
             self.animationRepeatCount = 10000000 * 10000000;
@@ -75,7 +75,7 @@
         }
 
     } else {
-        MELog(@"播放暂停");
+        MELog(@"播放暂停, 睡觉猫动画开始执行");
         NSMutableArray * stackImageArray = [NSMutableArray new];
         for (NSInteger i = 1; i < 141; i ++) {
             NSString * stackImageName;
@@ -88,7 +88,7 @@
             }
             UIImage * imageName = [UIImage imageNamed:stackImageName];
             [stackImageArray addObject:imageName];
-            
+            MELog(@"睡觉猫动画开始执行第%@张图片", @(i - 1));
             self.animationImages = stackImageArray;
             //动画重复次数
             self.animationRepeatCount = 10000000 * 10000000;

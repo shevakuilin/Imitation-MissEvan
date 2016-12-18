@@ -43,7 +43,7 @@
     [gesture addTarget:self action:@selector(goBarrage)];
     [tabBar.catImageView addGestureRecognizer:gesture];
     [self.tabBar addSubview:tabBar];
-    self.tabBar.backgroundColor = [UIColor clearColor];
+//    self.tabBar.backgroundColor = [UIColor clearColor];
 }
 
 - (void)tabBar:(METabBar *)tabBar selectedFrom:(NSInteger)from whereTo:(NSInteger)to

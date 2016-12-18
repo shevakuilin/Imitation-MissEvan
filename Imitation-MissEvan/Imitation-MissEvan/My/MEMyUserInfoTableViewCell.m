@@ -58,7 +58,7 @@
             
             self.mNumberLabel = [UILabel new];
             [self addSubview:self.mNumberLabel];
-            self.mNumberLabel.font = [UIFont systemFontOfSize:9];
+            self.mNumberLabel.font = [UIFont systemFontOfSize:10];
             self.mNumberLabel.textColor = [UIColor whiteColor];
             self.mNumberLabel.text = @" MID:361555 ";
             self.mNumberLabel.textAlignment = NSTextAlignmentCenter;
@@ -74,6 +74,7 @@
             self.fishNumberLabel = [UILabel new];
             [self addSubview:self.fishNumberLabel];
             self.fishNumberLabel.font = [UIFont systemFontOfSize:11];
+            self.fishNumberLabel.textColor = [UIColor blackColor];//ME_Color(109, 109, 109);
             self.fishNumberLabel.text = @"小鱼干：67";
             [self.fishNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.mNumberLabel.mas_bottom).with.offset(3);

@@ -30,10 +30,10 @@
             
             self.classifyLabel = [UILabel new];
             [self addSubview:self.classifyLabel];
-            self.classifyLabel.font = [UIFont systemFontOfSize:13];
+            self.classifyLabel.font = [UIFont systemFontOfSize:14];
             self.classifyLabel.text = @"历史记录";
             [self.classifyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.bottom.equalTo(self).with.offset(-5);
+                make.bottom.equalTo(self).with.offset(-15);
                 make.centerX.equalTo(self).with.offset(0);
             }];
             

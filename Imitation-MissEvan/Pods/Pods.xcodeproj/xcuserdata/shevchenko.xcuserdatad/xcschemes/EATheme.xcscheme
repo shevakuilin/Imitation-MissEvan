@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '1FD9945959C01BA413F45B2ACF76443D'
-               BlueprintName = 'Pods-Imitation-MissEvan'
+               BlueprintIdentifier = 'C71DAAF4A0508B95A8761C7E9DA45679'
+               BlueprintName = 'EATheme'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libPods-Imitation-MissEvan.a'>
+               BuildableName = 'libEATheme.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

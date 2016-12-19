@@ -119,7 +119,10 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    NSString * row = [NSString stringWithFormat:@"%@", @(indexPath.row)];
+    if ([self.delegate respondsToSelector:@selector(classViewCell: didSelectWithItem:)]) {
+        [self.delegate classViewCell:self didSelectWithItem:row];
+    }
 }
 
 //定义每个Item 的大小

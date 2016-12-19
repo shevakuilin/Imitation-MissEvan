@@ -52,6 +52,7 @@
 		77E0D42B1DED1D98006A7814 /* MEHotSearchCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E0D42A1DED1D98006A7814 /* MEHotSearchCollectionViewCell.m */; };
 		C9539F1C10181F2A520BDDE3 /* libPods-Imitation-MissEvan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20DBB35C9F8E09611DFD0293 /* libPods-Imitation-MissEvan.a */; };
 		E445057C1DFC557C0094FEDE /* METabBarCatImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E445057B1DFC557C0094FEDE /* METabBarCatImageView.m */; };
+		E44993BB1E081EE600396D48 /* METhemeSwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E44993BA1E081EE600396D48 /* METhemeSwitchViewController.m */; };
 		E4B71B081DFE56290013F34F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B71B071DFE56290013F34F /* Accelerate.framework */; };
 		E4C3B56D1DD7787C00A672D1 /* MEScaleToSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B56C1DD7787C00A672D1 /* MEScaleToSize.m */; };
 		E4C3B5891DDC8F5900A672D1 /* MEAkiraTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B57A1DDC8F5900A672D1 /* MEAkiraTableViewCell.m */; };
@@ -180,6 +181,8 @@
 		78521F705BB0DCF560EE7105 /* Pods-Imitation-MissEvan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imitation-MissEvan.release.xcconfig"; path = "Pods/Target Support Files/Pods-Imitation-MissEvan/Pods-Imitation-MissEvan.release.xcconfig"; sourceTree = "<group>"; };
 		E445057A1DFC557C0094FEDE /* METabBarCatImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METabBarCatImageView.h; sourceTree = "<group>"; };
 		E445057B1DFC557C0094FEDE /* METabBarCatImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METabBarCatImageView.m; sourceTree = "<group>"; };
+		E44993B91E081EE600396D48 /* METhemeSwitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METhemeSwitchViewController.h; sourceTree = "<group>"; };
+		E44993BA1E081EE600396D48 /* METhemeSwitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METhemeSwitchViewController.m; sourceTree = "<group>"; };
 		E4B71B071DFE56290013F34F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		E4C3B56B1DD7787C00A672D1 /* MEScaleToSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEScaleToSize.h; sourceTree = "<group>"; };
 		E4C3B56C1DD7787C00A672D1 /* MEScaleToSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEScaleToSize.m; sourceTree = "<group>"; };
@@ -478,6 +481,7 @@
 				E4C3B5B21DEF17F000A672D1 /* MEMyPersonalCenterCollectionViewCell.m */,
 				E4C3B5B41DEF183600A672D1 /* MEMyMessageTableViewCell.h */,
 				E4C3B5B51DEF183600A672D1 /* MEMyMessageTableViewCell.m */,
+				E44993B81E081CA000396D48 /* ThemeSwitch */,
 			);
 			path = My;
 			sourceTree = "<group>";
@@ -565,6 +569,15 @@
 				20DBB35C9F8E09611DFD0293 /* libPods-Imitation-MissEvan.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E44993B81E081CA000396D48 /* ThemeSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				E44993B91E081EE600396D48 /* METhemeSwitchViewController.h */,
+				E44993BA1E081EE600396D48 /* METhemeSwitchViewController.m */,
+			);
+			path = ThemeSwitch;
 			sourceTree = "<group>";
 		};
 		E4C3B5781DDC8F5900A672D1 /* Recommend */ = {
@@ -810,6 +823,7 @@
 				778CDE3C1E029F17008D48C9 /* MELasttimeRecordPopView.m in Sources */,
 				E4C3B5951DDC91E300A672D1 /* MEClassifyCollectionViewCell.m in Sources */,
 				E4C3B58F1DDC8F5900A672D1 /* MEHotMVoiceTableViewCell.m in Sources */,
+				E44993BB1E081EE600396D48 /* METhemeSwitchViewController.m in Sources */,
 				776A07CD1DFF8FD10049A3A9 /* DanmakuRetainer.m in Sources */,
 				77D5BDD91DCB30B700EA1DCB /* MEHomeSegmentViewController.m in Sources */,
 				776A07DE1DFFC74B0049A3A9 /* METitle+DanmakuScanfView.m in Sources */,

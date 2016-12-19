@@ -7,8 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+@class MEMyPersonalCenterTableViewCell;
+
+@protocol ClassViewCellDelegate <NSObject>
+
+- (void)classViewCell:(MEMyPersonalCenterTableViewCell *)cell didSelectWithItem:(id)item;
+
+@end
 
 @interface MEMyPersonalCenterTableViewCell : UITableViewCell
 @property (nonatomic, strong) NSArray * array;
+@property (weak, nonatomic) id<ClassViewCellDelegate> delegate;
 
 @end

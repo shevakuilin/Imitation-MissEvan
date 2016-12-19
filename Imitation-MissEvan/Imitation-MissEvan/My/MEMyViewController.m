@@ -12,7 +12,7 @@
 #import "MEMyPersonalCenterTableViewCell.h"
 #import "MEMyMessageTableViewCell.h"
 
-@interface MEMyViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface MEMyViewController ()<UITableViewDelegate, UITableViewDataSource, ClassViewCellDelegate>
 @property (strong, nonatomic) UITableView * tableView;
 @end
 
@@ -44,6 +44,17 @@
     [self.tableView registerClass:[MEMyUserInfoTableViewCell class] forCellReuseIdentifier:@"MyUserInfo"];
     [self.tableView registerClass:[MEMyPersonalCenterTableViewCell class] forCellReuseIdentifier:@"MyPersonalCenter"];
     [self.tableView registerClass:[MEMyMessageTableViewCell class] forCellReuseIdentifier:@"MyMessage"];
+}
+
+#pragma mark -
+#pragma mark - ClassViewCellDelegate
+- (void)classViewCell:(MEMyPersonalCenterTableViewCell *)cell didSelectWithItem:(id)item
+{
+    NSInteger row = [item integerValue];
+    if (row == 7) {
+        UIViewController * themeSwitch = ME_GetViewController(@"themeSwitch", @"MEMy");
+        [self.navigationController pushViewController:themeSwitch animated:YES];
+    }
 }
 
 #pragma mark -
@@ -81,6 +92,7 @@
         MEMyPersonalCenterTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MyPersonalCenter"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.array = ME_DATASOURCE.myIconArray[indexPath.section - 1];
+        cell.delegate = self;
         
         return cell;
     }

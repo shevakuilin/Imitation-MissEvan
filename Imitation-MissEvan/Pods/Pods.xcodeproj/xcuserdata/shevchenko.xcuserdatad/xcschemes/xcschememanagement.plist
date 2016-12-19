@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>EATheme.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Masonry.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,7 +37,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2BD6AB7F9D73085F6109F613FD8B42F0</key>
+		<key>1FD9945959C01BA413F45B2ACF76443D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -42,17 +47,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>59DCEA3663E87D4BEE006BCB246AF3D1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>928353533005A4198EBDA5B700D37B64</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BEF0E4FE97939A03AE940E8DA3A9C2A6</key>
+		<key>9BE3C9ADCDD323A0EE95150043D6C90C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B0AEF46FA499F28B83C7732243817122</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C71DAAF4A0508B95A8761C7E9DA45679</key>
 		<dict>
 			<key>primary</key>
 			<true/>

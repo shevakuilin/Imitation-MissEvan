@@ -24,6 +24,7 @@
 #import "HJCornerRadius.h"//圆角优化
 #import "CBAutoScrollLabel.h"//滚动标题
 #import "MEActionSheet.h"
+#import "EATheme.h"//主题切换
 
 #define ME_DATASOURCE   [MEDataSource shareDataSource]
 

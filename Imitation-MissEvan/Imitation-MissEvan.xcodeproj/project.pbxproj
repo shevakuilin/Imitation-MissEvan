@@ -53,6 +53,7 @@
 		C9539F1C10181F2A520BDDE3 /* libPods-Imitation-MissEvan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20DBB35C9F8E09611DFD0293 /* libPods-Imitation-MissEvan.a */; };
 		E445057C1DFC557C0094FEDE /* METabBarCatImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E445057B1DFC557C0094FEDE /* METabBarCatImageView.m */; };
 		E44993BB1E081EE600396D48 /* METhemeSwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E44993BA1E081EE600396D48 /* METhemeSwitchViewController.m */; };
+		E44993BE1E082CAA00396D48 /* METhemeSwitchCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E44993BD1E082CAA00396D48 /* METhemeSwitchCollectionViewCell.m */; };
 		E4B71B081DFE56290013F34F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B71B071DFE56290013F34F /* Accelerate.framework */; };
 		E4C3B56D1DD7787C00A672D1 /* MEScaleToSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B56C1DD7787C00A672D1 /* MEScaleToSize.m */; };
 		E4C3B5891DDC8F5900A672D1 /* MEAkiraTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B57A1DDC8F5900A672D1 /* MEAkiraTableViewCell.m */; };
@@ -183,6 +184,8 @@
 		E445057B1DFC557C0094FEDE /* METabBarCatImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METabBarCatImageView.m; sourceTree = "<group>"; };
 		E44993B91E081EE600396D48 /* METhemeSwitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METhemeSwitchViewController.h; sourceTree = "<group>"; };
 		E44993BA1E081EE600396D48 /* METhemeSwitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METhemeSwitchViewController.m; sourceTree = "<group>"; };
+		E44993BC1E082CAA00396D48 /* METhemeSwitchCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METhemeSwitchCollectionViewCell.h; sourceTree = "<group>"; };
+		E44993BD1E082CAA00396D48 /* METhemeSwitchCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METhemeSwitchCollectionViewCell.m; sourceTree = "<group>"; };
 		E4B71B071DFE56290013F34F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		E4C3B56B1DD7787C00A672D1 /* MEScaleToSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEScaleToSize.h; sourceTree = "<group>"; };
 		E4C3B56C1DD7787C00A672D1 /* MEScaleToSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEScaleToSize.m; sourceTree = "<group>"; };
@@ -576,6 +579,8 @@
 			children = (
 				E44993B91E081EE600396D48 /* METhemeSwitchViewController.h */,
 				E44993BA1E081EE600396D48 /* METhemeSwitchViewController.m */,
+				E44993BC1E082CAA00396D48 /* METhemeSwitchCollectionViewCell.h */,
+				E44993BD1E082CAA00396D48 /* METhemeSwitchCollectionViewCell.m */,
 			);
 			path = ThemeSwitch;
 			sourceTree = "<group>";
@@ -826,6 +831,7 @@
 				E44993BB1E081EE600396D48 /* METhemeSwitchViewController.m in Sources */,
 				776A07CD1DFF8FD10049A3A9 /* DanmakuRetainer.m in Sources */,
 				77D5BDD91DCB30B700EA1DCB /* MEHomeSegmentViewController.m in Sources */,
+				E44993BE1E082CAA00396D48 /* METhemeSwitchCollectionViewCell.m in Sources */,
 				776A07DE1DFFC74B0049A3A9 /* METitle+DanmakuScanfView.m in Sources */,
 				E445057C1DFC557C0094FEDE /* METabBarCatImageView.m in Sources */,
 				770DBD401DEC23A30019D206 /* MESearchView.m in Sources */,

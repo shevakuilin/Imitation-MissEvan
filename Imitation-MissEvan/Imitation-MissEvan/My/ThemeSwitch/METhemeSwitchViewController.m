@@ -8,8 +8,10 @@
 
 #import "METhemeSwitchViewController.h"
 #import "MEHeader.h"
+#import "METhemeSwitchCollectionViewCell.h"
 
-@interface METhemeSwitchViewController ()
+@interface METhemeSwitchViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@property (strong, nonatomic) UICollectionView * collectionView;
 
 @end
 
@@ -18,11 +20,73 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"设置主题";
+    
+    //创建一个layout布局类
+    UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
+    //设置布局方向为垂直流布局
+    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    //创建collectionView 通过一个布局策略layout来创建
+    self.collectionView = [[UICollectionView alloc]initWithFrame:self.view.frame collectionViewLayout:layout];
+    [self.view addSubview:self.collectionView];
+    self.collectionView.backgroundColor = ME_Color(243, 243, 243);
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+    }];
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    [self.collectionView registerClass:[METhemeSwitchCollectionViewCell class] forCellWithReuseIdentifier:@"ThemeSwitch"];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark -
+#pragma mark - collectionView
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 2;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    METhemeSwitchCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ThemeSwitch" forIndexPath:indexPath];
+    
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+
+}
+
+//定义每个Item 的大小
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(ME_Width / 2, 260);
+}
+
+//item横向间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                   layout:(UICollectionViewLayout *)collectionViewLayout
+minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 0;
+}
+
+//item纵向间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                   layout:(UICollectionViewLayout *)collectionViewLayout
+minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 0;
+}
+
 
 @end

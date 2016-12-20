@@ -95,7 +95,7 @@
 //定义每个Item 的大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(ME_Width / 2, 260);
+    return CGSizeMake(ME_Width / 2, 270);
 }
 
 //item横向间距

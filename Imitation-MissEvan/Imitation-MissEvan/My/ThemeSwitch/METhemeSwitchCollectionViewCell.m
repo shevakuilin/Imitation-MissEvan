@@ -35,7 +35,7 @@
                 make.top.equalTo(self).with.offset(30);
                 make.centerX.equalTo(self);
                 
-                make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 2) - 12, 200));
+                make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 2) - 12, 210));
             }];
             
             self.themeImageView = [UIImageView new];
@@ -49,8 +49,8 @@
             self.inUseIconImageView = [UIImageView new];
             [themeView addSubview:self.inUseIconImageView];
             [self.inUseIconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(themeView).with.offset(5);
-                make.left.equalTo(themeView).with.offset(5);
+                make.top.equalTo(themeView).with.offset(10);
+                make.left.equalTo(themeView).with.offset(10);
             }];
             self.inUseIconImageView.hidden = YES;
             
@@ -58,9 +58,12 @@
             [self addSubview:self.chooseButton];
             self.chooseButton.titleLabel.font = [UIFont systemFontOfSize:13];
             [self.chooseButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [self.chooseButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 8, 0, 0)];
             [self.chooseButton mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self.themeImageView.mas_bottom).with.offset(5);
+                make.top.equalTo(self.themeImageView.mas_bottom).with.offset(10);
                 make.centerX.equalTo(self);
+                
+                make.width.mas_equalTo(themeView);
             }];
             
         }

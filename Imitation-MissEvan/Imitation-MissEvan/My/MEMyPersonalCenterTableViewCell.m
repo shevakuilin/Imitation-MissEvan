@@ -12,7 +12,7 @@
 
 @interface MEMyPersonalCenterTableViewCell ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) UICollectionView * collectionView;
-@property (strong, nonatomic) UILabel * titleLabel;
+//@property (strong, nonatomic) UILabel * titleLabel;
 
 @end
 
@@ -33,7 +33,7 @@
 {
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         if (self) {
-            self.titleLabel = [UILabel new];
+//            self.titleLabel = [UILabel new];
             [self addSubview:self.titleLabel];
             self.titleLabel.font = [UIFont systemFontOfSize:15];
             [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

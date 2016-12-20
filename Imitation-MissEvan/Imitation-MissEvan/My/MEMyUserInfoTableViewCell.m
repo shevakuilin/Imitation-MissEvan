@@ -11,9 +11,9 @@
 
 @interface MEMyUserInfoTableViewCell ()
 @property (strong, nonatomic) UIImageView * userHeadImageView;
-@property (strong, nonatomic) UILabel * userNameLabel;
-@property (strong, nonatomic) UILabel * mNumberLabel;
-@property (strong, nonatomic) UILabel * fishNumberLabel;
+//@property (strong, nonatomic) UILabel * userNameLabel;
+//@property (strong, nonatomic) UILabel * mNumberLabel;
+//@property (strong, nonatomic) UILabel * fishNumberLabel;
 
 @end
 
@@ -37,8 +37,6 @@
             self.userHeadImageView = [UIImageView new];
             [self addSubview:self.userHeadImageView];
             [self.userHeadImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@icon01.png", ME_URL_GLOBAL, ME_URL_AVATARRS]] placeholderImage:[UIImage imageNamed:@""]];
-//            self.userHeadImageView.layer.masksToBounds = YES;
-//            self.userHeadImageView.layer.cornerRadius = 30;
             self.userHeadImageView.aliCornerRadius = 30;//圆角优化
             [self.userHeadImageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self).with.offset(15);
@@ -47,7 +45,7 @@
                 make.size.mas_equalTo(CGSizeMake(60, 60));
             }];
             
-            self.userNameLabel = [UILabel new];
+//            self.userNameLabel = [UILabel new];
             [self addSubview:self.userNameLabel];
             self.userNameLabel.font = [UIFont systemFontOfSize:16];
             self.userNameLabel.text = @"舍瓦其谁";
@@ -56,7 +54,7 @@
                 make.left.equalTo(self.userHeadImageView.mas_right).with.offset(15);
             }];
             
-            self.mNumberLabel = [UILabel new];
+//            self.mNumberLabel = [UILabel new];
             [self addSubview:self.mNumberLabel];
             self.mNumberLabel.font = [UIFont systemFontOfSize:10];
             self.mNumberLabel.textColor = [UIColor whiteColor];
@@ -106,6 +104,11 @@
                 
                 make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
             }];
+            
+//            @ea_weakify(self);
+//            [self ea_setThemeContents:^(UIView *currentView, NSString *currentThemeIdentifier) {
+//                @ea_strongify(self);
+//            }];
             
         }
     }

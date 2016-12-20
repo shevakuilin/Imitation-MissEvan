@@ -65,7 +65,7 @@
             layout.scrollDirection = UICollectionViewScrollDirectionVertical;
             //创建collectionView 通过一个布局策略layout来创建
             self.collectionView = [[UICollectionView alloc]initWithFrame:self.frame collectionViewLayout:layout];            [self addSubview:self.collectionView];
-            self.collectionView.backgroundColor = [UIColor whiteColor];
+            self.collectionView.backgroundColor = [UIColor clearColor];//[UIColor whiteColor];
             [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.titleLabel.mas_bottom).with.offset(9);
                 make.left.equalTo(self).with.offset(0);

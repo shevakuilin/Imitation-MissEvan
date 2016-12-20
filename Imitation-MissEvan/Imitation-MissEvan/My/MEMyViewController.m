@@ -32,7 +32,7 @@
 {
     self.tableView = [UITableView new];
     [self.view addSubview:self.tableView];
-    self.tableView.backgroundColor = ME_Color(243, 243, 243);
+    self.tableView.backgroundColor = [UIColor clearColor];//ME_Color(243, 243, 243);
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
@@ -123,7 +123,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView * sectionView = [UIView new];
-    sectionView.backgroundColor = ME_Color(243, 243, 243);
+    sectionView.backgroundColor = [UIColor clearColor];//ME_Color(243, 243, 243);
     return sectionView;
 }
 

@@ -48,6 +48,7 @@
 		77D0F1281E08FE2900D16470 /* MEBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D0F1271E08FE2900D16470 /* MEBaseNavigationController.m */; };
 		77D0F12B1E09006900D16470 /* MEBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D0F12A1E09006900D16470 /* MEBaseViewController.m */; };
 		77D0F1341E09270C00D16470 /* MEBaseSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D0F1331E09270C00D16470 /* MEBaseSubViewController.m */; };
+		77D0F1371E0935C200D16470 /* MEBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D0F1361E0935C200D16470 /* MEBaseTableViewCell.m */; };
 		77D5BDD31DCB297800EA1DCB /* MEHomeSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5BDD21DCB297800EA1DCB /* MEHomeSegmentControl.m */; };
 		77D5BDD61DCB2EBD00EA1DCB /* MEHomeSegmentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5BDD51DCB2EBD00EA1DCB /* MEHomeSegmentItem.m */; };
 		77D5BDD91DCB30B700EA1DCB /* MEHomeSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5BDD81DCB30B700EA1DCB /* MEHomeSegmentViewController.m */; };
@@ -178,6 +179,8 @@
 		77D0F12A1E09006900D16470 /* MEBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEBaseViewController.m; sourceTree = "<group>"; };
 		77D0F1321E09270C00D16470 /* MEBaseSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEBaseSubViewController.h; sourceTree = "<group>"; };
 		77D0F1331E09270C00D16470 /* MEBaseSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEBaseSubViewController.m; sourceTree = "<group>"; };
+		77D0F1351E0935C200D16470 /* MEBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEBaseTableViewCell.h; sourceTree = "<group>"; };
+		77D0F1361E0935C200D16470 /* MEBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEBaseTableViewCell.m; sourceTree = "<group>"; };
 		77D5BDD11DCB297800EA1DCB /* MEHomeSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEHomeSegmentControl.h; sourceTree = "<group>"; };
 		77D5BDD21DCB297800EA1DCB /* MEHomeSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEHomeSegmentControl.m; sourceTree = "<group>"; };
 		77D5BDD41DCB2EBD00EA1DCB /* MEHomeSegmentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEHomeSegmentItem.h; sourceTree = "<group>"; };
@@ -560,6 +563,8 @@
 				77D0F12A1E09006900D16470 /* MEBaseViewController.m */,
 				77D0F1321E09270C00D16470 /* MEBaseSubViewController.h */,
 				77D0F1331E09270C00D16470 /* MEBaseSubViewController.m */,
+				77D0F1351E0935C200D16470 /* MEBaseTableViewCell.h */,
+				77D0F1361E0935C200D16470 /* MEBaseTableViewCell.m */,
 			);
 			path = MEBase;
 			sourceTree = "<group>";
@@ -888,6 +893,7 @@
 				E4C3B5A71DE9E97200A672D1 /* MEAkiraCollectionViewCell.m in Sources */,
 				77D0F1281E08FE2900D16470 /* MEBaseNavigationController.m in Sources */,
 				E4C3B5B61DEF183600A672D1 /* MEMyMessageTableViewCell.m in Sources */,
+				77D0F1371E0935C200D16470 /* MEBaseTableViewCell.m in Sources */,
 				77C819421DBDB98C0004EFFC /* MEMyViewController.m in Sources */,
 				776A07CA1DFF8FD10049A3A9 /* DanmakuBaseModel.m in Sources */,
 				776A07DB1DFFBC300049A3A9 /* MEUINavigationBar+Awesome.m in Sources */,

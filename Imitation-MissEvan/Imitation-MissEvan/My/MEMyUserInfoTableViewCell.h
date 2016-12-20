@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MEMyUserInfoTableViewCell : UITableViewCell
+#import "MEBaseTableViewCell.h"
+@interface MEMyUserInfoTableViewCell : MEBaseTableViewCell
 
 @end

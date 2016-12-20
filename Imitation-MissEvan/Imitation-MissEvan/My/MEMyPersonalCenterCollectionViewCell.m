@@ -20,9 +20,10 @@
 {
     if ([super initWithFrame:frame]) {
         if (self) {
+            self.backgroundColor = [UIColor clearColor];
+            
             self.classifyImageView = [UIImageView new];
             [self addSubview:self.classifyImageView];
-            self.classifyImageView.image = [UIImage imageNamed:@"m_icon_history_45x45_"];
             [self.classifyImageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self).with.offset(10);
                 make.centerX.equalTo(self).with.offset(0);
@@ -31,7 +32,6 @@
             self.classifyLabel = [UILabel new];
             [self addSubview:self.classifyLabel];
             self.classifyLabel.font = [UIFont systemFontOfSize:14];
-            self.classifyLabel.text = @"历史记录";
             [self.classifyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.bottom.equalTo(self).with.offset(-15);
                 make.centerX.equalTo(self).with.offset(0);

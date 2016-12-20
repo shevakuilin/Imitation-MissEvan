@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MEBaseTableViewCell.h"
 @class MEMyPersonalCenterTableViewCell;
 
 @protocol ClassViewCellDelegate <NSObject>
@@ -15,7 +16,7 @@
 
 @end
 
-@interface MEMyPersonalCenterTableViewCell : UITableViewCell
+@interface MEMyPersonalCenterTableViewCell : MEBaseTableViewCell
 @property (nonatomic, strong) NSArray * array;
 @property (weak, nonatomic) id<ClassViewCellDelegate> delegate;
 

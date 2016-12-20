@@ -70,3 +70,13 @@ Version: Unknown
 
 
 From: ->(https://github.com/panghaijiao/HJCornerRadius)
+
+
+----------------
+###EATheme
+
+Version: 1.1.3
+
+
+From: ->(https://github.com/JinXinLiang/EAThemeSample)
+

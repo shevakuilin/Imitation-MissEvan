@@ -18,11 +18,12 @@
 #import "MEBellsTableViewCell.h"
 #import "MEClassifyCollectionViewCell.h"
 #import "MESearchView.h"
+#import "MEBaseViewController.h"
 
 @interface MEHomeViewController ()<MEPageControl_AutoScrollDelegate, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
-@property (nonatomic, strong) UIViewController * voiceListView;
-@property (nonatomic, strong) UIViewController * recommendView;
-@property (nonatomic, strong) UIViewController * classifyView;
+@property (nonatomic, strong) MEBaseViewController * voiceListView;
+@property (nonatomic, strong) MEBaseViewController * recommendView;
+@property (nonatomic, strong) MEBaseViewController * classifyView;
 
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, strong) UICollectionView * collectionView;
@@ -38,13 +39,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.voiceListView = [[UIViewController alloc] init];
+    self.voiceListView = [[MEBaseViewController alloc] init];
     self.voiceListView.title = @"音单";
     
-    self.recommendView = [[UIViewController alloc] init];
+    self.recommendView = [[MEBaseViewController alloc] init];
     self.recommendView.title = @"推荐";
     
-    self.classifyView = [[UIViewController alloc] init];
+    self.classifyView = [[MEBaseViewController alloc] init];
     self.classifyView.title = @"分类";
     self.viewControllers = @[self.voiceListView, self.recommendView, self.classifyView];
     

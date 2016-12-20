@@ -71,6 +71,17 @@
 //    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
 //    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17], NSForegroundColorAttributeName:[UIColor blackColor]}];
     
+    //配置默认主题
+    [EAThemeManager shareManager].normalThemeIdentifier = EAThemeNormal;
+    UITabBarController * rootViewController = (UITabBarController *)self.window.rootViewController;
+    
+    NSDictionary * tabBarColorDic = @{EAThemeBlack: ME_Color(32, 32, 32), EAThemeNormal: [UIColor whiteColor]};
+    
+    [rootViewController.tabBar ea_setThemeContents:^(UIView *currentView, NSString *currentThemeIdentifier) {
+        UITabBar * bar = (UITabBar *)currentView;
+        bar.barTintColor = tabBarColorDic[currentThemeIdentifier];
+    }];
+
     UIViewController * viewController = ME_GetViewController(@"LaunchScreen", @"LaunchScreen");
     self.launchView = viewController.view;
     imageView = [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];

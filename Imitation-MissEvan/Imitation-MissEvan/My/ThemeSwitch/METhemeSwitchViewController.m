@@ -29,7 +29,7 @@
     //创建collectionView 通过一个布局策略layout来创建
     self.collectionView = [[UICollectionView alloc]initWithFrame:self.view.frame collectionViewLayout:layout];
     [self.view addSubview:self.collectionView];
-    self.collectionView.backgroundColor = ME_Color(243, 243, 243);
+    self.collectionView.backgroundColor = [UIColor clearColor];//ME_Color(243, 243, 243);
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
@@ -37,7 +37,7 @@
     self.collectionView.dataSource = self;
     [self.collectionView registerClass:[METhemeSwitchCollectionViewCell class] forCellWithReuseIdentifier:@"ThemeSwitch"];
     
-    self.navigationItem.leftBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(backView) withImage:[UIImage imageNamed:@"back_new_9x16_"]];
+//    self.navigationItem.leftBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(backView) withImage:[UIImage imageNamed:@"back_new_9x16_"]];
     
     self.row = 0;
 }

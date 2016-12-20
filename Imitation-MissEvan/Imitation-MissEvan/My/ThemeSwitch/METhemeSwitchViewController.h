@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface METhemeSwitchViewController : UIViewController
+#import "MEBaseSubViewController.h"
+@interface METhemeSwitchViewController : MEBaseSubViewController
 
 @end

@@ -10,6 +10,7 @@
 #import "MEHeader.h"
 
 @interface METhemeSwitchCollectionViewCell ()
+@property (nonatomic, strong) UIView * themeView;
 @property (nonatomic, strong) UIImageView * themeImageView;//主题图片
 @property (nonatomic, strong) UIImageView * inUseIconImageView;//使用中
 @property (nonatomic, strong) UIButton * chooseButton;//选中
@@ -22,16 +23,16 @@
 {
     if ([super initWithFrame:frame]) {
         if (self) {
-            self.backgroundColor = ME_Color(243, 243, 243);
+            self.backgroundColor = [UIColor clearColor];//ME_Color(243, 243, 243);
             
-            UIView * themeView = [UIView new];
-            [self addSubview:themeView];
-            themeView.backgroundColor = [UIColor whiteColor];
-            themeView.layer.masksToBounds = YES;
-            themeView.layer.cornerRadius = 5;
-            themeView.layer.shadowColor = ME_Color(99, 99, 99).CGColor;
-            themeView.layer.shadowOffset = CGSizeMake(0, 2);
-            [themeView mas_makeConstraints:^(MASConstraintMaker *make) {
+            self.themeView = [UIView new];
+            [self addSubview:self.themeView];
+            self.themeView.backgroundColor = [UIColor whiteColor];
+            self.themeView.layer.masksToBounds = YES;
+            self.themeView.layer.cornerRadius = 5;
+            self.themeView.layer.shadowColor = ME_Color(99, 99, 99).CGColor;
+            self.themeView.layer.shadowOffset = CGSizeMake(0, 2);
+            [self.themeView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self).with.offset(30);
                 make.centerX.equalTo(self);
                 
@@ -39,18 +40,18 @@
             }];
             
             self.themeImageView = [UIImageView new];
-            [themeView addSubview:self.themeImageView];
+            [self.themeView addSubview:self.themeImageView];
             [self.themeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(themeView);
-                make.left.equalTo(themeView);
-                make.right.equalTo(themeView);
+                make.top.equalTo(self.themeView);
+                make.left.equalTo(self.themeView);
+                make.right.equalTo(self.themeView);
             }];
             
             self.inUseIconImageView = [UIImageView new];
-            [themeView addSubview:self.inUseIconImageView];
+            [self.themeView addSubview:self.inUseIconImageView];
             [self.inUseIconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(themeView).with.offset(10);
-                make.left.equalTo(themeView).with.offset(10);
+                make.top.equalTo(self.themeView).with.offset(10);
+                make.left.equalTo(self.themeView).with.offset(10);
             }];
             self.inUseIconImageView.hidden = YES;
             
@@ -63,8 +64,9 @@
                 make.top.equalTo(self.themeImageView.mas_bottom).with.offset(10);
                 make.centerX.equalTo(self);
                 
-                make.width.mas_equalTo(themeView);
+                make.width.mas_equalTo(self.themeView);
             }];
+            self.chooseButton.userInteractionEnabled = NO;
             
         }
     }
@@ -75,34 +77,42 @@
 {
     _style = style;
     if (self.chooseRow == 0) {//选择默认主题
+        self.themeView.backgroundColor = [UIColor whiteColor];
         if (style == METhemeStyleDefault) {
             self.themeImageView.image = [UIImage imageNamed:@"theme_w_cat_168x170_"];
             self.inUseIconImageView.image = [UIImage imageNamed:@"theme_useing_45x18_"];
             self.inUseIconImageView.hidden = NO;
             [self.chooseButton setImage:[UIImage imageNamed:@"theme_sele_14x14_"] forState:UIControlStateNormal];
             [self.chooseButton setTitle:@"简洁白" forState:UIControlStateNormal];
+            [self.chooseButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            //切换默认主题
+            [[EAThemeManager shareManager] displayThemeContentsWithThemeIdentifier:EAThemeNormal];
         } else {
             
             self.themeImageView.image = [UIImage imageNamed:@"theme_b_cat_168x170_"];
             self.inUseIconImageView.hidden = YES;
             [self.chooseButton setImage:[UIImage imageNamed:@"theme_dissele_14x14_"] forState:UIControlStateNormal];
             [self.chooseButton setTitle:@"夜间模式" forState:UIControlStateNormal];
-            
+            [self.chooseButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             
         }
     } else {//选择夜间主题
+        self.themeView.backgroundColor = ME_Color(32, 32, 32);
         if (style == METhemeStyleNight) {
             self.themeImageView.image = [UIImage imageNamed:@"theme_b_cat_n_168x170_"];
             self.inUseIconImageView.image = [UIImage imageNamed:@"theme_useing_n_45x18_"];
             self.inUseIconImageView.hidden = NO;
             [self.chooseButton setImage:[UIImage imageNamed:@"theme_sele_n_14x14_"] forState:UIControlStateNormal];
             [self.chooseButton setTitle:@"夜间模式" forState:UIControlStateNormal];
-            
+            [self.chooseButton setTitleColor:[UIColor lightTextColor] forState:UIControlStateNormal];
+            //切换夜间主题
+            [[EAThemeManager shareManager] displayThemeContentsWithThemeIdentifier:EAThemeBlack];
         } else {
             self.themeImageView.image = [UIImage imageNamed:@"theme_w_cat_n_168x170_"];
             self.inUseIconImageView.hidden = YES;
             [self.chooseButton setImage:[UIImage imageNamed:@"theme_dissele_n_14x14_"] forState:UIControlStateNormal];
             [self.chooseButton setTitle:@"简洁白" forState:UIControlStateNormal];
+            [self.chooseButton setTitleColor:[UIColor lightTextColor] forState:UIControlStateNormal];
             
         }
     }

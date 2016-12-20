@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MEMyViewController : UIViewController
+#import "MEBaseViewController.h"
+@interface MEMyViewController : MEBaseViewController
 
 @end

@@ -13,8 +13,7 @@ typedef enum {
 } METhemeStyle;
 
 @interface METhemeSwitchCollectionViewCell : UICollectionViewCell
-@property (nonatomic, strong) UIImageView * inUseIconImageView;//使用中
-@property (nonatomic, strong) UIImageView * chooseIcon;//选中
 @property (assign, nonatomic) METhemeStyle style;
+@property (assign, nonatomic) NSInteger chooseRow;
 
 @end

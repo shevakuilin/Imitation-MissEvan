@@ -12,6 +12,7 @@
 
 @interface METhemeSwitchViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) UICollectionView * collectionView;
+@property (assign, nonatomic) NSInteger row;
 
 @end
 
@@ -35,11 +36,20 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     [self.collectionView registerClass:[METhemeSwitchCollectionViewCell class] forCellWithReuseIdentifier:@"ThemeSwitch"];
+    
+    self.navigationItem.leftBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(backView) withImage:[UIImage imageNamed:@"back_new_9x16_"]];
+    
+    self.row = 0;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)backView
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -
@@ -57,13 +67,29 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     METhemeSwitchCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ThemeSwitch" forIndexPath:indexPath];
+    cell.chooseRow = self.row;
+    if (self.row == 0) {
+        if (self.row == indexPath.row) {
+            cell.style = METhemeStyleDefault;
+        } else {
+            cell.style = METhemeStyleNight;
+        }
+    } else {
+        if (self.row == indexPath.row) {
+            cell.style = METhemeStyleNight;
+            
+        } else {
+            cell.style = METhemeStyleDefault;
+        }
+    }
     
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    self.row = indexPath.row;
+    [self.collectionView reloadData];
 }
 
 //定义每个Item 的大小

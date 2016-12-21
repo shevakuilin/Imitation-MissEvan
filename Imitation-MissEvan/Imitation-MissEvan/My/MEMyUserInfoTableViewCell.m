@@ -62,7 +62,7 @@
             self.mNumberLabel.textAlignment = NSTextAlignmentCenter;
             self.mNumberLabel.layer.masksToBounds = YES;
             self.mNumberLabel.layer.cornerRadius = 3;
-            self.mNumberLabel.backgroundColor = [UIColor blackColor];
+//            self.mNumberLabel.backgroundColor = [UIColor blackColor];
             [self.mNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.userNameLabel.mas_bottom).with.offset(3);
                 make.left.equalTo(self.userNameLabel.mas_left).with.offset(0);
@@ -72,7 +72,7 @@
             self.fishNumberLabel = [UILabel new];
             [self addSubview:self.fishNumberLabel];
             self.fishNumberLabel.font = [UIFont systemFontOfSize:11];
-            self.fishNumberLabel.textColor = [UIColor blackColor];//ME_Color(109, 109, 109);
+//            self.fishNumberLabel.textColor = [UIColor blackColor];//ME_Color(109, 109, 109);
             self.fishNumberLabel.text = @"小鱼干：67";
             [self.fishNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.mNumberLabel.mas_bottom).with.offset(3);
@@ -89,7 +89,7 @@
             
 //            UIImageView * topShadow = [UIImageView new];
             [self addSubview:self.topShadow];
-            self.topShadow.backgroundColor = ME_Color(238, 238, 238);
+//            self.topShadow.backgroundColor = ME_Color(238, 238, 238);
             [self.topShadow mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self).with.offset(0);
                 
@@ -98,7 +98,7 @@
             
 //            UIImageView * downShadow = [UIImageView new];
             [self addSubview:self.downShadow];
-            self.downShadow.backgroundColor = ME_Color(238, 238, 238);//229, 230, 230
+//            self.downShadow.backgroundColor = ME_Color(238, 238, 238);//229, 230, 230
             [self.downShadow mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.bottom.equalTo(self).with.offset(0);
                 

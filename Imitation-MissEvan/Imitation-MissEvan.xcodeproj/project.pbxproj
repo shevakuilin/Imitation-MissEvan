@@ -79,7 +79,6 @@
 		E4C3B5AD1DEF0BAD00A672D1 /* MEMyUserInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5AC1DEF0BAD00A672D1 /* MEMyUserInfoTableViewCell.m */; };
 		E4C3B5B01DEF132300A672D1 /* MEMyPersonalCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5AF1DEF132300A672D1 /* MEMyPersonalCenterTableViewCell.m */; };
 		E4C3B5B31DEF17F000A672D1 /* MEMyPersonalCenterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5B21DEF17F000A672D1 /* MEMyPersonalCenterCollectionViewCell.m */; };
-		E4C3B5B61DEF183600A672D1 /* MEMyMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5B51DEF183600A672D1 /* MEMyMessageTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -240,8 +239,6 @@
 		E4C3B5AF1DEF132300A672D1 /* MEMyPersonalCenterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEMyPersonalCenterTableViewCell.m; sourceTree = "<group>"; };
 		E4C3B5B11DEF17F000A672D1 /* MEMyPersonalCenterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEMyPersonalCenterCollectionViewCell.h; sourceTree = "<group>"; };
 		E4C3B5B21DEF17F000A672D1 /* MEMyPersonalCenterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEMyPersonalCenterCollectionViewCell.m; sourceTree = "<group>"; };
-		E4C3B5B41DEF183600A672D1 /* MEMyMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEMyMessageTableViewCell.h; sourceTree = "<group>"; };
-		E4C3B5B51DEF183600A672D1 /* MEMyMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEMyMessageTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -497,8 +494,6 @@
 				E4C3B5AF1DEF132300A672D1 /* MEMyPersonalCenterTableViewCell.m */,
 				E4C3B5B11DEF17F000A672D1 /* MEMyPersonalCenterCollectionViewCell.h */,
 				E4C3B5B21DEF17F000A672D1 /* MEMyPersonalCenterCollectionViewCell.m */,
-				E4C3B5B41DEF183600A672D1 /* MEMyMessageTableViewCell.h */,
-				E4C3B5B51DEF183600A672D1 /* MEMyMessageTableViewCell.m */,
 				E44993B81E081CA000396D48 /* ThemeSwitch */,
 			);
 			path = My;
@@ -898,7 +893,6 @@
 				E4C3B5A71DE9E97200A672D1 /* MEAkiraCollectionViewCell.m in Sources */,
 				77D0F1281E08FE2900D16470 /* MEBaseNavigationController.m in Sources */,
 				774F38531E0A11DE0070C448 /* MEBaseCollectionViewCell.m in Sources */,
-				E4C3B5B61DEF183600A672D1 /* MEMyMessageTableViewCell.m in Sources */,
 				77D0F1371E0935C200D16470 /* MEBaseTableViewCell.m in Sources */,
 				77C819421DBDB98C0004EFFC /* MEMyViewController.m in Sources */,
 				776A07CA1DFF8FD10049A3A9 /* DanmakuBaseModel.m in Sources */,

@@ -79,8 +79,20 @@
         UITabBar * bar = (UITabBar *)currentView;
         bar.barTintColor = tabBarColorDic[currentThemeIdentifier];
     }];
-    //配置默认主题
-    [EAThemeManager shareManager].normalThemeIdentifier = EAThemeNormal;
+    
+    //获取主题记录
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString * eathemStyle = [userDefaults objectForKey:@"EAThemeStyle"];
+    if (eathemStyle) {//如果有记录，那么根据记录设置主题
+        if ([eathemStyle isEqualToString:EAThemeNormal]) {
+            [EAThemeManager shareManager].normalThemeIdentifier = EAThemeNormal;
+        } else {
+            [EAThemeManager shareManager].normalThemeIdentifier = EAThemeBlack;
+        }
+    } else {//如果没有则设置默认主题
+        //配置默认主题
+        [EAThemeManager shareManager].normalThemeIdentifier = EAThemeNormal;
+    }
 
     UIViewController * viewController = ME_GetViewController(@"LaunchScreen", @"LaunchScreen");
     self.launchView = viewController.view;

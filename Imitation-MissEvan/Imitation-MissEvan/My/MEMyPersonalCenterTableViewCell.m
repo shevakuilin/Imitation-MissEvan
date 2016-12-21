@@ -43,7 +43,7 @@
             
 //            UIImageView * topShadow = [UIImageView new];
             [self addSubview:self.topShadow];
-            self.topShadow.backgroundColor = ME_Color(238, 238, 238);
+//            self.topShadow.backgroundColor = ME_Color(238, 238, 238);
             [self.topShadow mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self).with.offset(0);
                 
@@ -52,7 +52,7 @@
             
 //            UIImageView * downShadow = [UIImageView new];
             [self addSubview:self.downShadow];
-            self.downShadow.backgroundColor = ME_Color(238, 238, 238);//229, 230, 230
+//            self.downShadow.backgroundColor = ME_Color(238, 238, 238);//229, 230, 230
             [self.downShadow mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.bottom.equalTo(self).with.offset(0);
                 

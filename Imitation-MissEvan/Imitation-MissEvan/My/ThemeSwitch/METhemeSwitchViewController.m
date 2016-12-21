@@ -36,7 +36,20 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     [self.collectionView registerClass:[METhemeSwitchCollectionViewCell class] forCellWithReuseIdentifier:@"ThemeSwitch"];
-    self.row = 0;
+    
+    //获取主题记录
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString * eathemStyle = [userDefaults objectForKey:@"EAThemeStyle"];
+    if (eathemStyle) {//如果有记录，那么根据记录设置主题
+        if ([eathemStyle isEqualToString:EAThemeNormal]) {
+            self.row = 0;
+        } else {
+            self.row = 1;
+        }
+    } else {//如果没有则设置默认主题
+        self.row = 0;
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {

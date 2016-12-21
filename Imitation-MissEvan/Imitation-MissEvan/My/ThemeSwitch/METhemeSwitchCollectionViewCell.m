@@ -76,6 +76,7 @@
 - (void)setStyle:(METhemeStyle)style
 {
     _style = style;
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
     if (self.chooseRow == 0) {//选择默认主题
         self.themeView.backgroundColor = [UIColor whiteColor];
         if (style == METhemeStyleDefault) {
@@ -85,7 +86,10 @@
             [self.chooseButton setImage:[UIImage imageNamed:@"theme_sele_14x14_"] forState:UIControlStateNormal];
             [self.chooseButton setTitle:@"简洁白" forState:UIControlStateNormal];
             [self.chooseButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            //切换默认主题
             [[EAThemeManager shareManager] displayThemeContentsWithThemeIdentifier:EAThemeNormal];
+            //保存选择记录
+            [userDefaults setObject:EAThemeNormal forKey:@"EAThemeStyle"];
         } else {
             
             self.themeImageView.image = [UIImage imageNamed:@"theme_b_cat_168x170_"];
@@ -95,7 +99,6 @@
             [self.chooseButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             
         }
-        //切换默认主题
 
     } else {//选择夜间主题
         self.themeView.backgroundColor = ME_Color(32, 32, 32);
@@ -106,7 +109,10 @@
             [self.chooseButton setImage:[UIImage imageNamed:@"theme_sele_n_14x14_"] forState:UIControlStateNormal];
             [self.chooseButton setTitle:@"夜间模式" forState:UIControlStateNormal];
             [self.chooseButton setTitleColor:[UIColor lightTextColor] forState:UIControlStateNormal];
+            //切换夜间主题
             [[EAThemeManager shareManager] displayThemeContentsWithThemeIdentifier:EAThemeBlack];
+            //保存选择记录
+            [userDefaults setObject:EAThemeBlack forKey:@"EAThemeStyle"];
         } else {
             self.themeImageView.image = [UIImage imageNamed:@"theme_w_cat_n_168x170_"];
             self.inUseIconImageView.hidden = YES;
@@ -115,7 +121,6 @@
             [self.chooseButton setTitleColor:[UIColor lightTextColor] forState:UIControlStateNormal];
             
         }
-        //切换夜间主题
     }
     
 }

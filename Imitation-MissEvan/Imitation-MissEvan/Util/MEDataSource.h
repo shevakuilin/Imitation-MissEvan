@@ -32,7 +32,8 @@
 
 @property (copy, nonatomic) NSArray * hotWordsArray;
 
-@property (copy, nonatomic) NSArray * myIconArray;
+@property (copy, nonatomic) NSArray * myIconArray;//我的分类切图
+@property (copy, nonatomic) NSArray * myNightIconArray;//夜间我的分类切图
 
 @property (copy, nonatomic) NSArray * pmIconArray;
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "MEDataSource.h"
+#import "MEHeader.h"
 
 @implementation MEDataSource
 
@@ -212,6 +213,17 @@
                            @{@"image":@"m_icon_theme_45x45_", @"title":@"主题切换"}],
                          @[@{@"image":@"m_icon_comment_45x45_", @"title":@"我的评论"},
                            @{@"image":@"m_icon_message_45x45_", @"title":@"我的私信"}]];
+    
+    self.myNightIconArray = @[@[@{@"image":@"m_icon_history_night_45x45_", @"title":@"历史记录"},
+                           @{@"image":@"m_icon_collect_night_45x45_", @"title":@"我的收藏"},
+                           @{@"image":@"m_icon_attention_night_45x45_", @"title":@"我的关注"},
+                           @{@"image":@"m_icon_download_night_45x45_", @"title":@"本地下载"},
+                           @{@"image":@"m_icon_mission_night_45x45_", @"title":@"每日任务"},
+                           @{@"image":@"m_icon_timer_night_45x45_", @"title":@"定时关闭"},
+                           @{@"image":@"m_icon_feedback_night_45x45_", @"title":@"意见反馈"},
+                           @{@"image":@"m_icon_theme_night_45x45_", @"title":@"主题切换"}],
+                         @[@{@"image":@"m_icon_comment_night_45x45_", @"title":@"我的评论"},
+                           @{@"image":@"m_icon_message_night_45x45_", @"title":@"我的私信"}]];
 }
 
 - (void)dataSourceOfOther

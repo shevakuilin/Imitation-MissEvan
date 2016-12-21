@@ -41,19 +41,19 @@
                 make.top.equalTo(self).with.offset(11);
             }];
             
-            UIImageView * topShadow = [UIImageView new];
-            [self addSubview:topShadow];
-            topShadow.backgroundColor = ME_Color(238, 238, 238);
-            [topShadow mas_makeConstraints:^(MASConstraintMaker *make) {
+//            UIImageView * topShadow = [UIImageView new];
+            [self addSubview:self.topShadow];
+            self.topShadow.backgroundColor = ME_Color(238, 238, 238);
+            [self.topShadow mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self).with.offset(0);
                 
                 make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
             }];
             
-            UIImageView * downShadow = [UIImageView new];
-            [self addSubview:downShadow];
-            downShadow.backgroundColor = ME_Color(238, 238, 238);//229, 230, 230
-            [downShadow mas_makeConstraints:^(MASConstraintMaker *make) {
+//            UIImageView * downShadow = [UIImageView new];
+            [self addSubview:self.downShadow];
+            self.downShadow.backgroundColor = ME_Color(238, 238, 238);//229, 230, 230
+            [self.downShadow mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.bottom.equalTo(self).with.offset(0);
                 
                 make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
@@ -79,6 +79,12 @@
         }
     }
     return self;
+}
+
+- (void)setArray:(NSArray *)array
+{
+    _array = array;
+    [self.collectionView reloadData];//这里一定要记得刷新collectionView，否则切图将无法跟随主题刷新
 }
 
 #pragma mark -

@@ -10,7 +10,7 @@
 #import "MEHeader.h"
 #import "MEMyUserInfoTableViewCell.h"
 #import "MEMyPersonalCenterTableViewCell.h"
-#import "MEMyMessageTableViewCell.h"
+
 
 @interface MEMyViewController ()<UITableViewDelegate, UITableViewDataSource, ClassViewCellDelegate>
 @property (strong, nonatomic) UITableView * tableView;
@@ -43,7 +43,15 @@
     self.tableView.scrollEnabled = NO;
     [self.tableView registerClass:[MEMyUserInfoTableViewCell class] forCellReuseIdentifier:@"MyUserInfo"];
     [self.tableView registerClass:[MEMyPersonalCenterTableViewCell class] forCellReuseIdentifier:@"MyPersonalCenter"];
-    [self.tableView registerClass:[MEMyMessageTableViewCell class] forCellReuseIdentifier:@"MyMessage"];
+//    [self.tableView registerClass:[MEMyMessageTableViewCell class] forCellReuseIdentifier:@"MyMessage"];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.tableView) {
+        [self.tableView reloadData];
+    }
 }
 
 #pragma mark -
@@ -91,8 +99,14 @@
 //        return cell;
         MEMyPersonalCenterTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MyPersonalCenter"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.array = ME_DATASOURCE.myIconArray[indexPath.section - 1];
         cell.delegate = self;
+        if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+            MELog(@"现在是 简介白");
+            cell.array = ME_DATASOURCE.myIconArray[indexPath.section - 1];
+        } else {
+            MELog(@"现在是 夜间模式");
+            cell.array = ME_DATASOURCE.myNightIconArray[indexPath.section - 1];
+        }
         
         return cell;
     }

@@ -10,6 +10,7 @@
 		770DBD401DEC23A30019D206 /* MESearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 770DBD3F1DEC23A30019D206 /* MESearchView.m */; };
 		771AB1F01DD0560000DDBA44 /* MEPageControl+AutoScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 771AB1EF1DD0560000DDBA44 /* MEPageControl+AutoScroll.m */; };
 		774482471DC1A8860044EE55 /* METabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774482461DC1A8860044EE55 /* METabBarViewController.m */; };
+		774F38531E0A11DE0070C448 /* MEBaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 774F38521E0A11DE0070C448 /* MEBaseCollectionViewCell.m */; };
 		776A07B31DFF8AE00049A3A9 /* MEDanmaku.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776A07B01DFF8AE00049A3A9 /* MEDanmaku.storyboard */; };
 		776A07B41DFF8AE00049A3A9 /* MEDanmakuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776A07B21DFF8AE00049A3A9 /* MEDanmakuViewController.m */; };
 		776A07C81DFF8FD10049A3A9 /* danmakufile in Resources */ = {isa = PBXBuildFile; fileRef = 776A07B61DFF8FD10049A3A9 /* danmakufile */; };
@@ -108,6 +109,8 @@
 		771AB1EF1DD0560000DDBA44 /* MEPageControl+AutoScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MEPageControl+AutoScroll.m"; sourceTree = "<group>"; };
 		774482451DC1A8860044EE55 /* METabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METabBarViewController.h; sourceTree = "<group>"; };
 		774482461DC1A8860044EE55 /* METabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METabBarViewController.m; sourceTree = "<group>"; };
+		774F38511E0A11DE0070C448 /* MEBaseCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEBaseCollectionViewCell.h; sourceTree = "<group>"; };
+		774F38521E0A11DE0070C448 /* MEBaseCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEBaseCollectionViewCell.m; sourceTree = "<group>"; };
 		776A07B01DFF8AE00049A3A9 /* MEDanmaku.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MEDanmaku.storyboard; sourceTree = "<group>"; };
 		776A07B11DFF8AE00049A3A9 /* MEDanmakuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEDanmakuViewController.h; sourceTree = "<group>"; };
 		776A07B21DFF8AE00049A3A9 /* MEDanmakuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEDanmakuViewController.m; sourceTree = "<group>"; };
@@ -565,6 +568,8 @@
 				77D0F1331E09270C00D16470 /* MEBaseSubViewController.m */,
 				77D0F1351E0935C200D16470 /* MEBaseTableViewCell.h */,
 				77D0F1361E0935C200D16470 /* MEBaseTableViewCell.m */,
+				774F38511E0A11DE0070C448 /* MEBaseCollectionViewCell.h */,
+				774F38521E0A11DE0070C448 /* MEBaseCollectionViewCell.m */,
 			);
 			path = MEBase;
 			sourceTree = "<group>";
@@ -892,6 +897,7 @@
 				77D0F1341E09270C00D16470 /* MEBaseSubViewController.m in Sources */,
 				E4C3B5A71DE9E97200A672D1 /* MEAkiraCollectionViewCell.m in Sources */,
 				77D0F1281E08FE2900D16470 /* MEBaseNavigationController.m in Sources */,
+				774F38531E0A11DE0070C448 /* MEBaseCollectionViewCell.m in Sources */,
 				E4C3B5B61DEF183600A672D1 /* MEMyMessageTableViewCell.m in Sources */,
 				77D0F1371E0935C200D16470 /* MEBaseTableViewCell.m in Sources */,
 				77C819421DBDB98C0004EFFC /* MEMyViewController.m in Sources */,

@@ -34,15 +34,20 @@
             self.userNameLabel = [UILabel new];
             self.mNumberLabel = [UILabel new];
             self.fishNumberLabel = [UILabel new];
+            self.topShadow = [UIImageView new];
+            self.downShadow = [UIImageView new];
             @ea_weakify(self);
             [self ea_setThemeContents:^(UIView *currentView, NSString *currentThemeIdentifier) {
                 @ea_strongify(self);
+                
                 currentView.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor whiteColor] : ME_Color(32, 32, 32);
                 self.titleLabel.textColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
                 self.userNameLabel.textColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
                 self.mNumberLabel.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
                 self.mNumberLabel.textColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor whiteColor] : ME_Color(32, 32, 32);
                 self.fishNumberLabel.textColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
+                self.topShadow.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_Color(238, 238, 238) : [UIColor blackColor];
+                self.downShadow.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_Color(238, 238, 238) : [UIColor blackColor];
             }];
         }
     }

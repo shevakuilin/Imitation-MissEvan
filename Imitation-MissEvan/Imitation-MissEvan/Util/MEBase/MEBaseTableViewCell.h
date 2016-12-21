@@ -13,5 +13,7 @@
 @property (strong, nonatomic) UILabel * userNameLabel;
 @property (strong, nonatomic) UILabel * mNumberLabel;
 @property (strong, nonatomic) UILabel * fishNumberLabel;
+@property (nonatomic, strong) UIImageView * topShadow;
+@property (nonatomic, strong) UIImageView * downShadow;
 
 @end

@@ -22,7 +22,7 @@
 - (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        //获取通知中心单例对象
+//        //获取通知中心单例对象
         NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
         //添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知
         [center addObserver:self selector:@selector(notice:) name:@"themeStyle" object:nil];
@@ -83,25 +83,26 @@
 - (void)notice:(id)sender
 {
     NSString * themeStyle = [sender userInfo][@"style"];
+    NSString * imageName = @"";
+    NSString * imageNameSel = @"";
     for (NSInteger i = 0; i < ME_DATASOURCE.imageNameArray.count; i ++) {
-
-        NSString * imageName = @"";
-        NSString * imageNameSel = @"";
-        
         if ([themeStyle isEqualToString:EAThemeNormal]) {
             imageName = [NSString stringWithFormat:@"ntab_%@_normal", ME_DATASOURCE.imageNameArray[i]];
             imageNameSel = [NSString stringWithFormat:@"ntab_%@_selected", ME_DATASOURCE.imageNameArray[i]];
-            [self.button setTitleColor:ME_Color(61, 61, 61) forState:UIControlStateNormal];
-            [self.button setTitleColor:ME_Color(61, 61, 61) forState:UIControlStateSelected];
+//            [self.button setTitleColor:ME_Color(61, 61, 61) forState:UIControlStateNormal];
+//            [self.button setTitleColor:ME_Color(61, 61, 61) forState:UIControlStateSelected];
+            [self.button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+            [self.button setImage:[UIImage imageNamed:imageNameSel] forState:UIControlStateSelected];
             
         } else {
             imageName = [NSString stringWithFormat:@"ntab_%@_normal_night", ME_DATASOURCE.imageNameArray[i]];
             imageNameSel = [NSString stringWithFormat:@"ntab_%@_selected_night", ME_DATASOURCE.imageNameArray[i]];
-            [self.button setTitleColor:[UIColor lightTextColor] forState:UIControlStateNormal];
-            [self.button setTitleColor:[UIColor lightTextColor] forState:UIControlStateSelected];
+//            [self.button setTitleColor:[UIColor lightTextColor] forState:UIControlStateNormal];
+//            [self.button setTitleColor:[UIColor lightTextColor] forState:UIControlStateSelected];
+            [self.button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+            [self.button setImage:[UIImage imageNamed:imageNameSel] forState:UIControlStateSelected];
         }
-        [self.button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-        [self.button setImage:[UIImage imageNamed:imageNameSel] forState:UIControlStateSelected];
+        
     }
 }
 //- (void)addButtonWithImage:(UIImage *)defaultImage selectedImage:(UIImage *)selectedImage

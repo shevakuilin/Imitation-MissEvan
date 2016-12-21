@@ -43,7 +43,7 @@
     self.tableView.scrollEnabled = NO;
     [self.tableView registerClass:[MEMyUserInfoTableViewCell class] forCellReuseIdentifier:@"MyUserInfo"];
     [self.tableView registerClass:[MEMyPersonalCenterTableViewCell class] forCellReuseIdentifier:@"MyPersonalCenter"];
-//    [self.tableView registerClass:[MEMyMessageTableViewCell class] forCellReuseIdentifier:@"MyMessage"];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -85,18 +85,7 @@
         
         return cell;
         
-    }
-//    else if (indexPath.section == 1){
-//        MEMyPersonalCenterTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MyPersonalCenter"];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        
-//        return cell;
-//    }
-    else {
-//        MEMyMessageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MyMessage"];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        
-//        return cell;
+    } else {
         MEMyPersonalCenterTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MyPersonalCenter"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;

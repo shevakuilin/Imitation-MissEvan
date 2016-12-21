@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MEBaseCollectionViewCell.h"
+
 @interface MEMyPersonalCenterCollectionViewCell : MEBaseCollectionViewCell
-//@property (strong, nonatomic) UIImageView * classifyImageView;
-//@property (strong, nonatomic) UILabel * classifyLabel;
 @property (nonatomic, strong) NSDictionary * dic;
 
 @end

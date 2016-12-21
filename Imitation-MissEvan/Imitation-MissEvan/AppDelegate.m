@@ -65,12 +65,7 @@
 
 - (void)customAppearance
 {
-//    [[UINavigationBar appearance] setTranslucent:NO];
-//    [[UIBarButtonItem appearance] setTintColor:[UIColor blackColor]];
-//    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
-//    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
-//    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17], NSForegroundColorAttributeName:[UIColor blackColor]}];
-    
+    //设置主题对tabBar的影响
     UITabBarController * rootViewController = (UITabBarController *)self.window.rootViewController;
     
     NSDictionary * tabBarColorDic = @{EAThemeBlack: ME_Color(32, 32, 32), EAThemeNormal: [UIColor whiteColor]};

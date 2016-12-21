@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MEFollowViewController : UIViewController
+#import "MEBaseViewController.h"
+@interface MEFollowViewController : MEBaseViewController
 
 @end

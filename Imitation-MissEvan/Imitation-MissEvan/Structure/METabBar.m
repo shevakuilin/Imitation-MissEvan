@@ -13,6 +13,7 @@
 @interface METabBar ()
 
 @property (weak, nonatomic) UIButton * selectedBtn;//设置之前选中的按钮
+@property (nonatomic, strong) METabBarButton * button;
 
 @end
 
@@ -21,48 +22,88 @@
 - (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        //获取通知中心单例对象
+        NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+        //添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知
+        [center addObserver:self selector:@selector(notice:) name:@"themeStyle" object:nil];
+        
+        
         for (NSInteger i = 0; i < ME_DATASOURCE.imageNameArray.count; i ++) {
-            METabBarButton * button = [[METabBarButton alloc] init];
-            
-            NSString * imageName = [NSString stringWithFormat:@"ntab_%@_normal", ME_DATASOURCE.imageNameArray[i]];
-            NSString * imageNameSel = [NSString stringWithFormat:@"ntab_%@_selected", ME_DATASOURCE.imageNameArray[i]];
-            
-            [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-            [button setImage:[UIImage imageNamed:imageNameSel] forState:UIControlStateSelected];
+            self.button = [[METabBarButton alloc] init];
+            NSString * imageName = @"";
+            NSString * imageNameSel = @"";
             
             NSString * barTitie = ME_DATASOURCE.barTitleArray[i];
-            [button setTitle:barTitie forState:UIControlStateNormal];
-            [button setTitle:barTitie forState:UIControlStateSelected];
-            [button setTitleColor:ME_Color(61, 61, 61) forState:UIControlStateNormal];
-            [button setTitleColor:ME_Color(61, 61, 61) forState:UIControlStateSelected];
-            button.titleLabel.font = [UIFont systemFontOfSize:10];
-            button.titleLabel.textAlignment = NSTextAlignmentCenter;
+            [self.button setTitle:barTitie forState:UIControlStateNormal];
+            [self.button setTitle:barTitie forState:UIControlStateSelected];
+            
+            if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+                imageName = [NSString stringWithFormat:@"ntab_%@_normal", ME_DATASOURCE.imageNameArray[i]];
+                imageNameSel = [NSString stringWithFormat:@"ntab_%@_selected", ME_DATASOURCE.imageNameArray[i]];
+                [self.button setTitleColor:ME_Color(61, 61, 61) forState:UIControlStateNormal];
+                [self.button setTitleColor:ME_Color(61, 61, 61) forState:UIControlStateSelected];
+                
+            } else {
+                imageName = [NSString stringWithFormat:@"ntab_%@_normal_night", ME_DATASOURCE.imageNameArray[i]];
+                imageNameSel = [NSString stringWithFormat:@"ntab_%@_selected_night", ME_DATASOURCE.imageNameArray[i]];
+                [self.button setTitleColor:[UIColor lightTextColor] forState:UIControlStateNormal];
+                [self.button setTitleColor:[UIColor lightTextColor] forState:UIControlStateSelected];
+            }
+            [self.button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+            [self.button setImage:[UIImage imageNamed:imageNameSel] forState:UIControlStateSelected];
+            
+            self.button.titleLabel.font = [UIFont systemFontOfSize:10];
+            self.button.titleLabel.textAlignment = NSTextAlignmentCenter;
             
             //title和image的距离可能需要依据不同机型进行动态调整
 //            NSInteger count = self.subviews.count;
 //            CGFloat width = self.bounds.size.width / count;
-            button.titleEdgeInsets = UIEdgeInsetsMake(self.bounds.size.height + 30, -22, 0, 0);
-            button.imageEdgeInsets = UIEdgeInsetsMake(-10, 20, 0, 0);
+            self.button.titleEdgeInsets = UIEdgeInsetsMake(self.bounds.size.height + 30, -22, 0, 0);
+            self.button.imageEdgeInsets = UIEdgeInsetsMake(-10, 20, 0, 0);
 //            button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;//设置button的内容横向居中  设置content是title和image一起变化
             
             
-            [self addSubview:button];
+            [self addSubview:self.button];
             
-            button.tag = i;//设置按钮的标记, 方便来索引当前的按钮,并跳转到相应的视图
+            self.button.tag = i;//设置按钮的标记, 方便来索引当前的按钮,并跳转到相应的视图
             
-            [button addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+            [self.button addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
             
             //初始化睡觉猫
             self.catImageView = [[METabBarCatImageView alloc] init];
             
             if (0 == i) {
-              [self clickBtn:button];
+              [self clickBtn:self.button];
             }
         }
     }
     return self;
 }
 
+- (void)notice:(id)sender
+{
+    NSString * themeStyle = [sender userInfo][@"style"];
+    for (NSInteger i = 0; i < ME_DATASOURCE.imageNameArray.count; i ++) {
+
+        NSString * imageName = @"";
+        NSString * imageNameSel = @"";
+        
+        if ([themeStyle isEqualToString:EAThemeNormal]) {
+            imageName = [NSString stringWithFormat:@"ntab_%@_normal", ME_DATASOURCE.imageNameArray[i]];
+            imageNameSel = [NSString stringWithFormat:@"ntab_%@_selected", ME_DATASOURCE.imageNameArray[i]];
+            [self.button setTitleColor:ME_Color(61, 61, 61) forState:UIControlStateNormal];
+            [self.button setTitleColor:ME_Color(61, 61, 61) forState:UIControlStateSelected];
+            
+        } else {
+            imageName = [NSString stringWithFormat:@"ntab_%@_normal_night", ME_DATASOURCE.imageNameArray[i]];
+            imageNameSel = [NSString stringWithFormat:@"ntab_%@_selected_night", ME_DATASOURCE.imageNameArray[i]];
+            [self.button setTitleColor:[UIColor lightTextColor] forState:UIControlStateNormal];
+            [self.button setTitleColor:[UIColor lightTextColor] forState:UIControlStateSelected];
+        }
+        [self.button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+        [self.button setImage:[UIImage imageNamed:imageNameSel] forState:UIControlStateSelected];
+    }
+}
 //- (void)addButtonWithImage:(UIImage *)defaultImage selectedImage:(UIImage *)selectedImage
 //{
 //    UIButton * button = [[UIButton alloc] init];
@@ -106,35 +147,6 @@
         //中间的睡觉猫需要做特殊处理
         self.catImageView.frame = CGRectMake(2 * self.bounds.size.width / count, -35, 80, 80);
         [self addSubview:self.catImageView];
-        
-//        NSMutableArray * stackImageArray = [NSMutableArray new];
-//        for (NSInteger i = 1; i < 141; i ++) {
-//            NSString * stackImageName;
-//            if (i < 10) {
-//                stackImageName = [NSString stringWithFormat:@"DRRR猫 睡觉000%@_200x200_@1x", @(i)];
-//            } else if (i > 9 && i < 100){
-//                stackImageName = [NSString stringWithFormat:@"DRRR猫 睡觉00%@_200x200_@1x", @(i)];
-//            } else {
-//                stackImageName = [NSString stringWithFormat:@"DRRR猫 睡觉0%@_200x200_@1x", @(i)];
-//            }
-//            UIImage * imageName = [UIImage imageNamed:stackImageName];
-//            [stackImageArray addObject:imageName];
-//        }
-        
-        //设置图片的序列帧 图片数组
-        //                [button setImage:[uiim] forState:<#(UIControlState)#>];
-//        self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(2 * self.bounds.size.width / count, -35, 80, 80)];
-//        // 设置图片的序列帧 图片数组
-//        self.imageView.animationImages = stackImageArray;
-//        //动画重复次数
-//        self.imageView.animationRepeatCount = 10000000 * 10000000;
-//        //动画执行时间,多长时间执行完动画
-//        self.imageView.animationDuration = 8.0;
-//        //开始动画
-//        [self.imageView startAnimating];
-//        [self addSubview:self.imageView];
-//        if (i == 2) {
-//        }
         
     }
 }

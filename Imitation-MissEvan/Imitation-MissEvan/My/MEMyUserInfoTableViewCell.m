@@ -11,9 +11,6 @@
 
 @interface MEMyUserInfoTableViewCell ()
 @property (strong, nonatomic) UIImageView * userHeadImageView;
-//@property (strong, nonatomic) UILabel * userNameLabel;
-//@property (strong, nonatomic) UILabel * mNumberLabel;
-//@property (strong, nonatomic) UILabel * fishNumberLabel;
 
 @end
 
@@ -45,7 +42,7 @@
                 make.size.mas_equalTo(CGSizeMake(60, 60));
             }];
             
-//            self.userNameLabel = [UILabel new];
+            
             [self addSubview:self.userNameLabel];
             self.userNameLabel.font = [UIFont systemFontOfSize:16];
             self.userNameLabel.text = @"舍瓦其谁";
@@ -54,7 +51,7 @@
                 make.left.equalTo(self.userHeadImageView.mas_right).with.offset(15);
             }];
             
-//            self.mNumberLabel = [UILabel new];
+            
             [self addSubview:self.mNumberLabel];
             self.mNumberLabel.font = [UIFont systemFontOfSize:10];
             self.mNumberLabel.textColor = [UIColor whiteColor];
@@ -62,22 +59,21 @@
             self.mNumberLabel.textAlignment = NSTextAlignmentCenter;
             self.mNumberLabel.layer.masksToBounds = YES;
             self.mNumberLabel.layer.cornerRadius = 3;
-//            self.mNumberLabel.backgroundColor = [UIColor blackColor];
             [self.mNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.userNameLabel.mas_bottom).with.offset(3);
                 make.left.equalTo(self.userNameLabel.mas_left).with.offset(0);
                 make.width.mas_equalTo(self.userNameLabel.mas_width);
             }];
             
-            self.fishNumberLabel = [UILabel new];
+            
             [self addSubview:self.fishNumberLabel];
             self.fishNumberLabel.font = [UIFont systemFontOfSize:11];
-//            self.fishNumberLabel.textColor = [UIColor blackColor];//ME_Color(109, 109, 109);
             self.fishNumberLabel.text = @"小鱼干：67";
             [self.fishNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.mNumberLabel.mas_bottom).with.offset(3);
                 make.left.equalTo(self.mNumberLabel.mas_left);
             }];
+            
             
             UIImageView * right_arrowImageView = [UIImageView new];
             [self addSubview:right_arrowImageView];
@@ -87,28 +83,21 @@
                 make.centerY.equalTo(self).with.offset(0);
             }];
             
-//            UIImageView * topShadow = [UIImageView new];
+            
+            
             [self addSubview:self.topShadow];
-//            self.topShadow.backgroundColor = ME_Color(238, 238, 238);
             [self.topShadow mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self).with.offset(0);
                 
                 make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
             }];
             
-//            UIImageView * downShadow = [UIImageView new];
             [self addSubview:self.downShadow];
-//            self.downShadow.backgroundColor = ME_Color(238, 238, 238);//229, 230, 230
             [self.downShadow mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.bottom.equalTo(self).with.offset(0);
                 
                 make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
             }];
-            
-//            @ea_weakify(self);
-//            [self ea_setThemeContents:^(UIView *currentView, NSString *currentThemeIdentifier) {
-//                @ea_strongify(self);
-//            }];
             
         }
     }

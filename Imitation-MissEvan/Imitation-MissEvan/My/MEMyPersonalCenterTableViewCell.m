@@ -12,7 +12,6 @@
 
 @interface MEMyPersonalCenterTableViewCell ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) UICollectionView * collectionView;
-//@property (strong, nonatomic) UILabel * titleLabel;
 
 @end
 
@@ -33,7 +32,7 @@
 {
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         if (self) {
-//            self.titleLabel = [UILabel new];
+
             [self addSubview:self.titleLabel];
             self.titleLabel.font = [UIFont systemFontOfSize:15];
             [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -41,18 +40,16 @@
                 make.top.equalTo(self).with.offset(11);
             }];
             
-//            UIImageView * topShadow = [UIImageView new];
+
             [self addSubview:self.topShadow];
-//            self.topShadow.backgroundColor = ME_Color(238, 238, 238);
             [self.topShadow mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self).with.offset(0);
                 
                 make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
             }];
             
-//            UIImageView * downShadow = [UIImageView new];
+
             [self addSubview:self.downShadow];
-//            self.downShadow.backgroundColor = ME_Color(238, 238, 238);//229, 230, 230
             [self.downShadow mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.bottom.equalTo(self).with.offset(0);
                 

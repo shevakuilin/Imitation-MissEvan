@@ -90,6 +90,10 @@
             [[EAThemeManager shareManager] displayThemeContentsWithThemeIdentifier:EAThemeNormal];
             //保存选择记录
             [userDefaults setObject:EAThemeNormal forKey:@"EAThemeStyle"];
+            //创建一个消息对象
+            NSNotification * notice = [NSNotification notificationWithName:@"themeStyle" object:nil userInfo:@{@"style":EAThemeNormal}];
+            //发送消息给tabBar和睡觉猫
+            [[NSNotificationCenter defaultCenter] postNotification:notice];
         } else {
             
             self.themeImageView.image = [UIImage imageNamed:@"theme_b_cat_168x170_"];
@@ -113,6 +117,10 @@
             [[EAThemeManager shareManager] displayThemeContentsWithThemeIdentifier:EAThemeBlack];
             //保存选择记录
             [userDefaults setObject:EAThemeBlack forKey:@"EAThemeStyle"];
+            //创建一个消息对象
+            NSNotification * notice = [NSNotification notificationWithName:@"themeStyle" object:nil userInfo:@{@"style":EAThemeBlack}];
+            //发送消息给tabBar和睡觉猫
+            [[NSNotificationCenter defaultCenter] postNotification:notice];
         } else {
             self.themeImageView.image = [UIImage imageNamed:@"theme_w_cat_n_168x170_"];
             self.inUseIconImageView.hidden = YES;

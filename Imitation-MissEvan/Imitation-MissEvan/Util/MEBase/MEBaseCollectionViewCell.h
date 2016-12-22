@@ -13,5 +13,7 @@
 @property (nonatomic, strong) UIImageView * rightShadow;//右边线条
 @property (strong, nonatomic) UIImageView * classifyImageView;//分类图片
 @property (strong, nonatomic) UILabel * classifyLabel;//分类名称
+@property (nonatomic, strong) UILabel * titleLabel;//标题
+
 
 @end

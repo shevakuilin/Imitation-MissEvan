@@ -15,7 +15,8 @@
 @property (copy, nonatomic) NSArray * imageNameArray;
 @property (copy, nonatomic) NSArray * barTitleArray;
 @property (copy, nonatomic) NSArray * segmentTitleArray;
-@property (copy, nonatomic) NSArray * topCellArray;
+@property (copy, nonatomic) NSArray * topCellArray;//推荐更多分类切图
+@property (copy, nonatomic) NSArray * topCellNightArray;//夜间推荐更多分类切图
 @property (copy, nonatomic) NSArray * recommendCellArray;
 @property (copy, nonatomic) NSArray * channelCellArray;
 @property (copy, nonatomic) NSArray * voiceListArray;
@@ -26,7 +27,8 @@
 @property (copy, nonatomic) NSArray * classiftTitle;
 @property (copy, nonatomic) NSArray * voiceListTitle;
 
-@property (copy, nonatomic) NSArray * homeTopArray;
+@property (copy, nonatomic) NSArray * homeTopArray;//推荐顶部分类切图
+@property (copy, nonatomic) NSArray * homeTopNightArray;//夜间推荐顶部分类切图
 @property (copy, nonatomic) NSArray * bellArray;
 @property (copy, nonatomic) NSArray * akiraArray;
 

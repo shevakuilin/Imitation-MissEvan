@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MEHotMVoiceTableViewCell : UITableViewCell
+#import "MEBaseMoreTableViewCell.h"
+@interface MEHotMVoiceTableViewCell : MEBaseMoreTableViewCell
 @property (nonatomic, strong) NSArray * array;
 
 @end

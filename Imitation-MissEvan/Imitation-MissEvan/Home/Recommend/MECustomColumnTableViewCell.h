@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MECustomColumnTableViewCell : UITableViewCell
+#import "MEBaseMoreTableViewCell.h"
+@interface MECustomColumnTableViewCell : MEBaseMoreTableViewCell
 @property (nonatomic, strong) UIButton * customButton;
 
 @end

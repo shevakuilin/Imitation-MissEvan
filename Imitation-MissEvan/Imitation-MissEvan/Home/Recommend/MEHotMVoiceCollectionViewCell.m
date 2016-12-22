@@ -13,17 +13,17 @@
 //主题图片
 @property (nonatomic, strong) UIImageView * themesImageView;
 //标题
-@property (nonatomic, strong) UILabel * titleLabel;
+//@property (nonatomic, strong) UILabel * titleLabel;
 //播放数
 @property (nonatomic, strong) UILabel * playedLabel;
 //留言数
 @property (nonatomic, strong) UILabel * wordsLable;
 //播放图片
 @property (nonatomic, strong) UIImageView * playImageView;
-//播放小图标
-@property (nonatomic, strong) UIImageView * playedIcon;
-//留言小图标
-@property (nonatomic, strong) UIImageView * wordsIcon;
+////播放小图标
+//@property (nonatomic, strong) UIImageView * playedIcon;
+////留言小图标
+//@property (nonatomic, strong) UIImageView * wordsIcon;
 
 @end
 
@@ -33,7 +33,7 @@
 {
     if ([super initWithFrame:frame]) {
         if (self) {
-            self.backgroundColor = ME_Color(250, 250, 250);
+            self.backgroundColor = [UIColor clearColor];//ME_Color(250, 250, 250);
             
             //主题图片
             self.themesImageView = [UIImageView new];
@@ -57,7 +57,7 @@
             }];
             
             //标题
-            self.titleLabel = [UILabel new];
+//            self.titleLabel = [UILabel new];
             [self addSubview:self.titleLabel];
             self.titleLabel.font = [UIFont systemFontOfSize:13];
             self.titleLabel.numberOfLines = 0;
@@ -69,9 +69,9 @@
             }];
             
             //播放小图标
-            self.playedIcon = [UIImageView new];
+//            self.playedIcon = [UIImageView new];
             [self addSubview:self.playedIcon];
-            self.playedIcon.image = [UIImage imageNamed:@"npv_icon_playcount_12x10_"];
+//            self.playedIcon.image = [UIImage imageNamed:@"npv_icon_playcount_12x10_"];
             [self.playedIcon mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.titleLabel.mas_bottom).with.offset(6);
                 make.left.equalTo(self.titleLabel.mas_left).with.offset(0);
@@ -98,9 +98,9 @@
             }];
             
             //留言小图标
-            self.wordsIcon = [UIImageView new];
+//            self.wordsIcon = [UIImageView new];
             [self addSubview:self.wordsIcon];
-            self.wordsIcon.image = [UIImage imageNamed:@"biu_ac_12x10_"];
+//            self.wordsIcon.image = [UIImage imageNamed:@"biu_ac_12x10_"];
             [self.wordsIcon mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(self.playedIcon).with.offset(0);
                 make.right.equalTo(self.wordsLable.mas_left).with.offset(-3);

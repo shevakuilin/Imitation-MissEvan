@@ -42,26 +42,6 @@
         make.size.mas_equalTo(CGSizeMake(ME_Width, 40));
     }];
     
-
-//    [topView addSubview:topView.topShadow];
-//    [topView.topShadow mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(topView).with.offset(1);
-//        make.left.equalTo(topView);
-//        make.right.equalTo(topView);
-//        
-//        make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
-//    }];
-    
-
-//    [topView addSubview:topView.downShadow];
-//    [topView.downShadow mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.bottom.equalTo(topView).with.offset(-1);
-//        make.left.equalTo(topView);
-//        make.right.equalTo(topView);
-//        
-//        make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
-//    }];
-    
     UILabel * titleLabel = [UILabel new];
     [topView addSubview:titleLabel];
     titleLabel.font = [UIFont systemFontOfSize:12];

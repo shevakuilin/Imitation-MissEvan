@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MEVoiceListCollectionViewCell : UICollectionViewCell
+#import "MEBaseChannelCollectionViewCell.h"
+@interface MEVoiceListCollectionViewCell : MEBaseChannelCollectionViewCell
 @property (nonatomic, strong) NSDictionary * dic;
 @end

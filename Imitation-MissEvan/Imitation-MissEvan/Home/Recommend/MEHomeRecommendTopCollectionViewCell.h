@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MEHomeRecommendTopCollectionViewCell : UICollectionViewCell
+#import "MEBaseCollectionViewCell.h"
+@interface MEHomeRecommendTopCollectionViewCell : MEBaseCollectionViewCell
 @property (nonatomic, strong) NSDictionary * dic;
 
 @end

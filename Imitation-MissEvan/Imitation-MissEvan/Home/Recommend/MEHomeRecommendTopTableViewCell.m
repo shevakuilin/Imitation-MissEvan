@@ -32,7 +32,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
+//        self.backgroundColor = [UIColor whiteColor];
         
         //创建一个layout布局类
         UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
@@ -43,7 +43,7 @@
         [self addSubview:self.collectionView];
         self.collectionView.dataSource = self;
         self.collectionView.delegate = self;
-        self.collectionView.backgroundColor = [UIColor whiteColor];
+        self.collectionView.backgroundColor = [UIColor clearColor];//[UIColor whiteColor];
         self.collectionView.scrollEnabled = NO;
         [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
@@ -61,17 +61,23 @@
 //            make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
 //        }];
         
-        self.downShadow = [UIImageView new];
-        [self addSubview:self.downShadow];
-        self.downShadow.backgroundColor = ME_Color(238, 238, 238);//229, 230, 230
-        [self.downShadow mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self).with.offset(0);
-            
-            make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
-        }];
+//        self.downShadow = [UIImageView new];
+//        [self addSubview:self.downShadow];
+//        self.downShadow.backgroundColor = ME_Color(238, 238, 238);//229, 230, 230
+//        [self.downShadow mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.bottom.equalTo(self).with.offset(0);
+//            
+//            make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
+//        }];
 
     }
     return self;
+}
+
+- (void)setArray:(NSArray *)array
+{
+    _array = array;
+    [self.collectionView reloadData];
 }
 
 #pragma mark -
@@ -89,7 +95,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     MEHomeRecommendTopCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeRecommendTop" forIndexPath:indexPath];
-    cell.dic = ME_DATASOURCE.homeTopArray[indexPath.row];
+    cell.dic = self.array[indexPath.row];
     
     return cell;
 }

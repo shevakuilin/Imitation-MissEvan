@@ -58,6 +58,7 @@
 		77E308721E0BA0CA00F04D38 /* MEBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E308711E0BA0CA00F04D38 /* MEBaseView.m */; };
 		77E308751E0BA95800F04D38 /* MEBaseImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E308741E0BA95800F04D38 /* MEBaseImageView.m */; };
 		77E308781E0BAD3E00F04D38 /* MEBaseChannelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E308771E0BAD3E00F04D38 /* MEBaseChannelCollectionViewCell.m */; };
+		77E3087B1E0BC25000F04D38 /* MEBaseMoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E3087A1E0BC25000F04D38 /* MEBaseMoreTableViewCell.m */; };
 		C9539F1C10181F2A520BDDE3 /* libPods-Imitation-MissEvan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20DBB35C9F8E09611DFD0293 /* libPods-Imitation-MissEvan.a */; };
 		E445057C1DFC557C0094FEDE /* METabBarCatImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E445057B1DFC557C0094FEDE /* METabBarCatImageView.m */; };
 		E44993BB1E081EE600396D48 /* METhemeSwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E44993BA1E081EE600396D48 /* METhemeSwitchViewController.m */; };
@@ -202,6 +203,8 @@
 		77E308741E0BA95800F04D38 /* MEBaseImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEBaseImageView.m; sourceTree = "<group>"; };
 		77E308761E0BAD3E00F04D38 /* MEBaseChannelCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEBaseChannelCollectionViewCell.h; sourceTree = "<group>"; };
 		77E308771E0BAD3E00F04D38 /* MEBaseChannelCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEBaseChannelCollectionViewCell.m; sourceTree = "<group>"; };
+		77E308791E0BC25000F04D38 /* MEBaseMoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEBaseMoreTableViewCell.h; sourceTree = "<group>"; };
+		77E3087A1E0BC25000F04D38 /* MEBaseMoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEBaseMoreTableViewCell.m; sourceTree = "<group>"; };
 		78521F705BB0DCF560EE7105 /* Pods-Imitation-MissEvan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imitation-MissEvan.release.xcconfig"; path = "Pods/Target Support Files/Pods-Imitation-MissEvan/Pods-Imitation-MissEvan.release.xcconfig"; sourceTree = "<group>"; };
 		E445057A1DFC557C0094FEDE /* METabBarCatImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METabBarCatImageView.h; sourceTree = "<group>"; };
 		E445057B1DFC557C0094FEDE /* METabBarCatImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METabBarCatImageView.m; sourceTree = "<group>"; };
@@ -572,6 +575,8 @@
 				77D0F1331E09270C00D16470 /* MEBaseSubViewController.m */,
 				77D0F1351E0935C200D16470 /* MEBaseTableViewCell.h */,
 				77D0F1361E0935C200D16470 /* MEBaseTableViewCell.m */,
+				77E308791E0BC25000F04D38 /* MEBaseMoreTableViewCell.h */,
+				77E3087A1E0BC25000F04D38 /* MEBaseMoreTableViewCell.m */,
 				774F38511E0A11DE0070C448 /* MEBaseCollectionViewCell.h */,
 				774F38521E0A11DE0070C448 /* MEBaseCollectionViewCell.m */,
 				77E308761E0BAD3E00F04D38 /* MEBaseChannelCollectionViewCell.h */,
@@ -891,6 +896,7 @@
 				E4C3B5891DDC8F5900A672D1 /* MEAkiraTableViewCell.m in Sources */,
 				E4C3B59B1DE9B9C400A672D1 /* MEHotMVoiceCollectionViewCell.m in Sources */,
 				77C8194B1DBDF53B0004EFFC /* METabBar.m in Sources */,
+				77E3087B1E0BC25000F04D38 /* MEBaseMoreTableViewCell.m in Sources */,
 				77C819391DBDB88E0004EFFC /* MEHomeViewController.m in Sources */,
 				E4C3B5981DE9B2D000A672D1 /* MEHomeRecommendTopCollectionViewCell.m in Sources */,
 				E4C3B58C1DDC8F5900A672D1 /* MECustomColumnTableViewCell.m in Sources */,

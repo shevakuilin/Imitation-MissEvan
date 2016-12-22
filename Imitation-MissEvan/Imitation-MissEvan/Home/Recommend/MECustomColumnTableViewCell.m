@@ -10,7 +10,7 @@
 #import "MEHeader.h"
 
 @interface MECustomColumnTableViewCell ()
-@property (nonatomic, strong) UILabel * titleLabel;
+//@property (nonatomic, strong) UILabel * titleLabel;
 
 @end
 
@@ -31,9 +31,9 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.backgroundColor = ME_Color(250, 250, 250);
+//        self.backgroundColor = ME_Color(250, 250, 250);
         
-        self.titleLabel = [UILabel new];
+//        self.titleLabel = [UILabel new];
         [self addSubview:self.titleLabel];
         self.titleLabel.font = [UIFont systemFontOfSize:12];
         self.titleLabel.textColor = ME_Color(136, 136, 136);

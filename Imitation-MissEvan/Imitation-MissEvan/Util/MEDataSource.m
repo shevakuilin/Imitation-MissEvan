@@ -58,6 +58,12 @@
                           @{@"image":@"nhp_title_drama_40x40_", @"title":@"广播剧"},
                           @{@"image":@"nhp_title_mission_40x40_", @"title":@"任务"}];
     
+    self.homeTopNightArray = @[@{@"image":@"nhp_title_topic_night_40x40_", @"title":@"专题"},
+                          @{@"image":@"nhp_title_rank_night_40x40_", @"title":@"排行"},
+                          @{@"image":@"nhp_title_drama_night_40x40_", @"title":@"广播剧"},
+                          @{@"image":@"nhp_title_mission_night_40x40_", @"title":@"任务"}];
+    
+    
     self.bellArray = @[@{@"image":@"hp3_title_bell2_40x40_", @"title":@"闹铃"},
                        @{@"image":@"hp3_title_message2_40x40_", @"title":@"短信"},
                        @{@"image":@"hp3_title_phone2_40x40_", @"title":@"来电"},
@@ -80,6 +86,19 @@
                           @"title": @"推荐声优"},
                         @{@"image": @"hp3_icon_5_26x26_",
                           @"title": @"广播剧"}];
+    
+    self.topCellNightArray = @[@{@"image": @"hp3_icon_msound_small_night_26x26_",
+                            @"title": @"人气M音"},
+                          @{@"image": @"hp3_icon_channel_small_night_26x26_",
+                            @"title": @"频道"},
+                          @{@"image": @"hp3_icon_album_small_night_26x26_",
+                            @"title": @"音单"},
+                          @{@"image": @"hp3_icon_ring_small_night_26x26_",
+                            @"title": @"铃声"},
+                          @{@"image": @"hp3_icon_seiyu_small_night_26x26_",
+                            @"title": @"推荐声优"},
+                          @{@"image": @"hp3_icon_5_night_26x26_",
+                            @"title": @"广播剧"}];
 
     
     self.recommendCellArray = @[@{@"themes_image": @"hotMVoice_topLeft",

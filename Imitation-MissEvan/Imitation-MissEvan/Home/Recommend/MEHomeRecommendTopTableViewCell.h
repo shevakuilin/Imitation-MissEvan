@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MEHomeRecommendTopTableViewCell : UITableViewCell
-@property (nonatomic, strong) UIImageView * topShadow;
-@property (nonatomic, strong) UIImageView * downShadow;
+#import "MEBaseTableViewCell.h"
+@interface MEHomeRecommendTopTableViewCell : MEBaseTableViewCell
+@property (nonatomic, strong) NSArray * array;
 
 @end

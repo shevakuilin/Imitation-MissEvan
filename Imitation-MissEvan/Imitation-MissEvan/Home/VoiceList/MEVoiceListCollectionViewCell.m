@@ -12,7 +12,7 @@
 @interface MEVoiceListCollectionViewCell ()
 @property (nonatomic, strong) UIImageView * themesImageView;
 @property (nonatomic, strong) UILabel * listCountLabel;
-@property (nonatomic, strong) UILabel * titleLabel;
+//@property (nonatomic, strong) UILabel * titleLabel;
 //音乐小图标
 @property (nonatomic, strong) UIImageView * musicImageView;
 //阴影
@@ -57,8 +57,9 @@
             //主题图片
             self.themesImageView = [UIImageView new];
             [self addSubview:self.themesImageView];
-            self.themesImageView.layer.masksToBounds = YES;
-            self.themesImageView.layer.cornerRadius = 5;
+            self.themesImageView.aliCornerRadius = 5;
+//            self.themesImageView.layer.masksToBounds = YES;
+//            self.themesImageView.layer.cornerRadius = 5;
             [self.themesImageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.centerImageView.mas_top).with.offset(2);
                 make.left.equalTo(self.centerImageView.mas_left).with.offset(-2);
@@ -98,7 +99,7 @@
             }];
             
             //标题
-            self.titleLabel = [UILabel new];
+//            self.titleLabel = [UILabel new];
             [self addSubview:self.titleLabel];
             self.titleLabel.font = [UIFont systemFontOfSize:13];
             self.titleLabel.numberOfLines = 0;

@@ -11,7 +11,7 @@
 
 @interface MEAkiraCollectionViewCell ()
 @property (nonatomic, strong) UIImageView * typeImageView;
-@property (nonatomic, strong) UILabel * titleLabel;
+//@property (nonatomic, strong) UILabel * titleLabel;
 
 @end
 
@@ -21,7 +21,7 @@
 {
     if ([super initWithFrame:frame]) {
         if (self) {
-            self.backgroundColor = ME_Color(250, 250, 250);
+            self.backgroundColor = [UIColor clearColor];//ME_Color(250, 250, 250);
             
             self.typeImageView = [UIImageView new];
             [self addSubview:self.typeImageView];
@@ -33,7 +33,7 @@
                 make.size.mas_equalTo(CGSizeMake((ME_Width / 4) - 32, (ME_Width / 4) - 32));
             }];
             
-            self.titleLabel = [UILabel new];
+//            self.titleLabel = [UILabel new];
             [self addSubview:self.titleLabel];
             self.titleLabel.textAlignment = NSTextAlignmentCenter;
             self.titleLabel.font = [UIFont systemFontOfSize:13];

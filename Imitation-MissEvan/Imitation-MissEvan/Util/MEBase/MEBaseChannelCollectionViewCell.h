@@ -10,5 +10,7 @@
 
 @interface MEBaseChannelCollectionViewCell : UICollectionViewCell
 @property (nonatomic, strong) UILabel * titleLabel;//标题
+@property (nonatomic, strong) UIImageView * playedIcon;//播放小图标
+@property (nonatomic, strong) UIImageView * wordsIcon;//留言小图标
 
 @end

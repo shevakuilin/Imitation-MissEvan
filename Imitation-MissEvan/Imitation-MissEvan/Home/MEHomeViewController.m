@@ -104,6 +104,9 @@
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    if (self.tableView) {
+        [self.tableView reloadData];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -152,7 +155,7 @@
     
     
     self.tableView = [UITableView new];
-    self.tableView.backgroundColor = ME_Color(250, 250, 250);
+    self.tableView.backgroundColor = [UIColor clearColor];//ME_Color(250, 250, 250);
     [backgroundScroll addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(backgroundScroll).with.offset(145);
@@ -286,6 +289,11 @@
         if (indexPath.section == 0) {
             MEHomeRecommendTopTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendTop"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+                cell.array = ME_DATASOURCE.homeTopArray;
+            } else {
+                cell.array = ME_DATASOURCE.homeTopNightArray;
+            }
             
             return cell;
             
@@ -300,7 +308,11 @@
                 MEHomeRecommendMoreTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendMore"];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 MELog(@"section == %@", @(indexPath.section));
-                cell.dic = ME_DATASOURCE.topCellArray[indexPath.section - 1];
+                if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+                    cell.dic = ME_DATASOURCE.topCellArray[indexPath.section - 1];
+                } else {
+                    cell.dic = ME_DATASOURCE.topCellNightArray[indexPath.section - 1];
+                }
                 if (indexPath.section == 4 || indexPath.section == 5) {
                     cell.moreButton.hidden = YES;
                 } else {
@@ -380,7 +392,7 @@
             MELog(@"section == %@", @(indexPath.section));
             cell.dic = ME_DATASOURCE.voiceListTitle[indexPath.section];
             cell.classifyLabel.font = [UIFont systemFontOfSize:14];
-            cell.topShadow.hidden = YES;
+//            cell.topShadow.hidden = YES;
             
             return cell;
             
@@ -388,7 +400,7 @@
             MEVoiceListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"VoiceList"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.array = ME_DATASOURCE.voiceListArray;
-            cell.collectionView.backgroundColor = ME_Color(243, 243, 243);
+//            cell.collectionView.backgroundColor = ME_Color(243, 243, 243);
             
             return cell;
         }
@@ -457,7 +469,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView * sectionView = [UIView new];
-    sectionView.backgroundColor = ME_Color(250, 250, 250);
+    sectionView.backgroundColor = self.recommendView.view.backgroundColor;//ME_Color(250, 250, 250);
     return sectionView;
 }
 

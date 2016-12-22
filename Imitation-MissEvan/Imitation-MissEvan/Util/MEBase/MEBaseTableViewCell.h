@@ -22,4 +22,5 @@
 @property (nonatomic, strong) UIImageView * playIcon;//播放图标
 @property (nonatomic, strong) UIImageView * durationIcon;//时长图标
 
+
 @end

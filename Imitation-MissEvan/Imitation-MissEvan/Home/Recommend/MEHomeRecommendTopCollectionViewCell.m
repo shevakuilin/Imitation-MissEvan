@@ -11,7 +11,6 @@
 
 @interface MEHomeRecommendTopCollectionViewCell ()
 @property (nonatomic, strong) UIImageView * typeImageView;
-@property (nonatomic, strong) UILabel * titleLabel;
 
 @end
 
@@ -21,7 +20,7 @@
 {
     if ([super initWithFrame:frame]) {
         if (self) {
-            self.backgroundColor = [UIColor whiteColor];
+//            self.backgroundColor = [UIColor whiteColor];
             
             self.typeImageView = [UIImageView new];
             [self addSubview:self.typeImageView];
@@ -30,7 +29,7 @@
                 make.centerX.equalTo(self).with.offset(0);
             }];
             
-            self.titleLabel = [UILabel new];
+//            self.titleLabel = [UILabel new];
             [self addSubview:self.titleLabel];
             self.titleLabel.textAlignment = NSTextAlignmentCenter;
             self.titleLabel.font = [UIFont systemFontOfSize:13];

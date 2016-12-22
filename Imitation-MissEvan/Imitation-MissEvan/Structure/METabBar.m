@@ -85,25 +85,31 @@
     NSString * themeStyle = [sender userInfo][@"style"];
     NSString * imageName = @"";
     NSString * imageNameSel = @"";
-    for (NSInteger i = 0; i < ME_DATASOURCE.imageNameArray.count; i ++) {
+    
+    NSInteger count = self.subviews.count - 1;//此处-1为了排除self.subviews中所处末位的睡觉猫
+    for (NSInteger i = 0; i < count; i ++) {
+        //获取按钮
+        UIButton * button = self.subviews[i];
         if ([themeStyle isEqualToString:EAThemeNormal]) {
             imageName = [NSString stringWithFormat:@"ntab_%@_normal", ME_DATASOURCE.imageNameArray[i]];
             imageNameSel = [NSString stringWithFormat:@"ntab_%@_selected", ME_DATASOURCE.imageNameArray[i]];
-//            [self.button setTitleColor:ME_Color(61, 61, 61) forState:UIControlStateNormal];
-//            [self.button setTitleColor:ME_Color(61, 61, 61) forState:UIControlStateSelected];
-            [self.button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-            [self.button setImage:[UIImage imageNamed:imageNameSel] forState:UIControlStateSelected];
+            [button setTitleColor:ME_Color(61, 61, 61) forState:UIControlStateNormal];
+            [button setTitleColor:ME_Color(61, 61, 61) forState:UIControlStateSelected];
+            [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+            [button setImage:[UIImage imageNamed:imageNameSel] forState:UIControlStateSelected];
             
         } else {
             imageName = [NSString stringWithFormat:@"ntab_%@_normal_night", ME_DATASOURCE.imageNameArray[i]];
             imageNameSel = [NSString stringWithFormat:@"ntab_%@_selected_night", ME_DATASOURCE.imageNameArray[i]];
-//            [self.button setTitleColor:[UIColor lightTextColor] forState:UIControlStateNormal];
-//            [self.button setTitleColor:[UIColor lightTextColor] forState:UIControlStateSelected];
-            [self.button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-            [self.button setImage:[UIImage imageNamed:imageNameSel] forState:UIControlStateSelected];
+            [button setTitleColor:[UIColor lightTextColor] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor lightTextColor] forState:UIControlStateSelected];
+            [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+            [button setImage:[UIImage imageNamed:imageNameSel] forState:UIControlStateSelected];
         }
         
+        
     }
+    
 }
 //- (void)addButtonWithImage:(UIImage *)defaultImage selectedImage:(UIImage *)selectedImage
 //{

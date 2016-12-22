@@ -15,5 +15,8 @@
 @property (strong, nonatomic) UILabel * fishNumberLabel;
 @property (nonatomic, strong) UIImageView * topShadow;
 @property (nonatomic, strong) UIImageView * downShadow;
+@property (nonatomic, strong) UILabel * trackDateLabel;
+@property (nonatomic, strong) UILabel * playCountLabel;
+@property (nonatomic, strong) UILabel * durationLabel;
 
 @end

@@ -20,9 +20,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"动态";
-    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor blackColor]}];
-    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     [self customView];
 }
 
@@ -33,7 +30,7 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
-    self.tableView.backgroundColor = ME_Color(243, 243, 243);
+    self.tableView.backgroundColor = [UIColor clearColor];//ME_Color(243, 243, 243);
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = NO;
@@ -79,7 +76,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView * sectionView = [UIView new];
-    sectionView.backgroundColor = ME_Color(243, 243, 243);
+    sectionView.backgroundColor = [UIColor clearColor];//ME_Color(243, 243, 243);
 
     return sectionView;
 }

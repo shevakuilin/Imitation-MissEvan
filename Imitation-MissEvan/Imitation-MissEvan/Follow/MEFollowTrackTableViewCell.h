@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MEFollowTrackTableViewCell : UITableViewCell
+#import "MEBaseTableViewCell.h"
+@interface MEFollowTrackTableViewCell : MEBaseTableViewCell
 @property (nonatomic, strong) NSDictionary * dic;
 @end

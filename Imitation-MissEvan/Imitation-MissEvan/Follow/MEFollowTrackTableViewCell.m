@@ -10,12 +10,12 @@
 #import "MEHeader.h"
 
 @interface MEFollowTrackTableViewCell ()
-@property (nonatomic, strong) UILabel * userNameLabel;
-@property (nonatomic, strong) UILabel * trackDateLabel;
+//@property (nonatomic, strong) UILabel * userNameLabel;
+//@property (nonatomic, strong) UILabel * trackDateLabel;
 @property (nonatomic, strong) UIImageView * front_coverImageView;
-@property (nonatomic, strong) UILabel * titleLabel;
-@property (nonatomic, strong) UILabel * playCountLabel;
-@property (nonatomic, strong) UILabel * durationLabel;
+//@property (nonatomic, strong) UILabel * titleLabel;
+//@property (nonatomic, strong) UILabel * playCountLabel;
+//@property (nonatomic, strong) UILabel * durationLabel;
 
 @end
 
@@ -36,7 +36,7 @@
 {
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         if (self) {
-            self.userNameLabel = [UILabel new];
+//            self.userNameLabel = [UILabel new];
             [self addSubview:self.userNameLabel];
             self.userNameLabel.font = [UIFont systemFontOfSize:14];
             self.userNameLabel.text = @"Krsi";
@@ -45,7 +45,7 @@
                 make.top.equalTo(self).with.offset(10);
             }];
             
-            self.trackDateLabel = [UILabel new];
+//            self.trackDateLabel = [UILabel new];
             [self addSubview:self.trackDateLabel];
             self.trackDateLabel.font = [UIFont systemFontOfSize:13];
             self.trackDateLabel.textColor = [UIColor lightGrayColor];
@@ -76,7 +76,7 @@
                 make.size.mas_equalTo(CGSizeMake(45, 45));
             }];
             
-            self.titleLabel = [UILabel new];
+//            self.titleLabel = [UILabel new];
             [self addSubview:self.titleLabel];
             self.titleLabel.font = [UIFont systemFontOfSize:15];
             self.titleLabel.text = @"【聊聊】我们一起来唠嗑";
@@ -93,7 +93,7 @@
                 make.left.equalTo(self.titleLabel.mas_left);
             }];
             
-            self.playCountLabel = [UILabel new];
+//            self.playCountLabel = [UILabel new];
             [self addSubview:self.playCountLabel];
             self.playCountLabel.font = [UIFont systemFontOfSize:10];
             self.playCountLabel.textColor = [UIColor lightGrayColor];
@@ -111,7 +111,7 @@
                 make.centerY.equalTo(self.playCountLabel);
             }];
             
-            self.durationLabel = [UILabel new];
+//            self.durationLabel = [UILabel new];
             [self addSubview:self.durationLabel];
             self.durationLabel.font = [UIFont systemFontOfSize:11];
             self.durationLabel.textColor = [UIColor lightGrayColor];

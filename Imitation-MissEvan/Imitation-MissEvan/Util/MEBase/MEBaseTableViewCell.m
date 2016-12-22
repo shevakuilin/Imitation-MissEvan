@@ -36,6 +36,9 @@
             self.fishNumberLabel = [UILabel new];
             self.topShadow = [UIImageView new];
             self.downShadow = [UIImageView new];
+            self.trackDateLabel = [UILabel new];
+            self.playCountLabel = [UILabel new];
+            self.durationLabel = [UILabel new];
             @ea_weakify(self);
             [self ea_setThemeContents:^(UIView *currentView, NSString *currentThemeIdentifier) {
                 @ea_strongify(self);

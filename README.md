@@ -3,13 +3,13 @@
 
 纯代码「布局精确到像素」的高仿MissEvan iOS端App，暂时只提供 ![Language](https://img.shields.io/badge/Language-%20Objective%20C%20-blue.svg) 版本
 
-仿照版本 v3.6.3 - v3.7.0
+仿照版本 v3.6.3 - v3.8.0
 
 
 
 (￣y▽￣)~*  「★Star」 不点一下么
 
-### 版本效果截屏：
+### 版本效果截屏：(截图版本为v3.6.3)
 
 
 <img src="http://ofg0p74ar.bkt.clouddn.com/MissEvan--.jpg" width="370" height ="665" />

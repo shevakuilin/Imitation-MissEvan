@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MEChannelTableViewCell : UITableViewCell
+#import "MEBaseTableViewCell.h"
+@interface MEChannelTableViewCell : MEBaseTableViewCell
 @property (nonatomic, strong) NSArray * array;
 
 @end

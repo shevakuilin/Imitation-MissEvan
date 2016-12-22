@@ -9,11 +9,13 @@
 #import "MEChannelViewController.h"
 #import "MEHeader.h"
 #import "MEChannelCollectionViewCell.h"
+#import "MEBaseView.h"
+#import "MEBaseImageView.h"
 
 @interface MEChannelViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView * collectionView;
 @property (nonatomic, strong) UIButton * soundTypeButton;
-@property (nonatomic, strong) UIImageView * pullImageView;
+@property (nonatomic, strong) MEBaseImageView * pullImageView;
 @property (nonatomic, strong) UIButton * allButton;
 @property (nonatomic, strong) UIButton * mSoundButton;
 @property (nonatomic, strong) UIButton * bellButton;
@@ -25,46 +27,40 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"频道";
-    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor blackColor]}];
-    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     [self customView];
 }
 
 - (void)customView
 {
-    UIView * topView = [UIView new];
+    MEBaseView * topView = [MEBaseView new];
     [self.view addSubview:topView];
-    topView.backgroundColor = ME_Color(243, 243, 243);
     [topView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).with.offset(65);
+        make.top.equalTo(self.view).with.offset(1);
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
         
         make.size.mas_equalTo(CGSizeMake(ME_Width, 40));
     }];
     
-    UIImageView * topShadow = [UIImageView new];
-    [topView addSubview:topShadow];
-    topShadow.backgroundColor = ME_Color(238, 238, 238);
-    [topShadow mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(topView).with.offset(1);
-        make.left.equalTo(topView);
-        make.right.equalTo(topView);
-        
-        make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
-    }];
+
+//    [topView addSubview:topView.topShadow];
+//    [topView.topShadow mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(topView).with.offset(1);
+//        make.left.equalTo(topView);
+//        make.right.equalTo(topView);
+//        
+//        make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
+//    }];
     
-    UIImageView * downShadow = [UIImageView new];
-    [topView addSubview:downShadow];
-    downShadow.backgroundColor = ME_Color(229, 229, 229);//229, 230, 230
-    [downShadow mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(topView).with.offset(-1);
-        make.left.equalTo(topView);
-        make.right.equalTo(topView);
-        
-        make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
-    }];
+
+//    [topView addSubview:topView.downShadow];
+//    [topView.downShadow mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(topView).with.offset(-1);
+//        make.left.equalTo(topView);
+//        make.right.equalTo(topView);
+//        
+//        make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
+//    }];
     
     UILabel * titleLabel = [UILabel new];
     [topView addSubview:titleLabel];
@@ -93,15 +89,15 @@
     [self.soundTypeButton addTarget:self action:@selector(showPullView) forControlEvents:UIControlEventTouchUpInside];
     
     //创建一个layout布局类
-    UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
+    UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc] init];
     //设置布局方向为垂直流布局
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     //创建collectionView 通过一个布局策略layout来创建
-    self.collectionView = [[UICollectionView alloc]initWithFrame:self.view.frame collectionViewLayout:layout];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:layout];
     [self.view addSubview:self.collectionView];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    self.collectionView.backgroundColor = ME_Color(243, 243, 243);
+    self.collectionView.backgroundColor = [UIColor clearColor];//ME_Color(243, 243, 243);
     self.collectionView.showsVerticalScrollIndicator = NO;
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(topView.mas_bottom);
@@ -111,9 +107,9 @@
     }];
     [self.collectionView registerClass:[MEChannelCollectionViewCell class] forCellWithReuseIdentifier:@"Channel"];
     
-    self.pullImageView = [UIImageView new];
+    self.pullImageView = [MEBaseImageView new];
     [self.view addSubview:self.pullImageView];
-    self.pullImageView.image = [UIImage imageNamed:@"td_bg_pull_72x191_"];
+//    self.pullImageView.image = [UIImage imageNamed:@"td_bg_pull_72x191_"];
     [self.pullImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(topView.mas_bottom);
         make.centerX.equalTo(self.soundTypeButton);
@@ -237,7 +233,7 @@
     MEChannelCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Channel" forIndexPath:indexPath];
     NSInteger x = arc4random() % 3;
     cell.dic = ME_DATASOURCE.channelCellArray[x];
-    cell.backgroundColor = ME_Color(243, 243, 243);
+//    cell.backgroundColor = ME_Color(243, 243, 243);
     [cell.themesImageView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(cell).with.offset(6);
         make.size.mas_equalTo(CGSizeMake((ME_Width / 2) - 12, ((ME_Width - 12) / 3) - 25));

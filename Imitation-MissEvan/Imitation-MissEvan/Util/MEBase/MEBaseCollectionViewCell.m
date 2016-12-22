@@ -19,6 +19,7 @@
             self.rightShadow = [UIImageView new];
             self.classifyImageView = [UIImageView new];
             self.classifyLabel = [UILabel new];
+            
             @ea_weakify(self);
             [self ea_setThemeContents:^(UIView *currentView, NSString *currentThemeIdentifier) {
                 @ea_strongify(self);

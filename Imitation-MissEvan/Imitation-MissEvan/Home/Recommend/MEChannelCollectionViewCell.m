@@ -11,7 +11,7 @@
 
 @interface MEChannelCollectionViewCell ()
 @property (nonatomic, strong) UILabel * playedLabel;
-@property (nonatomic, strong) UILabel * titleLabel;
+//@property (nonatomic, strong) UILabel * titleLabel;
 @property (nonatomic, strong) UIImageView * albumShadowImageView;
 @property (nonatomic, strong) UIImageView * playedImageView;
 
@@ -23,13 +23,12 @@
 {
     if ([super initWithFrame:frame]) {
         if (self) {
-            self.backgroundColor = ME_Color(250, 250, 250);
+            self.backgroundColor = [UIColor clearColor];//ME_Color(250, 250, 250);
             
             //主题图片
             self.themesImageView = [UIImageView new];
             [self addSubview:self.themesImageView];
-            self.themesImageView.layer.masksToBounds = YES;
-            self.themesImageView.layer.cornerRadius = 5;
+            self.themesImageView.aliCornerRadius = 5;
             [self.themesImageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self).with.offset(0);
                 make.left.equalTo(self).with.offset(6);
@@ -38,7 +37,6 @@
             }];
             
             //标题
-            self.titleLabel = [UILabel new];
             [self addSubview:self.titleLabel];
             self.titleLabel.font = [UIFont systemFontOfSize:13];
             [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

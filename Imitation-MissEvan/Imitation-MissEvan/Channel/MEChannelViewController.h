@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MEChannelViewController : UIViewController
+#import "MEBaseViewController.h"
+@interface MEChannelViewController : MEBaseViewController
 
 @end

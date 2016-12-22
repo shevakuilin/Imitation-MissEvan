@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MEChannelCollectionViewCell : UICollectionViewCell
+#import "MEBaseChannelCollectionViewCell.h"
+@interface MEChannelCollectionViewCell : MEBaseChannelCollectionViewCell
 @property (nonatomic, strong) UIImageView * themesImageView;
 @property (nonatomic, strong) NSDictionary * dic;
 

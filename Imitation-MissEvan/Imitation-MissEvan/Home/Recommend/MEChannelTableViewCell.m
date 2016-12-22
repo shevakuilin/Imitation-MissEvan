@@ -32,7 +32,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.backgroundColor = ME_Color(250, 250, 250);
+        self.backgroundColor = [UIColor clearColor];//ME_Color(250, 250, 250);
         //创建一个layout布局类
         UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
         //设置布局方向为垂直流布局
@@ -42,7 +42,7 @@
         [self addSubview:self.collectionView];
         self.collectionView.dataSource = self;
         self.collectionView.delegate = self;
-        self.collectionView.backgroundColor = ME_Color(250, 250, 250);
+        self.collectionView.backgroundColor = [UIColor clearColor];//ME_Color(250, 250, 250);
         self.collectionView.scrollEnabled = NO;
         [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));

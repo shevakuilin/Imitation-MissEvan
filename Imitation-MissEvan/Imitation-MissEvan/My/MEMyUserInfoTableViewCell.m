@@ -54,7 +54,6 @@
             
             [self addSubview:self.mNumberLabel];
             self.mNumberLabel.font = [UIFont systemFontOfSize:10];
-            self.mNumberLabel.textColor = [UIColor whiteColor];
             self.mNumberLabel.text = @" MID:361555 ";
             self.mNumberLabel.textAlignment = NSTextAlignmentCenter;
             self.mNumberLabel.layer.masksToBounds = YES;

@@ -39,6 +39,10 @@
             self.trackDateLabel = [UILabel new];
             self.playCountLabel = [UILabel new];
             self.durationLabel = [UILabel new];
+            self.line = [UIImageView new];
+            self.playIcon = [UIImageView new];
+            self.durationIcon = [UIImageView new];
+            
             @ea_weakify(self);
             [self ea_setThemeContents:^(UIView *currentView, NSString *currentThemeIdentifier) {
                 @ea_strongify(self);
@@ -51,6 +55,10 @@
                 self.fishNumberLabel.textColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
                 self.topShadow.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_Color(238, 238, 238) : [UIColor blackColor];
                 self.downShadow.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_Color(238, 238, 238) : [UIColor blackColor];
+                self.line.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_Color(238, 238, 238) : ME_Color(91, 90, 90);
+                self.playIcon.image = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIImage imageNamed:@"playnum_ac_12x10_"] : [UIImage imageNamed:@"night_play_12x10_"];
+                self.durationIcon.image = [currentThemeIdentifier isEqualToString:EAThemeNormal]
+                ? [UIImage imageNamed:@"time_new_12x10_"] : [UIImage imageNamed:@"night_time_12x10_"];
             }];
         }
     }

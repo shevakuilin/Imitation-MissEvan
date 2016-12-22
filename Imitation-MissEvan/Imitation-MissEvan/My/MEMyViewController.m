@@ -45,7 +45,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if (self.tableView) {
+    if (self.tableView) {//记得进入页面前刷新tableView，否则headerView的底色将不会跟随主题色切换
         [self.tableView reloadData];
     }
 }
@@ -98,12 +98,12 @@
     
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
         return 80;
@@ -122,7 +122,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView * sectionView = [UIView new];
-    sectionView.backgroundColor = [UIColor clearColor];//ME_Color(243, 243, 243);
+    sectionView.backgroundColor = self.view.backgroundColor;//[UIColor clearColor];//ME_Color(243, 243, 243);
     return sectionView;
 }
 

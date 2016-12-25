@@ -122,7 +122,7 @@
 {
     //TODO:推荐界面
     UIScrollView * backgroundScroll = [UIScrollView new];//[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ME_Width, ME_Height)];
-    backgroundScroll.backgroundColor = [UIColor clearColor];
+    backgroundScroll.backgroundColor = [UIColor whiteColor];//[UIColor clearColor];
     [self.recommendView.view addSubview:backgroundScroll];
     [backgroundScroll mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.recommendView.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));

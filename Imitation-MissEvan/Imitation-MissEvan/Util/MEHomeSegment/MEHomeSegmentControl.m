@@ -53,7 +53,7 @@
 {
     CGSize size = self.frame.size;
     self.scrollView.frame = CGRectMake(60, -5, size.width - 120, size.height);
-    self.scrollView.backgroundColor = [UIColor whiteColor];
+//    self.scrollView.backgroundColor = [UIColor whiteColor];
     
 }
 

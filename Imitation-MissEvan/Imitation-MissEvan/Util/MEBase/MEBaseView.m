@@ -20,7 +20,6 @@
             [self ea_setThemeContents:^(UIView *currentView, NSString *currentThemeIdentifier) {
                 @ea_strongify(self);
                 currentView.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_Color(243, 243, 243) : [UIColor blackColor];
-
             }];
         }
     }

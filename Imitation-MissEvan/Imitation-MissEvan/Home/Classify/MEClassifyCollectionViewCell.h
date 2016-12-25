@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MEBaseChannelCollectionViewCell.h"
+@interface MEClassifyCollectionViewCell : MEBaseChannelCollectionViewCell
+@property (nonatomic, strong) NSDictionary * dic;
 
-@interface MEClassifyCollectionViewCell : UICollectionViewCell
-@property (nonatomic, strong) UIImageView * classifyImageView;
-@property (nonatomic, strong) UILabel * classifyLabel;
-
-@property (nonatomic, strong) NSString * picUrl;
-@property (nonatomic, strong) NSString * title;
 @end

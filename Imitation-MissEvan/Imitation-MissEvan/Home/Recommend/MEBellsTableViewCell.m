@@ -51,10 +51,10 @@
         }];
         [self.collectionView registerClass:[MEBellsCollectionViewCell class] forCellWithReuseIdentifier:@"Bells"];
         
-        UIImageView * topShadow = [UIImageView new];
-        [self addSubview:topShadow];
-        topShadow.backgroundColor = ME_Color(238, 238, 238);
-        [topShadow mas_makeConstraints:^(MASConstraintMaker *make) {
+//        UIImageView * topShadow = [UIImageView new];
+        [self addSubview:self.topShadow];
+//        topShadow.backgroundColor = ME_Color(238, 238, 238);
+        [self.topShadow mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).with.offset(0);
             make.left.equalTo(self);
             make.right.equalTo(self);
@@ -77,6 +77,12 @@
     return self;
 }
 
+- (void)setArray:(NSArray *)array
+{
+    _array = array;
+    [self.collectionView reloadData];
+}
+
 #pragma mark -
 #pragma mark - collectionView
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -92,7 +98,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     MEBellsCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Bells" forIndexPath:indexPath];
-    cell.dic = ME_DATASOURCE.bellArray[indexPath.row];
+    cell.dic = self.array[indexPath.row];
     
     return cell;
 }

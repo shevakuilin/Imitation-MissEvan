@@ -30,6 +30,7 @@
             self.classifyLabel = [UILabel new];
             self.moreButton = [UIButton new];
             self.titleLabel = [UILabel new];
+            self.topShadow = [UIImageView new];
             
             @ea_weakify(self);
             [self ea_setThemeContents:^(UIView *currentView, NSString *currentThemeIdentifier) {
@@ -39,6 +40,7 @@
                 
                 self.classifyLabel.textColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
                 [self.moreButton setImage:[currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIImage imageNamed:@"goto_ac_16x15_"] : [UIImage imageNamed: @"night_moreicon_7x11_"] forState:UIControlStateNormal];
+                self.topShadow.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_Color(238, 238, 238) : [UIColor lightTextColor];
             }];
 
         }

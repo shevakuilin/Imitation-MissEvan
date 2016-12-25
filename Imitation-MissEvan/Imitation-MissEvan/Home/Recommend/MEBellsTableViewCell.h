@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "MEBaseMoreTableViewCell.h"
 @interface MEBellsTableViewCell : MEBaseMoreTableViewCell
+@property (nonatomic, strong) NSArray * array;
 
 @end

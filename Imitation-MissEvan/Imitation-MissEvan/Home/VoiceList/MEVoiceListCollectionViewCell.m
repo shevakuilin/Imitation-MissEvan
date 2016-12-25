@@ -17,10 +17,10 @@
 @property (nonatomic, strong) UIImageView * musicImageView;
 //阴影
 @property (nonatomic, strong) UIImageView * albumShadowImageView;
-//底部图层
-@property (nonatomic, strong) UIImageView * downImageView;
-//中部图层
-@property (nonatomic, strong) UIImageView * centerImageView;
+////底部图层
+//@property (nonatomic, strong) UIImageView * downImageView;
+////中部图层
+//@property (nonatomic, strong) UIImageView * centerImageView;
 
 @end
 
@@ -33,7 +33,7 @@
 //            self.backgroundColor = [UIColor whiteColor];
             
             //底部图层
-            self.downImageView = [UIImageView new];
+//            self.downImageView = [UIImageView new];
             [self addSubview:self.downImageView];
             [self imageViewBounds:self.downImageView];
             [self.downImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -44,7 +44,7 @@
             }];
             
             //中部图层
-            self.centerImageView = [UIImageView new];
+//            self.centerImageView = [UIImageView new];
             [self addSubview:self.centerImageView];
             [self imageViewBounds:self.centerImageView];
             [self.centerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -117,10 +117,10 @@
 
 - (void)imageViewBounds:(UIImageView *)imageView
 {
-    imageView.backgroundColor = [UIColor whiteColor];
+//    imageView.backgroundColor = [UIColor whiteColor];
     imageView.layer.masksToBounds = YES;
     imageView.layer.cornerRadius = 5;
-    imageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+//    imageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     imageView.layer.borderWidth = 0.5;
 }
 

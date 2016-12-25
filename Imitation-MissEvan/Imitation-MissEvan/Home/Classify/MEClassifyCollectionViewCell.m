@@ -10,7 +10,7 @@
 #import "MEHeader.h"
 
 @interface MEClassifyCollectionViewCell ()
-@property (nonatomic, strong) UIView * downView;
+@property (nonatomic, strong) UIImageView * classifyImageView;
 
 @end
 
@@ -20,14 +20,14 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = ME_Color(243, 243, 243);
+        self.backgroundColor = [UIColor clearColor];//ME_Color(243, 243, 243);
         
-        self.downView = [UIView new];
+//        self.downView = [UIView new];
         [self addSubview:self.downView];
-        self.downView.backgroundColor = [UIColor whiteColor];
+//        self.downView.backgroundColor = [UIColor whiteColor];
 //        self.downView.layer.masksToBounds = YES;//在设置UIView阴影时，不要设置
         self.downView.layer.cornerRadius = 5;
-        self.downView.layer.shadowColor = [UIColor lightGrayColor].CGColor; //增加阴影
+//        self.downView.layer.shadowColor = [UIColor lightGrayColor].CGColor; //增加阴影
         self.downView.layer.shadowOffset = CGSizeMake(0, 1);
         self.downView.layer.shadowOpacity = 0.5;//阴影透明度，默认0
         self.downView.layer.shadowRadius = 1;// 阴影扩散的范围控制
@@ -44,7 +44,7 @@
             make.size.mas_equalTo(CGSizeMake(50, 50));
         }];
         
-        self.classifyLabel = [UILabel new];
+//        self.classifyLabel = [UILabel new];
         [self.downView addSubview:self.classifyLabel];
         self.classifyLabel.font = [UIFont systemFontOfSize:13];
         [self.classifyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -55,17 +55,12 @@
     return self;
 }
 
-- (void)setPicUrl:(NSString *)picUrl
+- (void)setDic:(NSDictionary *)dic
 {
-    _picUrl = picUrl;
-    NSURL * url = [NSURL URLWithString:picUrl];
+    _dic = dic;
+    NSURL * url = [NSURL URLWithString:dic[@"image"]];
     [self.classifyImageView setImageWithURL:url placeholderImage:[UIImage imageNamed:@""]];
-}
-
-- (void)setTitle:(NSString *)title
-{
-    _title = title;
-    self.classifyLabel.text = title;
+    self.classifyLabel.text = dic[@"title"];
 }
 
 @end

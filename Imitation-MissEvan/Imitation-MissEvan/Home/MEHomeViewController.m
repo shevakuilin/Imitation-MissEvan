@@ -107,6 +107,9 @@
     if (self.tableView) {
         [self.tableView reloadData];
     }
+    if (self.collectionView) {
+        [self.collectionView reloadData];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -185,14 +188,14 @@
 {
     //TODO:音单界面
     UIScrollView * backgroundScroll = [UIScrollView new];//[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ME_Width, ME_Height)];
-    backgroundScroll.backgroundColor = ME_Color(243, 243, 243);
+//    backgroundScroll.backgroundColor = ME_Color(243, 243, 243);
     [self.voiceListView.view addSubview:backgroundScroll];
     [backgroundScroll mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.voiceListView.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
     
     self.voiceTableView = [UITableView new];
-    self.voiceTableView.backgroundColor = ME_Color(243, 243, 243);
+    self.voiceTableView.backgroundColor = [UIColor clearColor];//ME_Color(243, 243, 243);
     [backgroundScroll addSubview:self.voiceTableView];
     [self.voiceTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(backgroundScroll).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
@@ -213,7 +216,7 @@
     //TODO:分类界面
     UIView * view = [UIView new];
     [self.classifyView.view addSubview:view];
-    view.backgroundColor = ME_Color(243, 243, 243);
+//    view.backgroundColor = ME_Color(243, 243, 243);
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.classifyView.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
@@ -226,7 +229,7 @@
     [view addSubview:self.collectionView];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    self.collectionView.backgroundColor = ME_Color(243, 243, 243);
+    self.collectionView.backgroundColor = [UIColor clearColor];//ME_Color(243, 243, 243);
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
         
@@ -345,6 +348,11 @@
                 } else if (indexPath.section == 4){
                     MEBellsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Bells"];
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+                        cell.array = ME_DATASOURCE.bellArray;
+                    } else {
+                        cell.array = ME_DATASOURCE.bellNightArray;
+                    }
                     
                     return cell;
                 } else if (indexPath.section == 5){
@@ -388,7 +396,7 @@
         if (indexPath.row == 0) {
             MEHomeRecommendMoreTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendMore"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = ME_Color(243, 243, 243);
+//            cell.backgroundColor = ME_Color(243, 243, 243);
             MELog(@"section == %@", @(indexPath.section));
             cell.dic = ME_DATASOURCE.voiceListTitle[indexPath.section];
             cell.classifyLabel.font = [UIFont systemFontOfSize:14];
@@ -489,8 +497,13 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     MEClassifyCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Classify" forIndexPath:indexPath];
-    cell.picUrl = ME_DATASOURCE.classiftPic[indexPath.row];
-    cell.title = ME_DATASOURCE.classiftTitle[indexPath.row];
+//    cell.picUrl = ME_DATASOURCE.classiftPic[indexPath.row];
+//    cell.title = ME_DATASOURCE.classiftTitle[indexPath.row];
+    if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+        cell.dic = ME_DATASOURCE.classiftPic[indexPath.row];
+    } else {
+        cell.dic = ME_DATASOURCE.classiftNightPic[indexPath.row];
+    }
 
     
     return cell;

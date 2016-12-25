@@ -23,13 +23,15 @@
 @property (copy, nonatomic) NSArray * bannerArray;
 
 @property (copy, nonatomic) NSArray * radioArray;
-@property (copy, nonatomic) NSArray * classiftPic;
-@property (copy, nonatomic) NSArray * classiftTitle;
+@property (copy, nonatomic) NSArray * classiftPic;//分类图标
+@property (copy, nonatomic) NSArray * classiftNightPic;//分类夜间模式图标
+//@property (copy, nonatomic) NSArray * classiftTitle;
 @property (copy, nonatomic) NSArray * voiceListTitle;
 
 @property (copy, nonatomic) NSArray * homeTopArray;//推荐顶部分类切图
 @property (copy, nonatomic) NSArray * homeTopNightArray;//夜间推荐顶部分类切图
-@property (copy, nonatomic) NSArray * bellArray;
+@property (copy, nonatomic) NSArray * bellArray;//铃声
+@property (copy, nonatomic) NSArray * bellNightArray;//夜间模式铃声
 @property (copy, nonatomic) NSArray * akiraArray;
 
 @property (copy, nonatomic) NSArray * hotWordsArray;

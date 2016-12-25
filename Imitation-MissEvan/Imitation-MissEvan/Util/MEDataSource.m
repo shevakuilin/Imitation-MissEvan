@@ -69,6 +69,11 @@
                        @{@"image":@"hp3_title_phone2_40x40_", @"title":@"来电"},
                        @{@"image":@"hp3_title_sleep2_40x40_", @"title":@"催眠"}];
     
+    self.bellNightArray = @[@{@"image":@"hp3_title_bell2_night_40x40_", @"title":@"闹铃"},
+                       @{@"image":@"hp3_title_message2_night_40x40_", @"title":@"短信"},
+                       @{@"image":@"hp3_title_phone2_night_40x40_", @"title":@"来电"},
+                       @{@"image":@"hp3_title_sleep2_night_40x40_", @"title":@"催眠"}];
+    
     self.akiraArray = @[@{@"image":@"梶裕贵", @"name":@"梶裕贵"},
                         @{@"image":@"小野大辅", @"name":@"小野大辅"},
                         @{@"image":@"花江夏树", @"name":@"花江夏树"},
@@ -203,9 +208,45 @@
 
 - (void)dataSourceOfClassify
 {
-    self.classiftPic = [[NSArray alloc] initWithObjects:@"http://static.missevan.com/app/46.png", @"http://static.missevan.com/app/8.png", @"http://static.missevan.com/app/26.png", @"http://static.missevan.com/app/54.png", @"http://static.missevan.com/app/5.png", @"http://static.missevan.com/app/41.png", @"http://static.missevan.com/app/6.png", @"http://static.missevan.com/app/4.png", @"http://static.missevan.com/app/13.png", @"http://static.missevan.com/app/52.png", @"http://static.missevan.com/app/55.png", @"http://static.missevan.com/app/65.png", nil];
+//    self.classiftPic = [[NSArray alloc] initWithObjects:@"http://static.missevan.com/app/46.png",
+//                        @"http://static.missevan.com/app/8.png",
+//                        @"http://static.missevan.com/app/26.png",
+//                        @"http://static.missevan.com/app/54.png",
+//                        @"http://static.missevan.com/app/5.png",
+//                        @"http://static.missevan.com/app/41.png",
+//                        @"http://static.missevan.com/app/6.png",
+//                        @"http://static.missevan.com/app/4.png",
+//                        @"http://static.missevan.com/app/13.png",
+//                        @"http://static.missevan.com/app/52.png",
+//                        @"http://static.missevan.com/app/55.png",
+//                        @"http://static.missevan.com/app/65.png", nil];
+//    
+//    self.classiftTitle = [[NSArray alloc] initWithObjects:@"有声漫画", @"音乐", @"娱乐", @"催眠", @"广播剧", @"日抓", @"听书", @"电台", @"声优库", @"配音", @"游戏", @"铃声", nil];
+    self.classiftPic = @[@{@"image":@"http://static.missevan.com/app/46.png", @"title":@"有声漫画"},
+                         @{@"image":@"http://static.missevan.com/app/8.png", @"title":@"音乐"},
+                         @{@"image":@"http://static.missevan.com/app/26.png", @"title":@"娱乐"},
+                         @{@"image":@"http://static.missevan.com/app/54.png", @"title":@"催眠"},
+                         @{@"image":@"http://static.missevan.com/app/5.png", @"title":@"广播剧"},
+                         @{@"image":@"http://static.missevan.com/app/41.png", @"title":@"日抓"},
+                         @{@"image":@"http://static.missevan.com/app/6.png", @"title":@"听书"},
+                         @{@"image":@"http://static.missevan.com/app/4.png", @"title":@"电台"},
+                         @{@"image":@"http://static.missevan.com/app/13.png", @"title":@"声优库"},
+                         @{@"image":@"http://static.missevan.com/app/52.png", @"title":@"配音"},
+                         @{@"image":@"http://static.missevan.com/app/55.png", @"title":@"游戏"},
+                         @{@"image":@"http://static.missevan.com/app/65.png", @"title":@"铃声"},];
     
-    self.classiftTitle = [[NSArray alloc] initWithObjects:@"有声漫画", @"音乐", @"娱乐", @"催眠", @"广播剧", @"日抓", @"听书", @"电台", @"声优库", @"配音", @"游戏", @"铃声", nil];
+    self.classiftNightPic = @[@{@"image":@"http://static.missevan.com/app/dark/46.png", @"title":@"有声漫画"},
+                         @{@"image":@"http://static.missevan.com/app/dark/8.png", @"title":@"音乐"},
+                         @{@"image":@"http://static.missevan.com/app/dark/26.png", @"title":@"娱乐"},
+                         @{@"image":@"http://static.missevan.com/app/dark/54.png", @"title":@"催眠"},
+                         @{@"image":@"http://static.missevan.com/app/dark/5.png", @"title":@"广播剧"},
+                         @{@"image":@"http://static.missevan.com/app/dark/41.png", @"title":@"日抓"},
+                         @{@"image":@"http://static.missevan.com/app/dark/6.png", @"title":@"听书"},
+                         @{@"image":@"http://static.missevan.com/app/dark/4.png", @"title":@"电台"},
+                         @{@"image":@"http://static.missevan.com/app/dark/13.png", @"title":@"声优库"},
+                         @{@"image":@"http://static.missevan.com/app/dark/52.png", @"title":@"配音"},
+                         @{@"image":@"http://static.missevan.com/app/dark/55.png", @"title":@"游戏"},
+                         @{@"image":@"http://static.missevan.com/app/dark/65.png", @"title":@"铃声"},];
 }
 
 - (void)dataSourceOfMy

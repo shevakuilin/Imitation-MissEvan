@@ -49,11 +49,6 @@
     self.classifyView.title = @"分类";
     self.viewControllers = @[self.voiceListView, self.recommendView, self.classifyView];
     
-//    self.rightBarButton = [MEUtil barButtonItemWithImage:@"v3player_0002_25x25_" target:self action:@selector(goMusicView) isLeft:NO isRight:YES];
-//    UIButton * leftBarButton = [MEUtil barButtonItemWithImage:@"hp3_icon_search_24x22_" target:self action:@selector(goSearchView) isLeft:YES isRight:NO];
-    
-//    [self.segmentControl addSubview:self.rightBarButton];
-//    [self.segmentControl addSubview:self.leftBarButton];
     self.segmentControl.rightBarButton.frame = CGRectMake(ME_Width - 40, 3, 40, 40);
     [self.segmentControl.rightBarButton addTarget:self action:@selector(goMusicView) forControlEvents:UIControlEventTouchUpInside];
     self.segmentControl.leftBarButton.frame = CGRectMake(0, 3, 40, 40);

@@ -37,9 +37,11 @@ typedef NS_ENUM(NSInteger, MESegmentType)
 @property (nonatomic) CGFloat borderWidth;
 @property (nonatomic, strong) UIColor * titleColor;
 @property (nonatomic, strong) UIFont * titleFont;
-@property (nonatomic, strong) UIImageView * downShadow;
+//@property (nonatomic, strong) UIImageView * downShadow;
 
 //@property(nonatomic, strong, readonly) UIView * segmentView;
+@property (nonatomic, strong) UIButton * rightBarButton;
+@property (nonatomic, strong) UIButton * leftBarButton;
 
 - (void)load;
 - (void)scrollToRate:(CGFloat)rate;

@@ -33,7 +33,7 @@
     return self;
 }
 
--(void)awakeFromNib
+- (void)awakeFromNib
 {
     [super awakeFromNib];
     [self initialize];
@@ -52,7 +52,7 @@
 - (void)layoutSubviews//scrollView的宽高
 {
     CGSize size = self.frame.size;
-    self.scrollView.frame = CGRectMake(60, -5, size.width - 120, size.height);
+    self.scrollView.frame = CGRectMake(60, 0, size.width - 120, size.height);
 //    self.scrollView.backgroundColor = [UIColor whiteColor];
     
 }
@@ -62,11 +62,25 @@
 - (void)initialize
 {
     // 初始化数据
-    self.highlightColor = Default_Highlight_Color;
+    self.rightBarButton = [UIButton new];
+    [self addSubview:self.rightBarButton];
+    self.leftBarButton = [UIButton new];
+    [self addSubview:self.leftBarButton];
+    
+    @ea_weakify(self);
+    [self ea_setThemeContents:^(UIView *currentView, NSString *currentThemeIdentifier) {
+        @ea_strongify(self);
+        self.highlightColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : ME_Color(195, 195, 195);
+        [self.rightBarButton setImage:[currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIImage imageNamed:@"v3player_0002_25x25_"] : [UIImage imageNamed:@"hp3_ani_player_1_38x38_"] forState:UIControlStateNormal];
+        [self.leftBarButton setImage:[currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIImage imageNamed:@"hp3_icon_search_24x22_"] : [UIImage imageNamed:@"hp3_icon_search_night_24x22_"] forState:UIControlStateNormal];
+        [self createItems];
+        NSInteger index = self.selectIndex;//获取当前选择segment
+        self.selectIndex = index;//重新赋值给当前选择，负责回调后的高亮显示
+    }];
     self.titleColor = Default_Color;
     self.titleFont = Default_Title_font;
     self.lineHeight = Default_Line_Height;
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = [UIColor clearColor];//[UIColor whiteColor];
     
     self.items = [[NSMutableArray alloc] init];
     
@@ -81,14 +95,14 @@
     [self.scrollView.layer addSublayer:self.lineLayer];
     
     // 添加navigation的下划线
-    self.downShadow = [UIImageView new];
-    [self addSubview:self.downShadow];
-    self.downShadow.backgroundColor = ME_Color(205, 206, 209);//229, 230, 230
-    [self.downShadow mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self).with.offset(0);
-        
-        make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
-    }];
+//    self.downShadow = [UIImageView new];
+//    [self addSubview:self.downShadow];
+//    self.downShadow.backgroundColor = ME_Color(205, 206, 209);//229, 230, 230
+//    [self.downShadow mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(self).with.offset(0);
+//        
+//        make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
+//    }];
 }
 
 - (void)createItems

@@ -30,7 +30,7 @@
 @property (nonatomic, strong) UITableView * voiceTableView;
 @property (nonatomic, strong) MESearchView * searchView;
 
-@property (nonatomic, strong) UIButton * rightBarButton;
+//@property (nonatomic, strong) UIButton * rightBarButton;
 
 @end
 
@@ -49,11 +49,15 @@
     self.classifyView.title = @"分类";
     self.viewControllers = @[self.voiceListView, self.recommendView, self.classifyView];
     
-    self.rightBarButton = [MEUtil barButtonItemWithImage:@"v3player_0002_25x25_" target:self action:@selector(goMusicView) isLeft:NO isRight:YES];
-    UIButton * leftBarButton = [MEUtil barButtonItemWithImage:@"hp3_icon_search_24x22_" target:self action:@selector(goSearchView) isLeft:YES isRight:NO];
+//    self.rightBarButton = [MEUtil barButtonItemWithImage:@"v3player_0002_25x25_" target:self action:@selector(goMusicView) isLeft:NO isRight:YES];
+//    UIButton * leftBarButton = [MEUtil barButtonItemWithImage:@"hp3_icon_search_24x22_" target:self action:@selector(goSearchView) isLeft:YES isRight:NO];
     
-    [self.segmentControl addSubview:self.rightBarButton];
-    [self.segmentControl addSubview:leftBarButton];
+//    [self.segmentControl addSubview:self.rightBarButton];
+//    [self.segmentControl addSubview:self.leftBarButton];
+    self.segmentControl.rightBarButton.frame = CGRectMake(ME_Width - 40, 3, 40, 40);
+    [self.segmentControl.rightBarButton addTarget:self action:@selector(goMusicView) forControlEvents:UIControlEventTouchUpInside];
+    self.segmentControl.leftBarButton.frame = CGRectMake(0, 3, 40, 40);
+    [self.segmentControl.leftBarButton addTarget:self action:@selector(goSearchView) forControlEvents:UIControlEventTouchUpInside];
     
     [self customRecommendView];
     [self customClassifyView];
@@ -84,18 +88,18 @@
             UIImage * imageName = [UIImage imageNamed:stackImageName];
             [stackImageArray addObject:imageName];
             MELog(@"Music动画开始执行第%@张图片", @(i - 1));
-            self.rightBarButton.imageView.animationImages = stackImageArray;
+            self.segmentControl.rightBarButton.imageView.animationImages = stackImageArray;
             //动画重复次数
-            self.rightBarButton.imageView.animationRepeatCount = 10000000 * 10000000;
+            self.segmentControl.rightBarButton.imageView.animationRepeatCount = 10000000 * 10000000;
             //动画执行时间,多长时间执行完动画
-            self.rightBarButton.imageView.animationDuration = 7;
+            self.segmentControl.rightBarButton.imageView.animationDuration = 7;
             //开始动画
-            [self.rightBarButton.imageView startAnimating];
+            [self.segmentControl.rightBarButton.imageView startAnimating];
         }
 
     } else {
         MELog(@"播放暂停");
-        [self.rightBarButton.imageView stopAnimating];
+        [self.segmentControl.rightBarButton.imageView stopAnimating];
     }
 }
 
@@ -103,7 +107,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
+//    self.navigationController.navigationBarHidden = YES;
     if (self.tableView) {
         [self.tableView reloadData];
     }
@@ -115,14 +119,14 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    self.navigationController.navigationBarHidden = NO;
+//    self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)customRecommendView
 {
     //TODO:推荐界面
     UIScrollView * backgroundScroll = [UIScrollView new];//[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ME_Width, ME_Height)];
-    backgroundScroll.backgroundColor = [UIColor whiteColor];//[UIColor clearColor];
+    backgroundScroll.backgroundColor = [UIColor clearColor];
     [self.recommendView.view addSubview:backgroundScroll];
     [backgroundScroll mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.recommendView.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));

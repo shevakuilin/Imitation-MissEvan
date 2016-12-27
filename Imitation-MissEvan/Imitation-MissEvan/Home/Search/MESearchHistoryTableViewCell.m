@@ -10,7 +10,7 @@
 #import "MEHeader.h"
 
 @interface MESearchHistoryTableViewCell ()
-@property (nonatomic, strong) UILabel * historyWordsLabel;
+//@property (nonatomic, strong) UILabel * historyWordsLabel;
 @end
 
 @implementation MESearchHistoryTableViewCell
@@ -30,7 +30,7 @@
 {
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         if (self) {
-            self.backgroundColor = [UIColor clearColor];//ME_Color(243, 243, 243);
+//            self.backgroundColor = [UIColor clearColor];//ME_Color(243, 243, 243);
             
             UIImageView * historyIcon = [UIImageView new];
             [self addSubview:historyIcon];
@@ -40,7 +40,7 @@
                 make.centerY.equalTo(self).with.offset(0);
             }];
             
-            self.historyWordsLabel = [UILabel new];
+//            self.historyWordsLabel = [UILabel new];
             [self addSubview:self.historyWordsLabel];
             self.historyWordsLabel.font = [UIFont systemFontOfSize:13];
             [self.historyWordsLabel mas_makeConstraints:^(MASConstraintMaker *make) {

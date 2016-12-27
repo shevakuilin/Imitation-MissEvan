@@ -14,5 +14,6 @@
 @property (nonatomic, strong) UIButton * moreButton;//更多
 @property (strong, nonatomic) UILabel * titleLabel;//标题
 @property (nonatomic, strong) UIImageView * topShadow;//顶部线条
+@property (nonatomic, strong) UILabel * historyWordsLabel;//搜索记录
 
 @end

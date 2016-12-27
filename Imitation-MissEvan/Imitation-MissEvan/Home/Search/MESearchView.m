@@ -219,6 +219,8 @@
                 searchView.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_Color(250, 250, 250) : ME_Color(58, 58, 58);
                 hotSearchLabel.textColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
                 historySearchLabel.textColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
+                //键盘模式
+                self.searchTextFiled.keyboardAppearance = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? UIKeyboardAppearanceDefault : UIKeyboardAppearanceDark;
             }];
         }
     }

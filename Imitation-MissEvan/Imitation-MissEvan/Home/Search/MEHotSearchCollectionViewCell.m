@@ -10,7 +10,7 @@
 #import "MEHeader.h"
 
 @interface MEHotSearchCollectionViewCell ()
-@property (nonatomic, strong) UILabel * hotWordsLabel;
+//@property (nonatomic, strong) UILabel * hotWordsLabel;
 
 @end
 
@@ -20,17 +20,12 @@
 {
     if ([super initWithFrame:frame]) {
         if (self) {
-//            self.backgroundColor = ME_Color(243, 243, 243);
-            
-            self.hotWordsLabel = [UILabel new];
+
             [self addSubview:self.hotWordsLabel];
             self.hotWordsLabel.font = [UIFont systemFontOfSize:12];
-            self.hotWordsLabel.textColor = ME_Color(189, 189, 189);
             self.hotWordsLabel.textAlignment = NSTextAlignmentCenter;
-            self.hotWordsLabel.backgroundColor = [UIColor whiteColor];
             self.hotWordsLabel.layer.masksToBounds = YES;
             self.hotWordsLabel.layer.cornerRadius = 12;
-            self.hotWordsLabel.layer.borderColor = [UIColor grayColor].CGColor;
             self.hotWordsLabel.layer.borderWidth = 0.5;
             [self.hotWordsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.center.equalTo(self).with.offset(0);

@@ -16,5 +16,6 @@
 @property (nonatomic, strong) UIImageView * centerImageView;//中部图层
 @property (nonatomic, strong) UILabel * classifyLabel;
 @property (nonatomic, strong) UIView * downView;
+@property (nonatomic, strong) UILabel * hotWordsLabel;//搜索热词
 
 @end

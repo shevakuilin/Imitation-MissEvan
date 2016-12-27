@@ -22,6 +22,7 @@
             self.centerImageView = [UIImageView new];
             self.classifyLabel = [UILabel new];
             self.downView = [UIView new];
+            self.hotWordsLabel = [UILabel new];
             
             @ea_weakify(self);
             [self ea_setThemeContents:^(UIView *currentView, NSString *currentThemeIdentifier) {
@@ -39,6 +40,9 @@
                 self.downView.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor whiteColor] : ME_Color(32, 32, 32);
                 self.downView.layer.shadowColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor lightGrayColor].CGColor : [UIColor blackColor].CGColor;
                 self.classifyLabel.textColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
+                self.hotWordsLabel.textColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_Color(189, 189, 189) : [UIColor lightTextColor];
+                self.hotWordsLabel.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor whiteColor] : ME_Color(32, 32, 32);
+                self.hotWordsLabel.layer.borderColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor grayColor].CGColor : [UIColor lightTextColor].CGColor;
                 
             }];
         }

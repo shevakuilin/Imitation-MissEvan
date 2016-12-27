@@ -16,7 +16,7 @@
 
 @end
 
-@interface MESearchHistoryTableViewCell : UITableViewCell
+@interface MESearchHistoryTableViewCell : MEBaseMoreTableViewCell
 @property (nonatomic, strong) NSString * searchWords;
 @property (weak, nonatomic) id<deleteTheWords> delegate;
 

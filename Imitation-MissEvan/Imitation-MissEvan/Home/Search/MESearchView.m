@@ -33,12 +33,9 @@
                 [self.searchHistroyArray addObjectsFromArray:array];
             }
             
-//            self.backgroundColor = ME_Color(243, 243, 243);
-            
             
             UIView * navigationView = [UIView new];
             [self addSubview:navigationView];
-//            navigationView.backgroundColor = [UIColor whiteColor];
             [navigationView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self);
                 make.left.equalTo(self);
@@ -50,7 +47,6 @@
             self.cancelButton = [UIButton new];
             [navigationView addSubview:self.cancelButton];
             [self.cancelButton setTitle:@"取消" forState:UIControlStateNormal];
-//            [self.cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             self.cancelButton.titleLabel.font = [UIFont systemFontOfSize:14];
             [self.cancelButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
             [self.cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -62,7 +58,6 @@
             
             UIView * searchView = [UIView new];
             [navigationView addSubview:searchView];
-//            searchView.backgroundColor = ME_Color(250, 250, 250);
             searchView.layer.masksToBounds = YES;
             searchView.layer.cornerRadius = 5;
             [searchView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -75,20 +70,19 @@
             
             UIImageView * searchIcon = [UIImageView new];
             [searchView addSubview:searchIcon];
-//            searchIcon.image = [UIImage imageNamed:@"hp_search_20x18_"];
             [searchIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerY.equalTo(searchView).with.offset(0);
+                make.centerY.equalTo(searchView);
                 make.left.equalTo(searchView).with.offset(8);
+                
+                make.size.mas_equalTo(CGSizeMake(20, 18));
             }];
             
             self.searchTextFiled = [UITextField new];
             [searchView addSubview:self.searchTextFiled];
             self.searchTextFiled.font = [UIFont systemFontOfSize:13];
             self.searchTextFiled.placeholder = @"这里搜什么就显示什么";
-//            self.searchTextFiled.tintColor = [UIColor blackColor];
             self.searchTextFiled.returnKeyType = UIReturnKeySearch;
             self.searchTextFiled.delegate = self;
-//            [self.searchTextFiled becomeFirstResponder];
             [self.searchTextFiled mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(searchIcon.mas_right).with.offset(8);
                 make.right.equalTo(searchView).with.offset(0);
@@ -212,7 +206,7 @@
                 @ea_strongify(self);
                 navigationView.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor whiteColor] : ME_Color(32, 32, 32);
                 [self.cancelButton setTitleColor:[currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor] forState:UIControlStateNormal];
-                searchIcon.image = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIImage imageNamed:@"hp_search_20x18_"] : [UIImage imageNamed:@"hp3_icon_search_night_24x22_@1x"];
+                searchIcon.image = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIImage imageNamed:@"hp_search_20x18_"] : [UIImage imageNamed:@"hp3_icon_search_night_24x22_"];
                 self.searchTextFiled.tintColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
                 self.searchTextFiled.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_Color(250, 250, 250) : ME_Color(58, 58, 58);
                 [self.searchTextFiled setValue:[currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_Color(198, 198, 203) : ME_Color(131, 131, 131) forKeyPath:@"_placeholderLabel.textColor"];

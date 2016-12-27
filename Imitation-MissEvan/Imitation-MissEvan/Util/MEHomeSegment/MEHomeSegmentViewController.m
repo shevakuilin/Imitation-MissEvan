@@ -21,7 +21,7 @@
 {
     self = [super init];
     if (self) {
-        
+
     }
     return self;
 }
@@ -31,8 +31,9 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
 //    self.view.backgroundColor = [UIColor whiteColor];
-    [self.navigationController.navigationBar addSubview:self.segmentControl];
+//    [self.navigationController.navigationBar addSubview:self.segmentControl];
 //    [self.view addSubview:self.segmentControl];
+    
     [self.view addSubview:self.scrollView];
     //  监听contentScrollView
     [self.scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
@@ -71,7 +72,7 @@
 {
     if (!_segmentControl)
     {
-        CGFloat y = !self.navigationController?20:64;
+        CGFloat y = !self.navigationController ? 20 : 64;
         _segmentControl = [[MEHomeSegmentControl alloc] initWithFrame:CGRectMake(0, y - 64, [UIScreen mainScreen].bounds.size.width, DefaultSegmentHeight)];//segmentController宽高
         _segmentControl.delegate = self;
     }
@@ -84,7 +85,7 @@
     if (!_scrollView)
     {
         //frameOfscrollView
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - CGRectGetMaxY(_segmentControl.frame))];
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - CGRectGetMaxY(_segmentControl.frame))];
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.pagingEnabled = YES;
         _scrollView.decelerationRate = 0.5;

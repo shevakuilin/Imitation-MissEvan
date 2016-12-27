@@ -57,55 +57,63 @@
     [self customVoiceListView];
     
     //获取通知中心单例对象
-    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+//    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     //添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知
-    [center addObserver:self selector:@selector(notice:) name:@"play" object:nil];
+//    [center addObserver:self selector:@selector(notice:) name:@"play" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(navigationBarHidden:) name:@"searchViewHidden" object:nil];
+    
 }
-
-- (void)notice:(id)sender
-{
-    MELog(@"Music图标接到通知:%@", sender);
-    //如果进入播放界面，那么根据播放状态决定动画播放状态
-    BOOL isPlay = [[sender userInfo][@"isPlay"] boolValue];
-    if (isPlay == YES) {
-        MELog(@"正在播放, Music动画开始执行");
-        NSMutableArray * stackImageArray = [NSMutableArray new];
-        for (NSInteger i = 1; i < 97; i ++) {
-            NSString * stackImageName;
-            if (i < 10) {
-                stackImageName = [NSString stringWithFormat:@"v3player_000%@_25x25_", @(i)];
-            } else {
-                stackImageName = [NSString stringWithFormat:@"v3player_00%@_25x25_", @(i)];
-            }
-            UIImage * imageName = [UIImage imageNamed:stackImageName];
-            [stackImageArray addObject:imageName];
-            MELog(@"Music动画开始执行第%@张图片", @(i - 1));
-            self.segmentControl.rightBarButton.imageView.animationImages = stackImageArray;
-            //动画重复次数
-            self.segmentControl.rightBarButton.imageView.animationRepeatCount = 10000000 * 10000000;
-            //动画执行时间,多长时间执行完动画
-            self.segmentControl.rightBarButton.imageView.animationDuration = 7;
-            //开始动画
-            [self.segmentControl.rightBarButton.imageView startAnimating];
-        }
-
-    } else {
-        MELog(@"播放暂停");
-        [self.segmentControl.rightBarButton.imageView stopAnimating];
-    }
-}
+//稍后用block替换
+//- (void)notice:(id)sender
+//{
+//    MELog(@"Music图标接到通知:%@", sender);
+//    //如果进入播放界面，那么根据播放状态决定动画播放状态
+//    BOOL isPlay = [[sender userInfo][@"isPlay"] boolValue];
+//    if (isPlay == YES) {
+//        MELog(@"正在播放, Music动画开始执行");
+//        NSMutableArray * stackImageArray = [NSMutableArray new];
+//        for (NSInteger i = 1; i < 97; i ++) {
+//            NSString * stackImageName;
+//            if (i < 10) {
+//                stackImageName = [NSString stringWithFormat:@"v3player_000%@_25x25_", @(i)];
+//            } else {
+//                stackImageName = [NSString stringWithFormat:@"v3player_00%@_25x25_", @(i)];
+//            }
+//            UIImage * imageName = [UIImage imageNamed:stackImageName];
+//            [stackImageArray addObject:imageName];
+//            MELog(@"Music动画开始执行第%@张图片", @(i - 1));
+//            self.segmentControl.rightBarButton.imageView.animationImages = stackImageArray;
+//            //动画重复次数
+//            self.segmentControl.rightBarButton.imageView.animationRepeatCount = 10000000 * 10000000;
+//            //动画执行时间,多长时间执行完动画
+//            self.segmentControl.rightBarButton.imageView.animationDuration = 7;
+//            //开始动画
+//            [self.segmentControl.rightBarButton.imageView startAnimating];
+//        }
+//
+//    } else {
+//        MELog(@"播放暂停");
+//        [self.segmentControl.rightBarButton.imageView stopAnimating];
+//    }
+//}
 
 //为了方便暂时留着
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.navigationController.navigationBar addSubview:self.segmentControl];
     if (self.tableView) {
         [self.tableView reloadData];
     }
     if (self.collectionView) {
         [self.collectionView reloadData];
     }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.segmentControl removeFromSuperview];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -183,8 +191,7 @@
 - (void)customVoiceListView
 {
     //TODO:音单界面
-    UIScrollView * backgroundScroll = [UIScrollView new];//[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ME_Width, ME_Height)];
-//    backgroundScroll.backgroundColor = ME_Color(243, 243, 243);
+    UIScrollView * backgroundScroll = [UIScrollView new];
     [self.voiceListView.view addSubview:backgroundScroll];
     [backgroundScroll mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.voiceListView.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));

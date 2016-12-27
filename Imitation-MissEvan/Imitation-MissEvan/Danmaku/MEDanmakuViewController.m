@@ -49,10 +49,12 @@
     [super viewDidLoad];
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+//    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];//去掉阴影下划线
     self.view.backgroundColor = ME_Color(243, 243, 243);
+    
     isFirst = YES;
+    
     [self customView];
     //TODO:在屏幕外创建播放记录
     self.lasttimePopView = [MELasttimeRecordPopView new];
@@ -67,8 +69,6 @@
     [gesture addTarget:self action:@selector(sliderGoRecordTime)];
     [self.lasttimePopView addGestureRecognizer:gesture];
     
-    self.navigationItem.leftBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(backView) withImage:[UIImage imageNamed:@"sp_button_back_22x22_"]];
-    self.navigationItem.rightBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(showMorePopView) withImage:[UIImage imageNamed:@"new_more_32x27_"]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,6 +79,9 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    self.navigationItem.leftBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(backView) withImage:[UIImage imageNamed:@"sp_button_back_22x22_"]];
+    self.navigationItem.rightBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(showMorePopView) withImage:[UIImage imageNamed:@"new_more_32x27_"]];
+    
     [self showTitleAndScanfView];//显示标题&弹幕输入框
     [self onStartClick];//自动播放
     NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
@@ -91,6 +94,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self setNavigationBarTransparent];
+    
+    //为了不被掩盖, 暂时先这么处理
+    self.navigationItem.leftBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(backView) withImage:[UIImage imageNamed:@"sp_button_back_22x22_"]];
+    self.navigationItem.rightBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(showMorePopView) withImage:[UIImage imageNamed:@"new_more_32x27_"]];
+    
     NSData * imageDate = [MEUtil imageWithImage:self.mosaicThemeImageView.image scaledToSize:CGSizeMake(200, 200)];
     self.mosaicThemeImageView.image = [UIImage imageWithData:imageDate];
 }
@@ -98,15 +107,37 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor whiteColor]];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor blackColor]}];
-    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
-    [self.navigationController.navigationBar setShadowImage:nil];
+    [self.navigationController.navigationBar lt_reset];//重置
+    if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor blackColor]}];
+    } else {
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor lightTextColor]}];
+    }
+    //关闭剪辑及半透明属性
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.clipsToBounds = NO;
+    
     MELog(@"本次播放时间为===%@", @(seconds));
     if (seconds > 0) {
         NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:@(seconds) forKey:@"recordTime"];
     }
+}
+
+- (void)setNavigationBarTransparent
+{
+    //TODO:设置NavigationBar透明，以此来除去其他tabBar界面跳转过后的颜色干扰问题
+    self.navigationController.navigationBar.translucent = YES;
+    UIColor * color = [UIColor clearColor];
+    CGRect rect = CGRectMake(0, 0, ME_Width, 64);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage * image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.clipsToBounds = YES;
 }
 
 - (void)customView

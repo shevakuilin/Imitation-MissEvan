@@ -23,7 +23,7 @@
     @ea_weakify(self);
     [self.view ea_setThemeContents:^(UIView *currentView, NSString *currentThemeIdentifier) {
         @ea_strongify(self);
-        currentView.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_Color(243, 243, 243) : [UIColor blackColor];//self.tabBarController.tabBar.barTintColor;
+        self.view.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_Color(243, 243, 243) : [UIColor blackColor];//self.tabBarController.tabBar.barTintColor;
     }];
 }
 

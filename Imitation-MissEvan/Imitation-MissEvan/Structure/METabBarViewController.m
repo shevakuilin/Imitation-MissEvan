@@ -10,6 +10,7 @@
 #import "METabBar.h"
 #import "METabBarButton.h"
 #import "MEHeader.h"
+#import "MEDanmakuViewController.h"
 
 @interface METabBarViewController ()<METabBarDelegate, UITabBarControllerDelegate>
 
@@ -55,7 +56,8 @@
 - (void)goBarrage
 {
     //TODO:弹幕播放界面
-    UIViewController * danmaku = ME_GetViewController(@"danmaku", @"MEDanmaku");
+    MEDanmakuViewController * danmaku = ME_GetViewController(@"danmaku", @"MEDanmaku");
+    [danmaku.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
     [((UINavigationController *)self.selectedViewController) pushViewController:danmaku animated:YES];
 }
 

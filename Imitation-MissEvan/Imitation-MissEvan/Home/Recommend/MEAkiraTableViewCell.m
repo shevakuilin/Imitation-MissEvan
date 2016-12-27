@@ -55,7 +55,9 @@
         [self addSubview:topShadow];
         topShadow.backgroundColor = ME_Color(238, 238, 238);
         [topShadow mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).with.offset(0);
+            make.top.equalTo(self);
+            make.left.equalTo(self);
+            make.right.equalTo(self);
             
             make.size.mas_equalTo(CGSizeMake(ME_Width, 1));
         }];

@@ -30,8 +30,6 @@
 @property (nonatomic, strong) UITableView * voiceTableView;
 @property (nonatomic, strong) MESearchView * searchView;
 
-//@property (nonatomic, strong) UIButton * rightBarButton;
-
 @end
 
 @implementation MEHomeViewController

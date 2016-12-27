@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MEHotSearchCollectionViewCell : UICollectionViewCell
+#import "MEBaseChannelCollectionViewCell.h"
+@interface MEHotSearchCollectionViewCell : MEBaseChannelCollectionViewCell
 @property (nonatomic, strong) NSDictionary * dic;
 
 @end

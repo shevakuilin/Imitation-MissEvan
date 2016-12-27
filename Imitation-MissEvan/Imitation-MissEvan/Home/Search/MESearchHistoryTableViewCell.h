@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MEBaseMoreTableViewCell.h"
+
 @class MESearchHistoryTableViewCell;
 @protocol deleteTheWords <NSObject>
 

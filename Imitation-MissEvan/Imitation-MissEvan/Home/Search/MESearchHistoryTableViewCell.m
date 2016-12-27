@@ -30,7 +30,7 @@
 {
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         if (self) {
-            self.backgroundColor = ME_Color(243, 243, 243);
+            self.backgroundColor = [UIColor clearColor];//ME_Color(243, 243, 243);
             
             UIImageView * historyIcon = [UIImageView new];
             [self addSubview:historyIcon];

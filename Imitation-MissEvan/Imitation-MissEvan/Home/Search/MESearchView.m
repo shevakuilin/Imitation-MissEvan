@@ -33,16 +33,16 @@
                 [self.searchHistroyArray addObjectsFromArray:array];
             }
             
-            self.backgroundColor = ME_Color(243, 243, 243);
+//            self.backgroundColor = ME_Color(243, 243, 243);
             
             
             UIView * navigationView = [UIView new];
             [self addSubview:navigationView];
-            navigationView.backgroundColor = [UIColor whiteColor];
+//            navigationView.backgroundColor = [UIColor whiteColor];
             [navigationView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self).with.offset(0);
-                make.left.equalTo(self).with.offset(0);
-                make.right.equalTo(self).with.offset(0);
+                make.top.equalTo(self);
+                make.left.equalTo(self);
+                make.right.equalTo(self);
                 
                 make.size.mas_equalTo(CGSizeMake(ME_Width, 64));
             }];
@@ -50,7 +50,7 @@
             self.cancelButton = [UIButton new];
             [navigationView addSubview:self.cancelButton];
             [self.cancelButton setTitle:@"取消" forState:UIControlStateNormal];
-            [self.cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//            [self.cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             self.cancelButton.titleLabel.font = [UIFont systemFontOfSize:14];
             [self.cancelButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
             [self.cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -62,7 +62,7 @@
             
             UIView * searchView = [UIView new];
             [navigationView addSubview:searchView];
-            searchView.backgroundColor = ME_Color(250, 250, 250);
+//            searchView.backgroundColor = ME_Color(250, 250, 250);
             searchView.layer.masksToBounds = YES;
             searchView.layer.cornerRadius = 5;
             [searchView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -75,7 +75,7 @@
             
             UIImageView * searchIcon = [UIImageView new];
             [searchView addSubview:searchIcon];
-            searchIcon.image = [UIImage imageNamed:@"hp_search_20x18_"];
+//            searchIcon.image = [UIImage imageNamed:@"hp_search_20x18_"];
             [searchIcon mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(searchView).with.offset(0);
                 make.left.equalTo(searchView).with.offset(8);
@@ -85,7 +85,7 @@
             [searchView addSubview:self.searchTextFiled];
             self.searchTextFiled.font = [UIFont systemFontOfSize:13];
             self.searchTextFiled.placeholder = @"这里搜什么就显示什么";
-            self.searchTextFiled.tintColor = [UIColor blackColor];
+//            self.searchTextFiled.tintColor = [UIColor blackColor];
             self.searchTextFiled.returnKeyType = UIReturnKeySearch;
             self.searchTextFiled.delegate = self;
 //            [self.searchTextFiled becomeFirstResponder];
@@ -97,7 +97,7 @@
             
             UIView * hotSearchView = [UIView new];
             [self addSubview:hotSearchView];
-            hotSearchView.backgroundColor = ME_Color(243, 243, 243);
+            hotSearchView.backgroundColor = [UIColor clearColor];//ME_Color(243, 243, 243);
             [hotSearchView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(navigationView.mas_bottom).with.offset(0);
                 make.left.equalTo(self).with.offset(0);
@@ -126,6 +126,8 @@
                 make.size.mas_equalTo(CGSizeMake(ME_Width - 10, 1));
             }];
             
+            
+            
             //创建一个layout布局类
 //            UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
             UICollectionViewLeftAlignedLayout * layout = [[UICollectionViewLeftAlignedLayout alloc] init];
@@ -136,7 +138,7 @@
             [self addSubview:self.collectionView];
             self.collectionView.dataSource = self;
             self.collectionView.delegate = self;
-            self.collectionView.backgroundColor = ME_Color(243, 243, 243);
+            self.collectionView.backgroundColor = [UIColor clearColor];//ME_Color(243, 243, 243);
             self.collectionView.scrollEnabled = NO;
             [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(hotSearchView.mas_bottom).with.offset(10);
@@ -151,7 +153,7 @@
             
             UIView * historySearchView = [UIView new];
             [self addSubview:historySearchView];
-            historySearchView.backgroundColor = ME_Color(243, 243, 243);
+            historySearchView.backgroundColor = [UIColor clearColor];//ME_Color(243, 243, 243);
             [historySearchView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.collectionView.mas_bottom).with.offset(0);
                 make.left.equalTo(self).with.offset(0);
@@ -191,7 +193,7 @@
             
             self.tableView = [UITableView new];
             [self addSubview:self.tableView];
-            self.tableView.backgroundColor = ME_Color(243, 243, 243);
+            self.tableView.backgroundColor = [UIColor clearColor];//ME_Color(243, 243, 243);
             [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(historySearchView.mas_bottom).with.offset(0);
                 make.left.equalTo(self).with.offset(0);
@@ -203,10 +205,26 @@
             self.tableView.tableFooterView = [[UIView alloc] init];
             self.tableView.separatorStyle = NO;
             [self.tableView registerClass:[MESearchHistoryTableViewCell class] forCellReuseIdentifier:@"SearchHistory"];
+            
+            
+            @ea_weakify(self);
+            [self ea_setThemeContents:^(UIView *currentView, NSString *currentThemeIdentifier) {
+                @ea_strongify(self);
+                navigationView.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor whiteColor] : ME_Color(32, 32, 32);
+                [self.cancelButton setTitleColor:[currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor] forState:UIControlStateNormal];
+                searchIcon.image = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIImage imageNamed:@"hp_search_20x18_"] : [UIImage imageNamed:@"hp3_icon_search_night_24x22_@1x"];
+                self.searchTextFiled.tintColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
+                self.searchTextFiled.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_Color(250, 250, 250) : ME_Color(58, 58, 58);
+                [self.searchTextFiled setValue:[currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_Color(198, 198, 203) : ME_Color(131, 131, 131) forKeyPath:@"_placeholderLabel.textColor"];
+                searchView.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_Color(250, 250, 250) : ME_Color(58, 58, 58);
+                hotSearchLabel.textColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
+                historySearchLabel.textColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
+            }];
         }
     }
     return self;
 }
+
 
 - (void)cancel
 {
@@ -214,6 +232,10 @@
 //    [self removeFromSuperview];
     self.hidden = YES;
     [self endEditing:YES];
+    //创建一个消息对象
+    NSNotification * notice = [NSNotification notificationWithName:@"searchViewHidden" object:nil userInfo:@{@"isHidden":@"YES"}];
+    //发送消息给首页
+    [[NSNotificationCenter defaultCenter] postNotification:notice];
 }
 
 - (void)cleanSearchWords
@@ -231,8 +253,7 @@
 {
     if (self.searchTextFiled.text.length == 0) {
 //        [self removeFromSuperview];
-        self.hidden = YES;
-        [self endEditing:YES];
+        [self cancel];
     } else {
         [self.searchTextFiled resignFirstResponder];
         [self.searchHistroyArray addObject:self.searchTextFiled.text];

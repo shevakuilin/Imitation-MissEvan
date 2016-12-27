@@ -55,12 +55,12 @@
     [self customRecommendView];
     [self customClassifyView];
     [self customVoiceListView];
-    [self addSearchView];
     
     //获取通知中心单例对象
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     //添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知
     [center addObserver:self selector:@selector(notice:) name:@"play" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(navigationBarHidden:) name:@"searchViewHidden" object:nil];
 }
 
 - (void)notice:(id)sender
@@ -100,7 +100,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    self.navigationController.navigationBarHidden = YES;
     if (self.tableView) {
         [self.tableView reloadData];
     }
@@ -109,10 +108,10 @@
     }
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];
-//    self.navigationController.navigationBarHidden = NO;
+    [super viewDidAppear:animated];
+    [self addSearchView];
 }
 
 - (void)customRecommendView
@@ -163,7 +162,7 @@
         make.right.equalTo(backgroundScroll).with.offset(0);
         make.bottom.equalTo(backgroundScroll).with.offset(0);
         
-        make.size.mas_equalTo(CGSizeMake(ME_Width, 1864));
+        make.size.mas_equalTo(CGSizeMake(ME_Width, 1930));
     }];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -253,7 +252,26 @@
 {
     //TODO:搜索界面
     self.searchView.hidden = NO;
+    self.navigationController.navigationBarHidden = YES;
     [self.searchView.searchTextFiled becomeFirstResponder];
+    [self preferredStatusBarStyle];
+}
+
+- (void)navigationBarHidden:(id)sender
+{
+    BOOL isHidden = [[sender userInfo][@"isHidden"] boolValue];
+    if (isHidden == YES) {
+        self.navigationController.navigationBarHidden = NO;
+    }
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+        return UIStatusBarStyleDefault;
+    } else {
+        return UIStatusBarStyleLightContent;
+    }
 }
 
 #pragma mark -
@@ -265,7 +283,6 @@
     } else {
         return 6;
     }
-    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MESearchView : UIView
+#import "MEBaseView.h"
+@interface MESearchView : MEBaseView
 @property (nonatomic, strong) UITextField * searchTextFiled;
 
 @end

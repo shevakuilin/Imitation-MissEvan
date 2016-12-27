@@ -20,7 +20,7 @@
 {
     if ([super initWithFrame:frame]) {
         if (self) {
-            self.backgroundColor = ME_Color(243, 243, 243);
+//            self.backgroundColor = ME_Color(243, 243, 243);
             
             self.hotWordsLabel = [UILabel new];
             [self addSubview:self.hotWordsLabel];

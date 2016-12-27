@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MEHomeSegmentControl.h"
-
-@interface MEHomeSegmentViewController : UIViewController
+#import "MEBaseViewController.h"
+@interface MEHomeSegmentViewController : MEBaseViewController
 
 @property(nonatomic, strong, readonly) MEHomeSegmentControl * segmentControl;
 @property(nonatomic, strong, readonly) UIScrollView * scrollView;

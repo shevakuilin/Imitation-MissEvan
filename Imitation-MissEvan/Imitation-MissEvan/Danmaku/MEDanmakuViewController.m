@@ -31,6 +31,7 @@
 @property (nonatomic, strong) UICollectionView * optionsCollectionView;//选项
 @property (nonatomic, strong) UICollectionView * voiceListCollectionView;//包含音单
 @property (nonatomic, strong) UICollectionView * similarCollectionView;//相似音频
+@property (nonatomic, strong) UISegmentedControl * segmentedControl;//简介等选项
 
 @property (assign, nonatomic) NSInteger touchRow;//点击选项位置
 
@@ -377,6 +378,28 @@
     [self.optionsCollectionView registerClass:[MEDanmakuOptionsCollectionViewCell class] forCellWithReuseIdentifier:@"DanmakuOptions"];
 
     
+    //TODO:segmentedControl设置
+    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"简介", @"评论(53)", @"图片"]];
+    [self.scrollView addSubview:self.segmentedControl];
+    self.segmentedControl.tintColor = [UIColor clearColor];
+    [self.segmentedControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12], NSForegroundColorAttributeName:[[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor grayColor] : [UIColor lightTextColor]} forState:UIControlStateNormal];
+    [self.segmentedControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12], NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
+    //背景
+    UIImage * backgroundImage = [UIImage imageNamed:@"ch_bar_70x2_"];
+    [self.segmentedControl setBackgroundImage:backgroundImage forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    
+    UIImage * backgroundImage1 = [UIImage imageNamed:@"123_11x567_"];
+    [self.segmentedControl setBackgroundImage:backgroundImage1 forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+
+    self.segmentedControl.backgroundColor = [UIColor clearColor];
+    self.segmentedControl.selectedSegmentIndex = 0;
+    [self.segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.optionsCollectionView.mas_bottom);
+        make.left.equalTo(self.scrollView);
+        make.right.equalTo(self.scrollView);
+        
+        make.height.mas_offset(45);
+    }];
 }
 
 - (void)backView
@@ -453,6 +476,13 @@
     NSArray * images = [[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_DATASOURCE.pmIconArray : ME_DATASOURCE.pmNightIconArray;
     MEActionSheet * actionSheet = [MEActionSheet actionSheetWithTitle:@"" options:@[@"定时关闭", @"弹幕设置", @"收藏声音", @"投食鱼干", @"设为铃声"] images:images cancel:@"取消" style:MEActionSheetStyleDefault];
     [actionSheet showInView:self.view.window];
+}
+
+#pragma mark -
+#pragma marl - MEActionSheetDelete
+- (void)clickAction:(MEActionSheet *)actionSheet atIndex:(NSUInteger)index
+{
+    
 }
 
 //判断移动scrollView的偏移量

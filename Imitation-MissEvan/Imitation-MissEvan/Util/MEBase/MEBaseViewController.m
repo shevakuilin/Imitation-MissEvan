@@ -20,6 +20,7 @@
     
     self.navigationController.navigationBar.translucent = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
     @ea_weakify(self);
     [self.view ea_setThemeContents:^(UIView *currentView, NSString *currentThemeIdentifier) {
         @ea_strongify(self);

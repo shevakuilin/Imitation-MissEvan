@@ -11,8 +11,10 @@
 
 @interface MEUtil : NSObject
 
-+ (UIButton *)barButtonItemWithImage:(NSString *)image target:(id)target action:(SEL)selector isLeft:(BOOL)isLeft isRight:(BOOL)isRight;
-
+/** 带图片的navigationBarItem
+ *
+ * @param image 添加的图片
+ */
 + (UIBarButtonItem *)barButtonWithTarget:(id)target action:(SEL)selector withImage:(UIImage *)image;
 
 /** 图像马赛克
@@ -27,7 +29,10 @@
  */
 + (UIImage *)boxblurImage:(UIImage *)image withBlurNumber:(CGFloat)blur;
 
-//压缩图片
+/** 压缩图片
+ *
+ * @param newSize  需要压缩的数值
+ */
 + (NSData *)imageWithImage:(UIImage*)image
               scaledToSize:(CGSize)newSize;
 @end

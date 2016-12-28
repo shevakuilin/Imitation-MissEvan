@@ -32,6 +32,8 @@
 @property (nonatomic, strong) UICollectionView * voiceListCollectionView;//包含音单
 @property (nonatomic, strong) UICollectionView * similarCollectionView;//相似音频
 
+@property (assign, nonatomic) NSInteger touchRow;//点击选项位置
+
 //弹幕设置
 @property (nonatomic, strong) DanmakuView * danmakuView;//弹幕显示
 @property (nonatomic, strong) NSDate * startDate;
@@ -54,11 +56,10 @@
     [super viewDidLoad];
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor whiteColor]}];
-//    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];//去掉阴影下划线
-//    self.view.backgroundColor = ME_Color(243, 243, 243);
     
     isFirst = YES;
+    self.touchRow = 0;
     
     [self customView];
     //TODO:在屏幕外创建播放记录
@@ -290,20 +291,13 @@
     }];
     
     
-//    UIView * chooseView = [UIView new];
-//    [self.scrollView addSubview:chooseView];
-//    chooseView.backgroundColor = [UIColor whiteColor];
-//    [chooseView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.mosaicThemeImageView.mas_bottom);
-//        make.left.equalTo(self.scrollView);
-//        make.right.equalTo(self.scrollView);
-//        
-//        make.size.mas_equalTo(CGSizeMake(ME_Width, 65));
-//    }];
-    
     UIView * timerView = [UIView new];
     [self.scrollView addSubview:timerView];
-    timerView.backgroundColor = [UIColor whiteColor];
+    if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+        timerView.backgroundColor = [UIColor whiteColor];
+    } else {
+        timerView.backgroundColor = ME_Color(32, 32, 32);
+    }
     [timerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mosaicThemeImageView.mas_bottom);
         make.left.equalTo(self.scrollView);
@@ -326,140 +320,37 @@
         make.size.mas_equalTo(CGSizeMake(ME_Width, 1.5));
     }];
     [self.slider addTarget:self action:@selector(onTimeChange) forControlEvents:UIControlEventValueChanged];
-    
-    
-//    UIView * leftView = [UIView new];
-//    [chooseView addSubview:leftView];
-//    leftView.backgroundColor = [UIColor whiteColor];
-//    [leftView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.slider.mas_bottom);
-//        make.left.equalTo(chooseView);
-//        
-//        make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
-//    }];
+
     
     //TODO:当前时间
     self.currentTimeLabel = [UILabel new];
     [timerView addSubview:self.currentTimeLabel];
     self.currentTimeLabel.font = [UIFont systemFontOfSize:9];
-    self.currentTimeLabel.textColor = [UIColor lightGrayColor];
+    if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+        self.currentTimeLabel.textColor = [UIColor lightGrayColor];
+    } else {
+        self.currentTimeLabel.textColor = [UIColor lightTextColor];
+    }
     self.currentTimeLabel.text = @"00:00";
     [self.currentTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(timerView).with.offset(6);
         make.left.equalTo(timerView).with.offset(10);
     }];
     
-    
-//    UIImageView * leftImageView = [UIImageView new];
-//    [leftView addSubview:leftImageView];
-//    leftImageView.image = [UIImage imageNamed:@"new_share_play_23x20_"];
-//    [leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(leftView).with.offset(22);
-//        make.centerX.equalTo(leftView);
-//    }];
-    
-//    UILabel * leftLabel = [UILabel new];
-//    [leftView addSubview:leftLabel];
-//    leftLabel.font = [UIFont systemFontOfSize:10];
-//    leftLabel.text = @"分 享";
-//    [leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.bottom.equalTo(leftView).with.offset(-5);
-//        make.centerX.equalTo(leftImageView);
-//    }];
-    
-    
-//    UIView * leftCenterView = [UIView new];
-//    [chooseView addSubview:leftCenterView];
-//    leftCenterView.backgroundColor = [UIColor whiteColor];
-//    [leftCenterView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.slider.mas_bottom);
-//        make.left.equalTo(leftView.mas_right);
-//        
-//        make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
-//    }];
-    
-//    UIImageView * leftCenterImageView = [UIImageView new];
-//    [leftCenterView addSubview:leftCenterImageView];
-//    leftCenterImageView.image = [UIImage imageNamed:@"like2Nor_27x23_@1x"];
-//    [leftCenterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(leftView).with.offset(22);
-//        make.centerX.equalTo(leftCenterView);
-//    }];
-    
-//    UILabel * leftCenterLabel = [UILabel new];
-//    [leftCenterView addSubview:leftCenterLabel];
-//    leftCenterLabel.font = [UIFont systemFontOfSize:10];
-//    leftCenterLabel.text = @"喜 欢";
-//    [leftCenterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.bottom.equalTo(leftView).with.offset(-5);
-//        make.centerX.equalTo(leftCenterImageView);
-//    }];
-    
-    
-//    UIView * rightView = [UIView new];
-//    [chooseView addSubview:rightView];
-//    rightView.backgroundColor = [UIColor whiteColor];
-//    [rightView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.slider.mas_bottom);
-//        make.right.equalTo(chooseView);
-//        
-//        make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
-//    }];
-    
     //TODO:总时间
     self.allTimeLabel = [UILabel new];
     [timerView addSubview:self.allTimeLabel];
     self.allTimeLabel.font = [UIFont systemFontOfSize:9];
-    self.allTimeLabel.textColor = [UIColor lightGrayColor];
+    if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+        self.allTimeLabel.textColor = [UIColor lightGrayColor];
+    } else {
+        self.allTimeLabel.textColor = [UIColor lightTextColor];
+    }
     self.allTimeLabel.text = @"02:00";
     [self.allTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(timerView).with.offset(6);
         make.right.equalTo(timerView).with.offset(-10);
     }];
-    
-//    UIImageView * rightImageView = [UIImageView new];
-//    [rightView addSubview:rightImageView];
-//    rightImageView.image = [UIImage imageNamed:@"new_feed_w_30x20_"];
-//    [rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(leftView).with.offset(22);
-//        make.centerX.equalTo(rightView);
-//    }];
-//    
-//    UILabel * rightLabel = [UILabel new];
-//    [rightView addSubview:rightLabel];
-//    rightLabel.font = [UIFont systemFontOfSize:10];
-//    rightLabel.text = @"投 食";
-//    [rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.bottom.equalTo(leftView).with.offset(-5);
-//        make.centerX.equalTo(rightImageView);
-//    }];
-//    
-//    UIView * rightCenterView = [UIView new];
-//    [chooseView addSubview:rightCenterView];
-//    rightCenterView.backgroundColor = [UIColor whiteColor];
-//    [rightCenterView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.slider.mas_bottom);
-//        make.right.equalTo(rightView.mas_left);
-//        
-//        make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
-//    }];
-//    
-//    UIImageView * rightCenterImageView = [UIImageView new];
-//    [rightCenterView addSubview:rightCenterImageView];
-//    rightCenterImageView.image = [UIImage imageNamed:@"new_down_25x24_"];
-//    [rightCenterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(rightCenterView).with.offset(22);
-//        make.centerX.equalTo(rightCenterView);
-//    }];
-//    
-//    UILabel * rightCenterLabel = [UILabel new];
-//    [rightCenterView addSubview:rightCenterLabel];
-//    rightCenterLabel.font = [UIFont systemFontOfSize:10];
-//    rightCenterLabel.text = @"下 载";
-//    [rightCenterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.bottom.equalTo(leftView).with.offset(-5);
-//        make.centerX.equalTo(rightCenterImageView);
-//    }];
     
     //创建一个layout布局类
     UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
@@ -470,7 +361,11 @@
     [self.scrollView addSubview:self.optionsCollectionView];
     self.optionsCollectionView.dataSource = self;
     self.optionsCollectionView.delegate = self;
-    self.optionsCollectionView.backgroundColor = [UIColor whiteColor];//ME_Color(250, 250, 250);
+    if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+        self.optionsCollectionView.backgroundColor = [UIColor whiteColor];
+    } else {
+        self.optionsCollectionView.backgroundColor = ME_Color(32, 32, 32);
+    }
     self.optionsCollectionView.scrollEnabled = NO;
     [self.optionsCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(timerView.mas_bottom);
@@ -555,7 +450,7 @@
 - (void)showMorePopView
 {
     //TODO:更多选项
-    NSArray * images = ME_DATASOURCE.pmIconArray;
+    NSArray * images = [[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_DATASOURCE.pmIconArray : ME_DATASOURCE.pmNightIconArray;
     MEActionSheet * actionSheet = [MEActionSheet actionSheetWithTitle:@"" options:@[@"定时关闭", @"弹幕设置", @"收藏声音", @"投食鱼干", @"设为铃声"] images:images cancel:@"取消" style:MEActionSheetStyleDefault];
     [actionSheet showInView:self.view.window];
 }
@@ -823,13 +718,21 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     MEDanmakuOptionsCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DanmakuOptions" forIndexPath:indexPath];
+    if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+        cell.dic = ME_DATASOURCE.danmakuOptionsArray[indexPath.row];
+
+    } else {
+        cell.dic = ME_DATASOURCE.danmakuOptionsNightArray[indexPath.row];
+        
+    }
     
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    self.touchRow = indexPath.row;
+    [self.optionsCollectionView reloadData];
 }
 
 //定义每个Item 的大小

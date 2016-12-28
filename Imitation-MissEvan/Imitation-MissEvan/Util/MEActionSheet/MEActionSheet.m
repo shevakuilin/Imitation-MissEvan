@@ -38,7 +38,14 @@
         self.cancel = cancel;
         self.style = style;
         self.userInteractionEnabled = YES;
-        self.backgroundColor = [UIColor whiteColor];
+
+        @ea_weakify(self);
+        [self ea_setThemeContents:^(UIView *currentView, NSString *currentThemeIdentifier) {
+            @ea_strongify(self);
+            self.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor whiteColor] : ME_Color(32, 32, 32);
+        }];
+        
+        
         [self createSubviews];
     }
     return self;
@@ -132,7 +139,7 @@
     
     //取消与选项之间的分割线
     UIView * separator = [[UIView alloc] init];
-    separator.backgroundColor = [UIColor colorWithWhite:0.667 alpha:0.400];
+    separator.backgroundColor = [[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor colorWithWhite:0.667 alpha:0.400] : [UIColor blackColor];
     separator.frame = CGRectMake(0, titleHeight + optionHeight, ME_Width, 10);
     [self addSubview:separator];
     separatorHeight = 10;

@@ -289,5 +289,17 @@
 - (void)dataSourceOfOther
 {
     self.pmIconArray = @[@"pm_timer_36x36_", @"danmakuSet_36x36_", @"pm_collection_36x36_", @"pm_fish_36x36_", @"pm_bell_36x36_"];
+    
+    self.pmNightIconArray = @[@"pm_timer_night_36x36_", @"pm_danmaku_setting_night_36x36_", @"pm_collection_night_36x36_", @"pm_fish_night_36x36_", @"pm_bell_night_36x36_"];
+    
+    self.danmakuOptionsArray = @[@{@"image":@"new_share_play_23x20_", @"title":@"分 享"},
+                                 @{@"image":@"like2Nor_27x23_", @"title":@"喜 欢"},
+                                 @{@"image":@"new_down_25x24_", @"title":@"下 载"},
+                                 @{@"image":@"new_feed_w_30x20_", @"title":@"投 食"}];
+
+    self.danmakuOptionsNightArray = @[@{@"image":@"new_share_play_n_23x20_", @"title":@"分 享"},
+                                      @{@"image":@"new_like_n_27x23_", @"title":@"喜 欢"},
+                                      @{@"image":@"new_down_n_25x24_", @"title":@"下 载"},
+                                      @{@"image":@"new_feed_n_30x20_", @"title":@"投 食"}];
 }
 @end

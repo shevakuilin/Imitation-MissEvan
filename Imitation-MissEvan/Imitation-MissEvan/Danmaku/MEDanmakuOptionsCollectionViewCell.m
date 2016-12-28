@@ -20,21 +20,24 @@
 {
     if ([super initWithFrame:frame]) {
         if (self) {
-            self.optionsImageView = [UIImageView new];
-            [self addSubview:self.optionsImageView];
-            self.optionsImageView.image = [UIImage imageNamed:@"new_share_play_23x20_"];
-            [self.optionsImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerX.equalTo(self);
-                make.top.equalTo(self).with.offset(2);
-            }];
             
-//            UILabel * titleLabel = [UILabel new];
+
             [self addSubview:self.titleLabel];
             self.titleLabel.font = [UIFont systemFontOfSize:10];
-            self.titleLabel.text = @"分享";
+//            self.titleLabel.text = @"分享";
             [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerX.equalTo(self.optionsImageView);
+                make.centerX.equalTo(self);
                 make.bottom.equalTo(self).with.offset(-5);
+            }];
+            
+            self.optionsImageView = [UIImageView new];
+            [self addSubview:self.optionsImageView];
+//            self.optionsImageView.image = [UIImage imageNamed:@"new_share_play_23x20_"];
+            [self.optionsImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self);
+                make.bottom.equalTo(self.titleLabel.mas_top).with.offset(-5);
+                
+//                make.size.mas_equalTo(CGSizeMake(22, 22));
             }];
         }
     }

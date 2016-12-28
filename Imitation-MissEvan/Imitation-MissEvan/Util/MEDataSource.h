@@ -25,7 +25,6 @@
 @property (copy, nonatomic) NSArray * radioArray;
 @property (copy, nonatomic) NSArray * classiftPic;//分类图标
 @property (copy, nonatomic) NSArray * classiftNightPic;//分类夜间模式图标
-//@property (copy, nonatomic) NSArray * classiftTitle;
 @property (copy, nonatomic) NSArray * voiceListTitle;
 
 @property (copy, nonatomic) NSArray * homeTopArray;//推荐顶部分类切图
@@ -39,5 +38,9 @@
 @property (copy, nonatomic) NSArray * myIconArray;//我的分类切图
 @property (copy, nonatomic) NSArray * myNightIconArray;//夜间我的分类切图
 
-@property (copy, nonatomic) NSArray * pmIconArray;
+@property (copy, nonatomic) NSArray * pmIconArray;//弹幕界面弹出选项切图
+@property (copy, nonatomic) NSArray * pmNightIconArray;//弹幕界面夜间模式弹出选项切图
+
+@property (copy, nonatomic) NSArray * danmakuOptionsArray;//弹幕界面选项切图
+@property (copy, nonatomic) NSArray * danmakuOptionsNightArray;//弹幕界面夜间模式选项切图
 @end

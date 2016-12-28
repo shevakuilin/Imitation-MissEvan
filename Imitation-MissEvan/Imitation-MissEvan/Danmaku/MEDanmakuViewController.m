@@ -10,8 +10,9 @@
 #import "MEHeader.h"
 #import "METitle+DanmakuScanfView.h"
 #import "MELasttimeRecordPopView.h"
+#import "MEDanmakuOptionsCollectionViewCell.h"
 
-@interface MEDanmakuViewController ()<UIScrollViewDelegate, DanmakuDelegate, UITextFieldDelegate, UIActionSheetDelegate, MEActionSheetDelegate>
+@interface MEDanmakuViewController ()<UIScrollViewDelegate, DanmakuDelegate, UITextFieldDelegate, UIActionSheetDelegate, MEActionSheetDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 {
     BOOL isFirst;//是否第一次进入该界面
     NSInteger seconds;//进度条时间
@@ -19,21 +20,25 @@
 }
 @property (nonatomic, strong) UIScrollView * scrollView;
 @property (nonatomic, strong) UIImageView * mosaicThemeImageView;//马赛克主题背景
-@property (nonatomic, strong) UIImageView * themeImageView;
-@property (nonatomic, strong) UIView * bottomPlayView;
-@property (nonatomic, strong) UIButton * playButton;
-@property (nonatomic, strong) UIButton * nextButton;
-@property (nonatomic, strong) UIButton * previousButton;
-@property (nonatomic, strong) UIButton * listButton;
-@property (nonatomic, strong) UIButton * repeatButton;
+@property (nonatomic, strong) UIImageView * themeImageView;//圆形主题图片
+@property (nonatomic, strong) UIView * bottomPlayView;//底部播放view
+@property (nonatomic, strong) UIButton * playButton;//播放按钮
+@property (nonatomic, strong) UIButton * nextButton;//下一首
+@property (nonatomic, strong) UIButton * previousButton;//上一首
+@property (nonatomic, strong) UIButton * listButton;//播放列表
+@property (nonatomic, strong) UIButton * repeatButton;//循环模式按钮
+
+@property (nonatomic, strong) UICollectionView * optionsCollectionView;//选项
+@property (nonatomic, strong) UICollectionView * voiceListCollectionView;//包含音单
+@property (nonatomic, strong) UICollectionView * similarCollectionView;//相似音频
 
 //弹幕设置
-@property (nonatomic, strong) DanmakuView * danmakuView;
+@property (nonatomic, strong) DanmakuView * danmakuView;//弹幕显示
 @property (nonatomic, strong) NSDate * startDate;
 @property (nonatomic, strong) NSTimer * timer;//音频计时器
-@property (nonatomic, strong) UISlider * slider;
-@property (nonatomic, strong) UILabel * currentTimeLabel;//视频当前时间
-@property (nonatomic, strong) UILabel * allTimeLabel;
+@property (nonatomic, strong) UISlider * slider;//进度条
+@property (nonatomic, strong) UILabel * currentTimeLabel;//音频当前时间
+@property (nonatomic, strong) UILabel * allTimeLabel;//音频总时间
 
 @property (nonatomic, strong) METitle_DanmakuScanfView * title_DanmakuScanfView;//标题&弹幕输入显示
 @property (nonatomic, strong) NSTimer * showTimer;//标题&弹幕计时器
@@ -51,7 +56,7 @@
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor whiteColor]}];
 //    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];//去掉阴影下划线
-    self.view.backgroundColor = ME_Color(243, 243, 243);
+//    self.view.backgroundColor = ME_Color(243, 243, 243);
     
     isFirst = YES;
     
@@ -95,7 +100,7 @@
 {
     [super viewWillAppear:animated];
     [self setNavigationBarTransparent];
-    
+
     //为了不被掩盖, 暂时先这么处理
     self.navigationItem.leftBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(backView) withImage:[UIImage imageNamed:@"sp_button_back_22x22_"]];
     self.navigationItem.rightBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(showMorePopView) withImage:[UIImage imageNamed:@"new_more_32x27_"]];
@@ -113,9 +118,8 @@
     } else {
         [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor lightTextColor]}];
     }
-    //关闭剪辑及半透明属性
+    //关闭半透明属性
     self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.clipsToBounds = NO;
     
     MELog(@"本次播放时间为===%@", @(seconds));
     if (seconds > 0) {
@@ -137,7 +141,6 @@
     UIImage * image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.clipsToBounds = YES;
 }
 
 - (void)customView
@@ -157,7 +160,7 @@
     UIImage * blurImage = [MEUtil boxblurImage:image withBlurNumber:3.6];//图像虚化
     UIImage * mosaicImage = [MEUtil transToMosaicImage:blurImage blockLevel:34];//图像添加马赛克
     self.mosaicThemeImageView.image = mosaicImage;
-    [MEUtil transToMosaicImage:blurImage blockLevel:34];
+//    [MEUtil transToMosaicImage:blurImage blockLevel:34];
     self.mosaicThemeImageView.clipsToBounds = YES;
     [self.mosaicThemeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.scrollView).with.offset(0);
@@ -242,7 +245,7 @@
         
         make.size.mas_equalTo(CGSizeMake(ME_Width, 55));
     }];
-    self.bottomPlayView.backgroundColor = [UIColor blackColor];
+    self.bottomPlayView.backgroundColor = ME_Color(32, 32, 32);
     self.bottomPlayView.alpha = 0.8;
     
     self.playButton = [UIButton new];
@@ -287,20 +290,31 @@
     }];
     
     
-    UIView * chooseView = [UIView new];
-    [self.scrollView addSubview:chooseView];
-    chooseView.backgroundColor = [UIColor whiteColor];
-    [chooseView mas_makeConstraints:^(MASConstraintMaker *make) {
+//    UIView * chooseView = [UIView new];
+//    [self.scrollView addSubview:chooseView];
+//    chooseView.backgroundColor = [UIColor whiteColor];
+//    [chooseView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.mosaicThemeImageView.mas_bottom);
+//        make.left.equalTo(self.scrollView);
+//        make.right.equalTo(self.scrollView);
+//        
+//        make.size.mas_equalTo(CGSizeMake(ME_Width, 65));
+//    }];
+    
+    UIView * timerView = [UIView new];
+    [self.scrollView addSubview:timerView];
+    timerView.backgroundColor = [UIColor whiteColor];
+    [timerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mosaicThemeImageView.mas_bottom);
         make.left.equalTo(self.scrollView);
         make.right.equalTo(self.scrollView);
         
-        make.size.mas_equalTo(CGSizeMake(ME_Width, 65));
+        make.size.height.mas_offset(20);
     }];
     
     //TODO:进度条
     self.slider = [UISlider new];
-    [self.scrollView insertSubview:self.slider aboveSubview:chooseView];//插入进度条
+    [self.scrollView insertSubview:self.slider aboveSubview:timerView];//插入进度条
     [self.slider setThumbImage:[UIImage imageNamed:@"fs_img_slider_circle_14x14_"] forState:UIControlStateNormal];
     [self.slider setMinimumTrackTintColor:ME_Color(215, 32, 27)];
     [self.slider setMaximumTrackTintColor:[UIColor grayColor]];
@@ -313,138 +327,160 @@
     }];
     [self.slider addTarget:self action:@selector(onTimeChange) forControlEvents:UIControlEventValueChanged];
     
-    UIView * leftView = [UIView new];
-    [chooseView addSubview:leftView];
-    leftView.backgroundColor = [UIColor whiteColor];
-    [leftView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.slider.mas_bottom);
-        make.left.equalTo(chooseView);
-        
-        make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
-    }];
+    
+//    UIView * leftView = [UIView new];
+//    [chooseView addSubview:leftView];
+//    leftView.backgroundColor = [UIColor whiteColor];
+//    [leftView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.slider.mas_bottom);
+//        make.left.equalTo(chooseView);
+//        
+//        make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
+//    }];
     
     //TODO:当前时间
     self.currentTimeLabel = [UILabel new];
-    [leftView addSubview:self.currentTimeLabel];
+    [timerView addSubview:self.currentTimeLabel];
     self.currentTimeLabel.font = [UIFont systemFontOfSize:9];
     self.currentTimeLabel.textColor = [UIColor lightGrayColor];
     self.currentTimeLabel.text = @"00:00";
     [self.currentTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(leftView).with.offset(6);
-        make.left.equalTo(leftView).with.offset(10);
+        make.top.equalTo(timerView).with.offset(6);
+        make.left.equalTo(timerView).with.offset(10);
     }];
     
     
-    UIImageView * leftImageView = [UIImageView new];
-    [leftView addSubview:leftImageView];
-    leftImageView.image = [UIImage imageNamed:@"new_share_play_23x20_"];
-    [leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(leftView).with.offset(22);
-        make.centerX.equalTo(leftView);
-    }];
+//    UIImageView * leftImageView = [UIImageView new];
+//    [leftView addSubview:leftImageView];
+//    leftImageView.image = [UIImage imageNamed:@"new_share_play_23x20_"];
+//    [leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(leftView).with.offset(22);
+//        make.centerX.equalTo(leftView);
+//    }];
     
-    UILabel * leftLabel = [UILabel new];
-    [leftView addSubview:leftLabel];
-    leftLabel.font = [UIFont systemFontOfSize:10];
-    leftLabel.text = @"分 享";
-    [leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(leftView).with.offset(-5);
-        make.centerX.equalTo(leftImageView);
-    }];
-    
-    
-    UIView * leftCenterView = [UIView new];
-    [chooseView addSubview:leftCenterView];
-    leftCenterView.backgroundColor = [UIColor whiteColor];
-    [leftCenterView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.slider.mas_bottom);
-        make.left.equalTo(leftView.mas_right);
-        
-        make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
-    }];
-    
-    UIImageView * leftCenterImageView = [UIImageView new];
-    [leftCenterView addSubview:leftCenterImageView];
-    leftCenterImageView.image = [UIImage imageNamed:@"like2Nor_27x23_@1x"];
-    [leftCenterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(leftView).with.offset(22);
-        make.centerX.equalTo(leftCenterView);
-    }];
-    
-    UILabel * leftCenterLabel = [UILabel new];
-    [leftCenterView addSubview:leftCenterLabel];
-    leftCenterLabel.font = [UIFont systemFontOfSize:10];
-    leftCenterLabel.text = @"喜 欢";
-    [leftCenterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(leftView).with.offset(-5);
-        make.centerX.equalTo(leftCenterImageView);
-    }];
+//    UILabel * leftLabel = [UILabel new];
+//    [leftView addSubview:leftLabel];
+//    leftLabel.font = [UIFont systemFontOfSize:10];
+//    leftLabel.text = @"分 享";
+//    [leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(leftView).with.offset(-5);
+//        make.centerX.equalTo(leftImageView);
+//    }];
     
     
-    UIView * rightView = [UIView new];
-    [chooseView addSubview:rightView];
-    rightView.backgroundColor = [UIColor whiteColor];
-    [rightView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.slider.mas_bottom);
-        make.right.equalTo(chooseView);
-        
-        make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
-    }];
+//    UIView * leftCenterView = [UIView new];
+//    [chooseView addSubview:leftCenterView];
+//    leftCenterView.backgroundColor = [UIColor whiteColor];
+//    [leftCenterView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.slider.mas_bottom);
+//        make.left.equalTo(leftView.mas_right);
+//        
+//        make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
+//    }];
+    
+//    UIImageView * leftCenterImageView = [UIImageView new];
+//    [leftCenterView addSubview:leftCenterImageView];
+//    leftCenterImageView.image = [UIImage imageNamed:@"like2Nor_27x23_@1x"];
+//    [leftCenterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(leftView).with.offset(22);
+//        make.centerX.equalTo(leftCenterView);
+//    }];
+    
+//    UILabel * leftCenterLabel = [UILabel new];
+//    [leftCenterView addSubview:leftCenterLabel];
+//    leftCenterLabel.font = [UIFont systemFontOfSize:10];
+//    leftCenterLabel.text = @"喜 欢";
+//    [leftCenterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(leftView).with.offset(-5);
+//        make.centerX.equalTo(leftCenterImageView);
+//    }];
+    
+    
+//    UIView * rightView = [UIView new];
+//    [chooseView addSubview:rightView];
+//    rightView.backgroundColor = [UIColor whiteColor];
+//    [rightView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.slider.mas_bottom);
+//        make.right.equalTo(chooseView);
+//        
+//        make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
+//    }];
     
     //TODO:总时间
     self.allTimeLabel = [UILabel new];
-    [rightView addSubview:self.allTimeLabel];
+    [timerView addSubview:self.allTimeLabel];
     self.allTimeLabel.font = [UIFont systemFontOfSize:9];
     self.allTimeLabel.textColor = [UIColor lightGrayColor];
     self.allTimeLabel.text = @"02:00";
     [self.allTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(rightView).with.offset(6);
-        make.right.equalTo(rightView).with.offset(-10);
+        make.top.equalTo(timerView).with.offset(6);
+        make.right.equalTo(timerView).with.offset(-10);
     }];
     
-    UIImageView * rightImageView = [UIImageView new];
-    [rightView addSubview:rightImageView];
-    rightImageView.image = [UIImage imageNamed:@"new_feed_w_30x20_"];
-    [rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(leftView).with.offset(22);
-        make.centerX.equalTo(rightView);
-    }];
+//    UIImageView * rightImageView = [UIImageView new];
+//    [rightView addSubview:rightImageView];
+//    rightImageView.image = [UIImage imageNamed:@"new_feed_w_30x20_"];
+//    [rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(leftView).with.offset(22);
+//        make.centerX.equalTo(rightView);
+//    }];
+//    
+//    UILabel * rightLabel = [UILabel new];
+//    [rightView addSubview:rightLabel];
+//    rightLabel.font = [UIFont systemFontOfSize:10];
+//    rightLabel.text = @"投 食";
+//    [rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(leftView).with.offset(-5);
+//        make.centerX.equalTo(rightImageView);
+//    }];
+//    
+//    UIView * rightCenterView = [UIView new];
+//    [chooseView addSubview:rightCenterView];
+//    rightCenterView.backgroundColor = [UIColor whiteColor];
+//    [rightCenterView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.slider.mas_bottom);
+//        make.right.equalTo(rightView.mas_left);
+//        
+//        make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
+//    }];
+//    
+//    UIImageView * rightCenterImageView = [UIImageView new];
+//    [rightCenterView addSubview:rightCenterImageView];
+//    rightCenterImageView.image = [UIImage imageNamed:@"new_down_25x24_"];
+//    [rightCenterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(rightCenterView).with.offset(22);
+//        make.centerX.equalTo(rightCenterView);
+//    }];
+//    
+//    UILabel * rightCenterLabel = [UILabel new];
+//    [rightCenterView addSubview:rightCenterLabel];
+//    rightCenterLabel.font = [UIFont systemFontOfSize:10];
+//    rightCenterLabel.text = @"下 载";
+//    [rightCenterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(leftView).with.offset(-5);
+//        make.centerX.equalTo(rightCenterImageView);
+//    }];
     
-    UILabel * rightLabel = [UILabel new];
-    [rightView addSubview:rightLabel];
-    rightLabel.font = [UIFont systemFontOfSize:10];
-    rightLabel.text = @"投 食";
-    [rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(leftView).with.offset(-5);
-        make.centerX.equalTo(rightImageView);
-    }];
-    
-    UIView * rightCenterView = [UIView new];
-    [chooseView addSubview:rightCenterView];
-    rightCenterView.backgroundColor = [UIColor whiteColor];
-    [rightCenterView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.slider.mas_bottom);
-        make.right.equalTo(rightView.mas_left);
+    //创建一个layout布局类
+    UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
+    //设置布局方向为垂直流布局
+    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    //创建collectionView 通过一个布局策略layout来创建
+    self.optionsCollectionView = [[UICollectionView alloc]initWithFrame:self.scrollView.frame collectionViewLayout:layout];
+    [self.scrollView addSubview:self.optionsCollectionView];
+    self.optionsCollectionView.dataSource = self;
+    self.optionsCollectionView.delegate = self;
+    self.optionsCollectionView.backgroundColor = [UIColor whiteColor];//ME_Color(250, 250, 250);
+    self.optionsCollectionView.scrollEnabled = NO;
+    [self.optionsCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(timerView.mas_bottom);
+        make.left.equalTo(self.scrollView);
+        make.right.equalTo(self.scrollView);
         
-        make.size.mas_equalTo(CGSizeMake(ME_Width / 4, 65));
+        make.height.mas_offset(45);
     }];
-    
-    UIImageView * rightCenterImageView = [UIImageView new];
-    [rightCenterView addSubview:rightCenterImageView];
-    rightCenterImageView.image = [UIImage imageNamed:@"new_down_25x24_"];
-    [rightCenterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(rightCenterView).with.offset(22);
-        make.centerX.equalTo(rightCenterView);
-    }];
-    
-    UILabel * rightCenterLabel = [UILabel new];
-    [rightCenterView addSubview:rightCenterLabel];
-    rightCenterLabel.font = [UIFont systemFontOfSize:10];
-    rightCenterLabel.text = @"下 载";
-    [rightCenterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(leftView).with.offset(-5);
-        make.centerX.equalTo(rightCenterImageView);
-    }];
+    [self.optionsCollectionView registerClass:[MEDanmakuOptionsCollectionViewCell class] forCellWithReuseIdentifier:@"DanmakuOptions"];
+
     
 }
 
@@ -770,6 +806,52 @@
         self.title_DanmakuScanfView.closeOrOpenButton.selected = NO;
         return;
     }
+}
+
+#pragma mark -
+#pragma mark - collectionView
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 4;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    MEDanmakuOptionsCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DanmakuOptions" forIndexPath:indexPath];
+    
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+//定义每个Item 的大小
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(ME_Width / 4, 45);
+}
+
+//item横向间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                   layout:(UICollectionViewLayout *)collectionViewLayout
+minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 0;
+}
+
+//item纵向间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                   layout:(UICollectionViewLayout *)collectionViewLayout
+minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 0;
 }
 
 @end

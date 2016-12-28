@@ -15,5 +15,4 @@
 @property (strong, nonatomic) UILabel * classifyLabel;//分类名称
 @property (nonatomic, strong) UILabel * titleLabel;//标题
 
-
 @end

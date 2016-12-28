@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MEBaseViewController.h"
 
-@interface MEDanmakuViewController : UIViewController
+@interface MEDanmakuViewController : MEBaseViewController
 
 @end

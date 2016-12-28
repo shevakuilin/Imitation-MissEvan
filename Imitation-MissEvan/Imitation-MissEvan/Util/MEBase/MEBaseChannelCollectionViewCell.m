@@ -31,17 +31,29 @@
                 currentView.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_Color(243, 243, 243) : [UIColor blackColor];
                 
                 self.titleLabel.textColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
+                
                 self.playedIcon.image = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIImage imageNamed:@"npv_icon_playcount_12x10_"] : [UIImage imageNamed:@"night_play_12x10_"];
+                
                 self.wordsIcon.image = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIImage imageNamed:@"biu_ac_12x10_"] : [UIImage imageNamed:@"night_danmaku_12x10_"];
+                
                 self.downImageView.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor whiteColor] : [UIColor blackColor];
+                
                 self.downImageView.layer.borderColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor lightGrayColor].CGColor : [UIColor lightTextColor].CGColor;
+                
                 self.centerImageView.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor whiteColor] : [UIColor blackColor];
+                
                 self.centerImageView.layer.borderColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor lightGrayColor].CGColor : [UIColor lightTextColor].CGColor;
+                
                 self.downView.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor whiteColor] : ME_Color(32, 32, 32);
+                
                 self.downView.layer.shadowColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor lightGrayColor].CGColor : [UIColor blackColor].CGColor;
+                
                 self.classifyLabel.textColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
+                
                 self.hotWordsLabel.textColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_Color(189, 189, 189) : [UIColor lightTextColor];
+                
                 self.hotWordsLabel.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor whiteColor] : ME_Color(32, 32, 32);
+                
                 self.hotWordsLabel.layer.borderColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor grayColor].CGColor : [UIColor lightTextColor].CGColor;
                 
             }];

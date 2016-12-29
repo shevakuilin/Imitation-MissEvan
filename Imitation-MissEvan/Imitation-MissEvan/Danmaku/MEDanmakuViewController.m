@@ -12,11 +12,12 @@
 #import "MELasttimeRecordPopView.h"
 #import "MEDanmakuOptionsCollectionViewCell.h"
 
-@interface MEDanmakuViewController ()<UIScrollViewDelegate, DanmakuDelegate, UITextFieldDelegate, UIActionSheetDelegate, MEActionSheetDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
+@interface MEDanmakuViewController ()<UIScrollViewDelegate, DanmakuDelegate, UITextFieldDelegate, UIActionSheetDelegate, MEActionSheetDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource>
 {
     BOOL isFirst;//是否第一次进入该界面
     NSInteger seconds;//进度条时间
     CGFloat recordTime;//上次播放时间
+    NSInteger audioIntroducHeight;//简介高度
 }
 @property (nonatomic, strong) UIScrollView * scrollView;
 @property (nonatomic, strong) UIImageView * mosaicThemeImageView;//马赛克主题背景
@@ -29,9 +30,11 @@
 @property (nonatomic, strong) UIButton * repeatButton;//循环模式按钮
 
 @property (nonatomic, strong) UICollectionView * optionsCollectionView;//选项
-@property (nonatomic, strong) UICollectionView * voiceListCollectionView;//包含音单
-@property (nonatomic, strong) UICollectionView * similarCollectionView;//相似音频
+@property (nonatomic, strong) UITableView * audioInfoTableView;//音频信息列表
+@property (nonatomic, strong) UITableView * commentsTableView;//评论列表
 @property (nonatomic, strong) UISegmentedControl * segmentedControl;//简介等选项
+@property (nonatomic, strong) UIImageView * pullArrowIcon;//展开箭头
+@property (nonatomic, strong) UIView * audioIntroductionView;//音频简介
 
 @property (assign, nonatomic) NSInteger touchRow;//点击选项位置
 
@@ -61,11 +64,12 @@
     
     isFirst = YES;
     self.touchRow = 0;
+    audioIntroducHeight = 100;
     
     [self customView];
     //TODO:在屏幕外创建播放记录
     self.lasttimePopView = [MELasttimeRecordPopView new];
-    [self.scrollView insertSubview:self.lasttimePopView aboveSubview:self.title_DanmakuScanfView];
+    [self.scrollView insertSubview:self.lasttimePopView aboveSubview:self.title_DanmakuScanfView];//播放记录不能跟随屏幕的滚动而移动
     [self.lasttimePopView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.scrollView).with.offset(-96);
         make.bottom.equalTo(self.danmakuView.mas_bottom).with.offset(-55);
@@ -115,7 +119,7 @@
 {
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar lt_reset];//重置
-    if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+    if ([ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal]) {
         [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor blackColor]}];
     } else {
         [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor lightTextColor]}];
@@ -225,18 +229,18 @@
 //    [self.title_DanmakuScanfView.closeOrOpenDanmaku addGestureRecognizer:closeOrOpenGesture];
     [self.title_DanmakuScanfView.closeOrOpenButton addTarget:self action:@selector(closeOrOpen) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton * button = [UIButton new];
-    [self.scrollView addSubview:button];
-    [button setTitle:@"弹幕" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-    [button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.scrollView).with.offset(0);
-        make.top.equalTo(self.mosaicThemeImageView.mas_bottom).with.offset(1000);
-
-        make.centerX.equalTo(self.scrollView);
-        
-        make.size.mas_equalTo(CGSizeMake(100, 100));
-    }];
+//    UIButton * button = [UIButton new];
+//    [self.scrollView addSubview:button];
+//    [button setTitle:@"弹幕" forState:UIControlStateNormal];
+//    [button setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+//    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(self.scrollView).with.offset(0);
+//        make.top.equalTo(self.mosaicThemeImageView.mas_bottom).with.offset(1000);
+//
+//        make.centerX.equalTo(self.scrollView);
+//        
+//        make.size.mas_equalTo(CGSizeMake(100, 100));
+//    }];
     
     self.bottomPlayView = [UIView new];
     [self.view addSubview:self.bottomPlayView];
@@ -294,7 +298,7 @@
     
     UIView * timerView = [UIView new];
     [self.scrollView addSubview:timerView];
-    if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+    if ([ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal]) {
         timerView.backgroundColor = [UIColor whiteColor];
     } else {
         timerView.backgroundColor = ME_Color(32, 32, 32);
@@ -327,7 +331,7 @@
     self.currentTimeLabel = [UILabel new];
     [timerView addSubview:self.currentTimeLabel];
     self.currentTimeLabel.font = [UIFont systemFontOfSize:9];
-    if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+    if ([ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal]) {
         self.currentTimeLabel.textColor = [UIColor lightGrayColor];
     } else {
         self.currentTimeLabel.textColor = [UIColor lightTextColor];
@@ -342,7 +346,7 @@
     self.allTimeLabel = [UILabel new];
     [timerView addSubview:self.allTimeLabel];
     self.allTimeLabel.font = [UIFont systemFontOfSize:9];
-    if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+    if ([ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal]) {
         self.allTimeLabel.textColor = [UIColor lightGrayColor];
     } else {
         self.allTimeLabel.textColor = [UIColor lightTextColor];
@@ -362,7 +366,7 @@
     [self.scrollView addSubview:self.optionsCollectionView];
     self.optionsCollectionView.dataSource = self;
     self.optionsCollectionView.delegate = self;
-    if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+    if ([ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal]) {
         self.optionsCollectionView.backgroundColor = [UIColor whiteColor];
     } else {
         self.optionsCollectionView.backgroundColor = ME_Color(32, 32, 32);
@@ -382,13 +386,13 @@
     self.segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"简介", @"评论(53)", @"图片"]];
     [self.scrollView addSubview:self.segmentedControl];
     self.segmentedControl.tintColor = [UIColor clearColor];
-    [self.segmentedControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12], NSForegroundColorAttributeName:[[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor grayColor] : [UIColor lightTextColor]} forState:UIControlStateNormal];
+    [self.segmentedControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12], NSForegroundColorAttributeName:[ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor grayColor] : [UIColor lightTextColor]} forState:UIControlStateNormal];
     [self.segmentedControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12], NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
     //背景
     UIImage * backgroundImage = [UIImage imageNamed:@"ch_bar_70x2_"];
     [self.segmentedControl setBackgroundImage:backgroundImage forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
     
-    UIImage * backgroundImage1 = [UIImage imageNamed:@"123_11x567_"];
+    UIImage * backgroundImage1 = [UIImage imageNamed:@""];
     [self.segmentedControl setBackgroundImage:backgroundImage1 forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 
     self.segmentedControl.backgroundColor = [UIColor clearColor];
@@ -400,11 +404,145 @@
         
         make.height.mas_offset(45);
     }];
+    
+    //音频信息
+    self.audioIntroductionView = [UIView new];
+    [self.scrollView addSubview:self.audioIntroductionView];
+    self.audioIntroductionView.backgroundColor = [UIColor clearColor];
+    [self.audioIntroductionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.segmentedControl.mas_bottom);
+        make.left.equalTo(self.scrollView);
+        make.right.equalTo(self.scrollView);
+        
+        make.height.mas_offset(audioIntroducHeight);
+    }];
+    self.audioIntroductionView.userInteractionEnabled = YES;
+    UITapGestureRecognizer * pullGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pullOrCloseTheIntroduction)];
+    [self.audioIntroductionView addGestureRecognizer:pullGesture];
+    
+    
+    UILabel * audioTitleLabel = [UILabel new];
+    [self.audioIntroductionView addSubview:audioTitleLabel];
+    audioTitleLabel.font = [UIFont systemFontOfSize:13];
+    audioTitleLabel.textColor = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
+    audioTitleLabel.text = @"【少年霜】世末歌者";
+    [audioTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.audioIntroductionView).with.offset(3);
+        make.left.equalTo(self.audioIntroductionView).with.offset(10);
+    }];
+    
+    UIImageView * audioPlayIcon = [UIImageView new];
+    [self.audioIntroductionView addSubview:audioPlayIcon];
+    audioPlayIcon.image = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIImage imageNamed:@"playnum_ac_12x10_"] : [UIImage imageNamed:@"night_play_12x10_"];
+    [audioPlayIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(audioTitleLabel.mas_bottom).with.offset(10);
+        make.left.equalTo(self.audioIntroductionView).with.offset(10);
+    }];
+    
+    UILabel * audioPlay_numberLabel = [UILabel new];
+    [self.audioIntroductionView addSubview:audioPlay_numberLabel];
+    audioPlay_numberLabel.font = [UIFont systemFontOfSize:10];
+    audioPlay_numberLabel.textColor = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
+    audioPlay_numberLabel.text = @"7585";
+    [audioPlay_numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(audioPlayIcon);
+        make.left.equalTo(audioPlayIcon.mas_right).with.offset(5);
+    }];
+    
+    UIImageView * audioCommentsIcon = [UIImageView new];
+    [self.audioIntroductionView addSubview:audioCommentsIcon];
+    audioCommentsIcon.image = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIImage imageNamed:@"biu_ac_12x10_"] : [UIImage imageNamed:@"night_danmaku_12x10_"];
+    [audioCommentsIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(audioPlayIcon);
+        make.left.equalTo(audioPlay_numberLabel.mas_right).with.offset(10);
+    }];
+    
+    UILabel * audioComments_numberLabel = [UILabel new];
+    [self.audioIntroductionView addSubview:audioComments_numberLabel];
+    audioComments_numberLabel.font = [UIFont systemFontOfSize:10];
+    audioComments_numberLabel.textColor = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
+    audioComments_numberLabel.text = @"41";
+    [audioComments_numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(audioCommentsIcon);
+        make.left.equalTo(audioCommentsIcon.mas_right).with.offset(5);
+    }];
+    
+    UILabel * audioIdLabel = [UILabel new];
+    [self.audioIntroductionView addSubview:audioIdLabel];
+    audioIdLabel.font = [UIFont systemFontOfSize:10];
+    audioIdLabel.textColor = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
+    audioIdLabel.text = @"音频ID：160910";
+    [audioIdLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(audioComments_numberLabel);
+        make.left.equalTo(audioComments_numberLabel.mas_right).with.offset(10);
+    }];
+    
+    self.pullArrowIcon = [UIImageView new];
+    [self.audioIntroductionView addSubview:self.pullArrowIcon];
+    self.pullArrowIcon.image = [UIImage imageNamed:@"lr_img_pulldown_12x7_"];
+    [self.pullArrowIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(audioIdLabel);
+        make.right.equalTo(self.audioIntroductionView).with.offset(-10);
+    }];
+    
+    
+    UILabel * introductionTextView = [UILabel new];
+    [self.audioIntroductionView addSubview:introductionTextView];
+    introductionTextView.backgroundColor = [UIColor clearColor];
+    introductionTextView.font = [UIFont systemFontOfSize:12];
+    introductionTextView.numberOfLines = 0;
+    introductionTextView.textColor = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor lightGrayColor] : [UIColor lightTextColor];
+    [introductionTextView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.pullArrowIcon.mas_bottom).with.offset(10);
+        make.left.equalTo(self.audioIntroductionView).with.offset(10);
+        make.right.equalTo(self.audioIntroductionView).with.offset(-10);
+        make.bottom.equalTo(self.audioIntroductionView).with.offset(-10);
+    }];
+//    introductionTextView.scrollEnabled = NO;
+//    introductionTextView.editable = NO;
+    introductionTextView.text = ME_DATASOURCE.audioIntroductionDic[@"introduction"];
+    
+    
+    self.audioInfoTableView = [UITableView new];
+    [self.scrollView addSubview:self.audioInfoTableView];
+    [self.audioInfoTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.audioIntroductionView.mas_bottom);
+        make.left.equalTo(self.scrollView);
+        make.right.equalTo(self.scrollView);
+        make.bottom.equalTo(self.scrollView);
+        
+        make.height.mas_offset(800);
+    }];
+    self.audioInfoTableView.backgroundColor = [UIColor clearColor];
+    self.audioInfoTableView.separatorStyle = NO;
+//    self.audioInfoTableView.delegate = self;
+//    self.audioInfoTableView.dataSource = self;
+//    self.audioInfoTableView.tableFooterView = [[UITableView alloc] init];
+    
 }
 
 - (void)backView
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)pullOrCloseTheIntroduction
+{
+    //TODO:展开或收起简介
+    self.pullArrowIcon.transform = CGAffineTransformRotate(self.pullArrowIcon.transform, M_PI);//旋转180
+    if (audioIntroducHeight == 100) {
+        audioIntroducHeight = 350;
+        [self.audioIntroductionView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_offset(audioIntroducHeight);
+        }];
+        return;
+    } else {
+        audioIntroducHeight = 100;
+        [self.audioIntroductionView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_offset(audioIntroducHeight);
+        }];
+        return;
+    }
 }
 
 - (void)dealloc
@@ -473,7 +611,7 @@
 - (void)showMorePopView
 {
     //TODO:更多选项
-    NSArray * images = [[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_DATASOURCE.pmIconArray : ME_DATASOURCE.pmNightIconArray;
+    NSArray * images = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_DATASOURCE.pmIconArray : ME_DATASOURCE.pmNightIconArray;
     MEActionSheet * actionSheet = [MEActionSheet actionSheetWithTitle:@"" options:@[@"定时关闭", @"弹幕设置", @"收藏声音", @"投食鱼干", @"设为铃声"] images:images cancel:@"取消" style:MEActionSheetStyleDefault];
     [actionSheet showInView:self.view.window];
 }
@@ -748,7 +886,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     MEDanmakuOptionsCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DanmakuOptions" forIndexPath:indexPath];
-    if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+    if ([ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal]) {
         cell.dic = ME_DATASOURCE.danmakuOptionsArray[indexPath.row];
 
     } else {
@@ -786,5 +924,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     return 0;
 }
+
 
 @end

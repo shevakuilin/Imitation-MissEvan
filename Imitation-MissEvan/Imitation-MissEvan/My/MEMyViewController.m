@@ -85,7 +85,7 @@
         MEMyPersonalCenterTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MyPersonalCenter"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
-        if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+        if ([ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal]) {
             MELog(@"现在是 简介白");
             cell.array = ME_DATASOURCE.myIconArray[indexPath.section - 1];
         } else {

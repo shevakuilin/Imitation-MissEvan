@@ -139,7 +139,7 @@
     
     //取消与选项之间的分割线
     UIView * separator = [[UIView alloc] init];
-    separator.backgroundColor = [[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor colorWithWhite:0.667 alpha:0.400] : [UIColor blackColor];
+    separator.backgroundColor = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor colorWithWhite:0.667 alpha:0.400] : [UIColor blackColor];
     separator.frame = CGRectMake(0, titleHeight + optionHeight, ME_Width, 10);
     [self addSubview:separator];
     separatorHeight = 10;

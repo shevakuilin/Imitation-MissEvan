@@ -35,4 +35,5 @@
  */
 + (NSData *)imageWithImage:(UIImage*)image
               scaledToSize:(CGSize)newSize;
+
 @end

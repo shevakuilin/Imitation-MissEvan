@@ -37,7 +37,7 @@
             [self.button setTitle:barTitie forState:UIControlStateNormal];
             [self.button setTitle:barTitie forState:UIControlStateSelected];
             
-            if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+            if ([ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal]) {
                 imageName = [NSString stringWithFormat:@"ntab_%@_normal", ME_DATASOURCE.imageNameArray[i]];
                 imageNameSel = [NSString stringWithFormat:@"ntab_%@_selected", ME_DATASOURCE.imageNameArray[i]];
                 [self.button setTitleColor:ME_Color(61, 61, 61) forState:UIControlStateNormal];

@@ -31,7 +31,7 @@
             NSMutableArray * stackImageArray = [NSMutableArray new];
             for (NSInteger i = 1; i < 141; i ++) {
                 NSString * stackImageName;
-                if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+                if ([ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal]) {
                     if (i < 10) {
                         stackImageName = [NSString stringWithFormat:@"DRRR猫 睡觉000%@_200x200_@1x", @(i)];
                     } else if (i > 9 && i < 100){
@@ -76,7 +76,7 @@
         NSMutableArray * stackImageArray = [NSMutableArray new];
         for (NSInteger i = 1; i < 72; i ++) {
             NSString * stackImageName;
-            if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+            if ([ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal]) {
                 if (i < 10) {
                     stackImageName = [NSString stringWithFormat:@"miao2000%@_200x200_@1x", @(i)];
                 } else {
@@ -106,7 +106,7 @@
         NSMutableArray * stackImageArray = [NSMutableArray new];
         for (NSInteger i = 1; i < 141; i ++) {
             NSString * stackImageName;
-            if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+            if ([ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal]) {
                 if (i < 10) {
                     stackImageName = [NSString stringWithFormat:@"DRRR猫 睡觉000%@_200x200_@1x", @(i)];
                 } else if (i > 9 && i < 100){

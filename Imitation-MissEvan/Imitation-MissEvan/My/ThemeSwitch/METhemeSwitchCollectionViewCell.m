@@ -87,7 +87,7 @@
             [self.chooseButton setTitle:@"简洁白" forState:UIControlStateNormal];
             [self.chooseButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             //切换默认主题
-            [[EAThemeManager shareManager] displayThemeContentsWithThemeIdentifier:EAThemeNormal];
+            [ME_ThemeManage displayThemeContentsWithThemeIdentifier:EAThemeNormal];
             //保存选择记录
             [userDefaults setObject:EAThemeNormal forKey:@"EAThemeStyle"];
             //创建一个消息对象
@@ -114,7 +114,7 @@
             [self.chooseButton setTitle:@"夜间模式" forState:UIControlStateNormal];
             [self.chooseButton setTitleColor:[UIColor lightTextColor] forState:UIControlStateNormal];
             //切换夜间主题
-            [[EAThemeManager shareManager] displayThemeContentsWithThemeIdentifier:EAThemeBlack];
+            [ME_ThemeManage displayThemeContentsWithThemeIdentifier:EAThemeBlack];
             //保存选择记录
             [userDefaults setObject:EAThemeBlack forKey:@"EAThemeStyle"];
             //创建一个消息对象

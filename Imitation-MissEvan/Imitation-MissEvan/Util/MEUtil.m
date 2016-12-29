@@ -11,6 +11,7 @@
 
 @implementation MEUtil
 
+//带图片的navigationBarItem
 + (UIBarButtonItem *)barButtonWithTarget:(id)target action:(SEL)selector withImage:(UIImage *)image
 {
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -179,6 +180,7 @@
     return returnImage;
 }
 
+//压缩图片
 + (NSData *)imageWithImage:(UIImage*)image
               scaledToSize:(CGSize)newSize
 {

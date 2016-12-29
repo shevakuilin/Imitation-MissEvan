@@ -80,13 +80,13 @@
     NSString * eathemStyle = [userDefaults objectForKey:@"EAThemeStyle"];
     if (eathemStyle) {//如果有记录，那么根据记录设置主题
         if ([eathemStyle isEqualToString:EAThemeNormal]) {
-            [EAThemeManager shareManager].normalThemeIdentifier = EAThemeNormal;
+            ME_ThemeManage.normalThemeIdentifier = EAThemeNormal;
         } else {
-            [EAThemeManager shareManager].normalThemeIdentifier = EAThemeBlack;
+            ME_ThemeManage.normalThemeIdentifier = EAThemeBlack;
         }
     } else {//如果没有则设置默认主题
         //配置默认主题
-        [EAThemeManager shareManager].normalThemeIdentifier = EAThemeNormal;
+        ME_ThemeManage.normalThemeIdentifier = EAThemeNormal;
     }
 
     UIViewController * viewController = ME_GetViewController(@"LaunchScreen", @"LaunchScreen");

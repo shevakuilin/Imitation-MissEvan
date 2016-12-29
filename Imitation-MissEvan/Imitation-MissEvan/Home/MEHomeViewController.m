@@ -273,7 +273,7 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-    if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+    if ([ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal]) {
         return UIStatusBarStyleDefault;
     } else {
         return UIStatusBarStyleLightContent;
@@ -312,7 +312,7 @@
         if (indexPath.section == 0) {
             MEHomeRecommendTopTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendTop"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+            if ([ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal]) {
                 cell.array = ME_DATASOURCE.homeTopArray;
             } else {
                 cell.array = ME_DATASOURCE.homeTopNightArray;
@@ -331,7 +331,7 @@
                 MEHomeRecommendMoreTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"HomeRecommendMore"];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 MELog(@"section == %@", @(indexPath.section));
-                if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+                if ([ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal]) {
                     cell.dic = ME_DATASOURCE.topCellArray[indexPath.section - 1];
                 } else {
                     cell.dic = ME_DATASOURCE.topCellNightArray[indexPath.section - 1];
@@ -368,7 +368,7 @@
                 } else if (indexPath.section == 4){
                     MEBellsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Bells"];
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                    if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+                    if ([ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal]) {
                         cell.array = ME_DATASOURCE.bellArray;
                     } else {
                         cell.array = ME_DATASOURCE.bellNightArray;
@@ -519,7 +519,7 @@
     MEClassifyCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Classify" forIndexPath:indexPath];
 //    cell.picUrl = ME_DATASOURCE.classiftPic[indexPath.row];
 //    cell.title = ME_DATASOURCE.classiftTitle[indexPath.row];
-    if ([[EAThemeManager shareManager].currentThemeIdentifier isEqualToString:EAThemeNormal]) {
+    if ([ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal]) {
         cell.dic = ME_DATASOURCE.classiftPic[indexPath.row];
     } else {
         cell.dic = ME_DATASOURCE.classiftNightPic[indexPath.row];

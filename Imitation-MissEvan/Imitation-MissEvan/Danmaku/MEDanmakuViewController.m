@@ -13,6 +13,7 @@
 #import "MEDanmakuOptionsCollectionViewCell.h"
 #import "MEAudioAvatarTableViewCell.h"
 #import "MEAudioTagTableViewCell.h"
+#import "MEVoiceListOfContainsTableViewCell.h"
 
 @interface MEDanmakuViewController ()<UIScrollViewDelegate, DanmakuDelegate, UITextFieldDelegate, UIActionSheetDelegate, MEActionSheetDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource>
 {
@@ -446,7 +447,7 @@
     UILabel * audioPlay_numberLabel = [UILabel new];
     [self.audioIntroductionView addSubview:audioPlay_numberLabel];
     audioPlay_numberLabel.font = [UIFont systemFontOfSize:10];
-    audioPlay_numberLabel.textColor = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : ME_Color(60, 60, 60);
+    audioPlay_numberLabel.textColor = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor lightGrayColor] : ME_Color(60, 60, 60);
     audioPlay_numberLabel.text = @"7585";
     [audioPlay_numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(audioPlayIcon);
@@ -464,7 +465,7 @@
     UILabel * audioComments_numberLabel = [UILabel new];
     [self.audioIntroductionView addSubview:audioComments_numberLabel];
     audioComments_numberLabel.font = [UIFont systemFontOfSize:10];
-    audioComments_numberLabel.textColor = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : ME_Color(60, 60, 60);
+    audioComments_numberLabel.textColor = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor lightGrayColor] : ME_Color(60, 60, 60);
     audioComments_numberLabel.text = @"41";
     [audioComments_numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(audioCommentsIcon);
@@ -474,7 +475,7 @@
     UILabel * audioIdLabel = [UILabel new];
     [self.audioIntroductionView addSubview:audioIdLabel];
     audioIdLabel.font = [UIFont systemFontOfSize:10];
-    audioIdLabel.textColor = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : ME_Color(60, 60, 60);
+    audioIdLabel.textColor = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor lightGrayColor] : ME_Color(60, 60, 60);
     audioIdLabel.text = @"音频ID：160910";
     [audioIdLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(audioComments_numberLabel);
@@ -522,6 +523,7 @@
     self.audioInfoTableView.tableFooterView = [[UITableView alloc] init];
     [self.audioInfoTableView registerClass:[MEAudioAvatarTableViewCell class] forCellReuseIdentifier:@"AudioAvatar"];
     [self.audioInfoTableView registerClass:[MEAudioTagTableViewCell class] forCellReuseIdentifier:@"AudioTag"];
+    [self.audioInfoTableView registerClass:[MEVoiceListOfContainsTableViewCell class] forCellReuseIdentifier:@"VoiceListOfContains"];
 }
 
 - (void)backView
@@ -937,7 +939,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -947,8 +949,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         return cell;
-    } else {
+    } else if (indexPath.row == 1){
         MEAudioTagTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"AudioTag"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        return cell;
+    } else {
+        MEVoiceListOfContainsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"VoiceListOfContains"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         return cell;
@@ -964,8 +971,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     if (indexPath.row == 0) {
         return 55;
+    } else if (indexPath.row == 1) {
+        return 60;
     }
-    return 80;
+    return 200;
 }
 
 @end

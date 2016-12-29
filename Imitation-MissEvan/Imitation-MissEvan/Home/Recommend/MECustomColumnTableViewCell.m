@@ -10,7 +10,7 @@
 #import "MEHeader.h"
 
 @interface MECustomColumnTableViewCell ()
-//@property (nonatomic, strong) UILabel * titleLabel;
+@property (nonatomic, strong) UILabel * promptLabel;
 
 @end
 
@@ -33,12 +33,12 @@
     if (self) {
 //        self.backgroundColor = ME_Color(250, 250, 250);
         
-//        self.titleLabel = [UILabel new];
-        [self addSubview:self.titleLabel];
-        self.titleLabel.font = [UIFont systemFontOfSize:12];
-        self.titleLabel.textColor = ME_Color(136, 136, 136);
-        self.titleLabel.text = @"现在可以根据个人喜好，自由添加并调整栏目顺序啦+_+";
-        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        self.promptLabel = [UILabel new];
+        [self addSubview:self.promptLabel];
+        self.promptLabel.font = [UIFont systemFontOfSize:12];
+        self.promptLabel.textColor = ME_Color(136, 136, 136);
+        self.promptLabel.text = @"现在可以根据个人喜好，自由添加并调整栏目顺序啦+_+";
+        [self.promptLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).with.offset(10);
             make.centerX.equalTo(self).with.offset(5);
             
@@ -56,7 +56,7 @@
         self.customButton.layer.borderColor = ME_Color(226, 59, 59).CGColor;
         self.customButton.layer.borderWidth = 1;
         [self.customButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.titleLabel.mas_bottom).with.offset(8);
+            make.top.equalTo(self.promptLabel.mas_bottom).with.offset(8);
             make.centerX.equalTo(self).with.offset(0);
             
             make.size.mas_equalTo(CGSizeMake(((ME_Width - 12) / 3) - 12, 30));

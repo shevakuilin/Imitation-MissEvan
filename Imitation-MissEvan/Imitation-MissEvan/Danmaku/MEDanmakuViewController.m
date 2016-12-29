@@ -498,8 +498,6 @@
         make.right.equalTo(self.audioIntroductionView).with.offset(-10);
         make.bottom.equalTo(self.audioIntroductionView).with.offset(-10);
     }];
-//    introductionTextView.scrollEnabled = NO;
-//    introductionTextView.editable = NO;
     introductionTextView.text = ME_DATASOURCE.audioIntroductionDic[@"introduction"];
     
     
@@ -529,9 +527,9 @@
 - (void)pullOrCloseTheIntroduction
 {
     //TODO:展开或收起简介
-    self.pullArrowIcon.transform = CGAffineTransformRotate(self.pullArrowIcon.transform, M_PI);//旋转180
+    self.pullArrowIcon.transform = CGAffineTransformRotate(self.pullArrowIcon.transform, M_PI);//图片旋转180°
     if (audioIntroducHeight == 100) {
-        audioIntroducHeight = 360;
+        audioIntroducHeight = 380;
         [self.audioIntroductionView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_offset(audioIntroducHeight);
         }];

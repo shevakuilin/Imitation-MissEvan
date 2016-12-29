@@ -531,7 +531,7 @@
     //TODO:展开或收起简介
     self.pullArrowIcon.transform = CGAffineTransformRotate(self.pullArrowIcon.transform, M_PI);//旋转180
     if (audioIntroducHeight == 100) {
-        audioIntroducHeight = 350;
+        audioIntroducHeight = 360;
         [self.audioIntroductionView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_offset(audioIntroducHeight);
         }];

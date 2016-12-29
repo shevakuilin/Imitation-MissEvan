@@ -9,6 +9,7 @@
 #import "MEVoiceListOfContainsTableViewCell.h"
 #import "MEHeader.h"
 #import "MEVoiceListCollectionViewCell.h"
+#import "MEHotMVoiceCollectionViewCell.h"
 
 @interface MEVoiceListOfContainsTableViewCell ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView * collectionView;
@@ -34,7 +35,6 @@
             
             [self addSubview:self.titleLabel];
             self.titleLabel.font = [UIFont systemFontOfSize:12];
-            self.titleLabel.text = @"包含该音频的音单：";
             [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self).with.offset(0);
                 make.left.equalTo(self).with.offset(5);
@@ -59,10 +59,21 @@
                 
             }];
             [self.collectionView registerClass:[MEVoiceListCollectionViewCell class] forCellWithReuseIdentifier:@"VoiceList"];
-            
+            [self.collectionView registerClass:[MEHotMVoiceCollectionViewCell class] forCellWithReuseIdentifier:@"HotMVoice"];
         }
     }
     return self;
+}
+
+- (void)setRow:(NSInteger)row
+{
+    _row = row;
+    if (row == 2) {
+        self.titleLabel.text = @"包含该音频的音单：";
+    } else {
+        self.titleLabel.text = @"相似音频：";
+
+    }
 }
 
 #pragma mark -
@@ -74,15 +85,22 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 3;//self.array.count;
+    return self.array.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    MEVoiceListCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"VoiceList" forIndexPath:indexPath];
-    cell.dic = @{@"themes_image":@"心灵的旋律", @"title":@"【节奏纯音】心灵的旋律", @"voice_count":@"34"};//self.array[indexPath.row];
-    
-    return cell;
+    if (self.row == 2) {
+        MEVoiceListCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"VoiceList" forIndexPath:indexPath];
+        cell.dic = self.array[indexPath.row];//@{@"themes_image":@"心灵的旋律", @"title":@"【节奏纯音】心灵的旋律", @"voice_count":@"34"};//self.array[indexPath.row];
+        
+        return cell;
+    } else {
+        MEHotMVoiceCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HotMVoice" forIndexPath:indexPath];
+        cell.dic = self.array[indexPath.row];//@{@"themes_image":@"hotMVoice_downRight", @"title":@"【3D】刀剑乱舞 花丸-心魂の在処", @"played_count":@"3924", @"words_count":@"13"};
+        
+        return cell;
+    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

@@ -514,7 +514,7 @@
         make.right.equalTo(self.scrollView);
         make.bottom.equalTo(self.scrollView);
         
-        make.height.mas_offset(800);
+        make.height.mas_offset(600);
     }];
     self.audioInfoTableView.backgroundColor = [UIColor clearColor];
     self.audioInfoTableView.separatorStyle = NO;
@@ -957,6 +957,14 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     } else {
         MEVoiceListOfContainsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"VoiceListOfContains"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        if (indexPath.row == 2) {
+            cell.row = indexPath.row;
+            cell.array = ME_DATASOURCE.VoiceListOfContainsArray;
+            
+        } else {
+            cell.row = indexPath.row;
+            cell.array = ME_DATASOURCE.likeAudioArray;
+        }
         
         return cell;
     }

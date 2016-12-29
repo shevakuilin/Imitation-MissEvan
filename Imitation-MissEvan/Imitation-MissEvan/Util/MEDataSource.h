@@ -45,4 +45,7 @@
 @property (copy, nonatomic) NSArray * danmakuOptionsNightArray;//弹幕界面夜间模式选项切图
 
 @property (copy, nonatomic) NSDictionary * audioIntroductionDic;//音频信息
+
+@property (copy, nonatomic) NSArray * VoiceListOfContainsArray;//包含音频的音单
+@property (copy, nonatomic) NSArray * likeAudioArray;//相似音频
 @end

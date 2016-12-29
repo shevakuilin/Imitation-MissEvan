@@ -118,6 +118,9 @@
 {
     _dic = dic;
     self.themesImageView.image = [UIImage imageNamed:dic[@"themes_image"]];
+    if (!self.themesImageView.image) {
+        [self.themesImageView setImageWithURL:[NSURL URLWithString:dic[@"themes_image"]] placeholderImage:[UIImage imageNamed:@""]];
+    }
     self.titleLabel.text = dic[@"title"];
     self.playedLabel.text = dic[@"played_count"];
     self.wordsLable.text = dic[@"words_count"];

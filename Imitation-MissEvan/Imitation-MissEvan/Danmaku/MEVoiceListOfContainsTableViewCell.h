@@ -10,5 +10,6 @@
 #import "MEBaseMoreTableViewCell.h"
 @interface MEVoiceListOfContainsTableViewCell : MEBaseMoreTableViewCell
 @property (nonatomic, strong) NSArray * array;
+@property (nonatomic, assign) NSInteger row;
 
 @end

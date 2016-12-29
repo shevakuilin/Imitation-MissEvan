@@ -9,10 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "MEBaseMoreTableViewCell.h"
 @interface MEHomeRecommendMoreTableViewCell : MEBaseMoreTableViewCell
-//@property (nonatomic, strong) UIImageView * classifyImageView;
-//@property (nonatomic, strong) UILabel * classifyLabel;
-//@property (nonatomic, strong) UIButton * moreButton;
-
 @property (nonatomic, strong) NSDictionary * dic;
 
 @end

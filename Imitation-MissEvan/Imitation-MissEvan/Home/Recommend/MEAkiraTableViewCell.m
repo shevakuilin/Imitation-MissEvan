@@ -51,10 +51,10 @@
         }];
         [self.collectionView registerClass:[MEAkiraCollectionViewCell class] forCellWithReuseIdentifier:@"Akira"];
         
-        UIImageView * topShadow = [UIImageView new];
-        [self addSubview:topShadow];
-        topShadow.backgroundColor = ME_Color(238, 238, 238);
-        [topShadow mas_makeConstraints:^(MASConstraintMaker *make) {
+//        UIImageView * topShadow = [UIImageView new];
+        [self addSubview:self.topShadow];
+//        topShadow.backgroundColor = ME_Color(238, 238, 238);
+        [self.topShadow mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self);
             make.left.equalTo(self);
             make.right.equalTo(self);

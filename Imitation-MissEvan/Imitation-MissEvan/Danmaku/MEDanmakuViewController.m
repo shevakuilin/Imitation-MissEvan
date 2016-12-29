@@ -11,6 +11,8 @@
 #import "METitle+DanmakuScanfView.h"
 #import "MELasttimeRecordPopView.h"
 #import "MEDanmakuOptionsCollectionViewCell.h"
+#import "MEAudioAvatarTableViewCell.h"
+#import "MEAudioTagTableViewCell.h"
 
 @interface MEDanmakuViewController ()<UIScrollViewDelegate, DanmakuDelegate, UITextFieldDelegate, UIActionSheetDelegate, MEActionSheetDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource>
 {
@@ -58,6 +60,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //设置navigationBar跟随屏幕移动颜色渐变
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];//去掉阴影下划线
@@ -90,6 +93,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    //设置返回及弹窗选项barItem
     self.navigationItem.leftBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(backView) withImage:[UIImage imageNamed:@"sp_button_back_22x22_"]];
     self.navigationItem.rightBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(showMorePopView) withImage:[UIImage imageNamed:@"new_more_32x27_"]];
     
@@ -442,7 +446,7 @@
     UILabel * audioPlay_numberLabel = [UILabel new];
     [self.audioIntroductionView addSubview:audioPlay_numberLabel];
     audioPlay_numberLabel.font = [UIFont systemFontOfSize:10];
-    audioPlay_numberLabel.textColor = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
+    audioPlay_numberLabel.textColor = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : ME_Color(60, 60, 60);
     audioPlay_numberLabel.text = @"7585";
     [audioPlay_numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(audioPlayIcon);
@@ -460,7 +464,7 @@
     UILabel * audioComments_numberLabel = [UILabel new];
     [self.audioIntroductionView addSubview:audioComments_numberLabel];
     audioComments_numberLabel.font = [UIFont systemFontOfSize:10];
-    audioComments_numberLabel.textColor = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
+    audioComments_numberLabel.textColor = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : ME_Color(60, 60, 60);
     audioComments_numberLabel.text = @"41";
     [audioComments_numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(audioCommentsIcon);
@@ -470,7 +474,7 @@
     UILabel * audioIdLabel = [UILabel new];
     [self.audioIntroductionView addSubview:audioIdLabel];
     audioIdLabel.font = [UIFont systemFontOfSize:10];
-    audioIdLabel.textColor = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
+    audioIdLabel.textColor = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : ME_Color(60, 60, 60);
     audioIdLabel.text = @"音频ID：160910";
     [audioIdLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(audioComments_numberLabel);
@@ -491,7 +495,7 @@
     introductionTextView.backgroundColor = [UIColor clearColor];
     introductionTextView.font = [UIFont systemFontOfSize:12];
     introductionTextView.numberOfLines = 0;
-    introductionTextView.textColor = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor lightGrayColor] : [UIColor lightTextColor];
+    introductionTextView.textColor = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor lightGrayColor] : ME_Color(60, 60, 60);
     [introductionTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.pullArrowIcon.mas_bottom).with.offset(10);
         make.left.equalTo(self.audioIntroductionView).with.offset(10);
@@ -513,10 +517,11 @@
     }];
     self.audioInfoTableView.backgroundColor = [UIColor clearColor];
     self.audioInfoTableView.separatorStyle = NO;
-//    self.audioInfoTableView.delegate = self;
-//    self.audioInfoTableView.dataSource = self;
-//    self.audioInfoTableView.tableFooterView = [[UITableView alloc] init];
-    
+    self.audioInfoTableView.delegate = self;
+    self.audioInfoTableView.dataSource = self;
+    self.audioInfoTableView.tableFooterView = [[UITableView alloc] init];
+    [self.audioInfoTableView registerClass:[MEAudioAvatarTableViewCell class] forCellReuseIdentifier:@"AudioAvatar"];
+    [self.audioInfoTableView registerClass:[MEAudioTagTableViewCell class] forCellReuseIdentifier:@"AudioTag"];
 }
 
 - (void)backView
@@ -923,5 +928,44 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     return 0;
 }
 
+#pragma mark -
+#pragma mark - tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        MEAudioAvatarTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"AudioAvatar"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        return cell;
+    } else {
+        MEAudioTagTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"AudioTag"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        return cell;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        return 55;
+    }
+    return 80;
+}
 
 @end

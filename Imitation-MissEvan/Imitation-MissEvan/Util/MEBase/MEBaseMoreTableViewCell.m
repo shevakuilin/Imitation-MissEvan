@@ -31,7 +31,12 @@
             self.moreButton = [UIButton new];
             self.titleLabel = [UILabel new];
             self.topShadow = [UIImageView new];
+            self.downShadow = [UIImageView new];
             self.historyWordsLabel = [UILabel new];
+            self.creatTimeLabel = [UILabel new];
+            self.avatarNameLabel = [UILabel new];
+            self.leftShadow = [UIImageView new];
+            self.audioTagLabel = [UILabel new];
             
             @ea_weakify(self);
             [self ea_setThemeContents:^(UIView *currentView, NSString *currentThemeIdentifier) {
@@ -43,10 +48,19 @@
                 
                 [self.moreButton setImage:[currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIImage imageNamed:@"goto_ac_16x15_"] : [UIImage imageNamed: @"night_moreicon_7x11_"] forState:UIControlStateNormal];
                 
-                self.topShadow.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_Color(238, 238, 238) : [UIColor lightTextColor];
+                self.topShadow.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_Color(238, 238, 238) : ME_Color(60, 60, 60);
+                
+                self.downShadow.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_Color(238, 238, 238) : ME_Color(60, 60, 60);
                 
                 self.historyWordsLabel.textColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
-  
+                
+                self.creatTimeLabel.textColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor lightGrayColor] : ME_Color(60, 60, 60);
+                
+                self.avatarNameLabel.textColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor lightGrayColor] : [UIColor lightTextColor];
+                
+                self.leftShadow.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
+                
+                self.audioTagLabel.textColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
             }];
 
         }

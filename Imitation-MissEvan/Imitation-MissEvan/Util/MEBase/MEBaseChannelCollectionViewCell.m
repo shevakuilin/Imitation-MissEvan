@@ -18,6 +18,8 @@
             self.titleLabel = [UILabel new];
             self.playedIcon = [UIImageView new];
             self.wordsIcon = [UIImageView new];
+            self.playedLabel = [UILabel new];
+            self.wordsLable = [UILabel new];
             self.downImageView = [UIImageView new];
             self.centerImageView = [UIImageView new];
             self.classifyLabel = [UILabel new];
@@ -35,6 +37,10 @@
                 self.playedIcon.image = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIImage imageNamed:@"npv_icon_playcount_12x10_"] : [UIImage imageNamed:@"night_play_12x10_"];
                 
                 self.wordsIcon.image = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIImage imageNamed:@"biu_ac_12x10_"] : [UIImage imageNamed:@"night_danmaku_12x10_"];
+                
+                self.playedLabel.textColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor lightGrayColor] : ME_Color(60, 60, 60);
+                
+                self.wordsLable.textColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor lightGrayColor] : ME_Color(60, 60, 60);
                 
                 self.downImageView.backgroundColor = [currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor whiteColor] : [UIColor blackColor];
                 

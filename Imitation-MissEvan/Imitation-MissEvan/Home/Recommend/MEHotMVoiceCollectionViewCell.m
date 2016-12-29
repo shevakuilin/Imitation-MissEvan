@@ -12,18 +12,13 @@
 @interface MEHotMVoiceCollectionViewCell ()
 //主题图片
 @property (nonatomic, strong) UIImageView * themesImageView;
-//标题
-//@property (nonatomic, strong) UILabel * titleLabel;
-//播放数
-@property (nonatomic, strong) UILabel * playedLabel;
-//留言数
-@property (nonatomic, strong) UILabel * wordsLable;
+////播放数
+//@property (nonatomic, strong) UILabel * playedLabel;
+////留言数
+//@property (nonatomic, strong) UILabel * wordsLable;
 //播放图片
 @property (nonatomic, strong) UIImageView * playImageView;
-////播放小图标
-//@property (nonatomic, strong) UIImageView * playedIcon;
-////留言小图标
-//@property (nonatomic, strong) UIImageView * wordsIcon;
+
 
 @end
 
@@ -78,20 +73,20 @@
             }];
             
             //播放数量
-            self.playedLabel = [UILabel new];
+//            self.playedLabel = [UILabel new];
             [self addSubview:self.playedLabel];
             self.playedLabel.font = [UIFont systemFontOfSize:10];
-            self.playedLabel.textColor = [UIColor lightGrayColor];//ME_Color(188, 188, 188);
+//            self.playedLabel.textColor = [UIColor lightGrayColor];//ME_Color(188, 188, 188);
             [self.playedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(self.playedIcon).with.offset(0);
                 make.left.equalTo(self.playedIcon.mas_right).with.offset(3);
             }];
             
             //留言数量
-            self.wordsLable = [UILabel new];
+//            self.wordsLable = [UILabel new];
             [self addSubview:self.wordsLable];
             self.wordsLable.font = [UIFont systemFontOfSize:10];
-            self.wordsLable.textColor = [UIColor lightGrayColor];
+//            self.wordsLable.textColor = [UIColor lightGrayColor];
             [self.wordsLable mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(self.playedIcon).with.offset(0);
                 make.right.equalTo(self.playImageView.mas_right).with.offset(0);

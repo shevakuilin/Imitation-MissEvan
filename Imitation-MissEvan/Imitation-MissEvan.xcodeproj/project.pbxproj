@@ -36,6 +36,8 @@
 		778CDE3C1E029F17008D48C9 /* MELasttimeRecordPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 778CDE3B1E029F17008D48C9 /* MELasttimeRecordPopView.m */; };
 		7797DEB11DFA488400444141 /* MEFollowTrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7797DEB01DFA488400444141 /* MEFollowTrackTableViewCell.m */; };
 		77C2E7101DC2FE6A00EC6B4A /* MEUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C2E70F1DC2FE6A00EC6B4A /* MEUtil.m */; };
+		77C3C1431E14DD270084A52C /* MEAudioAvatarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C3C1421E14DD270084A52C /* MEAudioAvatarTableViewCell.m */; };
+		77C3C1461E14EA720084A52C /* MEAudioTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C3C1451E14EA720084A52C /* MEAudioTagTableViewCell.m */; };
 		77C8192F1DBDB6B50004EFFC /* MEHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77C8192E1DBDB6B50004EFFC /* MEHome.storyboard */; };
 		77C819321DBDB6EB0004EFFC /* MEChannel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77C819311DBDB6EB0004EFFC /* MEChannel.storyboard */; };
 		77C819341DBDB7000004EFFC /* MEFollow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77C819331DBDB7000004EFFC /* MEFollow.storyboard */; };
@@ -164,6 +166,10 @@
 		7797DEB01DFA488400444141 /* MEFollowTrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEFollowTrackTableViewCell.m; sourceTree = "<group>"; };
 		77C2E70E1DC2FE6A00EC6B4A /* MEUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEUtil.h; sourceTree = "<group>"; };
 		77C2E70F1DC2FE6A00EC6B4A /* MEUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEUtil.m; sourceTree = "<group>"; };
+		77C3C1411E14DD270084A52C /* MEAudioAvatarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEAudioAvatarTableViewCell.h; sourceTree = "<group>"; };
+		77C3C1421E14DD270084A52C /* MEAudioAvatarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEAudioAvatarTableViewCell.m; sourceTree = "<group>"; };
+		77C3C1441E14EA720084A52C /* MEAudioTagTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEAudioTagTableViewCell.h; sourceTree = "<group>"; };
+		77C3C1451E14EA720084A52C /* MEAudioTagTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEAudioTagTableViewCell.m; sourceTree = "<group>"; };
 		77C8192E1DBDB6B50004EFFC /* MEHome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MEHome.storyboard; sourceTree = "<group>"; };
 		77C819311DBDB6EB0004EFFC /* MEChannel.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MEChannel.storyboard; sourceTree = "<group>"; };
 		77C819331DBDB7000004EFFC /* MEFollow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MEFollow.storyboard; sourceTree = "<group>"; };
@@ -317,6 +323,10 @@
 				778CDE3B1E029F17008D48C9 /* MELasttimeRecordPopView.m */,
 				77523DE91E1365A100F6A432 /* MEDanmakuOptionsCollectionViewCell.h */,
 				77523DEA1E1365A100F6A432 /* MEDanmakuOptionsCollectionViewCell.m */,
+				77C3C1411E14DD270084A52C /* MEAudioAvatarTableViewCell.h */,
+				77C3C1421E14DD270084A52C /* MEAudioAvatarTableViewCell.m */,
+				77C3C1441E14EA720084A52C /* MEAudioTagTableViewCell.h */,
+				77C3C1451E14EA720084A52C /* MEAudioTagTableViewCell.m */,
 			);
 			path = Danmaku;
 			sourceTree = "<group>";
@@ -910,11 +920,13 @@
 				E4C3B5A41DE9E5D500A672D1 /* MEBellsCollectionViewCell.m in Sources */,
 				77E308781E0BAD3E00F04D38 /* MEBaseChannelCollectionViewCell.m in Sources */,
 				776A07E21DFFC90B0049A3A9 /* CBAutoScrollLabel.m in Sources */,
+				77C3C1461E14EA720084A52C /* MEAudioTagTableViewCell.m in Sources */,
 				E4C3B56D1DD7787C00A672D1 /* MEScaleToSize.m in Sources */,
 				E4C3B5A11DE9DD4100A672D1 /* MEVoiceListCollectionViewCell.m in Sources */,
 				E4C3B58B1DDC8F5900A672D1 /* MEChannelTableViewCell.m in Sources */,
 				77DAF2211DDEE9EF001FE1A8 /* MEVoiceListTableViewCell.m in Sources */,
 				77D5BDD61DCB2EBD00EA1DCB /* MEHomeSegmentItem.m in Sources */,
+				77C3C1431E14DD270084A52C /* MEAudioAvatarTableViewCell.m in Sources */,
 				77D5BDD31DCB297800EA1DCB /* MEHomeSegmentControl.m in Sources */,
 				774482471DC1A8860044EE55 /* METabBarViewController.m in Sources */,
 				77D0F1341E09270C00D16470 /* MEBaseSubViewController.m in Sources */,

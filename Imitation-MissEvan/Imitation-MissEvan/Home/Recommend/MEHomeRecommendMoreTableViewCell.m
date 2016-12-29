@@ -26,9 +26,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-//        self.backgroundColor = ME_Color(250, 250, 250);
-        
-//        self.classifyImageView = [UIImageView new];
+
         [self addSubview:self.classifyImageView];
         [self.classifyImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self).with.offset(0);
@@ -36,7 +34,7 @@
             
         }];
         
-//        self.classifyLabel = [UILabel new];
+
         [self addSubview:self.classifyLabel];
         self.classifyLabel.font = [UIFont systemFontOfSize:16];
         [self.classifyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -45,7 +43,7 @@
             
         }];
         
-//        self.moreButton = [UIButton new];
+
         [self addSubview:self.moreButton];
         [self.moreButton setTitle:@"更多" forState:UIControlStateNormal];
         [self.moreButton setTitleColor:ME_Color(167, 167, 167) forState:UIControlStateNormal];

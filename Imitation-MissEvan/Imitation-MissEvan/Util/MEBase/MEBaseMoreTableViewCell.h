@@ -14,6 +14,11 @@
 @property (nonatomic, strong) UIButton * moreButton;//更多
 @property (strong, nonatomic) UILabel * titleLabel;//标题
 @property (nonatomic, strong) UIImageView * topShadow;//顶部线条
+@property (nonatomic, strong) UIImageView * downShadow;//底部线条
 @property (nonatomic, strong) UILabel * historyWordsLabel;//搜索记录
+@property (nonatomic, strong) UILabel * creatTimeLabel;//音频发布日期
+@property (nonatomic, strong) UILabel * avatarNameLabel;//音频作者名
+@property (nonatomic, strong) UIImageView * leftShadow;//左侧线条
+@property (nonatomic, strong) UILabel * audioTagLabel;//音频标签
 
 @end

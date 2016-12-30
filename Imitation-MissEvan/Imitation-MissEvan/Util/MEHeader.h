@@ -25,6 +25,7 @@
 #import "CBAutoScrollLabel.h"//滚动标题
 #import "MEActionSheet.h"
 #import "EATheme.h"//主题切换
+#import "MERippleView.h"//播放界面涟漪
 
 #define ME_DATASOURCE   [MEDataSource shareDataSource]
 

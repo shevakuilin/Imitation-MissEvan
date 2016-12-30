@@ -25,6 +25,7 @@
 @property (nonatomic, strong) UIScrollView * scrollView;
 @property (nonatomic, strong) UIImageView * mosaicThemeImageView;//马赛克主题背景
 @property (nonatomic, strong) UIImageView * themeImageView;//圆形主题图片
+@property (nonatomic, strong) MERippleView  * rippleView;//播放涟漪
 @property (nonatomic, strong) UIView * bottomPlayView;//底部播放view
 @property (nonatomic, strong) UIButton * playButton;//播放按钮
 @property (nonatomic, strong) UIButton * nextButton;//下一首
@@ -99,6 +100,7 @@
     self.navigationItem.rightBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(showMorePopView) withImage:[UIImage imageNamed:@"new_more_32x27_"]];
     
     [self showTitleAndScanfView];//显示标题&弹幕输入框
+    [self addRippleView];//添加播放涟漪
     [self onStartClick];//自动播放
     NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
     recordTime = [[userDefaults objectForKey:@"recordTime"] floatValue];
@@ -187,8 +189,8 @@
     self.themeImageView.image = [UIImage imageNamed:@"hotMVoice_downLeft"];
     self.themeImageView.layer.masksToBounds = YES;
     self.themeImageView.layer.cornerRadius = 110;
-    self.themeImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.themeImageView.layer.borderWidth = 1.5;
+    self.themeImageView.layer.borderColor = [UIColor colorWithWhite:1 alpha:0.5].CGColor;
+    self.themeImageView.layer.borderWidth = 2.5;
     [self.themeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.mosaicThemeImageView);
         
@@ -613,12 +615,25 @@
     }
 }
 
+#pragma mark -
+#pragma marl - 其他动画及弹窗
 - (void)showMorePopView
 {
     //TODO:更多选项
     NSArray * images = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? ME_DATASOURCE.pmIconArray : ME_DATASOURCE.pmNightIconArray;
     MEActionSheet * actionSheet = [MEActionSheet actionSheetWithTitle:@"" options:@[@"定时关闭", @"弹幕设置", @"收藏声音", @"投食鱼干", @"设为铃声"] images:images cancel:@"取消" style:MEActionSheetStyleDefault];
     [actionSheet showInView:self.view.window];
+}
+
+- (void)addRippleView
+{
+    //TODO:添加播放涟漪
+    self.rippleView = [MERippleView new];
+    self.rippleView.frame = self.mosaicThemeImageView.frame;
+    [self.mosaicThemeImageView addSubview:self.rippleView];
+    [self.rippleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.mosaicThemeImageView).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+    }];
 }
 
 #pragma mark -
@@ -731,6 +746,7 @@
         [self.playButton addTarget:self action:@selector(onPauseClick) forControlEvents:UIControlEventTouchUpInside];
         [self.playButton setImage:[UIImage imageNamed:@"npv_button_pause_41x41_"] forState:UIControlStateNormal];
     }
+    [_rippleView showWithRipple:self.themeImageView];//播放涟漪
     //创建一个消息对象
     NSNotification * notice = [NSNotification notificationWithName:@"play" object:nil userInfo:@{@"isPlay":@"YES"}];
     //发送消息给睡觉猫
@@ -748,6 +764,7 @@
     [self.danmakuView pause];
     [self.playButton addTarget:self action:@selector(onStartClick) forControlEvents:UIControlEventTouchUpInside];
     [self.playButton setImage:[UIImage imageNamed:@"npv_button_play_41x41_"] forState:UIControlStateNormal];
+    [_rippleView stopRipple];//停止涟漪
     //创建一个消息对象
     NSNotification * notice = [NSNotification notificationWithName:@"play" object:nil userInfo:@{@"isPlay":@"NO"}];
     //发送消息给睡醒猫

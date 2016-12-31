@@ -746,6 +746,7 @@
         [self.playButton addTarget:self action:@selector(onPauseClick) forControlEvents:UIControlEventTouchUpInside];
         [self.playButton setImage:[UIImage imageNamed:@"npv_button_pause_41x41_"] forState:UIControlStateNormal];
     }
+    [_rippleView stopRipple];//停止涟漪
     [_rippleView showWithRipple:self.themeImageView];//播放涟漪
     //创建一个消息对象
     NSNotification * notice = [NSNotification notificationWithName:@"play" object:nil userInfo:@{@"isPlay":@"YES"}];

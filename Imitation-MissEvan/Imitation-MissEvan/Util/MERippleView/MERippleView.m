@@ -26,16 +26,16 @@
     self.rippleTimer = [NSTimer timerWithTimeInterval:2.5 target:self selector:@selector(addRippleLayer) userInfo:nil repeats:YES];//每条涟漪的执行时间
     [[NSRunLoop currentRunLoop] addTimer:_rippleTimer forMode:NSRunLoopCommonModes];
     self.controls = controls;
-    self.controls.userInteractionEnabled = YES;
-    UITapGestureRecognizer * gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rippleTouched:)];
-    [self.controls addGestureRecognizer:gesture];
+//    self.controls.userInteractionEnabled = YES;
+//    UITapGestureRecognizer * gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rippleTouched:)];
+//    [self.controls addGestureRecognizer:gesture];
 }
 
-- (void)rippleTouched:(id)sender
-{
-    [self closeRippleTimer];
-    [self addRippleLayer];
-}
+//- (void)rippleTouched:(id)sender
+//{
+//    [self closeRippleTimer];
+//    [self addRippleLayer];
+//}
 
 - (CGRect)makeEndRect
 {

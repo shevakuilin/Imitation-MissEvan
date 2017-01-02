@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 @interface UIImage(scale)
-
+//改变button的图片大小
 - (UIImage*)scaleToSize:(CGSize)size;
 
 @end

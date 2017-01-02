@@ -65,6 +65,8 @@
 		77E308781E0BAD3E00F04D38 /* MEBaseChannelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E308771E0BAD3E00F04D38 /* MEBaseChannelCollectionViewCell.m */; };
 		77E3087B1E0BC25000F04D38 /* MEBaseMoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E3087A1E0BC25000F04D38 /* MEBaseMoreTableViewCell.m */; };
 		C9539F1C10181F2A520BDDE3 /* libPods-Imitation-MissEvan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20DBB35C9F8E09611DFD0293 /* libPods-Imitation-MissEvan.a */; };
+		E442E69D1E17919E00BE3F5E /* MEDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E442E69C1E17919E00BE3F5E /* MEDataModel.m */; };
+		E442E6A01E1AA15600BE3F5E /* MENetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E442E69F1E1AA15600BE3F5E /* MENetworkManager.m */; };
 		E445057C1DFC557C0094FEDE /* METabBarCatImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E445057B1DFC557C0094FEDE /* METabBarCatImageView.m */; };
 		E44993BB1E081EE600396D48 /* METhemeSwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E44993BA1E081EE600396D48 /* METhemeSwitchViewController.m */; };
 		E44993BE1E082CAA00396D48 /* METhemeSwitchCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E44993BD1E082CAA00396D48 /* METhemeSwitchCollectionViewCell.m */; };
@@ -221,6 +223,10 @@
 		77E308791E0BC25000F04D38 /* MEBaseMoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEBaseMoreTableViewCell.h; sourceTree = "<group>"; };
 		77E3087A1E0BC25000F04D38 /* MEBaseMoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEBaseMoreTableViewCell.m; sourceTree = "<group>"; };
 		78521F705BB0DCF560EE7105 /* Pods-Imitation-MissEvan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imitation-MissEvan.release.xcconfig"; path = "Pods/Target Support Files/Pods-Imitation-MissEvan/Pods-Imitation-MissEvan.release.xcconfig"; sourceTree = "<group>"; };
+		E442E69B1E17919E00BE3F5E /* MEDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEDataModel.h; sourceTree = "<group>"; };
+		E442E69C1E17919E00BE3F5E /* MEDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEDataModel.m; sourceTree = "<group>"; };
+		E442E69E1E1AA15600BE3F5E /* MENetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MENetworkManager.h; sourceTree = "<group>"; };
+		E442E69F1E1AA15600BE3F5E /* MENetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MENetworkManager.m; sourceTree = "<group>"; };
 		E445057A1DFC557C0094FEDE /* METabBarCatImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METabBarCatImageView.h; sourceTree = "<group>"; };
 		E445057B1DFC557C0094FEDE /* METabBarCatImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METabBarCatImageView.m; sourceTree = "<group>"; };
 		E44993B91E081EE600396D48 /* METhemeSwitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METhemeSwitchViewController.h; sourceTree = "<group>"; };
@@ -564,6 +570,7 @@
 		77C819441DBDBB0D0004EFFC /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				E442E69A1E17918300BE3F5E /* MEDataModel */,
 				778430EE1E163A1F004A4AB8 /* MERippleView */,
 				77D0F1251E08FDB100D16470 /* MEBase */,
 				778CDE2D1E0226D6008D48C9 /* MEActionSheet */,
@@ -578,6 +585,8 @@
 				77C2E70F1DC2FE6A00EC6B4A /* MEUtil.m */,
 				E4C3B56B1DD7787C00A672D1 /* MEScaleToSize.h */,
 				E4C3B56C1DD7787C00A672D1 /* MEScaleToSize.m */,
+				E442E69E1E1AA15600BE3F5E /* MENetworkManager.h */,
+				E442E69F1E1AA15600BE3F5E /* MENetworkManager.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -653,6 +662,15 @@
 				20DBB35C9F8E09611DFD0293 /* libPods-Imitation-MissEvan.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E442E69A1E17918300BE3F5E /* MEDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				E442E69B1E17919E00BE3F5E /* MEDataModel.h */,
+				E442E69C1E17919E00BE3F5E /* MEDataModel.m */,
+			);
+			path = MEDataModel;
 			sourceTree = "<group>";
 		};
 		E44993B81E081CA000396D48 /* ThemeSwitch */ = {
@@ -921,6 +939,7 @@
 				770DBD401DEC23A30019D206 /* MESearchView.m in Sources */,
 				778CDE301E022714008D48C9 /* MEActionSheet.m in Sources */,
 				77C819541DBE00740004EFFC /* MEDataSource.m in Sources */,
+				E442E69D1E17919E00BE3F5E /* MEDataModel.m in Sources */,
 				E4C3B58E1DDC8F5900A672D1 /* MEHomeRecommendTopTableViewCell.m in Sources */,
 				771AB1F01DD0560000DDBA44 /* MEPageControl+AutoScroll.m in Sources */,
 				776A07B41DFF8AE00049A3A9 /* MEDanmakuViewController.m in Sources */,
@@ -935,6 +954,7 @@
 				E4C3B5981DE9B2D000A672D1 /* MEHomeRecommendTopCollectionViewCell.m in Sources */,
 				E4C3B58C1DDC8F5900A672D1 /* MECustomColumnTableViewCell.m in Sources */,
 				776A07CC1DFF8FD10049A3A9 /* DanmakuRenderer.m in Sources */,
+				E442E6A01E1AA15600BE3F5E /* MENetworkManager.m in Sources */,
 				E4C3B5AD1DEF0BAD00A672D1 /* MEMyUserInfoTableViewCell.m in Sources */,
 				E4C3B5A41DE9E5D500A672D1 /* MEBellsCollectionViewCell.m in Sources */,
 				77E308781E0BAD3E00F04D38 /* MEBaseChannelCollectionViewCell.m in Sources */,

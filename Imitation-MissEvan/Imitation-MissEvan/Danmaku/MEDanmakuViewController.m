@@ -22,6 +22,7 @@
     CGFloat recordTime;//上次播放时间
     NSInteger audioIntroducHeight;//简介高度
 }
+
 @property (nonatomic, strong) UIScrollView * scrollView;
 @property (nonatomic, strong) UIImageView * mosaicThemeImageView;//马赛克主题背景
 @property (nonatomic, strong) UIImageView * themeImageView;//圆形主题图片
@@ -56,6 +57,16 @@
 @property (nonatomic, strong) MELasttimeRecordPopView * lasttimePopView;//上次播放记录
 @property (nonatomic, strong) NSTimer * recordTimer;//播放记录计时器
 
+//音频播放
+@property (nonatomic, strong) UIProgressView * bufferProgressView;//缓冲进度条
+@property (nonatomic, strong) NSMutableArray * audioDataSource;//音频数据源
+@property (nonatomic, strong) AVAudioPlayer * player;
+@property (nonatomic, assign) NSInteger totalUnitCount;//需要下载文件的总大小
+@property (nonatomic, assign) NSInteger completedUnitCount;//当前已经下载的大小
+
+
+
+
 @end
 
 @implementation MEDanmakuViewController
@@ -85,6 +96,14 @@
     [gesture addTarget:self action:@selector(sliderGoRecordTime)];
     [self.lasttimePopView addGestureRecognizer:gesture];
     
+    self.audioDataSource = [[NSMutableArray alloc] init];
+    NSString * theUrl = @"201611/06/38ba0f77d5f3abb0ef293375da1adf37201931.mp3";
+    NSArray * array = @[@{@"url":[NSString stringWithFormat:@"%@128BIT/%@", ME_URL_GLOBAL,  theUrl]}];
+    for (NSDictionary * dic in array) {
+        MEDataModel * model = [[MEDataModel alloc] initWithDic:dic];
+        [self.audioDataSource addObject:model];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,8 +119,9 @@
     self.navigationItem.rightBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(showMorePopView) withImage:[UIImage imageNamed:@"new_more_32x27_"]];
     
     [self showTitleAndScanfView];//显示标题&弹幕输入框
-    [self addRippleView];//添加播放涟漪
-    [self onStartClick];//自动播放
+    [self loadNetworkMusic];
+//    [self addRippleView];//添加播放涟漪
+//    [self onStartClick];//自动播放
     NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
     recordTime = [[userDefaults objectForKey:@"recordTime"] floatValue];
     if (recordTime > 0) {
@@ -318,12 +338,24 @@
         make.size.height.mas_offset(20);
     }];
     
-    //TODO:进度条
+    //TODO:缓冲进度
+    self.bufferProgressView = [UIProgressView new];
+    [self.scrollView insertSubview:self.bufferProgressView aboveSubview:timerView];
+    [self.bufferProgressView setProgressTintColor:[UIColor grayColor]];
+    [self.bufferProgressView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mosaicThemeImageView.mas_bottom);
+        make.left.equalTo(self.scrollView);
+        make.right.equalTo(self.scrollView);
+        
+        make.size.mas_equalTo(CGSizeMake(ME_Width, 1.5));
+    }];
+    
+    //TODO:播放进度
     self.slider = [UISlider new];
-    [self.scrollView insertSubview:self.slider aboveSubview:timerView];//插入进度条
+    [self.scrollView insertSubview:self.slider aboveSubview:self.bufferProgressView];//插入进度条
     [self.slider setThumbImage:[UIImage imageNamed:@"fs_img_slider_circle_14x14_"] forState:UIControlStateNormal];
     [self.slider setMinimumTrackTintColor:ME_Color(215, 32, 27)];
-    [self.slider setMaximumTrackTintColor:[UIColor grayColor]];
+    [self.slider setMaximumTrackTintColor:[UIColor clearColor]];
     [self.slider mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mosaicThemeImageView.mas_bottom);
         make.left.equalTo(self.scrollView);
@@ -358,7 +390,7 @@
     } else {
         self.allTimeLabel.textColor = [UIColor lightTextColor];
     }
-    self.allTimeLabel.text = @"02:00";
+    self.allTimeLabel.text = @"05:26";
     [self.allTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(timerView).with.offset(6);
         make.right.equalTo(timerView).with.offset(-10);
@@ -606,7 +638,7 @@
     }
     NSInteger recordSecons = recordTime;
     if (recordTime > 0) {
-        self.slider.value = recordTime / 120.0;//120.0 / recordTime;
+        self.slider.value = recordTime / 326.0;//120.0 / recordTime;
         NSString * str_minute = [NSString stringWithFormat:@"%02ld", recordSecons / 60];
         NSString * str_second = [NSString stringWithFormat:@"%02ld", recordSecons % 60];
         NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
@@ -709,7 +741,7 @@
 #pragma mark - 弹幕设置相关
 - (float)danmakuViewGetPlayTime:(DanmakuView *)danmakuView
 {
-    return self.slider.value * 120.0;
+    return self.slider.value * 326.0;
 }
 
 - (BOOL)danmakuViewIsBuffering:(DanmakuView *)danmakuView
@@ -724,7 +756,7 @@
 
 - (void)onTimeCount
 {
-    self.slider.value += 0.1 / 120;
+    self.slider.value += 0.1 / 326.0;
     if (self.slider.value == 1) {//如果播放结束
         self.slider.value = 0;
         [self.timer invalidate];
@@ -742,9 +774,13 @@
         if (!self.timer) {
             self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(onTimeCount) userInfo:nil repeats:YES];
         }
-        [self.danmakuView start];
+        [self.danmakuView start];//弹幕开始
         [self.playButton addTarget:self action:@selector(onPauseClick) forControlEvents:UIControlEventTouchUpInside];
         [self.playButton setImage:[UIImage imageNamed:@"npv_button_pause_41x41_"] forState:UIControlStateNormal];
+    }
+    if (!self.player || self.player.isPlaying == NO) {
+//        [self playNetworkMusic];
+        [self.player play];//播放音频
     }
     [_rippleView stopRipple];//停止涟漪
     [_rippleView showWithRipple:self.themeImageView];//播放涟漪
@@ -762,9 +798,10 @@
         [self.timer invalidate];
         self.timer = nil;
     }
-    [self.danmakuView pause];
+    [self.danmakuView pause];//弹幕暂停
     [self.playButton addTarget:self action:@selector(onStartClick) forControlEvents:UIControlEventTouchUpInside];
     [self.playButton setImage:[UIImage imageNamed:@"npv_button_play_41x41_"] forState:UIControlStateNormal];
+    [self.player pause];//音频暂停
     [_rippleView stopRipple];//停止涟漪
     //创建一个消息对象
     NSNotification * notice = [NSNotification notificationWithName:@"play" object:nil userInfo:@{@"isPlay":@"NO"}];
@@ -786,7 +823,7 @@
 - (void)onTimeChange
 {
     //TODO:进度条时间
-    seconds = self.slider.value * 120.0;
+    seconds = self.slider.value * 326.0;
     NSString * str_minute = [NSString stringWithFormat:@"%02ld",seconds / 60];
     NSString * str_second = [NSString stringWithFormat:@"%02ld",seconds % 60];
     NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
@@ -892,6 +929,56 @@
         self.title_DanmakuScanfView.closeOrOpenButton.selected = NO;
         return;
     }
+}
+
+#pragma mark -
+#pragma mark - 播放音频相关设置
+/**
+ *  取得网络文件路径
+ *
+ *  @return 文件路径
+ */
+- (NSURL *)getNetworkUrl{
+    MEDataModel * model = [[MEDataModel alloc] init];
+    for (NSInteger i = 0; i < self.audioDataSource.count; i ++) {
+        model = self.audioDataSource[i];
+    }
+    NSString * urlStr = model.audioUrl;
+    NSURL * url = [NSURL URLWithString:urlStr];
+    
+    return url;
+}
+
+- (void)loadNetworkMusic
+{
+    //TODO: 下载音频
+    NSURL * url = [self getNetworkUrl];
+    //开始下载
+    [MENetworkManager downFromServerWithSoundUrl:url progress:^(NSProgress *downloadProgress) {
+        //TODO:下载进度
+        // 给Progress添加监听 KVO
+        MELog(@"%f", 1.0 * downloadProgress.completedUnitCount / downloadProgress.totalUnitCount);
+        //回到主队列刷新UI
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //设置进度条的百分比
+            self.bufferProgressView.progress = 1.0 * downloadProgress.completedUnitCount / downloadProgress.totalUnitCount;
+        });
+
+    } destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+        //返回文件路径
+        NSString * cachesPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+        NSString * path = [cachesPath stringByAppendingPathComponent:response.suggestedFilename];
+        return [NSURL fileURLWithPath:path];
+        
+    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+        //设置下载完成操作
+        //filePath就是下载文件的位置，可以解压，也可以直接拿来使用
+        NSString * soundPath = [filePath path];
+        NSURL * fileURL = [NSURL fileURLWithPath:soundPath];
+        self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
+        [self addRippleView];//添加播放涟漪
+        [self onStartClick];//自动播放
+    }];
 }
 
 #pragma mark -

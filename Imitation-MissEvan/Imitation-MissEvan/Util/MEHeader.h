@@ -9,8 +9,10 @@
 #ifndef MEHeader_h
 #define MEHeader_h
 
+#import <AVFoundation/AVFoundation.h>
 #import "MEDataSource.h"
 #import <Masonry.h>
+#import <AFNetworking.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UIImage+GIF.h"
 #import "MEUtil.h"
@@ -26,6 +28,9 @@
 #import "MEActionSheet.h"
 #import "EATheme.h"//主题切换
 #import "MERippleView.h"//播放界面涟漪
+#import "MEDataModel.h"
+#import "MBProgressHUD.h"
+#import "MENetworkManager.h"//AFNetworking封装管理
 
 #define ME_DATASOURCE   [MEDataSource shareDataSource]
 

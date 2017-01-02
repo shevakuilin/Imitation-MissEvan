@@ -36,4 +36,10 @@
 + (NSData *)imageWithImage:(UIImage*)image
               scaledToSize:(CGSize)newSize;
 
+/** 文字提示
+ *
+ * @param string  需要显示的内容
+ */
++ (void)showHubWithTitle:(NSString *)string;
+
 @end

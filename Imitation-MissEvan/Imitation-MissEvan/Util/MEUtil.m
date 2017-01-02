@@ -191,4 +191,17 @@
     return UIImageJPEGRepresentation(newImage, 0.8);
 }
 
+//文字提示
++ (void)showHubWithTitle:(NSString *)string
+{
+    UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
+    MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:window animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.label.text = string;
+    hud.label.textColor = [UIColor whiteColor];
+    hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;//纯色模式，即关闭模糊效果
+    hud.bezelView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    [hud hideAnimated:YES afterDelay:5];
+}
+
 @end

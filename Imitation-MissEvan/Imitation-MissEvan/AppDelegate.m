@@ -32,6 +32,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     [self customAppearance];
+    [self networkMonitoring];
     
     return YES;
 }
@@ -61,6 +62,51 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)networkMonitoring
+{
+    //网络监控句柄
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    
+    //要监控网络连接状态，必须要先调用单例的startMonitoring方法
+    [manager startMonitoring];
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        
+        //status:
+        
+        //AFNetworkReachabilityStatusUnknown          = -1,  未知
+        
+        //AFNetworkReachabilityStatusNotReachable     = 0,   未连接
+        
+        //AFNetworkReachabilityStatusReachableViaWWAN = 1,   3G
+        
+        //AFNetworkReachabilityStatusReachableViaWiFi = 2,   无线连接
+        
+        switch (status) {
+            case -1:
+                MELog(@"未知网络");
+                [MEUtil showHubWithTitle:@"未知网络"];
+                break;
+            case 0:
+                MELog(@"无网络");
+                [MEUtil showHubWithTitle:@"无网络"];
+                break;
+            case 1:
+                MELog(@"2G/3G/4G网络");
+                [MEUtil showHubWithTitle:@"当前2G/3G/4G网络"];
+                break;
+            case 2:
+                MELog(@"wifi连接");
+                [MEUtil showHubWithTitle:@"wifi已连接"];
+                break;
+                
+            default:
+                break;
+        }
+        
+    }];
+
 }
 
 - (void)customAppearance

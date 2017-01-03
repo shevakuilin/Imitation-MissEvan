@@ -17,6 +17,7 @@
 #import <notify.h>
 #import <MediaPlayer/MediaPlayer.h>
 
+
 @interface MEDanmakuViewController ()<UIScrollViewDelegate, DanmakuDelegate, UITextFieldDelegate, UIActionSheetDelegate, MEActionSheetDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource>
 {
     BOOL isFirst;//是否第一次进入该界面
@@ -65,9 +66,6 @@
 @property (nonatomic, strong) NSMutableArray * audioDataSource;//音频数据源
 @property (nonatomic, strong) AVAudioPlayer * player;
 @property (nonatomic, assign) NSInteger totalUnitCount;//需要下载文件的总大小
-
-
-
 
 @end
 
@@ -354,7 +352,7 @@
         make.size.height.mas_offset(20);
     }];
     
-    //TODO:缓冲进度
+    //TODO:缓冲进度条
     self.bufferProgressView = [UIProgressView new];
     [self.scrollView insertSubview:self.bufferProgressView aboveSubview:timerView];
     [self.bufferProgressView setProgressTintColor:[UIColor grayColor]];
@@ -366,7 +364,7 @@
         make.size.mas_equalTo(CGSizeMake(ME_Width, 1.5));
     }];
     
-    //TODO:播放进度
+    //TODO:播放进度条
     self.slider = [UISlider new];
     [self.scrollView insertSubview:self.slider aboveSubview:self.bufferProgressView];//插入进度条
     [self.slider setThumbImage:[UIImage imageNamed:@"fs_img_slider_circle_14x14_"] forState:UIControlStateNormal];
@@ -773,7 +771,7 @@
 
 - (void)onTimeCount
 {
-    self.slider.value += 0.1 / 326.0;
+    self.slider.value = self.player.currentTime / self.player.duration;//+= 0.1 / 326.0;
     if (self.slider.value == 1) {//如果播放结束
         self.slider.value = 0;
         [self.timer invalidate];
@@ -781,7 +779,12 @@
         //单曲循环
         [self onStartClick];
     }
-    [self onTimeChange];
+    seconds = self.slider.value * 326.0;
+    NSString * str_minute = [NSString stringWithFormat:@"%02ld",seconds / 60];
+    NSString * str_second = [NSString stringWithFormat:@"%02ld",seconds % 60];
+    NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
+    self.currentTimeLabel.text = format_time;//[NSString stringWithFormat:@"%.0fs", self.slider.value * 120.0];
+//    [self onTimeChange];
 }
 
 - (void)onStartClick
@@ -840,11 +843,13 @@
 - (void)onTimeChange
 {
     //TODO:进度条时间
-    seconds = self.slider.value * 326.0;
-    NSString * str_minute = [NSString stringWithFormat:@"%02ld",seconds / 60];
-    NSString * str_second = [NSString stringWithFormat:@"%02ld",seconds % 60];
-    NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
-    self.currentTimeLabel.text = format_time;//[NSString stringWithFormat:@"%.0fs", self.slider.value * 120.0];
+//    seconds = self.slider.value * 326.0;
+    [self.player setCurrentTime:self.slider.value * self.player.duration];
+
+//    NSString * str_minute = [NSString stringWithFormat:@"%02ld",seconds / 60];
+//    NSString * str_second = [NSString stringWithFormat:@"%02ld",seconds % 60];
+//    NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
+//    self.currentTimeLabel.text = format_time;//[NSString stringWithFormat:@"%.0fs", self.slider.value * 120.0];
 }
 
 - (void)showTitleAndScanfView
@@ -974,7 +979,6 @@
     [MENetworkManager downFromServerWithSoundUrl:url progress:^(NSProgress *downloadProgress) {
         //TODO:下载进度
         // 给Progress添加监听 KVO
-        self.totalUnitCount = downloadProgress.totalUnitCount;
         MELog(@"%f", 1.0 * downloadProgress.completedUnitCount / downloadProgress.totalUnitCount);
         //回到主队列刷新UI
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -993,10 +997,11 @@
         if (error) {
             MELog(@"下载音频失败，原因：%@", error);
         } else {
-            //filePath就是下载文件的位置，可以解压，也可以直接拿来使用
+            //filePath为下载文件的位置
             NSString * soundPath = [filePath path];
             NSURL * fileURL = [NSURL fileURLWithPath:soundPath];
             self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
+            MELog(@"音频总时长为=======%f", self.player.duration);
             [self addRippleView];//添加播放涟漪
             [self onStartClick];//自动播放
             //后台播放显示信息设置
@@ -1016,18 +1021,22 @@
                 }
                 isPlayingNow = !isPlayingNow;
                 break;
+                
             case UIEventSubtypeRemoteControlPause:
                 if (isPlayingNow) {
                     [self.player pause];
                 }
                 isPlayingNow = !isPlayingNow;
                 break;
+                
             case UIEventSubtypeRemoteControlNextTrack:
                 MELog(@"下一首");
                 break;
+                
             case UIEventSubtypeRemoteControlPreviousTrack:
                 MELog(@"上一首 ");
                 break;
+                
             default:
                 break;
         }
@@ -1044,9 +1053,9 @@
     
     NSDictionary * dic = @{MPMediaItemPropertyTitle:@"【少年霜】乱世歌者",//歌曲名
                           MPMediaItemPropertyArtist:@"【少年霜】",//歌手
-                          MPMediaItemPropertyArtwork:artWork//歌曲封面
-//                          MPMediaItemPropertyPlaybackDuration: @"\(audioPlayer.duration)",
-//                          MPNowPlayingInfoPropertyElapsedPlaybackTime: @"\(audioPlayer.currentTime)"
+                          MPMediaItemPropertyArtwork:artWork,//歌曲封面
+                          MPMediaItemPropertyPlaybackDuration: [NSNumber numberWithDouble:self.player.duration],//歌曲总时长
+                          MPNowPlayingInfoPropertyElapsedPlaybackTime: [NSNumber numberWithDouble:self.player.currentTime]//歌曲当前已播放时长
                           };
     [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:dic];
 }

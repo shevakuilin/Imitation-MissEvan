@@ -33,6 +33,7 @@
     [self.window makeKeyAndVisible];
     [self customAppearance];
     [self networkMonitoring];
+    [self otherSetting];
     
     return YES;
 }
@@ -64,6 +65,15 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void)otherSetting
+{
+    //注册后台播放
+    AVAudioSession * session = [AVAudioSession sharedInstance];
+    [session setActive:YES error:nil];
+    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+    
+}
+
 - (void)networkMonitoring
 {
     //网络监控句柄
@@ -72,15 +82,10 @@
     //要监控网络连接状态，必须要先调用单例的startMonitoring方法
     [manager startMonitoring];
     [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        
         //status:
-        
         //AFNetworkReachabilityStatusUnknown          = -1,  未知
-        
         //AFNetworkReachabilityStatusNotReachable     = 0,   未连接
-        
         //AFNetworkReachabilityStatusReachableViaWWAN = 1,   3G
-        
         //AFNetworkReachabilityStatusReachableViaWiFi = 2,   无线连接
         
         switch (status) {

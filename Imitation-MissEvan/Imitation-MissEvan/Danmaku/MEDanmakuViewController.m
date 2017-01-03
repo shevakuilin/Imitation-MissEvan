@@ -14,6 +14,8 @@
 #import "MEAudioAvatarTableViewCell.h"
 #import "MEAudioTagTableViewCell.h"
 #import "MEVoiceListOfContainsTableViewCell.h"
+#import <notify.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface MEDanmakuViewController ()<UIScrollViewDelegate, DanmakuDelegate, UITextFieldDelegate, UIActionSheetDelegate, MEActionSheetDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource>
 {
@@ -21,6 +23,7 @@
     NSInteger seconds;//进度条时间
     CGFloat recordTime;//上次播放时间
     NSInteger audioIntroducHeight;//简介高度
+    BOOL isPlayingNow;
 }
 
 @property (nonatomic, strong) UIScrollView * scrollView;
@@ -62,7 +65,6 @@
 @property (nonatomic, strong) NSMutableArray * audioDataSource;//音频数据源
 @property (nonatomic, strong) AVAudioPlayer * player;
 @property (nonatomic, assign) NSInteger totalUnitCount;//需要下载文件的总大小
-@property (nonatomic, assign) NSInteger completedUnitCount;//当前已经下载的大小
 
 
 
@@ -81,6 +83,7 @@
     isFirst = YES;
     self.touchRow = 0;
     audioIntroducHeight = 100;
+    isPlayingNow = YES;
     
     [self customView];
     //TODO:在屏幕外创建播放记录
@@ -96,6 +99,7 @@
     [gesture addTarget:self action:@selector(sliderGoRecordTime)];
     [self.lasttimePopView addGestureRecognizer:gesture];
     
+    //添加数据源
     self.audioDataSource = [[NSMutableArray alloc] init];
     NSString * theUrl = @"201611/06/38ba0f77d5f3abb0ef293375da1adf37201931.mp3";
     NSArray * array = @[@{@"url":[NSString stringWithFormat:@"%@128BIT/%@", ME_URL_GLOBAL,  theUrl]}];
@@ -114,12 +118,16 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    //告诉系统接受远程响应事件，并注册成为第一响应者
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    [self becomeFirstResponder];
+    
     //设置返回及弹窗选项barItem
     self.navigationItem.leftBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(backView) withImage:[UIImage imageNamed:@"sp_button_back_22x22_"]];
     self.navigationItem.rightBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(showMorePopView) withImage:[UIImage imageNamed:@"new_more_32x27_"]];
     
     [self showTitleAndScanfView];//显示标题&弹幕输入框
-    [self loadNetworkMusic];
+    [self loadNetworkMusic];//下载音频
 //    [self addRippleView];//添加播放涟漪
 //    [self onStartClick];//自动播放
     NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
@@ -145,6 +153,9 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
+    [self resignFirstResponder];
+    
     [self.navigationController.navigationBar lt_reset];//重置
     if ([ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal]) {
         [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor blackColor]}];
@@ -159,6 +170,11 @@
         NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:@(seconds) forKey:@"recordTime"];
     }
+}
+
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
 }
 
 - (void)setNavigationBarTransparent
@@ -385,12 +401,13 @@
     self.allTimeLabel = [UILabel new];
     [timerView addSubview:self.allTimeLabel];
     self.allTimeLabel.font = [UIFont systemFontOfSize:9];
+    self.allTimeLabel.text = @"05:26";
     if ([ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal]) {
         self.allTimeLabel.textColor = [UIColor lightGrayColor];
     } else {
         self.allTimeLabel.textColor = [UIColor lightTextColor];
     }
-    self.allTimeLabel.text = @"05:26";
+//    self.allTimeLabel.text = @"05:26";
     [self.allTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(timerView).with.offset(6);
         make.right.equalTo(timerView).with.offset(-10);
@@ -957,6 +974,7 @@
     [MENetworkManager downFromServerWithSoundUrl:url progress:^(NSProgress *downloadProgress) {
         //TODO:下载进度
         // 给Progress添加监听 KVO
+        self.totalUnitCount = downloadProgress.totalUnitCount;
         MELog(@"%f", 1.0 * downloadProgress.completedUnitCount / downloadProgress.totalUnitCount);
         //回到主队列刷新UI
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -972,13 +990,65 @@
         
     } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
         //设置下载完成操作
-        //filePath就是下载文件的位置，可以解压，也可以直接拿来使用
-        NSString * soundPath = [filePath path];
-        NSURL * fileURL = [NSURL fileURLWithPath:soundPath];
-        self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
-        [self addRippleView];//添加播放涟漪
-        [self onStartClick];//自动播放
+        if (error) {
+            MELog(@"下载音频失败，原因：%@", error);
+        } else {
+            //filePath就是下载文件的位置，可以解压，也可以直接拿来使用
+            NSString * soundPath = [filePath path];
+            NSURL * fileURL = [NSURL fileURLWithPath:soundPath];
+            self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
+            [self addRippleView];//添加播放涟漪
+            [self onStartClick];//自动播放
+            //后台播放显示信息设置
+            [self setPlayingInfo];
+            
+        }
     }];
+}
+
+#pragma mark - 接收方法的设置
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event {
+    if (event.type == UIEventTypeRemoteControl) {  //判断是否为远程控制
+        switch (event.subtype) {
+            case  UIEventSubtypeRemoteControlPlay:
+                if (!isPlayingNow) {
+                    [self.player play];
+                }
+                isPlayingNow = !isPlayingNow;
+                break;
+            case UIEventSubtypeRemoteControlPause:
+                if (isPlayingNow) {
+                    [self.player pause];
+                }
+                isPlayingNow = !isPlayingNow;
+                break;
+            case UIEventSubtypeRemoteControlNextTrack:
+                MELog(@"下一首");
+                break;
+            case UIEventSubtypeRemoteControlPreviousTrack:
+                MELog(@"上一首 ");
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+- (void)setPlayingInfo {
+    //设置后台播放时显示的东西，例如歌曲名字，图片等
+    UIImage * image = [UIImage imageNamed:@"hotMVoice_downLeft"];
+    //iOS10中，[[MPMediaItemArtwork alloc] initWithImage:]的方法已经废止，要用下面的方法来显示获取图片
+    MPMediaItemArtwork * artWork = [[MPMediaItemArtwork alloc] initWithBoundsSize:image.size requestHandler:^UIImage * _Nonnull(CGSize size) {
+        return image;
+    }];
+    
+    NSDictionary * dic = @{MPMediaItemPropertyTitle:@"【少年霜】乱世歌者",//歌曲名
+                          MPMediaItemPropertyArtist:@"【少年霜】",//歌手
+                          MPMediaItemPropertyArtwork:artWork//歌曲封面
+//                          MPMediaItemPropertyPlaybackDuration: @"\(audioPlayer.duration)",
+//                          MPNowPlayingInfoPropertyElapsedPlaybackTime: @"\(audioPlayer.currentTime)"
+                          };
+    [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:dic];
 }
 
 #pragma mark -

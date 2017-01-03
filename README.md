@@ -80,3 +80,12 @@ Version: 1.1.3
 
 From: ->(https://github.com/JinXinLiang/EAThemeSample)
 
+
+----------------
+###MBProgressHUD
+
+Version: 1.0.0
+
+
+From: ->(https://github.com/jdg/MBProgressHUD)
+

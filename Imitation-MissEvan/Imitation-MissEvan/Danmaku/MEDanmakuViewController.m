@@ -84,6 +84,7 @@
     isPlayingNow = YES;
     
     [self customView];
+    
     //TODO:在屏幕外创建播放记录
     self.lasttimePopView = [MELasttimeRecordPopView new];
     [self.scrollView insertSubview:self.lasttimePopView aboveSubview:self.title_DanmakuScanfView];//播放记录不能跟随屏幕的滚动而移动
@@ -124,15 +125,23 @@
     self.navigationItem.leftBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(backView) withImage:[UIImage imageNamed:@"sp_button_back_22x22_"]];
     self.navigationItem.rightBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(showMorePopView) withImage:[UIImage imageNamed:@"new_more_32x27_"]];
     
+//    NSDictionary * dic = [[MPNowPlayingInfoCenter defaultCenter] nowPlayingInfo];
+//    if (dic) {
+//        MELog(@"dic打印的内容=======%@", dic);
+//        self.slider.value = [dic[MPNowPlayingInfoPropertyElapsedPlaybackTime] floatValue];
+//        [self onTimeChange];
+//        NSInteger recordSecons = [dic[@"playbackDuration"] integerValue];
+//        NSString * str_minute = [NSString stringWithFormat:@"%02ld", recordSecons / 60];
+//        NSString * str_second = [NSString stringWithFormat:@"%02ld", recordSecons % 60];
+//        NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
+//        self.currentTimeLabel.text = format_time;
+//        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(onTimeCount) userInfo:nil repeats:YES];
+//        
+//    } else {
+        [self loadNetworkMusic];//下载音频
+//    }
     [self showTitleAndScanfView];//显示标题&弹幕输入框
-    [self loadNetworkMusic];//下载音频
-//    [self addRippleView];//添加播放涟漪
-//    [self onStartClick];//自动播放
-    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-    recordTime = [[userDefaults objectForKey:@"recordTime"] floatValue];
-    if (recordTime > 0) {
-        [self showLasttimeRecord];//上次播放记录从屏幕外滑入
-    }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -146,6 +155,7 @@
     
     NSData * imageDate = [MEUtil imageWithImage:self.mosaicThemeImageView.image scaledToSize:CGSizeMake(200, 200)];
     self.mosaicThemeImageView.image = [UIImage imageWithData:imageDate];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -265,23 +275,7 @@
     self.title_DanmakuScanfView.danmakuTextField.delegate = self;
     [self.title_DanmakuScanfView.danmakuTextField addTarget:self action:@selector(textfieldVauleChange:) forControlEvents:UIControlEventEditingChanged];
     //开关弹幕
-//    UITapGestureRecognizer * closeOrOpenGesture = [[UITapGestureRecognizer alloc] init];
-//    [closeOrOpenGesture addTarget:self action:@selector(closeOrOpen)];
-//    [self.title_DanmakuScanfView.closeOrOpenDanmaku addGestureRecognizer:closeOrOpenGesture];
     [self.title_DanmakuScanfView.closeOrOpenButton addTarget:self action:@selector(closeOrOpen) forControlEvents:UIControlEventTouchUpInside];
-    
-//    UIButton * button = [UIButton new];
-//    [self.scrollView addSubview:button];
-//    [button setTitle:@"弹幕" forState:UIControlStateNormal];
-//    [button setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-//    [button mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.bottom.equalTo(self.scrollView).with.offset(0);
-//        make.top.equalTo(self.mosaicThemeImageView.mas_bottom).with.offset(1000);
-//
-//        make.centerX.equalTo(self.scrollView);
-//        
-//        make.size.mas_equalTo(CGSizeMake(100, 100));
-//    }];
     
     self.bottomPlayView = [UIView new];
     [self.view addSubview:self.bottomPlayView];
@@ -405,7 +399,6 @@
     } else {
         self.allTimeLabel.textColor = [UIColor lightTextColor];
     }
-//    self.allTimeLabel.text = @"05:26";
     [self.allTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(timerView).with.offset(6);
         make.right.equalTo(timerView).with.offset(-10);
@@ -653,7 +646,8 @@
     }
     NSInteger recordSecons = recordTime;
     if (recordTime > 0) {
-        self.slider.value = recordTime / 326.0;//120.0 / recordTime;
+        self.slider.value = recordTime / self.player.duration;//120.0 / recordTime;
+        [self onTimeChange];
         NSString * str_minute = [NSString stringWithFormat:@"%02ld", recordSecons / 60];
         NSString * str_second = [NSString stringWithFormat:@"%02ld", recordSecons % 60];
         NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
@@ -756,7 +750,7 @@
 #pragma mark - 弹幕设置相关
 - (float)danmakuViewGetPlayTime:(DanmakuView *)danmakuView
 {
-    return self.slider.value * 326.0;
+    return self.slider.value * self.player.duration;//326.0;
 }
 
 - (BOOL)danmakuViewIsBuffering:(DanmakuView *)danmakuView
@@ -779,12 +773,11 @@
         //单曲循环
         [self onStartClick];
     }
-    seconds = self.slider.value * 326.0;
+    seconds = self.slider.value * self.player.duration;
     NSString * str_minute = [NSString stringWithFormat:@"%02ld",seconds / 60];
     NSString * str_second = [NSString stringWithFormat:@"%02ld",seconds % 60];
     NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
     self.currentTimeLabel.text = format_time;//[NSString stringWithFormat:@"%.0fs", self.slider.value * 120.0];
-//    [self onTimeChange];
 }
 
 - (void)onStartClick
@@ -799,7 +792,6 @@
         [self.playButton setImage:[UIImage imageNamed:@"npv_button_pause_41x41_"] forState:UIControlStateNormal];
     }
     if (!self.player || self.player.isPlaying == NO) {
-//        [self playNetworkMusic];
         [self.player play];//播放音频
     }
     [_rippleView stopRipple];//停止涟漪
@@ -843,13 +835,7 @@
 - (void)onTimeChange
 {
     //TODO:进度条时间
-//    seconds = self.slider.value * 326.0;
     [self.player setCurrentTime:self.slider.value * self.player.duration];
-
-//    NSString * str_minute = [NSString stringWithFormat:@"%02ld",seconds / 60];
-//    NSString * str_second = [NSString stringWithFormat:@"%02ld",seconds % 60];
-//    NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
-//    self.currentTimeLabel.text = format_time;//[NSString stringWithFormat:@"%.0fs", self.slider.value * 120.0];
 }
 
 - (void)showTitleAndScanfView
@@ -1004,9 +990,13 @@
             MELog(@"音频总时长为=======%f", self.player.duration);
             [self addRippleView];//添加播放涟漪
             [self onStartClick];//自动播放
-            //后台播放显示信息设置
-            [self setPlayingInfo];
+            [self setPlayingInfo];//后台播放显示信息设置
             
+            NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+            recordTime = [[userDefaults objectForKey:@"recordTime"] floatValue];
+            if (recordTime > 0) {
+                [self showLasttimeRecord];//上次播放记录从屏幕外滑入
+            }
         }
     }];
 }
@@ -1015,25 +1005,27 @@
 - (void)remoteControlReceivedWithEvent:(UIEvent *)event {
     if (event.type == UIEventTypeRemoteControl) {  //判断是否为远程控制
         switch (event.subtype) {
-            case  UIEventSubtypeRemoteControlPlay:
+            case  UIEventSubtypeRemoteControlPlay://播放
                 if (!isPlayingNow) {
                     [self.player play];
                 }
                 isPlayingNow = !isPlayingNow;
+                [self onStartClick];
                 break;
                 
-            case UIEventSubtypeRemoteControlPause:
+            case UIEventSubtypeRemoteControlPause://暂停
                 if (isPlayingNow) {
                     [self.player pause];
                 }
                 isPlayingNow = !isPlayingNow;
+                [self onPauseClick];
                 break;
                 
-            case UIEventSubtypeRemoteControlNextTrack:
+            case UIEventSubtypeRemoteControlNextTrack://下一首
                 MELog(@"下一首");
                 break;
                 
-            case UIEventSubtypeRemoteControlPreviousTrack:
+            case UIEventSubtypeRemoteControlPreviousTrack://上一首
                 MELog(@"上一首 ");
                 break;
                 
@@ -1046,7 +1038,7 @@
 - (void)setPlayingInfo {
     //设置后台播放时显示的东西，例如歌曲名字，图片等
     UIImage * image = [UIImage imageNamed:@"hotMVoice_downLeft"];
-    //iOS10中，[[MPMediaItemArtwork alloc] initWithImage:]的方法已经废止，要用下面的方法来显示获取图片
+    //iOS10中，[[MPMediaItemArtwork alloc] initWithImage:]的方法已经失效，需要用下面的方法来显示获取图片
     MPMediaItemArtwork * artWork = [[MPMediaItemArtwork alloc] initWithBoundsSize:image.size requestHandler:^UIImage * _Nonnull(CGSize size) {
         return image;
     }];
@@ -1056,6 +1048,7 @@
                           MPMediaItemPropertyArtwork:artWork,//歌曲封面
                           MPMediaItemPropertyPlaybackDuration: [NSNumber numberWithDouble:self.player.duration],//歌曲总时长
                           MPNowPlayingInfoPropertyElapsedPlaybackTime: [NSNumber numberWithDouble:self.player.currentTime]//歌曲当前已播放时长
+//                          MPNowPlayingInfoPropertyPlaybackRate:@1 //播放速度
                           };
     [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:dic];
 }

@@ -201,7 +201,7 @@
     hud.label.textColor = [UIColor whiteColor];
     hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;//纯色模式，即关闭模糊效果
     hud.bezelView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-    [hud hideAnimated:YES afterDelay:3.5];
+    [hud hideAnimated:YES afterDelay:4.5];
 }
 
 @end

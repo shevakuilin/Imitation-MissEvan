@@ -17,7 +17,7 @@
 #import "UIImage+GIF.h"
 #import "MEUtil.h"
 #import "MEPageControl+AutoScroll.h"
-#import "MEScaleToSize.h"
+#import "MEScaleToSize.h"//修改button内部图片大小
 #import "UIImageView+AFNetworking.h"
 #import "UICollectionViewLeftAlignedLayout.h"
 #import "MEUINavigationBar+Awesome.h"
@@ -31,6 +31,10 @@
 #import "MEDataModel.h"
 #import "MBProgressHUD.h"
 #import "MENetworkManager.h"//AFNetworking封装管理
+#import "MEManager.h"//用户操作封装管理
+
+
+#define ME_MANAGER  [MEManager share]
 
 #define ME_DATASOURCE   [MEDataSource shareDataSource]
 

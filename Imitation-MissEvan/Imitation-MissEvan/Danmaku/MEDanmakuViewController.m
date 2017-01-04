@@ -62,10 +62,12 @@
 @property (nonatomic, strong) NSTimer * recordTimer;//播放记录计时器
 
 //音频播放
+@property (nonatomic, strong) MEDataModel * model;//数据model
 @property (nonatomic, strong) UIProgressView * bufferProgressView;//缓冲进度条
-@property (nonatomic, strong) NSMutableArray * audioDataSource;//音频数据源
+//@property (nonatomic, strong) NSMutableArray * audioDataSource;//音频数据源
 @property (nonatomic, strong) AVAudioPlayer * player;
-@property (nonatomic, assign) NSInteger totalUnitCount;//需要下载文件的总大小
+//@property (nonatomic, assign) NSInteger totalUnitCount;//需要下载文件的总大小
+@property (nonatomic, assign) BOOL isLocalPlay;//是否本地播放
 
 @end
 
@@ -83,6 +85,17 @@
     audioIntroducHeight = 100;
     isPlayingNow = YES;
     
+    //添加数据源
+//    self.audioDataSource = [[NSMutableArray alloc] init];
+    NSString * theUrl = @"201612/31/3040fef46c5c0528b34b74e1394833d5135534.mp3";
+    NSString * theName = @"【少年霜】采茶纪";
+    NSString * theArtist = @"【少年霜】";
+    NSArray * array = @[@{@"url":[NSString stringWithFormat:@"%@128BIT/%@", ME_URL_GLOBAL,  theUrl], @"name":theName, @"artist":theArtist}];
+    for (NSDictionary * dic in array) {
+        self.model = [[MEDataModel alloc] initWithDic:dic];
+//        [self.audioDataSource addObject:self.model];
+    }
+    
     [self customView];
     
     //TODO:在屏幕外创建播放记录
@@ -97,15 +110,6 @@
     UITapGestureRecognizer * gesture = [[UITapGestureRecognizer alloc] init];
     [gesture addTarget:self action:@selector(sliderGoRecordTime)];
     [self.lasttimePopView addGestureRecognizer:gesture];
-    
-    //添加数据源
-    self.audioDataSource = [[NSMutableArray alloc] init];
-    NSString * theUrl = @"201611/06/38ba0f77d5f3abb0ef293375da1adf37201931.mp3";
-    NSArray * array = @[@{@"url":[NSString stringWithFormat:@"%@128BIT/%@", ME_URL_GLOBAL,  theUrl]}];
-    for (NSDictionary * dic in array) {
-        MEDataModel * model = [[MEDataModel alloc] initWithDic:dic];
-        [self.audioDataSource addObject:model];
-    }
     
 }
 
@@ -125,6 +129,27 @@
     self.navigationItem.leftBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(backView) withImage:[UIImage imageNamed:@"sp_button_back_22x22_"]];
     self.navigationItem.rightBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(showMorePopView) withImage:[UIImage imageNamed:@"new_more_32x27_"]];
     
+    //判断本地是否已有缓存，若有便直接读取本地文件，若没有则发送请求加载
+    NSString * document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
+    NSString * movePath =  [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp3", self.model.audioName]];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:movePath]) {
+        NSURL * fileURL = [NSURL fileURLWithPath:movePath];
+        self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
+        self.isLocalPlay = YES;
+        self.bufferProgressView.progress = 1;
+        NSInteger audioDuration = self.player.duration;
+        NSString * str_minute = [NSString stringWithFormat:@"%02ld",audioDuration / 60];
+        NSString * str_second = [NSString stringWithFormat:@"%02ld",audioDuration % 60];
+        NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
+        self.allTimeLabel.text = format_time;
+        [self addRippleView];//添加播放涟漪
+        [self onStartClick];//自动播放
+        [self setPlayingInfo];//后台播放显示信息设置
+        
+    } else {
+         [self loadNetworkMusic];//下载音频
+        self.isLocalPlay = NO;
+    }
 //    NSDictionary * dic = [[MPNowPlayingInfoCenter defaultCenter] nowPlayingInfo];
 //    if (dic) {
 //        MELog(@"dic打印的内容=======%@", dic);
@@ -138,7 +163,7 @@
 //        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(onTimeCount) userInfo:nil repeats:YES];
 //        
 //    } else {
-        [self loadNetworkMusic];//下载音频
+//        [self loadNetworkMusic];//下载音频
 //    }
     [self showTitleAndScanfView];//显示标题&弹幕输入框
     
@@ -213,7 +238,9 @@
     self.mosaicThemeImageView = [UIImageView new];
     [self.scrollView addSubview:self.mosaicThemeImageView];
     self.mosaicThemeImageView.contentMode = UIViewContentModeScaleAspectFill;
-    UIImage * image = [UIImage imageNamed:@"hotMVoice_downLeft"];
+    NSURL * loadImageURL = [NSURL URLWithString:@"http://static.missevan.com/coversmini/201612/31/0fc5ffe807e7b63f4dd17804cbfcb183135532.jpg"];
+    NSData * imageData = [NSData dataWithContentsOfURL:loadImageURL];
+    UIImage * image = [UIImage imageWithData:imageData];//[UIImage imageNamed:@"hotMVoice_downLeft"];
     UIImage * blurImage = [MEUtil boxblurImage:image withBlurNumber:3.6];//图像虚化
     UIImage * mosaicImage = [MEUtil transToMosaicImage:blurImage blockLevel:34];//图像添加马赛克
     self.mosaicThemeImageView.image = mosaicImage;
@@ -230,7 +257,7 @@
     
     self.themeImageView = [UIImageView new];
     [self.mosaicThemeImageView addSubview:self.themeImageView];
-    self.themeImageView.image = [UIImage imageNamed:@"hotMVoice_downLeft"];
+    self.themeImageView.image = image;//[UIImage imageNamed:@"hotMVoice_downLeft"];
     self.themeImageView.layer.masksToBounds = YES;
     self.themeImageView.layer.cornerRadius = 110;
     self.themeImageView.layer.borderColor = [UIColor colorWithWhite:1 alpha:0.5].CGColor;
@@ -261,6 +288,7 @@
     //TODO:标题&弹幕输入显示
     self.title_DanmakuScanfView = [[METitle_DanmakuScanfView alloc] init];
     [self.scrollView insertSubview:self.title_DanmakuScanfView aboveSubview:self.danmakuView];
+    self.title_DanmakuScanfView.autoScrollLabel.text = self.model.audioName;
     [self.title_DanmakuScanfView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.scrollView);
         make.left.equalTo(self.scrollView);
@@ -393,7 +421,7 @@
     self.allTimeLabel = [UILabel new];
     [timerView addSubview:self.allTimeLabel];
     self.allTimeLabel.font = [UIFont systemFontOfSize:9];
-    self.allTimeLabel.text = @"05:26";
+//    self.allTimeLabel.text = @"05:26";
     if ([ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal]) {
         self.allTimeLabel.textColor = [UIColor lightGrayColor];
     } else {
@@ -472,7 +500,7 @@
     [self.audioIntroductionView addSubview:audioTitleLabel];
     audioTitleLabel.font = [UIFont systemFontOfSize:13];
     audioTitleLabel.textColor = [ME_ThemeManage.currentThemeIdentifier isEqualToString:EAThemeNormal] ? [UIColor blackColor] : [UIColor lightTextColor];
-    audioTitleLabel.text = @"【少年霜】世末歌者";
+    audioTitleLabel.text = self.model.audioName;
     [audioTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.audioIntroductionView).with.offset(3);
         make.left.equalTo(self.audioIntroductionView).with.offset(10);
@@ -947,11 +975,11 @@
  *  @return 文件路径
  */
 - (NSURL *)getNetworkUrl{
-    MEDataModel * model = [[MEDataModel alloc] init];
-    for (NSInteger i = 0; i < self.audioDataSource.count; i ++) {
-        model = self.audioDataSource[i];
-    }
-    NSString * urlStr = model.audioUrl;
+//    MEDataModel * model = [[MEDataModel alloc] init];
+//    for (NSInteger i = 0; i < self.audioDataSource.count; i ++) {
+//        self.model = self.audioDataSource[i];
+//    }
+    NSString * urlStr = self.model.audioUrl;
     NSURL * url = [NSURL URLWithString:urlStr];
     
     return url;
@@ -988,6 +1016,11 @@
             NSURL * fileURL = [NSURL fileURLWithPath:soundPath];
             self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
             MELog(@"音频总时长为=======%f", self.player.duration);
+            NSInteger audioDuration = self.player.duration;
+            NSString * str_minute = [NSString stringWithFormat:@"%02ld",audioDuration / 60];
+            NSString * str_second = [NSString stringWithFormat:@"%02ld",audioDuration % 60];
+            NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
+            self.allTimeLabel.text = format_time;
             [self addRippleView];//添加播放涟漪
             [self onStartClick];//自动播放
             [self setPlayingInfo];//后台播放显示信息设置
@@ -997,6 +1030,18 @@
             if (recordTime > 0) {
                 [self showLasttimeRecord];//上次播放记录从屏幕外滑入
             }
+            
+            //这里自己写需要保存数据的路径
+            NSString * document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
+            NSString * movePath =  [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp3", self.model.audioName]];
+            
+            BOOL isSuccess = [[NSFileManager defaultManager] copyItemAtPath:soundPath toPath:movePath error:nil];
+            if (isSuccess) {
+                MELog(@"rename success");
+            }else{
+                MELog(@"rename fail");
+            }
+            MELog(@"----%@", movePath);
         }
     }];
 }
@@ -1037,14 +1082,14 @@
 
 - (void)setPlayingInfo {
     //设置后台播放时显示的东西，例如歌曲名字，图片等
-    UIImage * image = [UIImage imageNamed:@"hotMVoice_downLeft"];
+//    UIImage * image = [UIImage imageNamed:@"hotMVoice_downLeft"];
     //iOS10中，[[MPMediaItemArtwork alloc] initWithImage:]的方法已经失效，需要用下面的方法来显示获取图片
-    MPMediaItemArtwork * artWork = [[MPMediaItemArtwork alloc] initWithBoundsSize:image.size requestHandler:^UIImage * _Nonnull(CGSize size) {
-        return image;
+    MPMediaItemArtwork * artWork = [[MPMediaItemArtwork alloc] initWithBoundsSize:self.themeImageView.image.size requestHandler:^UIImage * _Nonnull(CGSize size) {
+        return self.themeImageView.image;
     }];
     
-    NSDictionary * dic = @{MPMediaItemPropertyTitle:@"【少年霜】乱世歌者",//歌曲名
-                          MPMediaItemPropertyArtist:@"【少年霜】",//歌手
+    NSDictionary * dic = @{MPMediaItemPropertyTitle:self.model.audioName,//歌曲名
+                          MPMediaItemPropertyArtist:self.model.audioArtist,//歌手
                           MPMediaItemPropertyArtwork:artWork,//歌曲封面
                           MPMediaItemPropertyPlaybackDuration: [NSNumber numberWithDouble:self.player.duration],//歌曲总时长
                           MPNowPlayingInfoPropertyElapsedPlaybackTime: [NSNumber numberWithDouble:self.player.currentTime]//歌曲当前已播放时长

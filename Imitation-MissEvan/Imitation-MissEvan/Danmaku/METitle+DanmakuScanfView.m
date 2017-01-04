@@ -35,7 +35,7 @@
             
             self.autoScrollLabel = [[CBAutoScrollLabel alloc] init];
             [self insertSubview:self.autoScrollLabel aboveSubview:self.titleView];
-            self.autoScrollLabel.text = @"即使天空黯淡，阳光也会照耀圣西罗";
+//            self.autoScrollLabel.text = @"即使天空黯淡，阳光也会照耀圣西罗";
             self.autoScrollLabel.layer.masksToBounds = YES;
             self.autoScrollLabel.layer.cornerRadius = 4;
             self.autoScrollLabel.textColor = [UIColor whiteColor];

@@ -11,6 +11,8 @@
 @interface MEDataModel : NSObject
 
 @property (nonatomic, copy) NSString * audioUrl;
+@property (nonatomic, copy) NSString * audioName;
+@property (nonatomic, copy) NSString * audioArtist;
 
 - (id)initWithDic:(NSDictionary *)dic;
 

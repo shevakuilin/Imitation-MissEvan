@@ -15,6 +15,8 @@
     self = [super init];
     if (self) {
         self.audioUrl = dic[@"url"];
+        self.audioName = dic[@"name"];
+        self.audioArtist = dic[@"artist"];
     }
     return self;
 }

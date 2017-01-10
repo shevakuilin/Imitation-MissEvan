@@ -17,6 +17,17 @@
 #import <notify.h>
 #import <MediaPlayer/MediaPlayer.h>
 
+NSString * const kMEPlayerStateChangedNotification    = @"MEPlayerStateChangedNotification";
+NSString * const kMEPlayerProgressChangedNotification = @"MEPlayerProgressChangedNotification";
+NSString * const kMEPlayerLoadProgressChangedNotification = @"MEPlayerLoadProgressChangedNotification";
+
+//播放器的几种状态
+typedef NS_ENUM(NSInteger, MEPlayerState) {
+    MEPlayerStateBuffering = 1, //缓冲中
+    MEPlayerStatePlaying   = 2, //播放中
+    MEPlayerStateStopped   = 3, //已停止
+    MEPlayerStatePause     = 4  //暂停
+};
 
 @interface MEDanmakuViewController ()<UIScrollViewDelegate, DanmakuDelegate, UITextFieldDelegate, UIActionSheetDelegate, MEActionSheetDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource>
 {
@@ -64,11 +75,21 @@
 //音频播放
 @property (nonatomic, strong) MEDataModel * model;//数据model
 @property (nonatomic, strong) UIProgressView * bufferProgressView;//缓冲进度条
-//@property (nonatomic, strong) NSMutableArray * audioDataSource;//音频数据源
-@property (nonatomic, strong) AVAudioPlayer * player;
-//@property (nonatomic, assign) NSInteger totalUnitCount;//需要下载文件的总大小
-@property (nonatomic, assign) BOOL isLocalPlay;//是否本地播放
 
+//@property (nonatomic, strong) AVAudioPlayer * player;
+
+@property (nonatomic, assign) BOOL isLocalPlay;//是否本地播放
+@property (nonatomic, assign) CGFloat loadedProgress;//缓冲进度
+@property (nonatomic, assign) CGFloat duration;//音频总时间
+@property (nonatomic, assign) CGFloat current;//当前播放时间
+@property (nonatomic, strong) AVURLAsset * audioURLAsset;
+@property (nonatomic, strong) AVAsset * audioAsset;
+@property (nonatomic, strong) AVPlayer * player;
+@property (nonatomic, strong) AVPlayerItem *currentPlayerItem;
+@property (nonatomic, strong) AVPlayerLayer * currentPlayerLayer;
+@property (nonatomic, strong) NSObject * playbackTimeObserver;
+@property (nonatomic, assign) BOOL isPauseByUser; //是否被用户暂停
+@property (nonatomic, assign) MEPlayerState state;
 @end
 
 @implementation MEDanmakuViewController
@@ -111,6 +132,11 @@
     [gesture addTarget:self action:@selector(sliderGoRecordTime)];
     [self.lasttimePopView addGestureRecognizer:gesture];
     
+    
+    [self releasePlayer];
+    self.duration = 0;
+    self.current  = 0;
+    self.isLocalPlay = NO;//是否本地播放
 }
 
 - (void)didReceiveMemoryWarning {
@@ -132,24 +158,83 @@
     //判断本地是否已有缓存，若有便直接读取本地文件，若没有则发送请求加载
     NSString * document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
     NSString * movePath =  [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp3", self.model.audioName]];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:movePath]) {
-        NSURL * fileURL = [NSURL fileURLWithPath:movePath];
-        self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
-        self.isLocalPlay = YES;
-        self.bufferProgressView.progress = 1;
-        NSInteger audioDuration = self.player.duration;
-        NSString * str_minute = [NSString stringWithFormat:@"%02ld",audioDuration / 60];
-        NSString * str_second = [NSString stringWithFormat:@"%02ld",audioDuration % 60];
-        NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
-        self.allTimeLabel.text = format_time;
-        [self addRippleView];//添加播放涟漪
-        [self onStartClick];//自动播放
-        [self setPlayingInfo];//后台播放显示信息设置
+    NSURL * url;
+//    if ([[NSFileManager defaultManager] fileExistsAtPath:movePath]) {
+//        url = [NSURL fileURLWithPath:movePath];
+////        self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
+////        self.isLocalPlay = YES;
+////        self.bufferProgressView.progress = 1;
+//        NSInteger audioDuration = self.player.currentItem.duration.value;
+//        NSString * str_minute = [NSString stringWithFormat:@"%02ld",audioDuration / 60];
+//        NSString * str_second = [NSString stringWithFormat:@"%02ld",audioDuration % 60];
+//        NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
+//        self.allTimeLabel.text = format_time;
+//
+//        self.isLocalPlay = YES;
+//        self.audioAsset = [AVURLAsset URLAssetWithURL:url options:nil];
+//        self.currentPlayerItem = [AVPlayerItem playerItemWithAsset:_audioAsset];
+//        if (!self.player) {
+//            self.player = [AVPlayer playerWithPlayerItem:self.currentPlayerItem];
+//        } else {
+//            [self.player replaceCurrentItemWithPlayerItem:self.currentPlayerItem];
+//        }
+//        
+//        [self addRippleView];//添加播放涟漪
+//        [self onStartClick];//自动播放
+//        [self setPlayingInfo];//后台播放显示信息设置
+//        
+//    } else {
+//         [self loadNetworkMusic];//下载音频
+        url = [NSURL URLWithString:self.model.audioUrl];
+        self.isLocalPlay = NO;
+        self.audioURLAsset = [AVURLAsset URLAssetWithURL:url options:nil];
+        self.currentPlayerItem = [AVPlayerItem playerItemWithAsset:_audioURLAsset];
+        
+        if (!self.player) {
+            self.player = [AVPlayer playerWithPlayerItem:self.currentPlayerItem];
+        } else {
+            [self.player replaceCurrentItemWithPlayerItem:self.currentPlayerItem];
+        }
+        
+//    }
+    
+    [self addRippleView];//添加播放涟漪
+    [self onStartClick];//自动播放
+    [self setPlayingInfo];//后台播放显示信息设置
+    
+    //监听播放器状态
+    [self.currentPlayerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
+    [self.currentPlayerItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
+    [self.currentPlayerItem addObserver:self forKeyPath:@"playbackBufferEmpty" options:NSKeyValueObservingOptionNew context:nil];
+    [self.currentPlayerItem addObserver:self forKeyPath:@"playbackLikelyToKeepUp" options:NSKeyValueObservingOptionNew context:nil];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidPlayToEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:self.currentPlayerItem];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemPlaybackStalled:) name:AVPlayerItemPlaybackStalledNotification object:self.currentPlayerItem];
+    
+    // 本地文件不设置TBPlayerStateBuffering状态
+    if ([url.scheme isEqualToString:@"file"]) {
+        
+        // 如果已经在TBPlayerStatePlaying，则直接发通知，否则设置状态
+        if (self.state == MEPlayerStatePlaying) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kMEPlayerStateChangedNotification object:nil];
+        } else {
+            self.state = MEPlayerStatePlaying;
+        }
         
     } else {
-         [self loadNetworkMusic];//下载音频
-        self.isLocalPlay = NO;
+        
+        // 如果已经在TBPlayerStateBuffering，则直接发通知，否则设置状态
+        if (self.state == MEPlayerStateBuffering) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kMEPlayerStateChangedNotification object:nil];
+        } else {
+            self.state = MEPlayerStateBuffering;
+        }
+        
     }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kMEPlayerProgressChangedNotification object:nil];
+
 //    NSDictionary * dic = [[MPNowPlayingInfoCenter defaultCenter] nowPlayingInfo];
 //    if (dic) {
 //        MELog(@"dic打印的内容=======%@", dic);
@@ -624,6 +709,7 @@
 {
     //TODO:销毁通知
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"play" object:nil];
+    [self releasePlayer];
 }
 
 #pragma mark -
@@ -674,7 +760,7 @@
     }
     NSInteger recordSecons = recordTime;
     if (recordTime > 0) {
-        self.slider.value = recordTime / self.player.duration;//120.0 / recordTime;
+        self.slider.value = recordTime / self.duration;//120.0 / recordTime;
         [self onTimeChange];
         NSString * str_minute = [NSString stringWithFormat:@"%02ld", recordSecons / 60];
         NSString * str_second = [NSString stringWithFormat:@"%02ld", recordSecons % 60];
@@ -778,7 +864,7 @@
 #pragma mark - 弹幕设置相关
 - (float)danmakuViewGetPlayTime:(DanmakuView *)danmakuView
 {
-    return self.slider.value * self.player.duration;//326.0;
+    return self.slider.value * self.duration;//326.0;
 }
 
 - (BOOL)danmakuViewIsBuffering:(DanmakuView *)danmakuView
@@ -793,7 +879,7 @@
 
 - (void)onTimeCount
 {
-    self.slider.value = self.player.currentTime / self.player.duration;//+= 0.1 / 326.0;
+    self.slider.value = self.current / self.duration;//+= 0.1 / 326.0;
     if (self.slider.value == 1) {//如果播放结束
         self.slider.value = 0;
         [self.timer invalidate];
@@ -801,7 +887,7 @@
         //单曲循环
         [self onStartClick];
     }
-    seconds = self.slider.value * self.player.duration;
+    seconds = self.slider.value * self.duration;
     NSString * str_minute = [NSString stringWithFormat:@"%02ld",seconds / 60];
     NSString * str_second = [NSString stringWithFormat:@"%02ld",seconds % 60];
     NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
@@ -819,9 +905,16 @@
         [self.playButton addTarget:self action:@selector(onPauseClick) forControlEvents:UIControlEventTouchUpInside];
         [self.playButton setImage:[UIImage imageNamed:@"npv_button_pause_41x41_"] forState:UIControlStateNormal];
     }
-    if (!self.player || self.player.isPlaying == NO) {
-        [self.player play];//播放音频
+    
+    if (!self.currentPlayerItem) {
+        return;
     }
+    self.isPauseByUser = NO;
+    self.state = MEPlayerStatePlaying;
+    
+    [self.player play];//播放音频
+//    if (!self.player || self.player.isPlaying == NO) {
+//    }
     [_rippleView stopRipple];//停止涟漪
     [_rippleView showWithRipple:self.themeImageView];//播放涟漪
     //创建一个消息对象
@@ -841,6 +934,13 @@
     [self.danmakuView pause];//弹幕暂停
     [self.playButton addTarget:self action:@selector(onStartClick) forControlEvents:UIControlEventTouchUpInside];
     [self.playButton setImage:[UIImage imageNamed:@"npv_button_play_41x41_"] forState:UIControlStateNormal];
+    
+    if (!self.currentPlayerItem) {
+        return;
+    }
+    self.isPauseByUser = YES;
+    self.state = MEPlayerStatePause;
+    
     [self.player pause];//音频暂停
     [_rippleView stopRipple];//停止涟漪
     //创建一个消息对象
@@ -863,7 +963,8 @@
 - (void)onTimeChange
 {
     //TODO:进度条时间
-    [self.player setCurrentTime:self.slider.value * self.player.duration];
+//    [self.player setCurrentTime:self.slider.value * self.duration];
+    [self seekToTime:self.slider.value];
 }
 
 - (void)showTitleAndScanfView
@@ -990,60 +1091,111 @@
     //TODO: 下载音频
     NSURL * url = [self getNetworkUrl];
     //开始下载
-    [MENetworkManager downFromServerWithSoundUrl:url progress:^(NSProgress *downloadProgress) {
-        //TODO:下载进度
-        // 给Progress添加监听 KVO
-        MELog(@"%f", 1.0 * downloadProgress.completedUnitCount / downloadProgress.totalUnitCount);
-        //回到主队列刷新UI
-        dispatch_async(dispatch_get_main_queue(), ^{
-            //设置进度条的百分比
-            self.bufferProgressView.progress = 1.0 * downloadProgress.completedUnitCount / downloadProgress.totalUnitCount;
-        });
+//    [MENetworkManager downFromServerWithSoundUrl:url progress:^(NSProgress *downloadProgress) {
+//        //TODO:下载进度
+//        // 给Progress添加监听 KVO
+//        MELog(@"%f", 1.0 * downloadProgress.completedUnitCount / downloadProgress.totalUnitCount);
+//        //回到主队列刷新UI
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            //设置进度条的百分比
+//            self.bufferProgressView.progress = 1.0 * downloadProgress.completedUnitCount / downloadProgress.totalUnitCount;
+//        });
+//
+//    } destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+//        //返回文件路径
+//        NSString * cachesPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+//        NSString * path = [cachesPath stringByAppendingPathComponent:response.suggestedFilename];
+//        return [NSURL fileURLWithPath:path];
+//        
+//    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+//        //设置下载完成操作
+//        if (error) {
+//            MELog(@"下载音频失败，原因：%@", error);
+//        } else {
+//            //filePath为下载文件的位置
+//            NSString * soundPath = [filePath path];
+//            NSURL * fileURL = [NSURL fileURLWithPath:soundPath];
+//            self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
+//            MELog(@"音频总时长为=======%f", self.player.duration);
+//            NSInteger audioDuration = self.player.duration;
+//            NSString * str_minute = [NSString stringWithFormat:@"%02ld",audioDuration / 60];
+//            NSString * str_second = [NSString stringWithFormat:@"%02ld",audioDuration % 60];
+//            NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
+//            self.allTimeLabel.text = format_time;
+//            [self addRippleView];//添加播放涟漪
+//            [self onStartClick];//自动播放
+//            [self setPlayingInfo];//后台播放显示信息设置
+//
+//            NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+//            recordTime = [[userDefaults objectForKey:@"recordTime"] floatValue];
+//            if (recordTime > 0) {
+//                [self showLasttimeRecord];//上次播放记录从屏幕外滑入
+//            }
+//            
+//            //这里自己写需要保存数据的路径
+//            NSString * document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
+//            NSString * movePath =  [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp3", self.model.audioName]];
+//            
+//            BOOL isSuccess = [[NSFileManager defaultManager] copyItemAtPath:soundPath toPath:movePath error:nil];
+//            if (isSuccess) {
+//                MELog(@"rename success");
+//            }else{
+//                MELog(@"rename fail");
+//            }
+//            MELog(@"----%@", movePath);
+//        }
+//    }];
+}
 
-    } destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
-        //返回文件路径
-        NSString * cachesPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-        NSString * path = [cachesPath stringByAppendingPathComponent:response.suggestedFilename];
-        return [NSURL fileURLWithPath:path];
-        
-    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-        //设置下载完成操作
-        if (error) {
-            MELog(@"下载音频失败，原因：%@", error);
-        } else {
-            //filePath为下载文件的位置
-            NSString * soundPath = [filePath path];
-            NSURL * fileURL = [NSURL fileURLWithPath:soundPath];
-            self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
-            MELog(@"音频总时长为=======%f", self.player.duration);
-            NSInteger audioDuration = self.player.duration;
-            NSString * str_minute = [NSString stringWithFormat:@"%02ld",audioDuration / 60];
-            NSString * str_second = [NSString stringWithFormat:@"%02ld",audioDuration % 60];
-            NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
-            self.allTimeLabel.text = format_time;
-            [self addRippleView];//添加播放涟漪
-            [self onStartClick];//自动播放
-            [self setPlayingInfo];//后台播放显示信息设置
-            
-            NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-            recordTime = [[userDefaults objectForKey:@"recordTime"] floatValue];
-            if (recordTime > 0) {
-                [self showLasttimeRecord];//上次播放记录从屏幕外滑入
-            }
-            
-            //这里自己写需要保存数据的路径
-            NSString * document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
-            NSString * movePath =  [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp3", self.model.audioName]];
-            
-            BOOL isSuccess = [[NSFileManager defaultManager] copyItemAtPath:soundPath toPath:movePath error:nil];
-            if (isSuccess) {
-                MELog(@"rename success");
-            }else{
-                MELog(@"rename fail");
-            }
-            MELog(@"----%@", movePath);
+- (void)seekToTime:(CGFloat)second
+{
+    if (self.state == MEPlayerStateStopped) {
+        return;
+    }
+    
+    second = MAX(0, second);
+    second = MIN(second, self.duration);
+    
+    [self.player pause];
+    [self.player seekToTime:CMTimeMakeWithSeconds(second, NSEC_PER_SEC) completionHandler:^(BOOL finished) {
+        self.isPauseByUser = NO;
+        [self.player play];
+        if (!self.currentPlayerItem.isPlaybackLikelyToKeepUp) {
+            self.state = MEPlayerStateBuffering;
+//            [[XCHudHelper sharedInstance] showHudOnView:_showView caption:nil image:nil acitivity:YES autoHideTime:0];
         }
+        
     }];
+}
+
+- (void)stop
+{
+    //TODO:结束播放
+    self.isPauseByUser = YES;
+    self.loadedProgress = 0;
+    self.duration = 0;
+    self.current  = 0;
+    self.state = MEPlayerStateStopped;
+    [self.player pause];
+    [self releasePlayer];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kMEPlayerProgressChangedNotification object:nil];
+}
+
+//清空播放器监听属性
+- (void)releasePlayer
+{
+    if (!self.currentPlayerItem) {
+        return;
+    }
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self.currentPlayerItem removeObserver:self forKeyPath:@"status"];
+    [self.currentPlayerItem removeObserver:self forKeyPath:@"loadedTimeRanges"];
+    [self.currentPlayerItem removeObserver:self forKeyPath:@"playbackBufferEmpty"];
+    [self.currentPlayerItem removeObserver:self forKeyPath:@"playbackLikelyToKeepUp"];
+    [self.player removeTimeObserver:self.playbackTimeObserver];
+    self.playbackTimeObserver = nil;
+    self.currentPlayerItem = nil;
 }
 
 #pragma mark - 接收方法的设置
@@ -1080,6 +1232,157 @@
     }
 }
 
+
+
+#pragma mark - observer
+- (void)playerItemDidPlayToEnd:(NSNotification *)notification
+{
+    [self.player pause];
+}
+
+//在监听播放器状态中处理比较准确
+- (void)playerItemPlaybackStalled:(NSNotification *)notification
+{
+    // 这里网络不好的时候，就会进入，不做处理，会在playbackBufferEmpty里面缓存之后重新播放
+    MELog(@"buffing-----buffing");
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    AVPlayerItem *playerItem = (AVPlayerItem *)object;
+    
+    if ([keyPath isEqualToString:@"status"]) {
+        if ([playerItem status] == AVPlayerStatusReadyToPlay) {
+            [self monitoringPlayback:playerItem];// 给播放器添加计时器
+            
+        } else if ([playerItem status] == AVPlayerStatusFailed || [playerItem status] == AVPlayerStatusUnknown) {
+            [self.player pause];
+        }
+        
+    } else if ([keyPath isEqualToString:@"loadedTimeRanges"]) {  //监听播放器的下载进度
+        
+        [self calculateDownloadProgress:playerItem];
+        
+    } else if ([keyPath isEqualToString:@"playbackBufferEmpty"]) { //监听播放器在缓冲数据的状态
+//        [[XCHudHelper sharedInstance] showHudOnView:_showView caption:nil image:nil acitivity:YES autoHideTime:0];
+        if (playerItem.isPlaybackBufferEmpty) {
+            self.state = MEPlayerStateBuffering;
+            [self bufferingSomeSecond];
+        }
+    }
+}
+
+- (void)monitoringPlayback:(AVPlayerItem *)playerItem
+{
+    
+    
+    self.duration = playerItem.duration.value / playerItem.duration.timescale; //视频总时间
+    [self.player play];
+//    [self updateTotolTime:self.duration];
+//    [self setPlaySliderValue:self.duration];
+    
+    //监听当前播放进度
+    __weak __typeof(self)weakSelf = self;
+    self.playbackTimeObserver = [self.player addPeriodicTimeObserverForInterval:CMTimeMake(1, 1) queue:NULL usingBlock:^(CMTime time) {
+        
+        __strong __typeof(weakSelf)strongSelf = weakSelf;
+        CGFloat current = playerItem.currentTime.value/playerItem.currentTime.timescale;
+//        [strongSelf updateCurrentTime:current];
+//        [strongSelf updateVideoSlider:current];
+        if (strongSelf.isPauseByUser == NO) {
+            strongSelf.state = MEPlayerStatePlaying;
+        }
+        
+        // 不相等的时候才更新，并发通知，否则seek时会继续跳动
+        if (strongSelf.current != current) {
+            strongSelf.current = current;
+            if (strongSelf.current > strongSelf.duration) {
+                strongSelf.duration = strongSelf.current;
+            }
+            [[NSNotificationCenter defaultCenter] postNotificationName:kMEPlayerProgressChangedNotification object:nil];
+        }
+        
+    }];
+    
+}
+
+- (void)calculateDownloadProgress:(AVPlayerItem *)playerItem
+{
+    NSArray *loadedTimeRanges = [playerItem loadedTimeRanges];
+    CMTimeRange timeRange = [loadedTimeRanges.firstObject CMTimeRangeValue];// 获取缓冲区域
+    float startSeconds = CMTimeGetSeconds(timeRange.start);
+    float durationSeconds = CMTimeGetSeconds(timeRange.duration);
+    NSTimeInterval timeInterval = startSeconds + durationSeconds;// 计算缓冲总进度
+    CMTime duration = playerItem.duration;
+    CGFloat totalDuration = CMTimeGetSeconds(duration);
+    
+    NSInteger audioDuration = totalDuration;
+    NSString * str_minute = [NSString stringWithFormat:@"%02ld",audioDuration / 60];
+    NSString * str_second = [NSString stringWithFormat:@"%02ld",audioDuration % 60];
+    NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
+    self.allTimeLabel.text = format_time;
+    
+    self.loadedProgress = timeInterval / totalDuration;
+    if (self.isLocalPlay == YES) {
+        [self.bufferProgressView setProgress:1 animated:NO];
+    } else {
+        [self.bufferProgressView setProgress:timeInterval / totalDuration animated:YES];
+    }
+}
+
+- (void)bufferingSomeSecond
+{
+    // playbackBufferEmpty会反复进入，因此在bufferingOneSecond延时播放执行完之前再调用bufferingSomeSecond都忽略
+    static BOOL isBuffering = NO;
+    if (isBuffering) {
+        return;
+    }
+    isBuffering = YES;
+    
+    // 需要先暂停一小会之后再播放，否则网络状况不好的时候时间在走，声音播放不出来
+    [self.player pause];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        // 如果此时用户已经暂停了，则不再需要开启播放了
+        if (self.isPauseByUser) {
+            isBuffering = NO;
+            return;
+        }
+        
+        [self.player play];
+        // 如果执行了play还是没有播放则说明还没有缓存好，则再次缓存一段时间
+        isBuffering = NO;
+        if (!self.currentPlayerItem.isPlaybackLikelyToKeepUp) {
+            [self bufferingSomeSecond];
+        }
+    });
+}
+
+- (void)setLoadedProgress:(CGFloat)loadedProgress
+{
+    if (_loadedProgress == loadedProgress) {
+        return;
+    }
+    
+    _loadedProgress = loadedProgress;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kMEPlayerLoadProgressChangedNotification object:nil];
+}
+
+- (void)setState:(MEPlayerState)state
+{
+    if (state != MEPlayerStateBuffering) {
+//        [[XCHudHelper sharedInstance] hideHud];
+    }
+    
+    if (_state == state) {
+        return;
+    }
+    
+    _state = state;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kMEPlayerStateChangedNotification object:nil];
+    
+}
+
 - (void)setPlayingInfo {
     //设置后台播放时显示的东西，例如歌曲名字，图片等
 //    UIImage * image = [UIImage imageNamed:@"hotMVoice_downLeft"];
@@ -1091,8 +1394,8 @@
     NSDictionary * dic = @{MPMediaItemPropertyTitle:self.model.audioName,//歌曲名
                           MPMediaItemPropertyArtist:self.model.audioArtist,//歌手
                           MPMediaItemPropertyArtwork:artWork,//歌曲封面
-                          MPMediaItemPropertyPlaybackDuration: [NSNumber numberWithDouble:self.player.duration],//歌曲总时长
-                          MPNowPlayingInfoPropertyElapsedPlaybackTime: [NSNumber numberWithDouble:self.player.currentTime]//歌曲当前已播放时长
+                          MPMediaItemPropertyPlaybackDuration: [NSNumber numberWithDouble:self.duration],//歌曲总时长
+                          MPNowPlayingInfoPropertyElapsedPlaybackTime: [NSNumber numberWithDouble:self.current]//歌曲当前已播放时长
 //                          MPNowPlayingInfoPropertyPlaybackRate:@1 //播放速度
                           };
     [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:dic];

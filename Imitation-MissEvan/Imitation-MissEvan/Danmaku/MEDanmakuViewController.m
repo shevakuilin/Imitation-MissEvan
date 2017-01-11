@@ -965,6 +965,7 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
     //TODO:进度条时间
 //    [self.player setCurrentTime:self.slider.value * self.duration];
     [self seekToTime:self.slider.value];
+
 }
 
 - (void)showTitleAndScanfView

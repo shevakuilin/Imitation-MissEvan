@@ -1321,6 +1321,20 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
         [self.bufferProgressView setProgress:timeInterval / totalDuration animated:YES];
         if (self.bufferProgressView.progress == 1) {//如果缓存完成
             // TODO:保存缓存内容到本地
+            NSURL * assetURL = [self.audioURLAsset URL];
+            NSString * audioFile = [assetURL path];
+            //这里自己写需要保存数据的路径
+            NSString * document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
+            NSString * movePath =  [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp3", self.model.audioName]];
+
+            BOOL isSuccess = [[NSFileManager defaultManager] copyItemAtPath:audioFile toPath:movePath error:nil];
+            if (isSuccess) {
+                MELog(@"音频缓存保存成功");
+            }else{
+                MELog(@"音频缓存保存失败");
+            }
+            MELog(@"----%@", movePath);
+
         }
     }
 }

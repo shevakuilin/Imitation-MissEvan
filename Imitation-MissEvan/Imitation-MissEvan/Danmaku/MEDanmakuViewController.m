@@ -200,7 +200,7 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
     
     [self addRippleView];//添加播放涟漪
     [self onStartClick];//自动播放
-    [self setPlayingInfo];//后台播放显示信息设置
+    
     
     //监听播放器状态
     [self.currentPlayerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
@@ -485,6 +485,9 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
         make.size.mas_equalTo(CGSizeMake(ME_Width, 1.5));
     }];
     [self.slider addTarget:self action:@selector(onTimeChange) forControlEvents:UIControlEventValueChanged];
+//    [self.slider addTarget:self action:@selector(onTimeChange) forControlEvents:UIControlEventTouchUpInside];
+//    [self.slider addTarget:self action:@selector(onTimeChange) forControlEvents:UIControlEventTouchUpOutside];
+//    [self.slider addTarget:self action:@selector(onTimeChange) forControlEvents:UIControlEventTouchCancel];
 
     
     //TODO:当前时间
@@ -900,6 +903,7 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
     if (self.danmakuView.isPrepared) {
         if (!self.timer) {
             self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(onTimeCount) userInfo:nil repeats:YES];
+    
         }
         [self.danmakuView start];//弹幕开始
         [self.playButton addTarget:self action:@selector(onPauseClick) forControlEvents:UIControlEventTouchUpInside];
@@ -964,7 +968,7 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
 {
     //TODO:进度条时间
 //    [self.player setCurrentTime:self.slider.value * self.duration];
-    [self seekToTime:self.slider.value];
+    [self seekToTime:self.slider.value * self.duration];
 
 }
 
@@ -1157,10 +1161,10 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
     second = MAX(0, second);
     second = MIN(second, self.duration);
     
-    [self.player pause];
+//    [self.player pause];
     [self.player seekToTime:CMTimeMakeWithSeconds(second, NSEC_PER_SEC) completionHandler:^(BOOL finished) {
         self.isPauseByUser = NO;
-        [self.player play];
+//        [self.player play];
         if (!self.currentPlayerItem.isPlaybackLikelyToKeepUp) {
             self.state = MEPlayerStateBuffering;
 //            [[XCHudHelper sharedInstance] showHudOnView:_showView caption:nil image:nil acitivity:YES autoHideTime:0];
@@ -1255,6 +1259,7 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
     if ([keyPath isEqualToString:@"status"]) {
         if ([playerItem status] == AVPlayerStatusReadyToPlay) {
             [self monitoringPlayback:playerItem];// 给播放器添加计时器
+            [self setPlayingInfo];//后台播放显示信息设置
             
         } else if ([playerItem status] == AVPlayerStatusFailed || [playerItem status] == AVPlayerStatusUnknown) {
             [self.player pause];
@@ -1281,7 +1286,7 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
     [self.player play];
 //    [self updateTotolTime:self.duration];
 //    [self setPlaySliderValue:self.duration];
-    
+
     //监听当前播放进度
     __weak __typeof(self)weakSelf = self;
     self.playbackTimeObserver = [self.player addPeriodicTimeObserverForInterval:CMTimeMake(1, 1) queue:NULL usingBlock:^(CMTime time) {
@@ -1290,6 +1295,8 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
         CGFloat current = playerItem.currentTime.value/playerItem.currentTime.timescale;
 //        [strongSelf updateCurrentTime:current];
 //        [strongSelf updateVideoSlider:current];
+
+        
         if (strongSelf.isPauseByUser == NO) {
             strongSelf.state = MEPlayerStatePlaying;
         }
@@ -1309,7 +1316,7 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
 
 - (void)calculateDownloadProgress:(AVPlayerItem *)playerItem
 {
-    NSArray *loadedTimeRanges = [playerItem loadedTimeRanges];
+    NSArray * loadedTimeRanges = [playerItem loadedTimeRanges];
     CMTimeRange timeRange = [loadedTimeRanges.firstObject CMTimeRangeValue];// 获取缓冲区域
     float startSeconds = CMTimeGetSeconds(timeRange.start);
     float durationSeconds = CMTimeGetSeconds(timeRange.duration);
@@ -1391,7 +1398,7 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
     MPMediaItemArtwork * artWork = [[MPMediaItemArtwork alloc] initWithBoundsSize:self.themeImageView.image.size requestHandler:^UIImage * _Nonnull(CGSize size) {
         return self.themeImageView.image;
     }];
-    
+
     NSDictionary * dic = @{MPMediaItemPropertyTitle:self.model.audioName,//歌曲名
                           MPMediaItemPropertyArtist:self.model.audioArtist,//歌手
                           MPMediaItemPropertyArtwork:artWork,//歌曲封面

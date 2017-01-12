@@ -159,31 +159,28 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
     NSString * document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
     NSString * movePath =  [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp3", self.model.audioName]];
     NSURL * url;
-//    if ([[NSFileManager defaultManager] fileExistsAtPath:movePath]) {
-//        url = [NSURL fileURLWithPath:movePath];
-////        self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
-////        self.isLocalPlay = YES;
-////        self.bufferProgressView.progress = 1;
-//        NSInteger audioDuration = self.player.currentItem.duration.value;
-//        NSString * str_minute = [NSString stringWithFormat:@"%02ld",audioDuration / 60];
-//        NSString * str_second = [NSString stringWithFormat:@"%02ld",audioDuration % 60];
-//        NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
-//        self.allTimeLabel.text = format_time;
-//
-//        self.isLocalPlay = YES;
-//        self.audioAsset = [AVURLAsset URLAssetWithURL:url options:nil];
-//        self.currentPlayerItem = [AVPlayerItem playerItemWithAsset:_audioAsset];
-//        if (!self.player) {
-//            self.player = [AVPlayer playerWithPlayerItem:self.currentPlayerItem];
-//        } else {
-//            [self.player replaceCurrentItemWithPlayerItem:self.currentPlayerItem];
-//        }
-//        
-//        [self addRippleView];//添加播放涟漪
-//        [self onStartClick];//自动播放
+    if ([[NSFileManager defaultManager] fileExistsAtPath:movePath]) {
+        url = [NSURL fileURLWithPath:movePath];
+        NSInteger audioDuration = self.player.currentItem.duration.value;
+        NSString * str_minute = [NSString stringWithFormat:@"%02ld",audioDuration / 60];
+        NSString * str_second = [NSString stringWithFormat:@"%02ld",audioDuration % 60];
+        NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
+        self.allTimeLabel.text = format_time;
+
+        self.isLocalPlay = YES;
+        self.audioAsset = [AVURLAsset URLAssetWithURL:url options:nil];
+        self.currentPlayerItem = [AVPlayerItem playerItemWithAsset:_audioAsset];
+        if (!self.player) {
+            self.player = [AVPlayer playerWithPlayerItem:self.currentPlayerItem];
+        } else {
+            [self.player replaceCurrentItemWithPlayerItem:self.currentPlayerItem];
+        }
+        
+        [self addRippleView];//添加播放涟漪
+        [self onStartClick];//自动播放
 //        [self setPlayingInfo];//后台播放显示信息设置
-//        
-//    } else {
+        
+    } else {
 //         [self loadNetworkMusic];//下载音频
         url = [NSURL URLWithString:self.model.audioUrl];
         self.isLocalPlay = NO;
@@ -196,7 +193,7 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
             [self.player replaceCurrentItemWithPlayerItem:self.currentPlayerItem];
         }
         
-//    }
+    }
     
     [self addRippleView];//添加播放涟漪
     [self onStartClick];//自动播放
@@ -1161,13 +1158,12 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
     second = MAX(0, second);
     second = MIN(second, self.duration);
     
-//    [self.player pause];
     [self.player seekToTime:CMTimeMakeWithSeconds(second, NSEC_PER_SEC) completionHandler:^(BOOL finished) {
         self.isPauseByUser = NO;
-//        [self.player play];
+
         if (!self.currentPlayerItem.isPlaybackLikelyToKeepUp) {
             self.state = MEPlayerStateBuffering;
-//            [[XCHudHelper sharedInstance] showHudOnView:_showView caption:nil image:nil acitivity:YES autoHideTime:0];
+            //TODO: 添加缓冲菊花
         }
         
     }];
@@ -1208,18 +1204,10 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
     if (event.type == UIEventTypeRemoteControl) {  //判断是否为远程控制
         switch (event.subtype) {
             case  UIEventSubtypeRemoteControlPlay://播放
-//                if (!isPlayingNow) {
-//                    [self.player play];
-//                }
-//                isPlayingNow = !isPlayingNow;
                 [self onStartClick];
                 break;
                 
             case UIEventSubtypeRemoteControlPause://暂停
-//                if (isPlayingNow) {
-//                    [self.player pause];
-//                }
-//                isPlayingNow = !isPlayingNow;
                 [self onPauseClick];
                 break;
                 
@@ -1270,7 +1258,7 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
         [self calculateDownloadProgress:playerItem];
         
     } else if ([keyPath isEqualToString:@"playbackBufferEmpty"]) { //监听播放器在缓冲数据的状态
-//        [[XCHudHelper sharedInstance] showHudOnView:_showView caption:nil image:nil acitivity:YES autoHideTime:0];
+        //TODO: 添加缓冲菊花
         if (playerItem.isPlaybackBufferEmpty) {
             self.state = MEPlayerStateBuffering;
             [self bufferingSomeSecond];
@@ -1284,8 +1272,6 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
     
     self.duration = playerItem.duration.value / playerItem.duration.timescale; //视频总时间
     [self.player play];
-//    [self updateTotolTime:self.duration];
-//    [self setPlaySliderValue:self.duration];
 
     //监听当前播放进度
     __weak __typeof(self)weakSelf = self;
@@ -1293,8 +1279,6 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
         
         __strong __typeof(weakSelf)strongSelf = weakSelf;
         CGFloat current = playerItem.currentTime.value/playerItem.currentTime.timescale;
-//        [strongSelf updateCurrentTime:current];
-//        [strongSelf updateVideoSlider:current];
 
         
         if (strongSelf.isPauseByUser == NO) {
@@ -1335,6 +1319,9 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
         [self.bufferProgressView setProgress:1 animated:NO];
     } else {
         [self.bufferProgressView setProgress:timeInterval / totalDuration animated:YES];
+        if (self.bufferProgressView.progress == 1) {//如果缓存完成
+            // TODO:保存缓存内容到本地
+        }
     }
 }
 
@@ -1392,9 +1379,8 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
 }
 
 - (void)setPlayingInfo {
-    //设置后台播放时显示的东西，例如歌曲名字，图片等
-//    UIImage * image = [UIImage imageNamed:@"hotMVoice_downLeft"];
-    //iOS10中，[[MPMediaItemArtwork alloc] initWithImage:]的方法已经失效，需要用下面的方法来显示获取图片
+    // 设置后台播放时显示的东西，例如歌曲名字，图片等
+    // iOS10中，[[MPMediaItemArtwork alloc] initWithImage:]的方法已经失效，需要用下面的方法来显示获取图片
     MPMediaItemArtwork * artWork = [[MPMediaItemArtwork alloc] initWithBoundsSize:self.themeImageView.image.size requestHandler:^UIImage * _Nonnull(CGSize size) {
         return self.themeImageView.image;
     }];

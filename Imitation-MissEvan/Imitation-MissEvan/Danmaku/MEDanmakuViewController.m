@@ -1208,18 +1208,18 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
     if (event.type == UIEventTypeRemoteControl) {  //判断是否为远程控制
         switch (event.subtype) {
             case  UIEventSubtypeRemoteControlPlay://播放
-                if (!isPlayingNow) {
-                    [self.player play];
-                }
-                isPlayingNow = !isPlayingNow;
+//                if (!isPlayingNow) {
+//                    [self.player play];
+//                }
+//                isPlayingNow = !isPlayingNow;
                 [self onStartClick];
                 break;
                 
             case UIEventSubtypeRemoteControlPause://暂停
-                if (isPlayingNow) {
-                    [self.player pause];
-                }
-                isPlayingNow = !isPlayingNow;
+//                if (isPlayingNow) {
+//                    [self.player pause];
+//                }
+//                isPlayingNow = !isPlayingNow;
                 [self onPauseClick];
                 break;
                 

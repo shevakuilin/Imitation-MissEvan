@@ -155,99 +155,110 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
     self.navigationItem.leftBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(backView) withImage:[UIImage imageNamed:@"sp_button_back_22x22_"]];
     self.navigationItem.rightBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(showMorePopView) withImage:[UIImage imageNamed:@"new_more_32x27_"]];
     
-    //判断本地是否已有缓存，若有便直接读取本地文件，若没有则发送请求加载
-    NSString * document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
-    NSString * movePath =  [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp3", self.model.audioName]];
-    NSURL * url;
-    if ([[NSFileManager defaultManager] fileExistsAtPath:movePath]) {
-        url = [NSURL fileURLWithPath:movePath];
-        NSInteger audioDuration = self.player.currentItem.duration.value;
-        NSString * str_minute = [NSString stringWithFormat:@"%02ld",audioDuration / 60];
-        NSString * str_second = [NSString stringWithFormat:@"%02ld",audioDuration % 60];
-        NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
-        self.allTimeLabel.text = format_time;
-
-        self.isLocalPlay = YES;
-        self.audioAsset = [AVURLAsset URLAssetWithURL:url options:nil];
-        self.currentPlayerItem = [AVPlayerItem playerItemWithAsset:_audioAsset];
-        if (!self.player) {
-            self.player = [AVPlayer playerWithPlayerItem:self.currentPlayerItem];
+    NSDictionary * dic = [[MPNowPlayingInfoCenter defaultCenter] nowPlayingInfo];
+    if (dic) {
+        // 获取后台监听的歌曲播放进度，再刷新歌曲接口数据
+        MELog(@"dic打印的内容=======%@", dic);
+        NSInteger playbackDuration = dic[@"playbackDuration"];
+        
+        
+    } else {
+        //判断本地是否已有缓存，若有便直接读取本地文件，若没有则发送请求加载
+        NSString * document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
+        NSString * movePath =  [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp3", self.model.audioName]];
+        NSURL * url;
+        if ([[NSFileManager defaultManager] fileExistsAtPath:movePath]) {
+            url = [NSURL fileURLWithPath:movePath];
+            NSInteger audioDuration = self.player.currentItem.duration.value;
+            NSString * str_minute = [NSString stringWithFormat:@"%02ld",audioDuration / 60];
+            NSString * str_second = [NSString stringWithFormat:@"%02ld",audioDuration % 60];
+            NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
+            self.allTimeLabel.text = format_time;
+            
+            self.isLocalPlay = YES;
+            self.audioAsset = [AVURLAsset URLAssetWithURL:url options:nil];
+            self.currentPlayerItem = [AVPlayerItem playerItemWithAsset:_audioAsset];
+            if (!self.player) {
+                self.player = [AVPlayer playerWithPlayerItem:self.currentPlayerItem];
+            } else {
+                [self.player replaceCurrentItemWithPlayerItem:self.currentPlayerItem];
+            }
+            
+//            [self addRippleView];//添加播放涟漪
+//            [self onStartClick];//自动播放
+            
+            //        [self setPlayingInfo];//后台播放显示信息设置
+            
         } else {
-            [self.player replaceCurrentItemWithPlayerItem:self.currentPlayerItem];
+            //         [self loadNetworkMusic];//下载音频
+            url = [NSURL URLWithString:self.model.audioUrl];
+            self.isLocalPlay = NO;
+            self.audioURLAsset = [AVURLAsset URLAssetWithURL:url options:nil];
+            self.currentPlayerItem = [AVPlayerItem playerItemWithAsset:_audioURLAsset];
+            
+            if (!self.player) {
+                self.player = [AVPlayer playerWithPlayerItem:self.currentPlayerItem];
+            } else {
+                [self.player replaceCurrentItemWithPlayerItem:self.currentPlayerItem];
+            }
+            
         }
         
         [self addRippleView];//添加播放涟漪
         [self onStartClick];//自动播放
-//        [self setPlayingInfo];//后台播放显示信息设置
         
-    } else {
-//         [self loadNetworkMusic];//下载音频
-        url = [NSURL URLWithString:self.model.audioUrl];
-        self.isLocalPlay = NO;
-        self.audioURLAsset = [AVURLAsset URLAssetWithURL:url options:nil];
-        self.currentPlayerItem = [AVPlayerItem playerItemWithAsset:_audioURLAsset];
         
-        if (!self.player) {
-            self.player = [AVPlayer playerWithPlayerItem:self.currentPlayerItem];
+        //监听播放器状态
+        [self.currentPlayerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
+        [self.currentPlayerItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
+        [self.currentPlayerItem addObserver:self forKeyPath:@"playbackBufferEmpty" options:NSKeyValueObservingOptionNew context:nil];
+        [self.currentPlayerItem addObserver:self forKeyPath:@"playbackLikelyToKeepUp" options:NSKeyValueObservingOptionNew context:nil];
+        
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidPlayToEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:self.currentPlayerItem];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemPlaybackStalled:) name:AVPlayerItemPlaybackStalledNotification object:self.currentPlayerItem];
+        
+        // 本地文件不设置TBPlayerStateBuffering状态
+        if ([url.scheme isEqualToString:@"file"]) {
+            
+            // 如果已经在TBPlayerStatePlaying，则直接发通知，否则设置状态
+            if (self.state == MEPlayerStatePlaying) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:kMEPlayerStateChangedNotification object:nil];
+            } else {
+                self.state = MEPlayerStatePlaying;
+            }
+            
         } else {
-            [self.player replaceCurrentItemWithPlayerItem:self.currentPlayerItem];
+            
+            // 如果已经在TBPlayerStateBuffering，则直接发通知，否则设置状态
+            if (self.state == MEPlayerStateBuffering) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:kMEPlayerStateChangedNotification object:nil];
+            } else {
+                self.state = MEPlayerStateBuffering;
+            }
+            
         }
         
-    }
-    
-    [self addRippleView];//添加播放涟漪
-    [self onStartClick];//自动播放
-    
-    
-    //监听播放器状态
-    [self.currentPlayerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
-    [self.currentPlayerItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
-    [self.currentPlayerItem addObserver:self forKeyPath:@"playbackBufferEmpty" options:NSKeyValueObservingOptionNew context:nil];
-    [self.currentPlayerItem addObserver:self forKeyPath:@"playbackLikelyToKeepUp" options:NSKeyValueObservingOptionNew context:nil];
-    
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidPlayToEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:self.currentPlayerItem];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemPlaybackStalled:) name:AVPlayerItemPlaybackStalledNotification object:self.currentPlayerItem];
-    
-    // 本地文件不设置TBPlayerStateBuffering状态
-    if ([url.scheme isEqualToString:@"file"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kMEPlayerProgressChangedNotification object:nil];
         
-        // 如果已经在TBPlayerStatePlaying，则直接发通知，否则设置状态
-        if (self.state == MEPlayerStatePlaying) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:kMEPlayerStateChangedNotification object:nil];
-        } else {
-            self.state = MEPlayerStatePlaying;
-        }
         
-    } else {
-        
-        // 如果已经在TBPlayerStateBuffering，则直接发通知，否则设置状态
-        if (self.state == MEPlayerStateBuffering) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:kMEPlayerStateChangedNotification object:nil];
-        } else {
-            self.state = MEPlayerStateBuffering;
-        }
-        
-    }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kMEPlayerProgressChangedNotification object:nil];
+        //    if (dic) {
+        //        self.slider.value = [dic[MPNowPlayingInfoPropertyElapsedPlaybackTime] floatValue];
+        //        [self onTimeChange];
+        //        NSInteger recordSecons = [dic[@"playbackDuration"] integerValue];
+        //        NSString * str_minute = [NSString stringWithFormat:@"%02ld", recordSecons / 60];
+        //        NSString * str_second = [NSString stringWithFormat:@"%02ld", recordSecons % 60];
+        //        NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
+        //        self.currentTimeLabel.text = format_time;
+        //        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(onTimeCount) userInfo:nil repeats:YES];
+        //        
+        //    } else {
+        //        [self loadNetworkMusic];//下载音频
+        //    }
+        [self showTitleAndScanfView];//显示标题&弹幕输入框
 
-//    NSDictionary * dic = [[MPNowPlayingInfoCenter defaultCenter] nowPlayingInfo];
-//    if (dic) {
-//        MELog(@"dic打印的内容=======%@", dic);
-//        self.slider.value = [dic[MPNowPlayingInfoPropertyElapsedPlaybackTime] floatValue];
-//        [self onTimeChange];
-//        NSInteger recordSecons = [dic[@"playbackDuration"] integerValue];
-//        NSString * str_minute = [NSString stringWithFormat:@"%02ld", recordSecons / 60];
-//        NSString * str_second = [NSString stringWithFormat:@"%02ld", recordSecons % 60];
-//        NSString * format_time = [NSString stringWithFormat:@"%@:%@", str_minute, str_second];
-//        self.currentTimeLabel.text = format_time;
-//        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(onTimeCount) userInfo:nil repeats:YES];
-//        
-//    } else {
-//        [self loadNetworkMusic];//下载音频
-//    }
-    [self showTitleAndScanfView];//显示标题&弹幕输入框
+    }
+    
     
 }
 
@@ -1242,7 +1253,7 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    AVPlayerItem *playerItem = (AVPlayerItem *)object;
+    AVPlayerItem * playerItem = (AVPlayerItem *)object;
     
     if ([keyPath isEqualToString:@"status"]) {
         if ([playerItem status] == AVPlayerStatusReadyToPlay) {

@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
     MEPlayerStatePause     = 4  //暂停
 };
 
-@interface MEDanmakuViewController ()<UIScrollViewDelegate, DanmakuDelegate, UITextFieldDelegate, UIActionSheetDelegate, MEActionSheetDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource>
+@interface MEDanmakuViewController ()<UIScrollViewDelegate, DanmakuDelegate, UITextFieldDelegate, UIActionSheetDelegate, MEActionSheetDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, MEAVPlayerMangerDelegate>
 {
     BOOL isFirst;//是否第一次进入该界面
     NSInteger seconds;//进度条时间
@@ -92,6 +92,10 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
 @property (nonatomic, strong) NSObject * playbackTimeObserver;
 @property (nonatomic, assign) BOOL isPauseByUser; //是否被用户暂停
 @property (nonatomic, assign) MEPlayerState state;
+
+@property (nonatomic, strong) MEAVPlayerManger * avplaymanager;
+@property (nonatomic) MEAVPlayerCycle cycle;
+
 @end
 
 @implementation MEDanmakuViewController
@@ -275,6 +279,9 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
     
     NSData * imageDate = [MEUtil imageWithImage:self.mosaicThemeImageView.image scaledToSize:CGSizeMake(200, 200)];
     self.mosaicThemeImageView.image = [UIImage imageWithData:imageDate];
+    
+    _avplaymanager = [MEAVPlayerManger sharedInstance];
+    _avplaymanager.delegate = self;
     
 }
 

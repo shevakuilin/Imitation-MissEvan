@@ -159,7 +159,7 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
     if (dic) {
         // 获取后台监听的歌曲播放进度，再刷新歌曲接口数据
         MELog(@"dic打印的内容=======%@", dic);
-        NSInteger playbackDuration = dic[@"playbackDuration"];
+        NSInteger playbackDuration = [dic[@"playbackDuration"] integerValue];
         
         
     } else {
@@ -686,7 +686,7 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
     self.audioInfoTableView.separatorStyle = NO;
     self.audioInfoTableView.delegate = self;
     self.audioInfoTableView.dataSource = self;
-    self.audioInfoTableView.tableFooterView = [[UITableView alloc] init];
+    self.audioInfoTableView.tableFooterView = [[UIView alloc] init];
     [self.audioInfoTableView registerClass:[MEAudioAvatarTableViewCell class] forCellReuseIdentifier:@"AudioAvatar"];
     [self.audioInfoTableView registerClass:[MEAudioTagTableViewCell class] forCellReuseIdentifier:@"AudioTag"];
     [self.audioInfoTableView registerClass:[MEVoiceListOfContainsTableViewCell class] forCellReuseIdentifier:@"VoiceListOfContains"];
@@ -989,29 +989,33 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
     }
     //获取初始坐标
     CGPoint titlePoint = self.title_DanmakuScanfView.titleView.center;
-    CGPoint autoScrollLabelPoint = self.title_DanmakuScanfView.autoScrollLabel.center;
+//    CGPoint autoScrollLabelPoint = self.title_DanmakuScanfView.autoScrollLabel.center;
     CGPoint danmakuPoint = self.title_DanmakuScanfView.danmakuView.center;
-    CGPoint scanfPoint = self.title_DanmakuScanfView.danmakuScanfView.center;
-    CGPoint textFieldPoint = self.title_DanmakuScanfView.danmakuTextField.center;
+//    CGPoint scanfPoint = self.title_DanmakuScanfView.danmakuScanfView.center;
+//    CGPoint textFieldPoint = self.title_DanmakuScanfView.danmakuTextField.center;
+    
 //    CGPoint closerOfOpenPoint = self.title_DanmakuScanfView.closeOrOpenDanmaku.center;
 //    CGPoint statusPoint = self.title_DanmakuScanfView.danmakuStatusLabel.center;
-    CGPoint closerOfOpenPoint = self.title_DanmakuScanfView.closeOrOpenButton.center;
-    CGPoint fullscreenPoint = self.title_DanmakuScanfView.fullscreenButton.center;
-    CGPoint placeholder = self.title_DanmakuScanfView.placeholderLabel.center;
+    
+//    CGPoint closerOfOpenPoint = self.title_DanmakuScanfView.closeOrOpenButton.center;
+//    CGPoint fullscreenPoint = self.title_DanmakuScanfView.fullscreenButton.center;
+//    CGPoint placeholder = self.title_DanmakuScanfView.placeholderLabel.center;
     //执行动画
     [UIView animateWithDuration:0.5 animations:^{
         //自上向下进入屏幕
         self.title_DanmakuScanfView.titleView.center = CGPointMake(titlePoint.x, titlePoint.y + 64);
-        self.title_DanmakuScanfView.autoScrollLabel.center = CGPointMake(autoScrollLabelPoint.x, autoScrollLabelPoint.y + 64);
+//        self.title_DanmakuScanfView.autoScrollLabel.center = CGPointMake(autoScrollLabelPoint.x, autoScrollLabelPoint.y + 64);
         //自下而上进入屏幕
         self.title_DanmakuScanfView.danmakuView.center = CGPointMake(danmakuPoint.x, danmakuPoint.y - 55);
-        self.title_DanmakuScanfView.danmakuScanfView.center = CGPointMake(scanfPoint.x, scanfPoint.y - 55);
-        self.title_DanmakuScanfView.danmakuTextField.center = CGPointMake(textFieldPoint.x, textFieldPoint.y - 55);
+//        self.title_DanmakuScanfView.danmakuScanfView.center = CGPointMake(scanfPoint.x, scanfPoint.y - 55);
+//        self.title_DanmakuScanfView.danmakuTextField.center = CGPointMake(textFieldPoint.x, textFieldPoint.y - 55);
+        
 //        self.title_DanmakuScanfView.closeOrOpenDanmaku.center = CGPointMake(closerOfOpenPoint.x, closerOfOpenPoint.y - 55);
 //        self.title_DanmakuScanfView.danmakuStatusLabel.center = CGPointMake(statusPoint.x, statusPoint.y - 55);
-        self.title_DanmakuScanfView.closeOrOpenButton.center = CGPointMake(closerOfOpenPoint.x, closerOfOpenPoint.y - 55);
-        self.title_DanmakuScanfView.fullscreenButton.center = CGPointMake(fullscreenPoint.x, fullscreenPoint.y - 55);
-        self.title_DanmakuScanfView.placeholderLabel.center = CGPointMake(placeholder.x, placeholder.y - 55);
+        
+//        self.title_DanmakuScanfView.closeOrOpenButton.center = CGPointMake(closerOfOpenPoint.x, closerOfOpenPoint.y - 55);
+//        self.title_DanmakuScanfView.fullscreenButton.center = CGPointMake(fullscreenPoint.x, fullscreenPoint.y - 55);
+//        self.title_DanmakuScanfView.placeholderLabel.center = CGPointMake(placeholder.x, placeholder.y - 55);
         
         UITapGestureRecognizer * hiddenGesture = [[UITapGestureRecognizer alloc] init];
         [hiddenGesture addTarget:self action:@selector(hiddenTitleAndScanfView)];
@@ -1035,29 +1039,33 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
     }
     //获取初始坐标
     CGPoint titlePoint = self.title_DanmakuScanfView.titleView.center;
-    CGPoint autoScrollLabelPoint = self.title_DanmakuScanfView.autoScrollLabel.center;
+//    CGPoint autoScrollLabelPoint = self.title_DanmakuScanfView.autoScrollLabel.center;
     CGPoint danmakuPoint = self.title_DanmakuScanfView.danmakuView.center;
-    CGPoint scanfPoint = self.title_DanmakuScanfView.danmakuScanfView.center;
-    CGPoint textFieldPoint = self.title_DanmakuScanfView.danmakuTextField.center;
+//    CGPoint scanfPoint = self.title_DanmakuScanfView.danmakuScanfView.center;
+//    CGPoint textFieldPoint = self.title_DanmakuScanfView.danmakuTextField.center;
+    
 //    CGPoint closerOfOpenPoint = self.title_DanmakuScanfView.closeOrOpenDanmaku.center;
 //    CGPoint statusPoint = self.title_DanmakuScanfView.danmakuStatusLabel.center;
-    CGPoint closerOfOpenPoint = self.title_DanmakuScanfView.closeOrOpenButton.center;
-    CGPoint fullscreenPoint = self.title_DanmakuScanfView.fullscreenButton.center;
-    CGPoint placeholder = self.title_DanmakuScanfView.placeholderLabel.center;
+    
+//    CGPoint closerOfOpenPoint = self.title_DanmakuScanfView.closeOrOpenButton.center;
+//    CGPoint fullscreenPoint = self.title_DanmakuScanfView.fullscreenButton.center;
+//    CGPoint placeholder = self.title_DanmakuScanfView.placeholderLabel.center;
     //执行动画
     [UIView animateWithDuration:0.5 animations:^{
         //自下而上退出屏幕
         self.title_DanmakuScanfView.titleView.center = CGPointMake(titlePoint.x, titlePoint.y - 64);
-        self.title_DanmakuScanfView.autoScrollLabel.center = CGPointMake(autoScrollLabelPoint.x, autoScrollLabelPoint.y - 64);
+//        self.title_DanmakuScanfView.autoScrollLabel.center = CGPointMake(autoScrollLabelPoint.x, autoScrollLabelPoint.y - 64);
         //自上向下退出屏幕
         self.title_DanmakuScanfView.danmakuView.center = CGPointMake(danmakuPoint.x, danmakuPoint.y + 55);
-        self.title_DanmakuScanfView.danmakuScanfView.center = CGPointMake(scanfPoint.x, scanfPoint.y + 55);
-        self.title_DanmakuScanfView.danmakuTextField.center = CGPointMake(textFieldPoint.x, textFieldPoint.y + 55);
+//        self.title_DanmakuScanfView.danmakuScanfView.center = CGPointMake(scanfPoint.x, scanfPoint.y + 55);
+//        self.title_DanmakuScanfView.danmakuTextField.center = CGPointMake(textFieldPoint.x, textFieldPoint.y + 55);
+        
 //        self.title_DanmakuScanfView.closeOrOpenDanmaku.center = CGPointMake(closerOfOpenPoint.x, closerOfOpenPoint.y + 55);
 //        self.title_DanmakuScanfView.danmakuStatusLabel.center = CGPointMake(statusPoint.x, statusPoint.y + 55);
-        self.title_DanmakuScanfView.closeOrOpenButton.center = CGPointMake(closerOfOpenPoint.x, closerOfOpenPoint.y + 55);
-        self.title_DanmakuScanfView.fullscreenButton.center = CGPointMake(fullscreenPoint.x, fullscreenPoint.y + 55);
-        self.title_DanmakuScanfView.placeholderLabel.center = CGPointMake(placeholder.x, placeholder.y + 55);
+        
+//        self.title_DanmakuScanfView.closeOrOpenButton.center = CGPointMake(closerOfOpenPoint.x, closerOfOpenPoint.y + 55);
+//        self.title_DanmakuScanfView.fullscreenButton.center = CGPointMake(fullscreenPoint.x, fullscreenPoint.y + 55);
+//        self.title_DanmakuScanfView.placeholderLabel.center = CGPointMake(placeholder.x, placeholder.y + 55);
         
         UITapGestureRecognizer * showGesture = [[UITapGestureRecognizer alloc] init];
         [showGesture addTarget:self action:@selector(showTitleAndScanfView)];

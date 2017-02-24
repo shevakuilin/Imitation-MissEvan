@@ -65,6 +65,7 @@
 		77E308751E0BA95800F04D38 /* MEBaseImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E308741E0BA95800F04D38 /* MEBaseImageView.m */; };
 		77E308781E0BAD3E00F04D38 /* MEBaseChannelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E308771E0BAD3E00F04D38 /* MEBaseChannelCollectionViewCell.m */; };
 		77E3087B1E0BC25000F04D38 /* MEBaseMoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E3087A1E0BC25000F04D38 /* MEBaseMoreTableViewCell.m */; };
+		77E818121E5FD34A006746DC /* MEAVPlayerManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E818111E5FD34A006746DC /* MEAVPlayerManger.m */; };
 		C9539F1C10181F2A520BDDE3 /* libPods-Imitation-MissEvan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20DBB35C9F8E09611DFD0293 /* libPods-Imitation-MissEvan.a */; };
 		E442E69D1E17919E00BE3F5E /* MEDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E442E69C1E17919E00BE3F5E /* MEDataModel.m */; };
 		E442E6A01E1AA15600BE3F5E /* MENetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E442E69F1E1AA15600BE3F5E /* MENetworkManager.m */; };
@@ -225,6 +226,8 @@
 		77E308771E0BAD3E00F04D38 /* MEBaseChannelCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEBaseChannelCollectionViewCell.m; sourceTree = "<group>"; };
 		77E308791E0BC25000F04D38 /* MEBaseMoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEBaseMoreTableViewCell.h; sourceTree = "<group>"; };
 		77E3087A1E0BC25000F04D38 /* MEBaseMoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEBaseMoreTableViewCell.m; sourceTree = "<group>"; };
+		77E818101E5FD34A006746DC /* MEAVPlayerManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MEAVPlayerManger.h; path = ../MEAVPlayerManger.h; sourceTree = "<group>"; };
+		77E818111E5FD34A006746DC /* MEAVPlayerManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MEAVPlayerManger.m; path = ../MEAVPlayerManger.m; sourceTree = "<group>"; };
 		78521F705BB0DCF560EE7105 /* Pods-Imitation-MissEvan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imitation-MissEvan.release.xcconfig"; path = "Pods/Target Support Files/Pods-Imitation-MissEvan/Pods-Imitation-MissEvan.release.xcconfig"; sourceTree = "<group>"; };
 		E442E69B1E17919E00BE3F5E /* MEDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEDataModel.h; sourceTree = "<group>"; };
 		E442E69C1E17919E00BE3F5E /* MEDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEDataModel.m; sourceTree = "<group>"; };
@@ -573,6 +576,7 @@
 		77C819441DBDBB0D0004EFFC /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				77E818131E60185F006746DC /* MEPlayManger */,
 				E442E69A1E17918300BE3F5E /* MEDataModel */,
 				778430EE1E163A1F004A4AB8 /* MERippleView */,
 				77D0F1251E08FDB100D16470 /* MEBase */,
@@ -658,6 +662,15 @@
 				E4C3B5A01DE9DD4100A672D1 /* MEVoiceListCollectionViewCell.m */,
 			);
 			path = VoiceList;
+			sourceTree = "<group>";
+		};
+		77E818131E60185F006746DC /* MEPlayManger */ = {
+			isa = PBXGroup;
+			children = (
+				77E818101E5FD34A006746DC /* MEAVPlayerManger.h */,
+				77E818111E5FD34A006746DC /* MEAVPlayerManger.m */,
+			);
+			path = MEPlayManger;
 			sourceTree = "<group>";
 		};
 		CD12B2E7146F7BB9CE190470 /* Frameworks */ = {
@@ -963,6 +976,7 @@
 				E4C3B5AD1DEF0BAD00A672D1 /* MEMyUserInfoTableViewCell.m in Sources */,
 				E4C3B5A41DE9E5D500A672D1 /* MEBellsCollectionViewCell.m in Sources */,
 				77E308781E0BAD3E00F04D38 /* MEBaseChannelCollectionViewCell.m in Sources */,
+				77E818121E5FD34A006746DC /* MEAVPlayerManger.m in Sources */,
 				776A07E21DFFC90B0049A3A9 /* CBAutoScrollLabel.m in Sources */,
 				77C3C1461E14EA720084A52C /* MEAudioTagTableViewCell.m in Sources */,
 				E4C3B56D1DD7787C00A672D1 /* MEScaleToSize.m in Sources */,

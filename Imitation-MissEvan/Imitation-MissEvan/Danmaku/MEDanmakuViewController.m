@@ -17,6 +17,8 @@
 #import <notify.h>
 #import <MediaPlayer/MediaPlayer.h>
 
+#import "MEAVPlayerManger.h"
+
 NSString * const kMEPlayerStateChangedNotification    = @"MEPlayerStateChangedNotification";
 NSString * const kMEPlayerProgressChangedNotification = @"MEPlayerProgressChangedNotification";
 NSString * const kMEPlayerLoadProgressChangedNotification = @"MEPlayerLoadProgressChangedNotification";

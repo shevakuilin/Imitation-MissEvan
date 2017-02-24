@@ -151,11 +151,11 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     [self becomeFirstResponder];
     
-    //设置返回及弹窗选项barItem
+    // 设置返回及弹窗选项barItem
     self.navigationItem.leftBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(backView) withImage:[UIImage imageNamed:@"sp_button_back_22x22_"]];
     self.navigationItem.rightBarButtonItem = [MEUtil barButtonWithTarget:self action:@selector(showMorePopView) withImage:[UIImage imageNamed:@"new_more_32x27_"]];
     
-    //判断本地是否已有缓存，若有便直接读取本地文件，若没有则发送请求加载
+    // 判断本地是否已有缓存，若有便直接读取本地文件，若没有则发送请求加载
     NSString * document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
     NSString * movePath =  [document stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp3", self.model.audioName]];
     NSURL * url;
@@ -176,9 +176,9 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
             [self.player replaceCurrentItemWithPlayerItem:self.currentPlayerItem];
         }
         
-        [self addRippleView];//添加播放涟漪
-        [self onStartClick];//自动播放
-//        [self setPlayingInfo];//后台播放显示信息设置
+        [self addRippleView];// 添加播放涟漪
+        [self onStartClick];// 自动播放
+//        [self setPlayingInfo];// 后台播放显示信息设置
         
     } else {
 //         [self loadNetworkMusic];//下载音频

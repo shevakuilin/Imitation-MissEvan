@@ -22,8 +22,8 @@
             
             self.titleView = [UIView new];
             [self addSubview:self.titleView];
-            self.titleView.backgroundColor = [UIColor whiteColor];
-            self.titleView.alpha = 0.05;
+            self.titleView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.05];
+//            self.titleView.alpha = 0.05;
             [self.titleView mas_makeConstraints:^(MASConstraintMaker *make) {
 //                make.top.equalTo(self);
                 make.top.equalTo(self).with.offset(-64);
@@ -34,7 +34,8 @@
             }];
             
             self.autoScrollLabel = [[CBAutoScrollLabel alloc] init];
-            [self insertSubview:self.autoScrollLabel aboveSubview:self.titleView];
+//            [self insertSubview:self.autoScrollLabel aboveSubview:self.titleView];
+            [self.titleView addSubview:self.autoScrollLabel];
 //            self.autoScrollLabel.text = @"即使天空黯淡，阳光也会照耀圣西罗";
             self.autoScrollLabel.layer.masksToBounds = YES;
             self.autoScrollLabel.layer.cornerRadius = 4;
@@ -57,8 +58,8 @@
             
             self.danmakuView = [UIView new];
             [self addSubview:self.danmakuView];
-            self.danmakuView.backgroundColor = [UIColor whiteColor];
-            self.danmakuView.alpha = 0.05;
+            self.danmakuView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.05];
+//            self.danmakuView.alpha = 0.05;
             [self.danmakuView mas_makeConstraints:^(MASConstraintMaker *make) {
 //                make.bottom.equalTo(self);
                 make.bottom.equalTo(self).with.offset(55);
@@ -69,7 +70,8 @@
             }];
             
             self.fullscreenButton = [UIButton new];
-            [self insertSubview:self.fullscreenButton aboveSubview:self.danmakuView];
+//            [self insertSubview:self.fullscreenButton aboveSubview:self.danmakuView];
+            [self.danmakuView addSubview:self.fullscreenButton];
             [self.fullscreenButton setImage:[UIImage imageNamed:@"new_full_screen_28x28_-1"] forState:UIControlStateNormal];
             [self.fullscreenButton mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(self.danmakuView).with.offset(-10);
@@ -79,7 +81,8 @@
             }];
             
             self.closeOrOpenButton = [UIButton new];
-            [self insertSubview:self.closeOrOpenButton aboveSubview:self.danmakuView];
+//            [self insertSubview:self.closeOrOpenButton aboveSubview:self.danmakuView];
+            [self.danmakuView addSubview:self.closeOrOpenButton];
             [self.closeOrOpenButton setImage:[UIImage imageNamed:@"new_close_danmu_28x28_"] forState:UIControlStateNormal];
             [self.closeOrOpenButton setImage:[UIImage imageNamed:@"new_open_danmu_28x28_"] forState:UIControlStateSelected];
             [self.closeOrOpenButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -118,9 +121,10 @@
 //            }];
             
             self.danmakuScanfView = [UIView new];
-            [self insertSubview:self.danmakuScanfView aboveSubview:self.danmakuView];
-            self.danmakuScanfView.backgroundColor = ME_Color(112, 99, 95);
-            self.danmakuScanfView.alpha = 0.6;
+//            [self insertSubview:self.danmakuScanfView aboveSubview:self.danmakuView];
+            [self.danmakuView addSubview:self.danmakuScanfView];
+            self.danmakuScanfView.backgroundColor = [UIColor colorWithRed:112/255.0 green:99/255.0 blue:95/255.0 alpha:0.6];//ME_Color(112, 99, 95);
+//            self.danmakuScanfView.alpha = 0.6;
             self.danmakuScanfView.layer.masksToBounds = YES;
             self.danmakuScanfView.layer.cornerRadius = 5;
             self.danmakuScanfView.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -134,7 +138,8 @@
             }];
             
             self.placeholderLabel = [UILabel new];
-            [self insertSubview:self.placeholderLabel aboveSubview:self.danmakuScanfView];
+            [self.danmakuScanfView addSubview:self.placeholderLabel];
+//            [self insertSubview:self.placeholderLabel aboveSubview:self.danmakuScanfView];
             self.placeholderLabel.font = [UIFont systemFontOfSize:11];
             self.placeholderLabel.textColor = [UIColor whiteColor];
             self.placeholderLabel.text = @"来点弹幕啊~";
@@ -145,7 +150,8 @@
             }];
             
             self.danmakuTextField = [UITextField new];
-            [self insertSubview:self.danmakuTextField aboveSubview:self.danmakuScanfView];
+            [self.danmakuScanfView addSubview:self.danmakuTextField];
+//            [self insertSubview:self.danmakuTextField aboveSubview:self.danmakuScanfView];
             self.danmakuTextField.font = [UIFont systemFontOfSize:11];
             self.danmakuTextField.textColor = [UIColor whiteColor];
             self.danmakuTextField.backgroundColor = [UIColor clearColor];

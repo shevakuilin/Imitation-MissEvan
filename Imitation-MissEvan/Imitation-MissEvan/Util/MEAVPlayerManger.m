@@ -114,11 +114,11 @@
 /** 监控播放状态 */
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     
-    AVPlayer *player = (AVPlayer *)object;
+    AVPlayer * player = (AVPlayer *)object;
     
     if ([keyPath isEqualToString:@"status"]) {
         
-        MELog(@"当前状态——%ld",(long)[player status]);
+        MELog(@"当前状态——%ld", (long)[player status]);
         
     }
 }
@@ -131,11 +131,12 @@
     if (_player.rate) {
         _isPlay = NO;
         [_player pause];
+        // TODO:发送通知给controller，暂停播放
         
     } else {
         _isPlay = YES;
         [_player play];
-        
+        // TODO:发送通知给controller，开始播放
     }
     
 }

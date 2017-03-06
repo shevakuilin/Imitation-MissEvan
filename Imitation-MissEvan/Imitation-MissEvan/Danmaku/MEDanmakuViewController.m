@@ -270,17 +270,21 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
     switch (_cycle) {
         case theSong:
             // TODO: 歌曲循环方式
+            _meDanmakuView.type = MEPLAY_TYPE_THESONG;
             break;
+            
         case nextSong:
-            
+            _meDanmakuView.type = MEPLAY_TYPE_NEXTSONG;
             break;
-        case isRandom:
             
+        case isRandom:
+            _meDanmakuView.type = MEPLAY_TYPE_ISRANDOM;
             break;
             
         default:
             break;
     }
+    _meDanmakuView.playInfoDic = @{@"audioTitle":[_avplaymanager playMusicTitle]};
     
     
 }

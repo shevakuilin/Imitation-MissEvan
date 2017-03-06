@@ -140,7 +140,7 @@
     //TODO:标题&弹幕输入显示
     self.title_DanmakuScanfView = [[METitle_DanmakuScanfView alloc] init];
     [self.scrollView insertSubview:self.title_DanmakuScanfView aboveSubview:self.danmakuView];
-    self.title_DanmakuScanfView.autoScrollLabel.text = self.model.audioName;
+//    self.title_DanmakuScanfView.autoScrollLabel.text = self.model.audioName;
     [self.title_DanmakuScanfView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.scrollView);
         make.left.equalTo(self.scrollView);
@@ -453,22 +453,35 @@
     
 }
 
-- (void)pullOrCloseTheIntroduction
+#pragma mark - 刷新视图显示
+- (void)setPlayInfoDic:(NSDictionary *)playInfoDic
 {
-    //TODO:展开或收起简介
-    self.pullArrowIcon.transform = CGAffineTransformRotate(self.pullArrowIcon.transform, M_PI);//图片旋转180°
-    if (self.audioIntroducHeight == 100) {
-        self.audioIntroducHeight = 380;
-        [self.audioIntroductionView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_offset(self.audioIntroducHeight);
-        }];
-        return;
-    } else {
-        self.audioIntroducHeight = 100;
-        [self.audioIntroductionView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_offset(self.audioIntroducHeight);
-        }];
-        return;
+    _playInfoDic = playInfoDic;
+    self.title_DanmakuScanfView.autoScrollLabel.text = playInfoDic[@"audioTitle"];
+}
+
+#pragma mark - 循环模式
+- (void)setType:(MEPLAY_TYPE)type
+{
+    _type = type;
+    switch (type) {
+        case MEPLAY_TYPE_THESONG:
+            // TODO:单曲循环
+            [self.repeatButton setImage:[UIImage imageNamed:@"npv_button_circle_repeat_21x20_"] forState:UIControlStateNormal];
+            break;
+            
+        case MEPLAY_TYPE_NEXTSONG:
+            // TODO:列表循环
+            [self.repeatButton setImage:[UIImage imageNamed:@"npv_button_circle_list00_19x20_"] forState:UIControlStateNormal];
+            break;
+            
+        case MEPLAY_TYPE_ISRANDOM:
+            // TODO:随机播放
+            [self.repeatButton setImage:[UIImage imageNamed:@"npv_button_circle_random_20x20_"] forState:UIControlStateNormal];
+            break;
+            
+        default:
+            break;
     }
 }
 
@@ -529,6 +542,117 @@
 - (void)danmakuViewPerpareComplete:(DanmakuView *)danmakuView
 {
     [self.danmakuView start];
+}
+
+#pragma mark - 点击事件(动画)处理
+- (void)showTitleAndScanfView
+{
+    //TODO:显示标题和弹幕输入框
+    if (self.showTimer) {
+        [self.showTimer invalidate];
+        self.showTimer = nil;
+    }
+    //获取初始坐标
+    CGPoint titlePoint = self.title_DanmakuScanfView.titleView.center;
+    CGPoint danmakuPoint = self.title_DanmakuScanfView.danmakuView.center;
+    //执行动画
+    [UIView animateWithDuration:0.5 animations:^{
+        //自上向下进入屏幕
+        self.title_DanmakuScanfView.titleView.center = CGPointMake(titlePoint.x, titlePoint.y + 64);
+        //自下而上进入屏幕
+        self.title_DanmakuScanfView.danmakuView.center = CGPointMake(danmakuPoint.x, danmakuPoint.y - 55);
+        
+        UITapGestureRecognizer * hiddenGesture = [[UITapGestureRecognizer alloc] init];
+        [hiddenGesture addTarget:self action:@selector(hiddenTitleAndScanfView)];
+        [self.title_DanmakuScanfView addGestureRecognizer:hiddenGesture];
+        [self showTimerStart];
+    }];
+}
+
+- (void)showTimerStart
+{
+    self.showTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(hiddenTitleAndScanfView) userInfo:nil repeats:YES];
+}
+
+- (void)hiddenTitleAndScanfView
+{
+    //TODO:隐藏标题和弹幕输入框
+    [self endEditing:YES];
+    if (self.showTimer) {
+        [self.showTimer invalidate];
+        self.showTimer = nil;
+    }
+    //获取初始坐标
+    CGPoint titlePoint = self.title_DanmakuScanfView.titleView.center;
+    CGPoint danmakuPoint = self.title_DanmakuScanfView.danmakuView.center;
+    
+    //执行动画
+    [UIView animateWithDuration:0.5 animations:^{
+        //自下而上退出屏幕
+        self.title_DanmakuScanfView.titleView.center = CGPointMake(titlePoint.x, titlePoint.y - 64);
+        //自上向下退出屏幕
+        self.title_DanmakuScanfView.danmakuView.center = CGPointMake(danmakuPoint.x, danmakuPoint.y + 55);
+        
+        UITapGestureRecognizer * showGesture = [[UITapGestureRecognizer alloc] init];
+        [showGesture addTarget:self action:@selector(showTitleAndScanfView)];
+        [self.title_DanmakuScanfView addGestureRecognizer:showGesture];
+    }];
+}
+
+- (void)closeOrOpen
+{
+    //TODO:关闭/打开弹幕
+    if (self.danmakuView.hidden == NO) {
+        self.danmakuView.hidden = YES;
+        //        self.title_DanmakuScanfView.danmakuStatusLabel.text = @"开弹幕";
+        self.title_DanmakuScanfView.closeOrOpenButton.selected = YES;
+        return;
+    } else if (self.danmakuView.hidden == YES) {
+        self.danmakuView.hidden = NO;
+        //        self.title_DanmakuScanfView.danmakuStatusLabel.text = @"关弹幕";
+        self.title_DanmakuScanfView.closeOrOpenButton.selected = NO;
+        return;
+    }
+}
+
+- (void)addRippleView
+{
+    //TODO:添加播放涟漪
+    self.rippleView = [MERippleView new];
+    self.rippleView.frame = self.mosaicThemeImageView.frame;
+    [self.mosaicThemeImageView addSubview:self.rippleView];
+    [self.rippleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.mosaicThemeImageView).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+    }];
+}
+
+- (void)stopRipple
+{
+    [_rippleView stopRipple];//停止涟漪
+}
+
+- (void)showWithRipple
+{
+    [_rippleView showWithRipple:self.themeImageView];//播放涟漪
+}
+
+- (void)pullOrCloseTheIntroduction
+{
+    //TODO:展开或收起简介
+    self.pullArrowIcon.transform = CGAffineTransformRotate(self.pullArrowIcon.transform, M_PI);//图片旋转180°
+    if (self.audioIntroducHeight == 100) {
+        self.audioIntroducHeight = 380;
+        [self.audioIntroductionView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_offset(self.audioIntroducHeight);
+        }];
+        return;
+    } else {
+        self.audioIntroducHeight = 100;
+        [self.audioIntroductionView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_offset(self.audioIntroducHeight);
+        }];
+        return;
+    }
 }
 
 
@@ -637,111 +761,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         return 60;
     }
     return 200;
-}
-
-
-#pragma mark - 数据源
-//- (void)setAudioIntroducHeight:(NSUInteger)audioIntroducHeight
-//{
-//    _audioIntroducHeight = audioIntroducHeight;
-//    //TODO:展开或收起简介
-//    self.pullArrowIcon.transform = CGAffineTransformRotate(self.pullArrowIcon.transform, M_PI);//图片旋转180°
-//    // 更新简介高度
-//    [self.audioIntroductionView mas_updateConstraints:^(MASConstraintMaker *make) {
-//        make.height.mas_offset(audioIntroducHeight);
-//    }];
-//}
-
-#pragma mark - 点击事件(动画)处理
-- (void)showTitleAndScanfView
-{
-    //TODO:显示标题和弹幕输入框
-    if (self.showTimer) {
-        [self.showTimer invalidate];
-        self.showTimer = nil;
-    }
-    //获取初始坐标
-    CGPoint titlePoint = self.title_DanmakuScanfView.titleView.center;
-    CGPoint danmakuPoint = self.title_DanmakuScanfView.danmakuView.center;
-    //执行动画
-    [UIView animateWithDuration:0.5 animations:^{
-        //自上向下进入屏幕
-        self.title_DanmakuScanfView.titleView.center = CGPointMake(titlePoint.x, titlePoint.y + 64);
-        //自下而上进入屏幕
-        self.title_DanmakuScanfView.danmakuView.center = CGPointMake(danmakuPoint.x, danmakuPoint.y - 55);
-        
-        UITapGestureRecognizer * hiddenGesture = [[UITapGestureRecognizer alloc] init];
-        [hiddenGesture addTarget:self action:@selector(hiddenTitleAndScanfView)];
-        [self.title_DanmakuScanfView addGestureRecognizer:hiddenGesture];
-        [self showTimerStart];
-    }];
-}
-
-- (void)showTimerStart
-{
-    self.showTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(hiddenTitleAndScanfView) userInfo:nil repeats:YES];
-}
-
-- (void)hiddenTitleAndScanfView
-{
-    //TODO:隐藏标题和弹幕输入框
-    [self endEditing:YES];
-    if (self.showTimer) {
-        [self.showTimer invalidate];
-        self.showTimer = nil;
-    }
-    //获取初始坐标
-    CGPoint titlePoint = self.title_DanmakuScanfView.titleView.center;
-    CGPoint danmakuPoint = self.title_DanmakuScanfView.danmakuView.center;
-
-    //执行动画
-    [UIView animateWithDuration:0.5 animations:^{
-        //自下而上退出屏幕
-        self.title_DanmakuScanfView.titleView.center = CGPointMake(titlePoint.x, titlePoint.y - 64);
-        //自上向下退出屏幕
-        self.title_DanmakuScanfView.danmakuView.center = CGPointMake(danmakuPoint.x, danmakuPoint.y + 55);
-        
-        UITapGestureRecognizer * showGesture = [[UITapGestureRecognizer alloc] init];
-        [showGesture addTarget:self action:@selector(showTitleAndScanfView)];
-        [self.title_DanmakuScanfView addGestureRecognizer:showGesture];
-    }];
-}
-
-- (void)closeOrOpen
-{
-    //TODO:关闭/打开弹幕
-    if (self.danmakuView.hidden == NO) {
-        self.danmakuView.hidden = YES;
-        //        self.title_DanmakuScanfView.danmakuStatusLabel.text = @"开弹幕";
-        self.title_DanmakuScanfView.closeOrOpenButton.selected = YES;
-        return;
-    } else if (self.danmakuView.hidden == YES) {
-        self.danmakuView.hidden = NO;
-        //        self.title_DanmakuScanfView.danmakuStatusLabel.text = @"关弹幕";
-        self.title_DanmakuScanfView.closeOrOpenButton.selected = NO;
-        return;
-    }
-}
-
-- (void)addRippleView
-{
-    //TODO:添加播放涟漪
-    self.rippleView = [MERippleView new];
-    self.rippleView.frame = self.mosaicThemeImageView.frame;
-    [self.mosaicThemeImageView addSubview:self.rippleView];
-    [self.rippleView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.mosaicThemeImageView).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
-    }];
-}
-
-- (void)stopRipple
-{
-    [_rippleView stopRipple];//停止涟漪
-}
-
-- (void)showWithRipple
-{
-    [_rippleView showWithRipple:self.themeImageView];//播放涟漪
 }
 
 @end

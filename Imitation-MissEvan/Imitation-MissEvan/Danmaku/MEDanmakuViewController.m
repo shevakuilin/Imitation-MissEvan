@@ -344,7 +344,27 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
     [self releasePlayer];
 }
 
-#pragma mark -
+#pragma mark - 判断移动scrollView的偏移量
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    UIColor * color = [UIColor blackColor];
+    CGFloat offsetY = scrollView.contentOffset.y;
+    if (offsetY > NAVBAR_CHANGE_POINT) {
+        CGFloat alpha = MIN(0.8, 0.8 - ((NAVBAR_CHANGE_POINT + 64 - offsetY) / 64));//这里控制alpha最大值
+        [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:alpha]];
+    } else {
+        [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:0]];
+    }
+    //限制scrollView滑动到顶部后的继续滑动
+    CGPoint offset = scrollView.contentOffset;//scrollview当前显示区域定点相对于fram顶点的偏移量
+    //currentOffset与maximumOffset的值相等时，说明scrollview已经滑到底部了，即偏移量达到最大值
+    if (offset.y <= 0) {
+        MELog(@"滑到顶部");
+        scrollView.contentOffset = CGPointMake(0, 0);
+        return;
+    }
+}
+
 #pragma mark - 上次播放记录
 - (void)showLasttimeRecord
 {

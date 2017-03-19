@@ -284,8 +284,7 @@ typedef NS_ENUM(NSInteger, MEPlayerState) {
         default:
             break;
     }
-    _meDanmakuView.playInfoDic = @{@"audioTitle":[_avplaymanager playMusicTitle]};
-    
+    _meDanmakuView.playInfoDic = @{@"audioTitle":[_avplaymanager playMusicTitle], @"themeImage":[_avplaymanager playCoverImage]};
     
 }
 

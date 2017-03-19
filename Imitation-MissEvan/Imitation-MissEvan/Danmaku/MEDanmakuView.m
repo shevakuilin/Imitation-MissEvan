@@ -90,12 +90,12 @@
     self.mosaicThemeImageView = [UIImageView new];
     [self.scrollView addSubview:self.mosaicThemeImageView];
     self.mosaicThemeImageView.contentMode = UIViewContentModeScaleAspectFill;
-    NSURL * loadImageURL = [NSURL URLWithString:self.configuration.loadImageURL/*@"http://static.missevan.com/coversmini/201612/31/0fc5ffe807e7b63f4dd17804cbfcb183135532.jpg"*/];
-    NSData * imageData = [NSData dataWithContentsOfURL:loadImageURL];
-    UIImage * image = [UIImage imageWithData:imageData];//[UIImage imageNamed:@"hotMVoice_downLeft"];
-    UIImage * blurImage = [MEUtil boxblurImage:image withBlurNumber:3.6];//图像虚化
-    UIImage * mosaicImage = [MEUtil transToMosaicImage:blurImage blockLevel:34];//图像添加马赛克
-    self.mosaicThemeImageView.image = mosaicImage;
+//    NSURL * loadImageURL = [NSURL URLWithString:self.configuration.loadImageURL/*@"http://static.missevan.com/coversmini/201612/31/0fc5ffe807e7b63f4dd17804cbfcb183135532.jpg"*/];
+//    NSData * imageData = [NSData dataWithContentsOfURL:loadImageURL];
+//    UIImage * image = [UIImage imageWithData:imageData];//[UIImage imageNamed:@"hotMVoice_downLeft"];
+//    UIImage * blurImage = [MEUtil boxblurImage:image withBlurNumber:3.6];//图像虚化
+//    UIImage * mosaicImage = [MEUtil transToMosaicImage:blurImage blockLevel:34];//图像添加马赛克
+//    self.mosaicThemeImageView.image = mosaicImage;
     //    [MEUtil transToMosaicImage:blurImage blockLevel:34];
     self.mosaicThemeImageView.clipsToBounds = YES;
     [self.mosaicThemeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -109,7 +109,7 @@
     
     self.themeImageView = [UIImageView new];
     [self.mosaicThemeImageView addSubview:self.themeImageView];
-    self.themeImageView.image = image;//[UIImage imageNamed:@"hotMVoice_downLeft"];
+//    self.themeImageView.image = image;//[UIImage imageNamed:@"hotMVoice_downLeft"];
     self.themeImageView.layer.masksToBounds = YES;
     self.themeImageView.layer.cornerRadius = 110;
     self.themeImageView.layer.borderColor = [UIColor colorWithWhite:1 alpha:0.5].CGColor;
@@ -458,6 +458,11 @@
 {
     _playInfoDic = playInfoDic;
     self.title_DanmakuScanfView.autoScrollLabel.text = playInfoDic[@"audioTitle"];
+    UIImage * themeImage = playInfoDic[@"themeImage"];
+    UIImage * blurImage = [MEUtil boxblurImage:themeImage withBlurNumber:3.6];//图像虚化
+    UIImage * mosaicImage = [MEUtil transToMosaicImage:blurImage blockLevel:34];//图像添加马赛克
+    self.mosaicThemeImageView.image = mosaicImage;
+    self.themeImageView.image = themeImage;
 }
 
 #pragma mark - 循环模式

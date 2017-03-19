@@ -331,11 +331,13 @@
 }
 
 - (UIImage *)playCoverImage{
+//    UIImageView * imageCoverView = [[UIImageView alloc] init];
+//    [imageCoverView sd_setImageWithURL:[self playCoverLarge] placeholderImage:[UIImage imageNamed:@"music_placeholder"]];
+    // 考虑到线程问题，此处需要使用同步方法读取图片
+    NSData * imageData = [NSData dataWithContentsOfURL:[self playCoverLarge]];
+    UIImage * image = [UIImage imageWithData:imageData];
     
-    UIImageView * imageCoverView = [[UIImageView alloc] init];
-    [imageCoverView sd_setImageWithURL:[self playCoverLarge] placeholderImage:[UIImage imageNamed:@"music_placeholder"]];
-    
-    return [imageCoverView.image copy];
+    return [image copy];
 }
 
 - (BOOL)havePlay{
